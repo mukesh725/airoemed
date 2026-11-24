@@ -37,7 +37,7 @@ const CONCERNS: ConcernItem[] = [
   { id: 'hair-w-7', audience: 'HER', category: 'HAIR', title: 'Postpartum Hair Shedding', desc: 'Hormonal shedding & recovery post-childbirth', tag: 'Postpartum Care', status: 'Online Doctor Consult', image: '/images/concerns/hers/postpartum-shedding.png' },
   { id: 'hair-w-8', audience: 'HER', category: 'HAIR', title: 'Patchy Hair Loss', desc: 'Circular localized bald spots needing clinical care', tag: 'Specialist Care', status: 'Online Doctor Consult', image: '/images/concerns/hers/patchy-hair-loss.png' },
   { id: 'hair-w-9', audience: 'HER', category: 'HAIR', title: 'Weak, Brittle & Split Ends', desc: 'Breakage, dryness, and split damaged ends', tag: 'Hair Health', status: 'Online Doctor Consult', image: '/images/concerns/hers/weak-damaged-hair.png' },
-  { id: 'hair-w-10', audience: 'HER', category: 'HAIR', title: 'Prevent Hair Thinning', desc: 'Protect volume, scalp nutrition & follicle vitality', tag: 'Prevention', status: 'Online Doctor Consult', image: '/images/concerns/hers/prevent-hair-loss.png' },
+  { id: 'hair-w-10', audience: 'HER', category: 'HAIR', title: 'Prevent Hair Loss', desc: 'Protect volume, scalp nutrition & follicle vitality', tag: 'Prevention', status: 'Online Doctor Consult', image: '/images/concerns/hers/prevent-hair-loss.png' },
 
   // SKINCARE (ALL)
   { id: 'skin-1', audience: 'ALL', category: 'SKIN', title: 'Dark Spots', desc: 'Fade melasma, sun spots, and post-acne marks', tag: 'Brightening', status: 'Clinician Evaluated', image: '/images/card-prod-glow-serum.jpg' },
@@ -282,7 +282,6 @@ export default function ConcernsPage() {
               </Link>
             </div>
           </div>
-        </div>
         </div>
       </header>
 

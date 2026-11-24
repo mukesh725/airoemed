@@ -115,6 +115,28 @@ export default function QuestionnairePage() {
     goalWeight: 76
   });
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const cat = (params.get('category') || 'HAIR').toUpperCase();
+      const aud = (params.get('audience') || 'HIM').toUpperCase();
+      const con = params.get('concern') || '';
+      if (['HAIR', 'SKIN', 'SEXUAL_HEALTH', 'WEIGHT'].includes(cat)) {
+        setCategory(cat as any);
+      }
+      if (['HIM', 'HER'].includes(aud)) {
+        setAudience(aud as any);
+      }
+      if (con) {
+        setAnswers(prev => ({
+          ...prev,
+          selectedConcerns: [con],
+          step_concern_selection: [con]
+        }));
+      }
+    }
+  }, []);
+
   // Build steps
   const steps: StepConfig[] = [];
   const isHair = category === 'HAIR';

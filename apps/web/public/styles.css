@@ -2288,6 +2288,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
   padding-top: 0.75rem;
 }
 
@@ -2295,6 +2297,11 @@ body {
   display: flex;
   align-items: center;
   gap: 0.625rem;
+  min-width: 0;
+}
+
+.concern-clinician-info img {
+  flex-shrink: 0;
 }
 
 .concern-pill-btn {
@@ -2307,6 +2314,8 @@ body {
   font-weight: 600;
   padding: 0.5rem 0.875rem;
   border-radius: 9999px;
+  border: none;
+  cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
 }
@@ -2314,5 +2323,4 @@ body {
 .concern-card:hover .concern-pill-btn {
   background-color: #000000;
   box-shadow: 0 4px 12px rgba(25, 24, 23, 0.25);
-  transform: scale(1.02);
 }

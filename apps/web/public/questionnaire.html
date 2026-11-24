@@ -370,6 +370,18 @@
       { code: 'NV', name: 'Nevada (NV)' }
     ];
 
+    // HTML Sanitization helper against reflected DOM XSS
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>"']/g, c => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[c]));
+    }
+
     // Read initial URL params
     const urlParams = new URLSearchParams(window.location.search);
     let currentCategory = (urlParams.get('category') || 'HAIR').toUpperCase();
@@ -1161,8 +1173,9 @@
       // TYPE: RESULTS (Personalized Treatment Plan Screen)
       // ------------------------------------------------
       else if (step.type === 'results') {
-        const concernTitle = (patientAnswers.selectedConcerns && patientAnswers.selectedConcerns[0]) || 'Clinical Profile';
-        const stateName = patientAnswers.state || 'TX';
+        const rawConcern = (patientAnswers.selectedConcerns && patientAnswers.selectedConcerns[0]) || 'Clinical Profile';
+        const concernTitle = escapeHtml(rawConcern);
+        const stateName = escapeHtml(patientAnswers.state || 'TX');
 
         html += `
           <div class="bg-white rounded-[2.5rem] border border-[#DDD5C9] p-8 sm:p-12 text-center space-y-8 shadow-xl max-w-2xl mx-auto">
@@ -1264,7 +1277,11 @@
     }
 
     function toggleMultiPhotoCard(stepId, value) {
-      if (!patientAnswers[stepId]) patientAnswers[stepId] = [];
+      if (!patientAnswers[stepId]) {
+        patientAnswers[stepId] = patientAnswers.selectedConcerns && patientAnswers.selectedConcerns.length > 0 
+          ? [...patientAnswers.selectedConcerns] 
+          : [];
+      }
       const arr = patientAnswers[stepId];
       const idx = arr.indexOf(value);
       if (idx > -1) {
