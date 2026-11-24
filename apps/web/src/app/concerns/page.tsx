@@ -411,27 +411,35 @@ export default function ConcernsPage() {
                               {item.title}
                             </h3>
                             <div className="concern-card-status">
-                              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true" />
+                              <svg aria-hidden="true" className="w-3.5 h-3.5 shrink-0 text-[#55514C]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                                <line x1="12" y1="2" x2="12" y2="5" opacity="1" />
+                                <line x1="19.07" y1="4.93" x2="16.95" y2="7.05" opacity="0.87" />
+                                <line x1="22" y1="12" x2="19" y2="12" opacity="0.75" />
+                                <line x1="19.07" y1="19.07" x2="16.95" y2="16.95" opacity="0.62" />
+                                <line x1="12" y1="22" x2="12" y2="19" opacity="0.5" />
+                                <line x1="4.93" y1="19.07" x2="7.05" y2="16.95" opacity="0.37" />
+                                <line x1="2" y1="12" x2="5" y2="12" opacity="0.25" />
+                                <line x1="4.93" y1="4.93" x2="7.05" y2="7.05" opacity="0.12" />
+                              </svg>
                               <span>{item.status}</span>
                             </div>
                           </div>
 
                           <div className="concern-inner-photo">
                             <img src={item.image} alt={item.title} loading="lazy" />
-                            <span className="concern-inner-badge">{item.tag}</span>
                           </div>
                         </div>
 
                         {/* Bottom Footer: Avatar & Capsule Button (NO description, NO divider) */}
                         <div className="concern-card-footer">
-                          <div className="concern-clinician-info">
-                            <div className="relative">
+                          <div className="concern-clinician-info min-w-0">
+                            <div className="relative shrink-0">
                               <img src="/images/doctor-avatar.jpg" alt="Doctor" className="w-8 h-8 rounded-full object-cover border border-[#DDD5C9]" />
                               <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-white" />
                             </div>
-                            <div className="flex flex-col">
-                              <span className="text-xs font-bold text-[#191817] leading-tight">Airo Clinician</span>
-                              <span className="text-[10px] text-[#78726A] leading-tight">Rx Prescribed</span>
+                            <div className="flex flex-col min-w-0">
+                              <span className="text-xs font-bold text-[#191817] leading-tight truncate">Airo Clinician</span>
+                              <span className="text-[10px] text-[#78726A] leading-tight truncate">Rx Prescribed</span>
                             </div>
                           </div>
 
@@ -439,7 +447,7 @@ export default function ConcernsPage() {
                             type="button"
                             onClick={(e) => startIntake(item.title, e)}
                             aria-label={`Start consultation for ${item.title}`}
-                            className="concern-pill-btn cursor-pointer after:absolute after:inset-0 after:content-['']"
+                            className="concern-pill-btn cursor-pointer after:absolute after:inset-0 after:content-[''] after:z-[5]"
                           >
                             <svg aria-hidden="true" className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 4v16m8-8H4" /></svg>
                             <span>Start consult</span>
