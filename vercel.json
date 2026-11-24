@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "name": "airoemed",
   "cleanUrls": true,
   "outputDirectory": "apps/web/public",
   "rewrites": [
