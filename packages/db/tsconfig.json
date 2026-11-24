@@ -1,0 +1,19 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "composite": true,
+    "ignoreDeprecations": "6.0",
+    "baseUrl": ".",
+    "paths": {
+      "@airo/types": ["../types/src"]
+    },
+    "typeRoots": ["../../ECC/node_modules/@types"],
+    "types": ["node"]
+  },
+  "references": [
+    { "path": "../types" }
+  ],
+  "include": ["src/**/*"]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@airo/web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@airo/core": "file:../../packages/core",
+    "@airo/types": "file:../../packages/types"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}

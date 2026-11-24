@@ -1,0 +1,366 @@
+AIRO eMed US — Product Requirements Document
+Nov 19, 2026 · @MUKESH
+Overview
+AIRO eMed US brings the India product to American patients: a patient picks a concern, answers an online questionnaire, a clinician licensed in the patient's state prescribes, and a US-licensed pharmacy ships the medicine to their door on a monthly membership.
+Problem. Hair loss, erectile dysfunction, skin conditions and weight are common and stigmatised. Patients put off seeing a doctor, wait weeks for appointments, or buy unregulated products online. Cash-pay telehealth has proven the demand, but the category is now under heavy regulatory scrutiny.
+Product. A website and iOS/Android apps, with Hims (men) and Hers (women) entry points, async and video consults, e-prescribing, pharmacy fulfilment, ongoing provider messaging and auto-refills.
+What changes from India. The patient journey and brand carry over. Almost everything underneath changes:
+Area
+India product
+US product
+Clinician licensing
+One national registration
+A licence in every state served; state-by-state rollout
+Prescribing rules
+Telemedicine Practice Guidelines, 2020
+State standard-of-care rules (async vs video by state), DEA rules for controlled drugs
+Pharmacy
+Licensed Indian pharmacy
+State-licensed mail-order pharmacy in each shipping state; 503A compounding only with patient-specific Rx
+Weight-loss drugs
+Branded GLP-1s sold on site
+Branded GLP-1s via manufacturer self-pay channels; compounded GLP-1 marketing is high-risk
+Data protection
+DPDP Act, 2023; data in India
+HIPAA, FTC Health Breach Notification Rule, state health-privacy laws
+Payments
+₹, UPI, GST
+USD cards, HSA/FSA; LegitScript certification for card processing and ads
+Corporate structure
+AIRO eMed Pvt Ltd
+Management company plus doctor-owned medical groups (corporate practice of medicine)
+Basis. Built from the India PRD for airoemed.com (19 Nov 2026) and current US regulatory and market sources listed at the end. Items marked (assumed) need confirmation; nothing here is legal advice, and a US health-regulatory counsel should review the compliance plan before launch.
+Goals, non-goals and success metrics
+The US launch succeeds when AIRO eMed US can legally treat patients in its launch states, gets them to a prescription within a day, and keeps them subscribed, with zero compliance incidents.
+Goals
+Launch in 10 high-population states in phase 1, then cover all 50 states plus DC within 18 months. (assumed)
+Questionnaire to provider decision in under 24 hours for async conditions.
+Ship only from pharmacies licensed in the patient's state, with discreet packaging and 2–4 day delivery.
+Reach month-3 retention on par with US category leaders through auto-refill and provider messaging.
+Get LegitScript-certified before paid ads or card processing go live.
+Non-goals (v1)
+Insurance billing, Medicare or Medicaid. Cash-pay only, with HSA/FSA cards accepted.
+Controlled substances, including testosterone, until the DEA's permanent telemedicine rules are known.
+Compounded GLP-1 weight-loss drugs.
+Primary care, mental health, emergency care, under-18s.
+Success metrics (targets assumed; set with the team)
+Metric
+Definition
+Target
+Questionnaire completion
+Submitted / started
+≥ 55%
+Provider turnaround
+Submission to decision, median, async
+≤ 12 hours
+Approval to first shipment
+Approval to carrier pickup
+≤ 1 business day
+Month-3 retention
+Subscribers active at day 90
+≥ 50%
+CAC payback
+Months of contribution margin to recover acquisition cost
+≤ 6 months
+Compliance incidents
+Rx to an unlicensed state, HIPAA breach, or FDA/FTC letter
+0
+NPS
+30 days after first delivery
+≥ 50
+Market and competitors
+The US model AIRO eMed mirrors already exists at scale: Hims & Hers has about 2.9 million subscribers, so AIRO US must win on a narrower, more trusted offer rather than breadth.
+Competitor
+Categories
+Weight-loss model in 2026
+Notes
+Hims & Hers
+Sexual health, hair, hormones, weight, dermatology, mental health, labs
+Moved from compounded to branded GLP-1s in March 2026; sends Rx to LillyDirect
+~2.9M subscribers (Q2 2026), $92 monthly revenue per subscriber; referred to DOJ by HHS and sued by Novo Nordisk
+Ro
+Weight, ED, hair, fertility, skin
+Branded GLP-1s only; separate membership on top of drug cost
+Membership from ~$74/mo; also accepts insurance
+Keeps, Rex MD, others
+Mostly hair or ED
+Varies
+Niche single-category players
+Manufacturer direct (LillyDirect, NovoCare, TrumpRx)
+Weight
+Sell branded GLP-1s straight to cash-pay patients
+Sets the price floor AIRO must beat on service, not price
+What this means for AIRO US
+Weight loss now runs on branded drugs at manufacturer self-pay prices; Hims wrote down $33M of compounding assets when it stopped advertising compounded products. Margin comes from the membership and care, not the drug.
+Hair, ED and skin keep healthy margins on generics and personalised formulations: the India product's strongest categories.
+Differentiate on trust and care quality: transparent pricing, named clinicians, fast follow-up, and no compounded-drug controversy.
+Target users and personas
+AIRO eMed US serves adults aged 21–55 who pay cash for convenience and privacy, many with high-deductible insurance plans that make a clinic visit cost as much as a month of treatment.
+Persona
+Audience
+Need
+What stops them today
+Jake, 28, Austin TX
+Hims
+Stop early hair loss
+Dermatology waitlists of weeks; unsure which online brand to trust
+Marcus, 41, Atlanta GA
+Hims
+Discreet ED treatment, ideally a daily option
+Embarrassed to raise it with his GP
+Emily, 34, Denver CO
+Hers
+Melasma, acne or thinning hair that OTC products did not fix
+Specialist copays and wait times
+Dana, 47, Columbus OH
+Hims or Hers
+Supervised GLP-1 weight loss at a predictable monthly price
+Insurance denies coverage; confused by compounded vs branded options
+Internal users
+Clinicians (MDs, DOs, NPs, PAs) licensed in the patient's state: review intakes, consult, prescribe, follow up.
+Pharmacists at partner mail-order pharmacies: verify and dispense.
+Care team and support: messaging triage, billing, shipping issues.
+Compliance: licence tracking, audits, adverse-event reporting.
+Scope: care categories and launch states
+AIRO US launches the India product's four categories, but swaps every product for an FDA-approved drug or a patient-specific 503A formulation, and drops anything controlled or compounded-GLP-1.
+Category
+Audience
+In scope (v1)
+Out of scope (v1)
+Hair
+Hims, Hers
+Oral finasteride, oral minoxidil, topical minoxidil; personalised topical sprays (minoxidil + finasteride + tretinoin) from a 503A pharmacy; women: oral or topical minoxidil, spironolactone
+Finasteride for women who could become pregnant
+Sexual health
+Hims
+Generic sildenafil and tadalafil (on-demand and daily); PE treatment
+Testosterone (Schedule III controlled)
+Weight
+Hims, Hers
+Branded GLP-1s routed to manufacturer pharmacies: Wegovy pen and pill (NovoCare), Zepbound and Foundayo (LillyDirect); membership covers care, coaching and labs
+Compounded semaglutide or tirzepatide; diabetes-only drugs (Rybelsus, Mounjaro, Victoza) marketed for weight loss
+Skin
+Hims, Hers
+Tretinoin, hydroquinone blends, azelaic acid, topical acne and rosacea treatments
+Sleep cream with hydroxyzine; exosome and peptide products until regulatory review
+Launch states. Phase 1 = 10 populous states where async prescribing is allowed and licences can be issued fast (candidate list assumed; validate with counsel): TX, FL, GA, AZ, CO, IL, OH, PA, NC, WA. The Interstate Medical Licensure Compact covers 44 states, DC and Guam, which speeds physician licensing; Michigan left it in March 2026 and North Carolina joined in January 2026.
+Every membership includes: a provider consult, unlimited messaging, refills, free discreet shipping, and cancel-anytime billing.
+Channels: website plus iOS and Android apps sharing one account; carry over the India BMI, BMR, TDEE and calorie-deficit tools.
+User journey
+The US journey keeps the India flow but adds a state gate before the questionnaire and an ID check before the clinician sees the case.
+US patient journey · 2 gates
+Patients in states not yet served join a waitlist and are emailed at launch. The pharmacy step routes hair, ED and skin orders to a partner pharmacy licensed in the shipping state, and GLP-1 prescriptions to LillyDirect or NovoCare.
+Functional requirements
+Requirements reuse the India IDs where the behaviour carries over; US- marks new US-only work. P0 = launch blocker, P1 = soon after, P2 = later.
+Eligibility and state gating (new)
+ID
+Requirement
+Priority
+US-1
+Ask the patient's state of residence and current location before the questionnaire; block or wait-list states not yet served.
+P0
+US-2
+Route each case only to clinicians actively licensed in the patient's state; licences checked daily against state boards.
+P0
+US-3
+Per-state rules engine: async allowed vs video required, ID verification, consent text, which products may ship.
+P0
+US-4
+Identity and age verification (21+ for some products) before first prescription.
+P0
+US-5
+Shipping address must be in a state where the patient was treated and the pharmacy is licensed.
+P0
+Discovery and questionnaire (carried over)
+ID
+Requirement
+Priority
+FR-1–4
+Hims/Hers home, global nav, value proposition, footer with US disclaimers.
+P0
+FR-5–7
+Concerns page, condition-specific questionnaire with progress and "Why we ask" notes.
+P0
+FR-8
+No skipping of safety questions (nitrates, heart disease, pregnancy, eating disorders, thyroid cancer history for GLP-1s).
+P0
+FR-11
+Every "Get started" link opens the right questionnaire (fixes the India defect).
+P0
+US-6
+Photo upload for hair and skin; lab upload or at-home lab kit for weight.
+P1
+Consult and prescribing
+ID
+Requirement
+Priority
+US-7
+Async review by default; video visit scheduling where state rules or clinical judgement require it.
+P0
+US-8
+Clinician console: intake, history, photos, protocol guidance, prescribe, decline, message, escalate.
+P0
+US-9
+E-prescribing (Surescripts) to partner pharmacies and to LillyDirect / NovoCare.
+P0
+US-10
+Adverse-event capture and FDA MedWatch reporting workflow.
+P1
+FR-23
+Ongoing patient–clinician messaging with response-time targets.
+P0
+Membership, payment and fulfilment
+ID
+Requirement
+Priority
+US-11
+Payment collected only after approval; card authorised at checkout.
+P0
+US-12
+Monthly or quarterly memberships with pause, skip, dose change and cancel-anytime online (FTC negative-option rules).
+P0
+US-13
+HSA/FSA cards accepted; itemised receipts for reimbursement.
+P1
+US-14
+Order routing to the right pharmacy by state and product; tracking via USPS/UPS.
+P0
+US-15
+GLP-1 orders show the manufacturer self-pay drug price separately from the AIRO membership fee.
+P0
+Account and support
+ID
+Requirement
+Priority
+FR-17
+Sign-up with email and phone, MFA, return to the original page.
+P0
+FR-19
+Self-serve data access and deletion requests (state privacy laws).
+P0
+US-16
+Help centre, chat, and order issue flows staffed in US time zones.
+P0
+Regulatory and compliance
+In the US, compliance decides what AIRO can sell and where. Three areas changed in 2026 and shape v1 directly: FDA enforcement on compounded GLP-1s, the DEA's telemedicine rules, and ad-platform certification.
+Area
+What applies
+What AIRO US must do
+State licensure
+A clinician must be licensed in the state where the patient is located.
+Licence a core clinician group in all launch states, using the IMLC where possible; block unserved states (US-1, US-2).
+Corporate practice of medicine
+Many states bar lay companies from employing physicians or controlling clinical decisions.
+Set up a management services company plus doctor-owned professional corporations; clinical protocols owned by the medical group.
+Pharmacy
+Pharmacies need a licence or non-resident permit in each state they ship to. Off the shortage list, only 503A pharmacies may compound semaglutide and tirzepatide, and only against patient-specific prescriptions.
+Partner with licensed mail-order and 503A pharmacies; branded GLP-1s via LillyDirect and NovoCare.
+FDA marketing
+FDA sent 30 warning letters in March 2026 and 25 more in June 2026 over telehealth claims implying compounded GLP-1s match approved drugs.
+No compounded GLP-1s in v1. Never call a compounded product "generic", "the same as" a brand, or "FDA-approved". Medical-legal review of all copy.
+DEA (controlled drugs)
+Flexibilities that allow tele-prescribing of Schedule II–V drugs without an in-person visit run only through 31 Dec 2026. A final special-registration rule has been at White House review since August 2026 and is not public.
+Keep testosterone and other controlled drugs out of v1; revisit once the final rule is published.
+HIPAA
+AIRO's medical group is a covered entity; AIRO and its vendors are business associates.
+BAAs with every vendor touching PHI (hosting, EHR, messaging, analytics); HIPAA security and privacy programme.
+Consumer health privacy
+Washington's My Health My Data Act, the FTC Health Breach Notification Rule, and health-data laws in CA, CT, NV, MD and TX overlap; ad pixels are a main enforcement trigger.
+No third-party ad pixels on health pages; consent for any health-data sharing; geo-aware consent for WA residents.
+Advertising and payments
+Google requires LegitScript certification for US telemedicine and online-pharmacy ads; Visa and Mastercard also recognise it for card-not-present processing.
+Get LegitScript-certified before paid ads or payments go live.
+FTC consumer protection
+Truthful claims with typical results; clear auto-renewal disclosure and easy cancellation.
+Substantiate every outcome claim; one-click online cancel.
+Accessibility
+ADA Title III applies to consumer websites in practice.
+WCAG 2.2 AA (see non-functional requirements).
+Non-functional requirements
+US hosting, HIPAA-grade security and pixel-free health pages are launch blockers.
+Area
+Requirement
+Hosting
+PHI stored in US regions only (e.g. AWS us-east-1 / us-west-2) under a signed BAA; India and US data kept in separate tenants.
+Security
+Encryption in transit and at rest, MFA for staff, role-based access, audit log of every PHI view, annual penetration test; SOC 2 Type II within 12 months.
+Analytics and ads
+Server-side, PHI-free analytics only; no Meta or Google pixels on questionnaire, account or product-for-condition pages.
+Discretion
+Neutral billing descriptor, plain packaging, neutral email and SMS sender; condition never named in notifications.
+Performance
+Largest Contentful Paint under 2.5 s on mobile 4G; questionnaire steps under 300 ms.
+Availability
+99.9% for intake, checkout and clinician console.
+Accessibility
+WCAG 2.2 AA across web and apps.
+Localisation
+English at launch, Spanish as P1; USD; dates MM/DD/YYYY; imperial units in weight tools with metric toggle.
+Records
+Medical records retained per the strictest state rule served (commonly 7–10 years).
+Pricing and business model
+AIRO US earns a monthly membership that bundles care and medicine for hair, ED and skin, and a care-only membership for weight loss, where the patient pays the manufacturer's self-pay drug price.
+Category
+Proposed AIRO price (assumed)
+Market reference
+Hair
+$25–$45 / mo, medicine included
+Ro hair package $44–$49 / mo
+ED
+$20–$60 / mo depending on dose and frequency
+Ro ED from $20 / mo
+Skin
+$30–$50 / mo, medicine included
+Ro tretinoin formulations $30–$50 / mo
+Weight (care membership)
+$79 / mo, plus drug cost paid to the manufacturer pharmacy
+Ro $145 / mo; Hims $99–$199 / mo
+Weight (drug, manufacturer self-pay)
+Pass-through
+Zepbound $299–$449, Foundayo from $149; Wegovy pen $199 starter offer to 31 Dec 2026, then $349
+Consult is free; the patient pays only if prescribed.
+Discounts for 3- and 6-month prepay in hair, ED and skin.
+No insurance billing in v1; HSA/FSA accepted.
+Drug prices change often; the product must pull current manufacturer prices rather than hard-code them.
+Risks, open questions and launch roadmap
+The largest risk is regulatory: the rules for GLP-1 marketing and controlled-drug tele-prescribing are moving, and the market leader is under federal scrutiny.
+Risks
+Risk
+Mitigation
+FDA or FTC action over drug claims
+No compounded GLP-1s; medical-legal review of every page and ad; claims backed by label data
+DEA flexibilities lapse on 31 Dec 2026 or the final rule is restrictive
+Controlled drugs out of v1; architecture ready for DEA registration checks if added later
+Prescribing to a patient in an unlicensed state
+State gate at intake, address checks, location check at consult time
+Health data leaks through ad pixels
+Pixel-free health pages, BAAs, privacy review of every new vendor
+Manufacturer price changes squeeze weight-loss margin
+Care membership priced separately from the drug
+Brand confusion with Hims & Hers ("Hims" / "Hers" labels)
+Trademark review; rename US audience labels if needed
+Ad accounts suspended
+LegitScript certification before launch; compliant creative guidelines
+Open questions
+☐ Use the "Hims" and "Hers" labels in the US, given Hims & Hers Health's trademarks?
+☐ Build our own medical group or partner with a telehealth PC and pharmacy network?
+☐ Which 10 states first, and does async prescribing work in each for every category?
+☐ Offer testosterone once the DEA final rule is published?
+☐ Accept insurance for GLP-1s in phase 2?
+☐ Share code and platform with India, or run a separate US stack for HIPAA isolation?
+Launch roadmap (timing assumed)
+Foundations (months 0–3): entity and medical group, state licences, pharmacy partners, HIPAA programme, LegitScript application. Gate: counsel sign-off.
+Private beta (months 3–5): hair and ED in 3 states, waitlist users. Gate: zero compliance incidents, turnaround ≤ 12 h.
+Phase 1 launch (months 5–8): hair, ED, skin and weight in 10 states; paid ads on. Gate: month-3 retention ≥ 50%.
+National (months 8–18): 50 states plus DC, Spanish, HSA/FSA, at-home labs.
+Sources
+AIRO eMed India PRD and airoemed.com, reviewed 19 Nov 2026
+DEA flexibilities through 2026: JD Supra, Becker's
+DEA special registration at OIRA: Frier Levitt, reginfo.gov RIN 1117-AB40
+FDA compounded GLP-1 enforcement: Pharmaceutical Commerce, Mondaq / McDermott, Birmingham Medical News, Pharmacy Times
+Hims & Hers: Zacks, Q2 2026, Q1 2026 call, telehealth.org
+Ro pricing: Fortune, Free Market Healthcare, Ro vs Hims, Black Health
+GLP-1 self-pay prices: WTOP / LillyDirect, NovoCare summary
+Licensing: CompHealth IMLC map, Credentially
+Privacy: Holland & Knight, Aug 2026
+LegitScript: PPC Land, Business Wire

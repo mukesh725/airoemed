@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "outputDirectory": "apps/web/public",
+  "rewrites": [
+    { "source": "/concerns", "destination": "/concerns.html" },
+    { "source": "/questionnaire", "destination": "/questionnaire.html" }
+  ]
+}

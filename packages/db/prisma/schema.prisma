@@ -1,0 +1,386 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum UserRole {
+  PATIENT
+  CLINICIAN
+  CARE_COORDINATOR
+  SYSTEM_ADMIN
+}
+
+enum ClinicalCategory {
+  HAIR_LOSS
+  SEXUAL_HEALTH_ED
+  DERMATOLOGY
+  WEIGHT_MANAGEMENT
+}
+
+enum TelehealthModality {
+  ASYNC_STORE_AND_FORWARD
+  SYNCHRONOUS_AUDIO_VIDEO
+}
+
+enum EncounterStatus {
+  INTAKE_IN_PROGRESS
+  INTAKE_SUBMITTED
+  CDSS_EVALUATED
+  DECLINED_CONTRAINDICATED
+  PENDING_CLINICIAN_REVIEW
+  VIDEO_CONSULT_REQUIRED
+  VIDEO_CONSULT_SCHEDULED
+  APPROVED_SIGNED
+  LOCKED
+  CANCELLED
+}
+
+enum MedicationType {
+  FDA_APPROVED_GENERIC
+  COMPOUNDED_503A
+  MANUFACTURER_DIRECT_BRANDED
+}
+
+enum PharmacyFulfillmentRoute {
+  MAIL_ORDER_503A_PARTNER
+  LILLY_DIRECT_API
+  NOVO_CARE_API
+}
+
+enum PrescriptionStatus {
+  DRAFT
+  SIGNED
+  DISPATCHED_TO_PHARMACY
+  FILLED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAUSED
+  CANCELLED
+  PENDING_CLINICAL_APPROVAL
+}
+
+enum IDVStatus {
+  NOT_STARTED
+  PENDING
+  VERIFIED
+  FAILED
+}
+
+// ----------------------------------------------------
+// Core User & Auth Accounts
+// ----------------------------------------------------
+model User {
+  id           String        @id @default(uuid())
+  email        String        @unique
+  phoneNumber  String?
+  role         UserRole      @default(PATIENT)
+  mfaEnabled   Boolean       @default(false)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  patient      Patient?
+  clinician    Clinician?
+  auditLogs    HIPAAAuditLog[]
+
+  @@index([email])
+  @@index([role])
+}
+
+// ----------------------------------------------------
+// Patient Profile & Demographics (Encrypted PHI at Rest)
+// ----------------------------------------------------
+model Patient {
+  id                   String        @id @default(uuid())
+  userId               String        @unique
+  user                 User          @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  firstName            String
+  lastName             String
+  dateOfBirth          DateTime
+  biologicalSex        String        // "MALE" or "FEMALE"
+  stateOfResidence     String        // 2-letter state code e.g. "TX"
+  currentPhysicalState String        // 2-letter state code e.g. "TX"
+  idvStatus            IDVStatus     @default(NOT_STARTED)
+  hipaaConsentSignedAt DateTime?
+  telehealthConsentAt  DateTime?
+
+  addresses            PatientAddress[]
+  encounters           Encounter[]
+  prescriptions        Prescription[]
+  subscriptions        Subscription[]
+  auditLogs            HIPAAAuditLog[]
+
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt
+
+  @@index([stateOfResidence])
+  @@index([currentPhysicalState])
+}
+
+model PatientAddress {
+  id             String    @id @default(uuid())
+  patientId      String
+  patient        Patient   @relation(fields: [patientId], references: [id], onDelete: Restrict)
+
+  addressLine1   String
+  addressLine2   String?
+  city           String
+  state          String    // US State Code
+  postalCode     String
+  isDefault      Boolean   @default(true)
+
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([patientId])
+  @@index([state])
+}
+
+// ----------------------------------------------------
+// Clinician & Multi-State Licensure Registry
+// ----------------------------------------------------
+model Clinician {
+  id             String             @id @default(uuid())
+  userId         String             @unique
+  user           User               @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  legalName      String
+  npiNumber      String             @unique
+  deaNumber      String?            // Flagged for future controlled substance support
+  specialty      String
+  isIMLCParticipant Boolean         @default(true)
+  isActive       Boolean            @default(true)
+
+  licenses       ClinicianLicense[]
+  encounters     Encounter[]
+  prescriptions  Prescription[]
+
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+
+  @@index([npiNumber])
+  @@index([isActive])
+}
+
+model ClinicianLicense {
+  id             String    @id @default(uuid())
+  clinicianId    String
+  clinician      Clinician @relation(fields: [clinicianId], references: [id], onDelete: Restrict)
+
+  state          String    // US State Code
+  licenseNumber  String
+  licenseType    String    // MD, DO, NP, PA
+  isActive       Boolean   @default(true)
+  lastVerifiedAt DateTime  @default(now())
+  expiresAt      DateTime
+  imlcIssued     Boolean   @default(false)
+
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@unique([clinicianId, state])
+  @@index([state, isActive])
+}
+
+// ----------------------------------------------------
+// Clinical Encounters & Encounter Locking
+// ----------------------------------------------------
+model Encounter {
+  id                   String              @id @default(uuid())
+  patientId            String
+  patient              Patient             @relation(fields: [patientId], references: [id], onDelete: Restrict)
+  clinicianId          String?
+  clinician            Clinician?          @relation(fields: [clinicianId], references: [id], onDelete: Restrict)
+
+  category             ClinicalCategory
+  modality             TelehealthModality  @default(ASYNC_STORE_AND_FORWARD)
+  status               EncounterStatus     @default(INTAKE_SUBMITTED)
+  patientLocationState String              // State where patient was located during intake
+
+  questionnaireJson    Json                // Patient answers to intake questionnaire
+  clinicalNotes        String?             // Subjective / Objective / Assessment / Plan
+  rejectionReason      String?
+
+  isLocked             Boolean             @default(false)
+  signedAt             DateTime?
+  digitalSignatureHash String?             // Non-repudiation cryptographic signature
+
+  cdssEvaluations      CDSSEvaluation[]
+  prescriptions        Prescription[]
+  addenda              EncounterAddendum[]
+
+  createdAt            DateTime            @default(now())
+  updatedAt            DateTime            @updatedAt
+
+  @@index([patientId])
+  @@index([clinicianId])
+  @@index([status])
+  @@index([patientLocationState])
+}
+
+model EncounterAddendum {
+  id             String    @id @default(uuid())
+  encounterId    String
+  encounter      Encounter @relation(fields: [encounterId], references: [id], onDelete: Restrict)
+  clinicianId    String
+  addendumText   String
+  signedAt       DateTime  @default(now())
+
+  createdAt      DateTime  @default(now())
+
+  @@index([encounterId])
+}
+
+// ----------------------------------------------------
+// Clinical Decision Support (CDSS) Audit Trail
+// ----------------------------------------------------
+model CDSSEvaluation {
+  id             String    @id @default(uuid())
+  encounterId    String
+  encounter      Encounter @relation(fields: [encounterId], references: [id], onDelete: Restrict)
+
+  hasHardStop    Boolean
+  findingsJson   Json      // Array of triggered findings and explanations
+  overrideReason String?   // Mandatory if clinician overrides a warning
+  evaluatedAt    DateTime  @default(now())
+
+  @@index([encounterId])
+}
+
+// ----------------------------------------------------
+// Prescriptions & Dual-Path Fulfillment
+// ----------------------------------------------------
+model Prescription {
+  id                   String                  @id @default(uuid())
+  encounterId          String
+  encounter            Encounter               @relation(fields: [encounterId], references: [id], onDelete: Restrict)
+  patientId            String
+  patient              Patient                 @relation(fields: [patientId], references: [id], onDelete: Restrict)
+  clinicianId          String
+  clinician            Clinician               @relation(fields: [clinicianId], references: [id], onDelete: Restrict)
+
+  medicationName       String
+  ndcOrCompoundCode    String
+  medicationType       MedicationType
+  sigDirections        String                  // Directions for use
+  quantity             Int
+  refillsAllowed       Int                     @default(0)
+  daysSupply           Int                     @default(30)
+
+  route                PharmacyFulfillmentRoute
+  status               PrescriptionStatus      @default(SIGNED)
+  surescriptsTxId      String?
+
+  fulfillmentOrders    FulfillmentOrder[]
+
+  prescribedAt         DateTime                @default(now())
+  updatedAt            DateTime                @updatedAt
+
+  @@index([encounterId])
+  @@index([patientId])
+  @@index([status])
+  @@index([route])
+}
+
+model PharmacyPartner {
+  id                   String             @id @default(uuid())
+  name                 String
+  ncpdpId              String?
+  is503ACompounding    Boolean            @default(false)
+  licensedStates       String[]           // Array of state codes where partner holds non-resident permits
+  apiEndpointUrl       String?
+  isActive             Boolean            @default(true)
+
+  orders               FulfillmentOrder[]
+
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+
+  @@index([isActive])
+}
+
+model FulfillmentOrder {
+  id                   String           @id @default(uuid())
+  prescriptionId       String
+  prescription         Prescription     @relation(fields: [prescriptionId], references: [id], onDelete: Restrict)
+  pharmacyPartnerId    String?
+  pharmacyPartner      PharmacyPartner? @relation(fields: [pharmacyPartnerId], references: [id], onDelete: Restrict)
+
+  carrier              String?          // USPS, UPS
+  trackingNumber       String?
+  discreetPackagingOk  Boolean          @default(true)
+  isColdChainRequired  Boolean          @default(false)
+  shippedAt            DateTime?
+  deliveredAt          DateTime?
+
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @updatedAt
+
+  @@index([prescriptionId])
+  @@index([trackingNumber])
+}
+
+// ----------------------------------------------------
+// FTC Negative-Option Subscription Management
+// ----------------------------------------------------
+model Subscription {
+  id                   String             @id @default(uuid())
+  patientId            String
+  patient              Patient            @relation(fields: [patientId], references: [id], onDelete: Restrict)
+
+  category             ClinicalCategory
+  planIntervalDays     Int                @default(30) // 30 (monthly) or 90 (quarterly)
+  monthlyAmountUSD     Decimal            @db.Decimal(10, 2)
+  passThroughDrugFeeUSD Decimal           @default(0.00) @db.Decimal(10, 2)
+
+  status               SubscriptionStatus @default(PENDING_CLINICAL_APPROVAL)
+  currentPeriodStart   DateTime           @default(now())
+  currentPeriodEnd     DateTime
+  renewalNoticeDate    DateTime           // 72 hours before renewal
+
+  pausedUntilDate      DateTime?
+  cancelledAt          DateTime?
+  cancellationReason   String?
+
+  stripeCustomerId     String?
+  stripeSubscriptionId String?
+
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+
+  @@index([patientId])
+  @@index([status])
+}
+
+// ----------------------------------------------------
+// Immutable HIPAA PHI Access & Modification Audit Trail
+// ----------------------------------------------------
+model HIPAAAuditLog {
+  id             String    @id @default(uuid())
+  timestamp      DateTime  @default(now())
+  userId         String
+  user           User      @relation(fields: [userId], references: [id], onDelete: Restrict)
+  patientId      String?
+  patient        Patient?  @relation(fields: [patientId], references: [id], onDelete: Restrict)
+
+  userRole       UserRole
+  action         String    // READ, CREATE, UPDATE, EXPORT, DISCLOSE
+  resourceType   String    // ENCOUNTER, PRESCRIPTION, INTAKE_PHOTOS, PATIENT_PROFILE
+  resourceId     String
+  ipAddressHash  String    // Salted HMAC-SHA256 of IP address
+  accessReason   String
+
+  @@index([timestamp])
+  @@index([userId])
+  @@index([patientId])
+  @@index([resourceType, resourceId])
+}

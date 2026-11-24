@@ -1,0 +1,21 @@
+{
+  "name": "@airo/db",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "prisma:generate": "npx prisma generate",
+    "prisma:migrate": "npx prisma migrate dev",
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@airo/types": "file:../types"
+  },
+  "devDependencies": {
+    "prisma": "^6.4.1",
+    "@prisma/client": "^6.4.1",
+    "typescript": "^5.7.2"
+  }
+}

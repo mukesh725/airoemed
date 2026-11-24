@@ -1,0 +1,19 @@
+{
+  "name": "@airo/clinician-portal",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@airo/core": "file:../../packages/core",
+    "@airo/types": "file:../../packages/types"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}

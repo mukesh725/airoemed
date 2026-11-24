@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clinical Consultation & Questionnaire — AIRO eMed</title>
+  <meta name="description" content="Complete a private 3-minute clinical intake for doctor-guided personalized hair, skin, weight, and sexual wellness treatments.">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+          },
+          colors: {
+            brand: {
+              charcoal: '#191817',
+              navy: '#0F1B38',
+              forest: '#1B3328',
+              terracotta: '#B04D28',
+              sand: '#FAF8F5',
+              border: '#DDD5C9'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Core App Stylesheet -->
+  <link rel="stylesheet" href="/styles.css">
+
+  <style>
+    /* Questionnaire Dedicated Polished Styles */
+    body {
+      background-color: #FAF8F5;
+      color: #191817;
+    }
+
+    .q-card-option {
+      border: 1.5px solid #DDD5C9;
+      background-color: #FFFFFF;
+      border-radius: 1.25rem;
+      padding: 1.1rem 1.25rem;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    .q-card-option:hover {
+      border-color: #191817;
+      background-color: #F7F5F0;
+      transform: translateY(-1px);
+    }
+
+    .q-card-option.selected {
+      border-color: #0F1B38;
+      background-color: #F0F4FF;
+      box-shadow: 0 4px 14px -2px rgba(15, 27, 56, 0.12);
+    }
+
+    .q-photo-card {
+      border: 1.5px solid #DDD5C9;
+      background-color: #FFFFFF;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+    }
+
+    .q-photo-card:hover {
+      border-color: #191817;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px -4px rgba(25, 24, 23, 0.08);
+    }
+
+    .q-photo-card.selected {
+      border-color: #0F1B38;
+      box-shadow: 0 0 0 2px #0F1B38, 0 10px 24px -4px rgba(15, 27, 56, 0.16);
+      background-color: #F0F4FF;
+    }
+
+    .q-photo-card.selected .check-indicator {
+      display: flex;
+    }
+
+    .q-why-box {
+      background-color: #F4EFE6;
+      border-radius: 1rem;
+      padding: 1rem 1.25rem;
+      border: 1px solid #E5DEC9;
+    }
+
+    .q-safety-box {
+      background-color: #FEF2F2;
+      border-radius: 1rem;
+      padding: 1rem 1.25rem;
+      border: 1px solid #FCA5A5;
+      color: #991B1B;
+    }
+
+    .upload-dropzone {
+      border: 2px dashed #DDD5C9;
+      background-color: #FFFFFF;
+      border-radius: 1.25rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .upload-dropzone:hover {
+      border-color: #0F1B38;
+      background-color: #F7F5F0;
+    }
+
+    .upload-dropzone.has-file {
+      border-color: #10B981;
+      background-color: #ECFDF5;
+    }
+
+    .q-btn-navy {
+      background-color: #0F1B38;
+      color: #FFFFFF;
+      border-radius: 9999px;
+      font-weight: 700;
+      padding: 0.95rem 2.25rem;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 14px rgba(15, 27, 56, 0.2);
+    }
+
+    .q-btn-navy:hover:not(:disabled) {
+      background-color: #000000;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(15, 27, 56, 0.3);
+    }
+
+    .q-btn-navy:disabled {
+      background-color: #C7C2BA;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    /* Interstitial Animated Text Styles (Matching Reference Image 3) */
+    @keyframes wordFadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(18px);
+        filter: blur(4px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    .animate-word {
+      display: inline-block;
+      opacity: 0;
+      animation: wordFadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .highlight-pill {
+      display: inline-block;
+      background-color: #F1ECE3;
+      color: #9E4D30;
+      padding: 0.15rem 0.55rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      box-shadow: 0 1px 2px rgba(158, 77, 48, 0.06);
+      opacity: 0;
+      animation: wordFadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes cardFadeIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.98);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .interstitial-wrap {
+      animation: cardFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col selection:bg-[#0F1B38]/15 selection:text-[#0F1B38]">
+
+  <!-- ======================================================== -->
+  <!-- TOP INTAKE NAVIGATION HEADER                             -->
+  <!-- ======================================================== -->
+  <header class="sticky top-0 z-50 bg-[#FAF8F5]/90 backdrop-blur-md border-b border-[#E5E0D8]">
+    <div class="w-full px-4 sm:px-8 lg:px-12 h-16 sm:h-20 flex items-center justify-between">
+      
+      <!-- Left: Back Button -->
+      <button id="btn-back" 
+              onclick="goBack()" 
+              aria-label="Go back to previous step"
+              class="w-10 h-10 rounded-full border border-[#DDD5C9] bg-white flex items-center justify-center text-[#191817] hover:bg-[#F7F5F0] transition-colors cursor-pointer shadow-sm">
+        <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+
+      <!-- Center: AIRO eMed Brand -->
+      <div class="flex items-baseline space-x-1.5 select-none">
+        <span class="font-extrabold text-2xl sm:text-3xl tracking-tight text-[#191817]">AIRO</span>
+        <span class="text-xl sm:text-2xl font-normal text-[#191817]/85 tracking-tight">eMed</span>
+      </div>
+
+      <!-- Right: Step Progress & Close -->
+      <div class="flex items-center space-x-4">
+        <span id="step-counter" class="text-xs sm:text-sm font-bold text-[#615C56] tabular-nums">
+          1/13
+        </span>
+        <a href="/concerns.html" 
+           title="Exit consultation" 
+           class="w-10 h-10 rounded-full border border-[#DDD5C9] bg-white flex items-center justify-center text-[#615C56] hover:text-[#191817] hover:bg-[#F7F5F0] transition-colors">
+          <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Thin Top Animated Progress Bar -->
+    <div class="w-full h-1 bg-[#EBE5DC]">
+      <div id="progress-bar-fill" class="h-full bg-[#0F1B38] transition-all duration-300 ease-out" style="width: 8%;"></div>
+    </div>
+  </header>
+
+  <!-- ======================================================== -->
+  <!-- MAIN QUESTIONNAIRE CONTAINER                             -->
+  <!-- ======================================================== -->
+  <main class="flex-1 w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex flex-col justify-between">
+    
+    <!-- Dynamic Step Slide Stage -->
+    <div id="questionnaire-stage" class="transition-opacity duration-200">
+      <!-- Injected by JavaScript -->
+    </div>
+
+    <!-- Sticky / Centered Bottom Action Bar -->
+    <div id="bottom-action-bar" class="pt-8 sm:pt-12 pb-6 flex items-center justify-between border-t border-[#E5E0D8]/60 mt-8">
+      <button id="btn-secondary-skip" 
+              onclick="skipOptionalStep()" 
+              class="hidden text-xs sm:text-sm font-semibold text-[#615C56] hover:text-[#191817] underline underline-offset-4 cursor-pointer">
+        Skip for now
+      </button>
+
+      <div class="ml-auto">
+        <button id="btn-continue" 
+                type="button" 
+                onclick="handleContinue()" 
+                class="q-btn-navy flex items-center space-x-2 cursor-pointer">
+          <span id="btn-continue-text">Continue</span>
+          <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- QUESTIONNAIRE DATA & LOGIC ENGINE                         -->
+  <!-- ======================================================== -->
+  <script>
+    // ----------------------------------------------------
+    // QUESTIONNAIRE CONFIGURATION FROM AIRO_eMed_Questionnaires.pdf
+    // ----------------------------------------------------
+    const HAIR_CONCERNS_MEN = [
+      { id: 'male-pattern-hair-loss', title: 'Male pattern hair loss', image: '/images/intake/concern-male-pattern-hair-loss.jpg' },
+      { id: 'receding-hairline', title: 'Receding Hairline', image: '/images/intake/concern-receding-hairline.jpg' },
+      { id: 'thinning-hair', title: 'Thinning Hair', image: '/images/intake/concern-thinning-hair.jpg' },
+      { id: 'crown-hair-loss', title: 'Crown Hair Loss', image: '/images/intake/concern-crown-hair-loss.jpg' },
+      { id: 'bald-spots', title: 'Bald Spots', image: '/images/intake/concern-bald-spots.jpg' },
+      { id: 'hair-shedding', title: 'Hair Shedding', image: '/images/intake/concern-hair-shedding.jpg' },
+      { id: 'stress-related-hair-loss', title: 'Stress-Related Hair Loss', image: '/images/intake/concern-stress-related-hair-loss.jpg' },
+      { id: 'patchy-hair-loss', title: 'Patchy Hair Loss', image: '/images/intake/concern-patchy-hair-loss.jpg' },
+      { id: 'weak-damaged-hair', title: 'Weak or Damaged Hair', image: '/images/intake/concern-weak-damaged-hair.jpg' },
+      { id: 'prevent-hair-loss', title: 'Prevent Hair Loss', image: '/images/intake/concern-prevent-hair-loss.jpg' },
+      { id: 'hair-growth', title: 'Hair Growth', image: '/images/intake/concern-hair-growth.jpg' },
+      { id: 'not-sure', title: 'Not Sure', image: '/images/intake/concern-not-sure.jpg' }
+    ];
+
+    const HAIR_CONCERNS_WOMEN = [
+      { id: 'female-pattern-thinning', title: 'Female Pattern Thinning', image: '/images/intake/concern-thinning-hair.jpg' },
+      { id: 'receding-hairline', title: 'Receding Hairline', image: '/images/intake/concern-receding-hairline.jpg' },
+      { id: 'part-line-widening', title: 'Part Line Widening', image: '/images/intake/ref-front-hairline.jpg' },
+      { id: 'hair-shedding', title: 'Hair Shedding', image: '/images/intake/concern-hair-shedding.jpg' },
+      { id: 'postpartum-shedding', title: 'Postpartum Shedding', image: '/images/intake/concern-weak-damaged-hair.jpg' },
+      { id: 'stress-related-loss', title: 'Stress-Related Hair Loss', image: '/images/intake/concern-stress-related-hair-loss.jpg' },
+      { id: 'patchy-loss', title: 'Patchy Hair Loss', image: '/images/intake/concern-patchy-hair-loss.jpg' },
+      { id: 'brittle-damaged', title: 'Weak or Damaged Hair', image: '/images/intake/concern-weak-damaged-hair.jpg' },
+      { id: 'prevent-thinning', title: 'Prevent Hair Loss', image: '/images/intake/concern-prevent-hair-loss.jpg' },
+      { id: 'density-regrowth', title: 'Density & Volume Growth', image: '/images/intake/concern-hair-growth.jpg' },
+      { id: 'not-sure-w', title: 'Not Sure', image: '/images/intake/concern-not-sure.jpg' }
+    ];
+
+    const SKIN_CONCERNS_MEN = [
+      { id: 'dark-spots', title: 'Dark Spots & Melasma', image: '/images/card-prod-glow-serum.jpg' },
+      { id: 'acne', title: 'Acne & Breakouts', image: '/images/card-prod-clear-gel.jpg' },
+      { id: 'anti-aging', title: 'Anti-Aging & Fine Lines', image: '/images/card-prod-tretinoin.jpg' },
+      { id: 'body', title: 'Body Skin Concerns', image: '/images/cat-skin.jpg' },
+      { id: 'rosacea', title: 'Redness & Rosacea', image: '/images/slide-0-skin.jpg' },
+      { id: 'sleep-skin', title: 'Sleep & Night Recovery', image: '/images/slide-skin.jpg' },
+      { id: 'longevity', title: 'Cellular Longevity', image: '/images/hero-skin.jpg' }
+    ];
+
+    const SKIN_CONCERNS_WOMEN = [
+      { id: 'dark-spots', title: 'Dark Spots & Hyperpigmentation', image: '/images/card-prod-glow-serum.jpg' },
+      { id: 'anti-aging', title: 'Anti-Aging & Wrinkles', image: '/images/card-prod-tretinoin.jpg' },
+      { id: 'rosacea', title: 'Redness & Rosacea', image: '/images/slide-0-skin.jpg' },
+      { id: 'body', title: 'Body Acne & Texture', image: '/images/cat-skin.jpg' },
+      { id: 'acne', title: 'Adult & Hormonal Acne', image: '/images/card-prod-clear-gel.jpg' },
+      { id: 'unwanted-facial-hair', title: 'Unwanted Facial Hair', image: '/images/womens-hair-seed.jpg' },
+      { id: 'menopause-skin', title: 'Menopause Skin Care', image: '/images/womens-hair-lifestyle.jpg' },
+      { id: 'sleep-skin', title: 'Sleep & Night Wellness', image: '/images/slide-skin.jpg' }
+    ];
+
+    const US_STATES = [
+      { code: 'TX', name: 'Texas (TX) — Immediate Clinician Available' },
+      { code: 'CA', name: 'California (CA) — Immediate Clinician Available' },
+      { code: 'NY', name: 'New York (NY) — Immediate Clinician Available' },
+      { code: 'FL', name: 'Florida (FL) — Immediate Clinician Available' },
+      { code: 'IL', name: 'Illinois (IL) — Immediate Clinician Available' },
+      { code: 'PA', name: 'Pennsylvania (PA)' },
+      { code: 'OH', name: 'Ohio (OH)' },
+      { code: 'GA', name: 'Georgia (GA)' },
+      { code: 'NC', name: 'North Carolina (NC)' },
+      { code: 'MI', name: 'Michigan (MI)' },
+      { code: 'NJ', name: 'New Jersey (NJ)' },
+      { code: 'VA', name: 'Virginia (VA)' },
+      { code: 'WA', name: 'Washington (WA)' },
+      { code: 'AZ', name: 'Arizona (AZ)' },
+      { code: 'MA', name: 'Massachusetts (MA)' },
+      { code: 'TN', name: 'Tennessee (TN)' },
+      { code: 'IN', name: 'Indiana (IN)' },
+      { code: 'MO', name: 'Missouri (MO)' },
+      { code: 'MD', name: 'Maryland (MD)' },
+      { code: 'WI', name: 'Wisconsin (WI)' },
+      { code: 'CO', name: 'Colorado (CO)' },
+      { code: 'MN', name: 'Minnesota (MN)' },
+      { code: 'SC', name: 'South Carolina (SC)' },
+      { code: 'AL', name: 'Alabama (AL)' },
+      { code: 'LA', name: 'Louisiana (LA)' },
+      { code: 'KY', name: 'Kentucky (KY)' },
+      { code: 'OR', name: 'Oregon (OR)' },
+      { code: 'OK', name: 'Oklahoma (OK)' },
+      { code: 'CT', name: 'Connecticut (CT)' },
+      { code: 'UT', name: 'Utah (UT)' },
+      { code: 'NV', name: 'Nevada (NV)' }
+    ];
+
+    // Read initial URL params
+    const urlParams = new URLSearchParams(window.location.search);
+    let currentCategory = (urlParams.get('category') || 'HAIR').toUpperCase();
+    let currentAudience = (urlParams.get('audience') || 'HIM').toUpperCase();
+    let initialConcern = urlParams.get('concern') || '';
+
+    // Flow State
+    let currentStepIndex = 0;
+    let questionsFlow = [];
+    const patientAnswers = {
+      selectedConcerns: initialConcern ? [initialConcern] : [],
+      uploadedPhotos: {}
+    };
+
+    // ----------------------------------------------------
+    // BUILD QUESTIONNAIRE FLOW BASED ON CATEGORY & AUDIENCE
+    // ----------------------------------------------------
+    function buildFlow() {
+      const isHair = currentCategory === 'HAIR';
+      const isSkin = currentCategory === 'SKIN';
+      const isSex = currentCategory === 'SEXUAL_HEALTH';
+      const isWeight = currentCategory === 'WEIGHT';
+      const isHim = currentAudience === 'HIM';
+
+      const steps = [];
+
+      // --------------------------------------------------
+      // STEP 1: CONCERN SELECTION (WITH PHOTOS FOR SKIN & HAIR)
+      // --------------------------------------------------
+      if (isHair || isSkin) {
+        steps.push({
+          id: 'step_concern_selection',
+          type: 'photo_grid_multi',
+          title: "What's your concern?",
+          subtitle: "Select all that apply.",
+          items: isHair 
+            ? (isHim ? HAIR_CONCERNS_MEN : HAIR_CONCERNS_WOMEN) 
+            : (isHim ? SKIN_CONCERNS_MEN : SKIN_CONCERNS_WOMEN),
+          required: true
+        });
+      }
+
+      // --------------------------------------------------
+      // FLOW 1 & 2: HAIR LOSS (MEN / WOMEN)
+      // --------------------------------------------------
+      if (isHair) {
+        steps.push({
+          id: 'hair_goal',
+          type: 'radio',
+          title: "What's your hair goal?",
+          options: ["Regrow lost hair", "Keep the hair I have", "Both"],
+          required: true
+        });
+
+        // Q2: Areas noticing changes (Photo Image Grid from Reference Image 9)
+        steps.push({
+          id: 'hair_areas',
+          type: 'photo_grid_single',
+          title: "Where are you noticing changes?",
+          subtitle: "Select the primary area of hair changes.",
+          items: [
+            { id: 'hairline', title: 'Hairline', image: '/images/intake/area-hairline.jpg' },
+            { id: 'crown', title: 'Crown / top', image: '/images/intake/area-crown.jpg' },
+            { id: 'thinning', title: 'Overall thinning', image: '/images/intake/area-overall-thinning.jpg' },
+            { id: 'all-over', title: isHim ? 'All over' : 'Random diffuse loss', image: '/images/intake/area-all-over.jpg' }
+          ],
+          required: true
+        });
+
+        steps.push({
+          id: 'hair_duration',
+          type: 'radio',
+          title: "How long has this been happening?",
+          options: ["Less than 6 months", "6–12 months", "1–3 years", "3+ years"],
+          required: true
+        });
+
+        steps.push({
+          id: 'hair_scalp_problems',
+          type: 'checkbox',
+          title: "Do you have any scalp problems?",
+          subtitle: "Select all that apply.",
+          whyWeAsk: "Scalp issues can change which hair treatments are suitable for you.",
+          options: ["None", "Dandruff", "Itching", "Redness", "Pain", "Rash"],
+          required: true
+        });
+
+        // Interstitial Educational Slide
+        steps.push({
+          id: 'hair_interstitial_lifestyle',
+          type: 'interstitial',
+          title: "Next, let's talk about lifestyle factors.",
+          subtitle: "Uncovering which root causes may be affecting you helps our medical doctors personalize your formula."
+        });
+
+        steps.push({
+          id: 'hair_family',
+          type: 'radio',
+          title: "Does hair loss run in your family?",
+          whyWeAsk: "Genetic sensitivity to DHT is responsible for over 90% of progressive hair loss.",
+          options: ["Yes", "No", "Not sure"],
+          required: true
+        });
+
+        steps.push({
+          id: 'hair_format',
+          type: 'radio',
+          title: "How would you like to treat it?",
+          options: ["Oral chew / tablet", "Topical drop / spray", "Both", "Not sure — help me choose"],
+          required: true
+        });
+
+        steps.push({
+          id: 'hair_treated_before',
+          type: 'radio',
+          title: "Have you treated hair loss before?",
+          options: ["No, this is my first time", "Yes — and it worked", "Yes — but it did not work"],
+          required: true
+        });
+
+        steps.push({
+          id: 'hair_medical_conditions',
+          type: 'checkbox',
+          title: "Do you have any of these conditions?",
+          subtitle: "Select all that apply.",
+          whyWeAsk: "These can affect which hair treatment is clinically safe for you.",
+          options: ["Liver disease", "Prostate condition", "Low blood pressure", "Heart condition", "None"],
+          required: true
+        });
+
+        // Safety question based on audience
+        if (isHim) {
+          steps.push({
+            id: 'hair_father_child',
+            type: 'radio',
+            title: "Are you planning to father a child soon?",
+            safetyAlert: "Finasteride and dutasteride can affect fertility parameters, so the physician needs to know.",
+            options: ["No", "Yes"],
+            required: true
+          });
+        } else {
+          steps.push({
+            id: 'hair_pregnancy',
+            type: 'radio',
+            title: "Are you pregnant, planning to become pregnant, or breastfeeding?",
+            safetyAlert: "Certain hair formulations like oral anti-androgens must not be used during pregnancy.",
+            options: ["No", "Yes"],
+            required: true
+          });
+        }
+
+        // Q12: PHOTOS REQUIRED FOR HAIR (Matching Reference Image 10)
+        steps.push({
+          id: 'hair_photos',
+          type: 'photo_upload',
+          title: "Add photos of your hairline & crown",
+          subtitle: "Required for hair clinical assessment — helps the doctor personalize your plan.",
+          slots: [
+            {
+              id: 'photo_front',
+              name: 'Front hairline',
+              guide: 'Hold hair back so front hairline and temples are clearly visible in good lighting.',
+              refImage: '/images/intake/ref-front-hairline.jpg'
+            },
+            {
+              id: 'photo_crown',
+              name: 'Top of scalp',
+              guide: 'Tilt head forward so crown / vertex and part line are fully visible.',
+              refImage: '/images/intake/ref-top-scalp.jpg'
+            }
+          ],
+          required: true
+        });
+      }
+
+      // --------------------------------------------------
+      // FLOW 3 & 4: SKIN CARE (MEN / WOMEN)
+      // --------------------------------------------------
+      if (isSkin) {
+        steps.push({
+          id: 'skin_duration',
+          type: 'radio',
+          title: "How long have you had this concern?",
+          options: ["Less than 3 months", "3–12 months", "Over a year", "Many years"],
+          required: true
+        });
+
+        steps.push({
+          id: 'skin_prev_treatment',
+          type: 'radio',
+          title: "Have you tried prescription treatment for this concern before?",
+          options: ["Yes", "No"],
+          required: true
+        });
+
+        if (!isHim) {
+          steps.push({
+            id: 'skin_pregnancy',
+            type: 'radio',
+            title: "Do any of the following apply to you?",
+            options: [
+              "I am pregnant, trying to conceive, or breastfeeding",
+              "I have allergies to medications",
+              "I have a chronic medical condition (e.g. diabetes, thyroid, blood pressure)",
+              "None of these"
+            ],
+            required: true
+          });
+        } else {
+          steps.push({
+            id: 'skin_conditions_men',
+            type: 'checkbox',
+            title: "Do any of the following apply to you?",
+            subtitle: "Select all that apply.",
+            options: [
+              "I have allergies to medications",
+              "I have a chronic medical condition (e.g. diabetes, thyroid, blood pressure)",
+              "None of these"
+            ],
+            required: true
+          });
+        }
+
+        steps.push({
+          id: 'skin_notes',
+          type: 'radio',
+          title: "Is there anything else your doctor should know before writing your prescription?",
+          options: ["No, everything looks good", "Yes, I have specific skin sensitivities"],
+          required: true
+        });
+
+        // PHOTOS REQUIRED FOR SKIN
+        steps.push({
+          id: 'skin_photos',
+          type: 'photo_upload',
+          title: "Add photos of your skin",
+          subtitle: "Required for dermatology clinical review — helps the doctor formulate your custom compound.",
+          slots: [
+            {
+              id: 'photo_front',
+              name: 'Front of face / affected area',
+              guide: 'Ensure natural light on your face without makeup or filters.',
+              refImage: '/images/intake/ref-skin-front.jpg'
+            },
+            {
+              id: 'photo_side',
+              name: 'Side profile / close-up',
+              guide: 'Turn slightly to capture the cheeks, jawline, or texture detail.',
+              refImage: '/images/intake/ref-skin-side.jpg'
+            }
+          ],
+          required: true
+        });
+      }
+
+      // --------------------------------------------------
+      // FLOW 5: SEXUAL HEALTH (NO PHOTOS REQUIRED)
+      // --------------------------------------------------
+      if (isSex) {
+        steps.push({
+          id: 'sex_help_with',
+          type: 'radio',
+          title: "What would you like help with?",
+          options: ["Getting & staying hard", "Lasting longer", "Both", "Daily confidence"],
+          required: true
+        });
+
+        steps.push({
+          id: 'sex_frequency',
+          type: 'radio',
+          title: "How often is it hard to get or keep an erection?",
+          options: ["Almost always", "Often", "Sometimes", "Rarely"],
+          required: true
+        });
+
+        steps.push({
+          id: 'sex_duration',
+          type: 'radio',
+          title: "How long has this been going on?",
+          options: ["Less than 3 months", "3–12 months", "1+ years"],
+          required: true
+        });
+
+        steps.push({
+          id: 'sex_other_times',
+          type: 'radio',
+          title: "Do you get erections at other times (morning or on your own)?",
+          whyWeAsk: "This helps the doctor tell physical causes from psychological causes.",
+          options: ["Yes", "Sometimes", "No"],
+          required: true
+        });
+
+        steps.push({
+          id: 'sex_timing',
+          type: 'radio',
+          title: "When do you want it to work?",
+          options: ["On-demand, before sex", "Every day, for spontaneity"],
+          required: true
+        });
+
+        steps.push({
+          id: 'sex_nitrates',
+          type: 'radio',
+          title: "Do you take nitrates or any heart / chest-pain medicine?",
+          safetyAlert: "CRITICAL SAFETY CHECK: Nitrates must never be combined with PDE5 inhibitors (ED medicine) as it causes severe drops in blood pressure.",
+          options: ["No", "Yes", "Not sure"],
+          required: true
+        });
+
+        steps.push({
+          id: 'sex_poppers',
+          type: 'radio',
+          title: "Do you ever use recreational 'poppers' (amyl nitrite)?",
+          safetyAlert: "Poppers contain alkyl nitrites and are strictly unsafe with ED medicine.",
+          options: ["No", "Yes"],
+          required: true
+        });
+
+        steps.push({
+          id: 'sex_conditions',
+          type: 'checkbox',
+          title: "Do any of these apply to you?",
+          subtitle: "Select all that apply.",
+          whyWeAsk: "These medical conditions affect whether ED medicine is clinically safe.",
+          options: ["Heart disease", "Recent heart attack or stroke", "Liver or kidney disease", "On blood-pressure medicine", "None"],
+          required: true
+        });
+      }
+
+      // --------------------------------------------------
+      // FLOW 6 & 7: WEIGHT MANAGEMENT (NO PHOTOS REQUIRED)
+      // --------------------------------------------------
+      if (isWeight) {
+        steps.push({
+          id: 'weight_goal',
+          type: 'radio',
+          title: "What's your main goal?",
+          options: ["Lose weight", "Improve metabolic health", "Manage type-2 diabetes", "More energy"],
+          required: true
+        });
+
+        steps.push({
+          id: 'weight_metrics',
+          type: 'bmi_metrics',
+          title: "What is your height and weight?",
+          subtitle: "Our medical providers evaluate your body mass index (BMI) for GLP-1 eligibility.",
+          required: true
+        });
+
+        steps.push({
+          id: 'weight_duration',
+          type: 'radio',
+          title: "How long have you been trying to lose weight?",
+          options: ["Less than 6 months", "6–12 months", "1–3 years", "3+ years"],
+          required: true
+        });
+
+        steps.push({
+          id: 'weight_glp1_history',
+          type: 'radio',
+          title: "Have you used GLP-1 medication before?",
+          subtitle: "e.g. semaglutide, tirzepatide, or liraglutide.",
+          options: ["Never", "Currently", "In the past"],
+          required: true
+        });
+
+        steps.push({
+          id: 'weight_thyroid_safety',
+          type: 'radio',
+          title: "Any personal or family history of medullary thyroid cancer or MEN2?",
+          safetyAlert: "CRITICAL SAFETY CHECK: GLP-1 medications are contraindicated in patients with a personal or family history of MTC or Multiple Endocrine Neoplasia syndrome type 2.",
+          options: ["No", "Yes", "Not sure"],
+          required: true
+        });
+
+        steps.push({
+          id: 'weight_pancreatitis',
+          type: 'radio',
+          title: "Any history of pancreatitis?",
+          safetyAlert: "GLP-1 receptor agonists require careful physician evaluation in patients with prior pancreatitis.",
+          options: ["No", "Yes"],
+          required: true
+        });
+
+        steps.push({
+          id: 'weight_conditions',
+          type: 'checkbox',
+          title: "Do any of these apply?",
+          subtitle: "Select all that apply.",
+          whyWeAsk: "These need extra clinical monitoring on GLP-1 therapy.",
+          options: ["Gallbladder disease", "Severe stomach / GI problems", "Diabetic eye disease (retinopathy)", "None"],
+          required: true
+        });
+
+        steps.push({
+          id: 'weight_diabetes',
+          type: 'radio',
+          title: "Do you have type-2 diabetes?",
+          options: ["No", "Yes — on insulin or sulfonylurea", "Yes — other treatment"],
+          required: true
+        });
+
+        steps.push({
+          id: 'weight_labs',
+          type: 'radio',
+          title: "Do you have recent lab results?",
+          options: ["I have recent results", "Willing to do a home lab", "I need one arranged"],
+          required: true
+        });
+
+        steps.push({
+          id: 'weight_allergy',
+          type: 'radio',
+          title: "Any allergy to semaglutide or tirzepatide?",
+          options: ["No", "Yes"],
+          required: true
+        });
+      }
+
+      // --------------------------------------------------
+      // FINAL SHARED STEP (FROM PDF PAGE 14)
+      // --------------------------------------------------
+      steps.push({
+        id: 'final_step_demographics',
+        type: 'final_step',
+        title: "Final step — where should we send your plan?",
+        subtitle: "Confidential telemedicine verification & licensed doctor matching.",
+        required: true
+      });
+
+      // RESULT STEP
+      steps.push({
+        id: 'step_results',
+        type: 'results',
+        title: "Clinical Treatment Plan Matched",
+        required: false
+      });
+
+      questionsFlow = steps;
+    }
+
+    // ----------------------------------------------------
+    // RENDER CURRENT STEP
+    // ----------------------------------------------------
+    function renderStep() {
+      const stage = document.getElementById('questionnaire-stage');
+      const step = questionsFlow[currentStepIndex];
+      const isLast = currentStepIndex === questionsFlow.length - 1;
+      const isFirst = currentStepIndex === 0;
+
+      // Update Header Progress Bar & Counter
+      const totalSteps = questionsFlow.length - 1; // excluding results screen
+      const currentNumber = Math.min(currentStepIndex + 1, totalSteps);
+      document.getElementById('step-counter').innerText = `${currentNumber}/${totalSteps}`;
+      const percent = Math.min(100, Math.round((currentNumber / totalSteps) * 100));
+      document.getElementById('progress-bar-fill').style.width = `${percent}%`;
+
+      // Back button visibility
+      const btnBack = document.getElementById('btn-back');
+      btnBack.style.visibility = isFirst ? 'hidden' : 'visible';
+
+      // Action Bar visibility
+      const actionBar = document.getElementById('bottom-action-bar');
+      const btnContinue = document.getElementById('btn-continue');
+      const btnSkip = document.getElementById('btn-secondary-skip');
+
+      if (step.type === 'results') {
+        actionBar.classList.add('hidden');
+      } else {
+        actionBar.classList.remove('hidden');
+        btnSkip.classList.add('hidden');
+      }
+
+      // Render step HTML
+      let html = '';
+
+      // Slide Title & Subtitle Header (Omitted for Results and Interstitial Slides)
+      if (step.type !== 'results' && step.type !== 'interstitial') {
+        html += `
+          <div class="mb-8 text-center sm:text-left">
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-sans font-bold text-[#191817] tracking-tight leading-tight">
+              ${step.title}
+            </h1>
+            ${step.subtitle ? `<p class="text-sm sm:text-base text-[#615C56] mt-2">${step.subtitle}</p>` : ''}
+          </div>
+        `;
+      }
+
+      // Safety Box if applicable
+      if (step.safetyAlert) {
+        html += `
+          <div class="q-safety-box mb-6 flex items-start space-x-3 text-xs sm:text-sm font-medium">
+            <svg class="w-5 h-5 shrink-0 text-red-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            <div>
+              <strong class="font-bold block">Important Safety Check:</strong>
+              ${step.safetyAlert}
+            </div>
+          </div>
+        `;
+      }
+
+      // ------------------------------------------------
+      // TYPE: PHOTO_GRID_MULTI (Concern selection with photos)
+      // ------------------------------------------------
+      if (step.type === 'photo_grid_multi') {
+        const selected = patientAnswers[step.id] || patientAnswers.selectedConcerns || [];
+        html += `
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
+            ${step.items.map(item => {
+              const isChecked = selected.includes(item.title);
+              return `
+                <div class="q-photo-card ${isChecked ? 'selected' : ''}" 
+                     onclick="toggleMultiPhotoCard('${step.id}', '${item.title}')">
+                  <div class="w-full aspect-[4/3] bg-neutral-100 overflow-hidden relative">
+                    <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
+                    <div class="check-indicator absolute top-2 right-2 w-6 h-6 rounded-full bg-[#0F1B38] text-white ${isChecked ? 'flex' : 'hidden'} items-center justify-center shadow-md">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                    </div>
+                  </div>
+                  <div class="p-2.5 text-center">
+                    <span class="text-xs sm:text-sm font-semibold text-[#191817] leading-snug line-clamp-2">${item.title}</span>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+      }
+
+      // ------------------------------------------------
+      // TYPE: PHOTO_GRID_SINGLE (e.g. hair areas)
+      // ------------------------------------------------
+      else if (step.type === 'photo_grid_single') {
+        const currentVal = patientAnswers[step.id];
+        html += `
+          <div class="grid grid-cols-2 gap-4 sm:gap-6">
+            ${step.items.map(item => {
+              const isSelected = currentVal === item.title;
+              return `
+                <div class="q-photo-card ${isSelected ? 'selected' : ''}" 
+                     onclick="selectSinglePhotoCard('${step.id}', '${item.title}')">
+                  <div class="w-full aspect-[4/3] bg-neutral-100 overflow-hidden relative">
+                    <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
+                    <div class="check-indicator absolute top-2.5 right-2.5 w-6 h-6 rounded-full bg-[#0F1B38] text-white ${isSelected ? 'flex' : 'hidden'} items-center justify-center shadow-md">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                    </div>
+                  </div>
+                  <div class="p-3 text-center">
+                    <span class="text-sm sm:text-base font-bold text-[#191817]">${item.title}</span>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+      }
+
+      // ------------------------------------------------
+      // TYPE: RADIO (Standard vertical options)
+      // ------------------------------------------------
+      else if (step.type === 'radio') {
+        const currentVal = patientAnswers[step.id];
+        html += `
+          <div class="space-y-3">
+            ${step.options.map(opt => {
+              const isSelected = currentVal === opt;
+              return `
+                <div class="q-card-option ${isSelected ? 'selected' : ''}" 
+                     onclick="selectRadio('${step.id}', '${opt}')">
+                  <span class="text-sm sm:text-base font-semibold text-[#191817]">${opt}</span>
+                  <div class="w-5 h-5 rounded-full border-2 ${isSelected ? 'border-[#0F1B38] bg-[#0F1B38]' : 'border-[#DDD5C9] bg-white'} flex items-center justify-center shrink-0">
+                    ${isSelected ? `<div class="w-2 h-2 rounded-full bg-white"></div>` : ''}
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+      }
+
+      // ------------------------------------------------
+      // TYPE: CHECKBOX (Multiple choice list)
+      // ------------------------------------------------
+      else if (step.type === 'checkbox') {
+        const selected = patientAnswers[step.id] || [];
+        html += `
+          <div class="space-y-3">
+            ${step.options.map(opt => {
+              const isChecked = selected.includes(opt);
+              return `
+                <div class="q-card-option ${isChecked ? 'selected' : ''}" 
+                     onclick="toggleCheckbox('${step.id}', '${opt}')">
+                  <span class="text-sm sm:text-base font-semibold text-[#191817]">${opt}</span>
+                  <div class="w-5 h-5 rounded-md border-2 ${isChecked ? 'border-[#0F1B38] bg-[#0F1B38]' : 'border-[#DDD5C9] bg-white'} flex items-center justify-center shrink-0">
+                    ${isChecked ? `<svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>` : ''}
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+      }
+
+      // ------------------------------------------------
+      // TYPE: INTERSTITIAL (Animated Text Matching Image 3)
+      // ------------------------------------------------
+      else if (step.type === 'interstitial') {
+        const titleWords = step.title.split(' ');
+        const subWords = step.subtitle ? step.subtitle.split(' ') : [];
+        const baseDelay = 120;
+        const wordSpeed = 70;
+
+        const animatedTitle = titleWords.map((word, i) => {
+          const delay = baseDelay + i * wordSpeed;
+          return `<span class="animate-word" style="animation-delay: ${delay}ms;">${word}&nbsp;</span>`;
+        }).join('');
+
+        const subStartDelay = baseDelay + titleWords.length * wordSpeed + 220;
+        const animatedSub = subWords.map((word, i) => {
+          const delay = subStartDelay + i * wordSpeed;
+          return `<span class="animate-word" style="animation-delay: ${delay}ms;">${word}&nbsp;</span>`;
+        }).join('');
+
+        html += `
+          <div class="interstitial-wrap min-h-[380px] sm:min-h-[460px] flex flex-col justify-center items-center text-center px-4 sm:px-8 py-8 sm:py-16 max-w-2xl mx-auto">
+            
+            <!-- Warm Centered Animated Heading matching Image 3 -->
+            <div class="text-2xl sm:text-3xl md:text-4xl font-sans font-semibold text-[#9E4D30] leading-[1.45] tracking-tight mb-6">
+              ${animatedTitle}
+            </div>
+
+            <!-- Warm Flowing Animated Subtitle matching Image 3 -->
+            ${step.subtitle ? `
+              <div class="text-base sm:text-lg md:text-xl font-sans font-normal text-[#9E4D30]/90 leading-[1.65] max-w-xl mx-auto">
+                ${animatedSub}
+              </div>
+            ` : ''}
+
+          </div>
+        `;
+      }
+
+      // ------------------------------------------------
+      // TYPE: PHOTO_UPLOAD (REQUIRED FOR SKIN & HAIR!)
+      // ------------------------------------------------
+      else if (step.type === 'photo_upload') {
+        html += `
+          <div class="space-y-8">
+            ${step.slots.map(slot => {
+              const fileData = patientAnswers.uploadedPhotos[slot.id];
+              return `
+                <div class="bg-white rounded-2xl border border-[#DDD5C9] p-5 sm:p-6 shadow-sm">
+                  <h3 class="text-base sm:text-lg font-bold text-[#191817] mb-1">${slot.name}</h3>
+                  <p class="text-xs text-[#615C56] mb-4">${slot.guide}</p>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+                    <!-- Reference Image (Green guide border) -->
+                    <div class="relative rounded-xl overflow-hidden border-2 border-emerald-500/80 bg-neutral-100 aspect-[4/3]">
+                      <img src="${slot.refImage}" alt="Reference Guide" class="w-full h-full object-cover">
+                      <span class="absolute bottom-2 left-2 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">
+                        Reference Guide
+                      </span>
+                    </div>
+
+                    <!-- Patient Upload Box -->
+                    <div class="upload-dropzone relative rounded-xl aspect-[4/3] flex flex-col items-center justify-center p-4 text-center ${fileData ? 'has-file' : ''}"
+                         onclick="document.getElementById('input_${slot.id}').click()">
+                      <input type="file" id="input_${slot.id}" accept="image/*" class="hidden" onchange="handleFileUpload(event, '${slot.id}')">
+                      
+                      ${fileData ? `
+                        <img src="${fileData.url}" alt="Patient Photo" class="w-full h-full object-cover rounded-lg absolute inset-0">
+                        <div class="absolute inset-0 bg-black/40 rounded-lg flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                          <span class="text-white text-xs font-bold bg-black/80 px-3 py-1.5 rounded-full">Click to replace</span>
+                        </div>
+                        <span class="absolute top-2 right-2 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow">
+                          ✓ Uploaded
+                        </span>
+                      ` : `
+                        <div class="w-12 h-12 rounded-full bg-[#FAF8F5] border border-[#DDD5C9] flex items-center justify-center text-[#191817] mb-2">
+                          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        </div>
+                        <span class="text-xs sm:text-sm font-bold text-[#191817]">Click to upload photo</span>
+                        <span class="text-[11px] text-[#615C56] mt-0.5">JPG or PNG (Required)</span>
+                      `}
+                    </div>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+      }
+
+      // ------------------------------------------------
+      // TYPE: BMI_METRICS (Weight Management)
+      // ------------------------------------------------
+      else if (step.type === 'bmi_metrics') {
+        const height = patientAnswers.height || 178;
+        const weight = patientAnswers.weight || 88;
+        const goalWeight = patientAnswers.goalWeight || 76;
+        const bmi = ((weight / ((height / 100) ** 2))).toFixed(1);
+
+        html += `
+          <div class="bg-white rounded-2xl border border-[#DDD5C9] p-6 space-y-6 shadow-sm">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-[#191817] mb-1">Height (cm)</label>
+                <input type="number" value="${height}" min="120" max="230"
+                       onchange="updateMetric('height', this.value)" 
+                       class="w-full bg-[#FAF8F5] border border-[#DDD5C9] rounded-xl px-4 py-3 text-sm font-bold text-[#191817] focus:outline-none focus:ring-2 focus:ring-[#0F1B38]">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-[#191817] mb-1">Current Weight (kg)</label>
+                <input type="number" value="${weight}" min="40" max="250"
+                       onchange="updateMetric('weight', this.value)" 
+                       class="w-full bg-[#FAF8F5] border border-[#DDD5C9] rounded-xl px-4 py-3 text-sm font-bold text-[#191817] focus:outline-none focus:ring-2 focus:ring-[#0F1B38]">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-[#191817] mb-1">Goal Weight (kg)</label>
+                <input type="number" value="${goalWeight}" min="40" max="250"
+                       onchange="updateMetric('goalWeight', this.value)" 
+                       class="w-full bg-[#FAF8F5] border border-[#DDD5C9] rounded-xl px-4 py-3 text-sm font-bold text-[#191817] focus:outline-none focus:ring-2 focus:ring-[#0F1B38]">
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[#F0F4FF] border border-[#BFDBFE] flex items-center justify-between">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-[#1E40AF] block">Calculated BMI</span>
+                <span class="text-2xl font-extrabold text-[#0F1B38]">${bmi}</span>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-[#1E40AF] text-white">
+                GLP-1 Clinically Indicated
+              </span>
+            </div>
+          </div>
+        `;
+      }
+
+      // ------------------------------------------------
+      // TYPE: FINAL_STEP (DOB + State + T&C)
+      // ------------------------------------------------
+      else if (step.type === 'final_step') {
+        const state = patientAnswers.state || 'TX';
+        const dob = patientAnswers.dob || '1995-06-15';
+        const termsAgreed = patientAnswers.termsAgreed || true;
+
+        html += `
+          <div class="bg-white rounded-[2rem] border border-[#DDD5C9] p-6 sm:p-8 space-y-6 shadow-sm">
+            <div>
+              <label for="input-dob" class="block text-xs font-bold text-[#191817] mb-1.5 uppercase tracking-wider">When were you born?</label>
+              <input type="date" id="input-dob" value="${dob}" 
+                     onchange="patientAnswers.dob = this.value; validateContinueBtn();"
+                     class="w-full bg-[#FAF8F5] border border-[#DDD5C9] rounded-xl px-4 py-3 text-sm font-semibold text-[#191817] focus:outline-none focus:ring-2 focus:ring-[#0F1B38]">
+              <p class="text-[11px] text-[#615C56] mt-1">▸ Why we ask: Telehealth regulations require patients to be 18+ for safe prescription dosing.</p>
+            </div>
+
+            <div>
+              <label for="select-state" class="block text-xs font-bold text-[#191817] mb-1.5 uppercase tracking-wider">Where do you live? (State)</label>
+              <select id="select-state" 
+                      onchange="patientAnswers.state = this.value; validateContinueBtn();"
+                      class="w-full bg-[#FAF8F5] border border-[#DDD5C9] rounded-xl px-4 py-3 text-sm font-semibold text-[#191817] focus:outline-none focus:ring-2 focus:ring-[#0F1B38]">
+                ${US_STATES.map(s => `<option value="${s.code}" ${s.code === state ? 'selected' : ''}>${s.name}</option>`).join('')}
+              </select>
+              <p class="text-[11px] text-[#615C56] mt-1">We match you with a doctor licensed in your exact jurisdiction.</p>
+            </div>
+
+            <div class="pt-2">
+              <label class="flex items-start space-x-3 cursor-pointer">
+                <input type="checkbox" id="input-terms" ${termsAgreed ? 'checked' : ''} 
+                       onchange="patientAnswers.termsAgreed = this.checked; validateContinueBtn();"
+                       class="mt-1 w-4 h-4 rounded text-[#0F1B38] focus:ring-[#0F1B38]">
+                <span class="text-xs text-[#615C56] leading-relaxed">
+                  I confirm I am 18+ years of age and agree to an asynchronous telemedicine clinical consultation, the <a href="#" class="underline text-[#191817] font-semibold">Privacy Policy</a>, and <a href="#" class="underline text-[#191817] font-semibold">Prescription Terms</a>.
+                </span>
+              </label>
+            </div>
+          </div>
+        `;
+      }
+
+      // ------------------------------------------------
+      // TYPE: RESULTS (Personalized Treatment Plan Screen)
+      // ------------------------------------------------
+      else if (step.type === 'results') {
+        const concernTitle = (patientAnswers.selectedConcerns && patientAnswers.selectedConcerns[0]) || 'Clinical Profile';
+        const stateName = patientAnswers.state || 'TX';
+
+        html += `
+          <div class="bg-white rounded-[2.5rem] border border-[#DDD5C9] p-8 sm:p-12 text-center space-y-8 shadow-xl max-w-2xl mx-auto">
+            
+            <div class="inline-flex p-3 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200">
+              <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+
+            <div>
+              <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 block mb-1">Evaluation Complete • Clinically Approved</span>
+              <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#191817]">
+                Your Treatment Plan is Ready
+              </h2>
+              <p class="text-sm sm:text-base text-[#615C56] mt-2 max-w-md mx-auto">
+                Based on your answers, our US-licensed medical provider has matched you with customized medical therapy.
+              </p>
+            </div>
+
+            <!-- Matched Treatment Card -->
+            <div class="bg-[#FAF8F5] border border-[#DDD5C9] rounded-2xl p-6 text-left flex flex-col sm:flex-row items-center gap-6">
+              <img src="/images/doctor-avatar.jpg" alt="Doctor" class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm shrink-0">
+              <div class="space-y-1 text-center sm:text-left">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-[#B04D28]">Assigned Physician</span>
+                <h4 class="text-lg font-bold text-[#191817]">Dr. Sarah Jenkins, MD</h4>
+                <p class="text-xs text-[#615C56]">${stateName} Licensed Physician • Telehealth Board Certified</p>
+                <div class="pt-1 flex items-center gap-2 justify-center sm:justify-start">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span class="text-xs font-semibold text-emerald-700">Matched to your: ${concernTitle}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-3 pt-2">
+              <a href="/#catalog-section" class="w-full inline-block bg-[#0F1B38] hover:bg-black text-white font-bold py-4 rounded-full text-sm sm:text-base transition-all shadow-md active:scale-95">
+                Proceed to Treatment Formulation →
+              </a>
+              <a href="/concerns.html" class="inline-block text-xs font-semibold text-[#615C56] hover:text-[#191817] underline">
+                Return to Concerns Directory
+              </a>
+            </div>
+
+          </div>
+        `;
+      }
+
+      // "Why we ask" box if present
+      if (step.whyWeAsk) {
+        html += `
+          <div class="q-why-box mt-6 flex items-start space-x-3 text-xs sm:text-sm text-[#615C56]">
+            <svg class="w-5 h-5 text-[#854D0E] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <div>
+              <strong class="font-bold text-[#191817] block mb-0.5">Why our doctors ask this:</strong>
+              ${step.whyWeAsk}
+            </div>
+          </div>
+        `;
+      }
+
+      stage.innerHTML = html;
+      validateContinueBtn();
+    }
+
+    // ----------------------------------------------------
+    // INTERACTION HANDLERS
+    // ----------------------------------------------------
+    function selectRadio(stepId, value) {
+      patientAnswers[stepId] = value;
+      renderStep();
+      // Auto-advance after natural 200ms
+      setTimeout(() => {
+        handleContinue();
+      }, 200);
+    }
+
+    function toggleCheckbox(stepId, value) {
+      if (!patientAnswers[stepId]) patientAnswers[stepId] = [];
+      const arr = patientAnswers[stepId];
+      if (value === 'None' || value === 'None of these') {
+        patientAnswers[stepId] = ['None'];
+      } else {
+        const noneIdx = arr.indexOf('None');
+        if (noneIdx > -1) arr.splice(noneIdx, 1);
+        const idx = arr.indexOf(value);
+        if (idx > -1) {
+          arr.splice(idx, 1);
+        } else {
+          arr.push(value);
+        }
+      }
+      renderStep();
+    }
+
+    function selectSinglePhotoCard(stepId, value) {
+      patientAnswers[stepId] = value;
+      renderStep();
+      setTimeout(() => {
+        handleContinue();
+      }, 200);
+    }
+
+    function toggleMultiPhotoCard(stepId, value) {
+      if (!patientAnswers[stepId]) patientAnswers[stepId] = [];
+      const arr = patientAnswers[stepId];
+      const idx = arr.indexOf(value);
+      if (idx > -1) {
+        arr.splice(idx, 1);
+      } else {
+        arr.push(value);
+      }
+      patientAnswers.selectedConcerns = patientAnswers[stepId];
+      renderStep();
+    }
+
+    function handleFileUpload(event, slotId) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        patientAnswers.uploadedPhotos[slotId] = {
+          name: file.name,
+          url: e.target.result
+        };
+        renderStep();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function updateMetric(field, value) {
+      patientAnswers[field] = parseFloat(value);
+      renderStep();
+    }
+
+    // ----------------------------------------------------
+    // VALIDATION
+    // ----------------------------------------------------
+    function validateContinueBtn() {
+      const step = questionsFlow[currentStepIndex];
+      const btn = document.getElementById('btn-continue');
+      if (!step || !btn) return;
+
+      let isValid = true;
+
+      if (step.type === 'interstitial') {
+        isValid = true;
+        const btnText = document.getElementById('btn-continue-text');
+        if (btnText) btnText.innerText = 'Next';
+      } else {
+        const btnText = document.getElementById('btn-continue-text');
+        if (btnText) btnText.innerText = 'Continue';
+
+        if (step.type === 'photo_grid_multi') {
+          const arr = patientAnswers[step.id] || patientAnswers.selectedConcerns || [];
+          isValid = arr.length > 0;
+        } else if (step.type === 'radio' || step.type === 'photo_grid_single') {
+          isValid = Boolean(patientAnswers[step.id]);
+        } else if (step.type === 'checkbox') {
+          const arr = patientAnswers[step.id] || [];
+          isValid = arr.length > 0;
+        } else if (step.type === 'photo_upload') {
+          // PHOTOS ARE REQUIRED FOR SKIN & HAIR!
+          const uploadedCount = Object.keys(patientAnswers.uploadedPhotos || {}).length;
+          isValid = uploadedCount >= (step.slots ? step.slots.length : 1);
+        } else if (step.type === 'final_step') {
+          isValid = Boolean(patientAnswers.termsAgreed);
+        }
+      }
+
+      btn.disabled = !isValid;
+    }
+
+    // ----------------------------------------------------
+    // NAVIGATION
+    // ----------------------------------------------------
+    function handleContinue() {
+      const step = questionsFlow[currentStepIndex];
+      const btn = document.getElementById('btn-continue');
+      if (btn.disabled) return;
+
+      if (currentStepIndex < questionsFlow.length - 1) {
+        currentStepIndex++;
+        renderStep();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function goBack() {
+      if (currentStepIndex > 0) {
+        currentStepIndex--;
+        renderStep();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        window.location.href = '/concerns.html';
+      }
+    }
+
+    function skipOptionalStep() {
+      handleContinue();
+    }
+
+    // Initialize flow on page load
+    buildFlow();
+    renderStep();
+  </script>
+
+</body>
+</html>
