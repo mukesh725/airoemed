@@ -221,7 +221,7 @@
 
         <!-- Browse All Treatments Link with Underline -->
         <div class="pt-6 mt-2 border-t border-[#F0ECE4]">
-          <a href="#catalog-section" onclick="event.preventDefault(); selectMegaMenuItem('ALL', 'ALL')" class="dropdown-browse-link cursor-pointer">
+          <a href="/shop.html" class="dropdown-browse-link cursor-pointer">
             <span>Browse All Treatments</span>
             <span class="font-bold">→</span>
           </a>
@@ -1340,15 +1340,14 @@
   <!-- ======================================================== -->
   <section id="catalog-section" class="py-20 sm:py-24 lg:py-28 bg-white overflow-hidden border-b border-[#DDD5C9]">
     <div class="w-full px-4 sm:px-6 lg:px-12 xl:px-16">
-
+      
       <!-- Section Header with Serif Title, Filter Pills, and Carousel Arrows -->
       <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 sm:mb-10 gap-6">
         <div>
           <span class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#C8623D]">
             Doctor-Formulated Compounds
           </span>
-          <h2 id="catalog-heading"
-            class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#191817] mt-1.5 tracking-tight">
+          <h2 id="catalog-heading" class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#191817] mt-1.5 tracking-tight">
             Find your treatment
           </h2>
           <p class="text-xs sm:text-sm text-[#736E67] mt-1">
@@ -1356,896 +1355,571 @@
           </p>
         </div>
 
-        <!-- Carousel Scroll Left & Right Navigation Buttons -->
+                <!-- Carousel Scroll Left & Right Navigation Buttons -->
         <div class="hidden sm:flex items-center space-x-2">
-          <button onclick="scrollProductCatalog(-1)" aria-label="Scroll treatments left"
-            class="w-11 h-11 rounded-full bg-white hover:bg-[#191817] text-[#191817] hover:text-white border border-[#DDD5C9] flex items-center justify-center shadow-sm transition-all duration-200 active:scale-95 cursor-pointer">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
+          <button onclick="scrollProductCatalog(-1)" aria-label="Scroll treatments left" class="w-11 h-11 rounded-full bg-white hover:bg-[#191817] text-[#191817] hover:text-white border border-[#DDD5C9] flex items-center justify-center shadow-sm transition-all duration-200 active:scale-95 cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
           </button>
-          <button onclick="scrollProductCatalog(1)" aria-label="Scroll treatments right"
-            class="w-11 h-11 rounded-full bg-white hover:bg-[#191817] text-[#191817] hover:text-white border border-[#DDD5C9] flex items-center justify-center shadow-sm transition-all duration-200 active:scale-95 cursor-pointer">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
+          <button onclick="scrollProductCatalog(1)" aria-label="Scroll treatments right" class="w-11 h-11 rounded-full bg-white hover:bg-[#191817] text-[#191817] hover:text-white border border-[#DDD5C9] flex items-center justify-center shadow-sm transition-all duration-200 active:scale-95 cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
           </button>
         </div>
       </div>
 
       <!-- Horizontal Scrollable Product Track (Snap Scroll Carousel) -->
-      <div id="product-grid"
-        class="product-scroll-track flex gap-5 sm:gap-6 overflow-x-auto pb-8 pt-2 scrollbar-hide snap-x snap-mandatory scroll-smooth -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-12 lg:px-12 xl:-mx-16 xl:px-16">
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('HAIR_LOSS')" data-audience="HIM" data-category="HAIR_LOSS">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/airo_opt/med-51-airo-her-products-image-04-1790631088568-61708b29.jpg"
-              alt="AIRO Root Advance™"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#5B7E6F] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Best
-                Sellers</span>
-            </div>
+      <div id="product-grid" class="product-scroll-track flex gap-5 sm:gap-6 overflow-x-auto pb-8 pt-2 scrollbar-hide snap-x snap-mandatory scroll-smooth -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-12 lg:px-12 xl:-mx-16 xl:px-16">
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('HAIR_LOSS')" data-audience="HIM" data-category="HAIR_LOSS">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/airo_opt/med-51-airo-her-products-image-04-1790631088568-61708b29.jpg" alt="AIRO Root Advance™" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#5B7E6F] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Best Sellers</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Hair
-                Regrowth</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate"
-                title="AIRO Root Advance™">AIRO Root Advance™</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Minoxidil 8% + Dutasteride 0.25% +
-                Tretinoin 0.1%</p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,499</span>
-                <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹1,999</span>
-                <span class="text-xs text-[#736E67] font-medium">($45)</span>
-                <span class="text-[11px] text-[#8A857F]">/ month</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('HAIR_LOSS')"
-              aria-label="Add AIRO Root Advance™ to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Hair Regrowth</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="AIRO Root Advance™">AIRO Root Advance™</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Minoxidil 8% + Dutasteride 0.25% + Tretinoin 0.1%</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,499</span>
+            <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹1,999</span>
+            <span class="text-xs text-[#736E67] font-medium">($45)</span>
+            <span class="text-[11px] text-[#8A857F]">/ month</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('HAIR_LOSS')" data-audience="HIM" data-category="HAIR_LOSS">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/airo_opt/med-53-airo-her-products-image-02-1790630888485-197da52b.jpg"
-              alt="AIRO Root Max™"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Doctor-Formulated</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('HAIR_LOSS')" aria-label="Add AIRO Root Advance™ to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('HAIR_LOSS')" data-audience="HIM" data-category="HAIR_LOSS">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/airo_opt/med-53-airo-her-products-image-02-1790630888485-197da52b.jpg" alt="AIRO Root Max™" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Doctor-Formulated</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Max
-                Strength</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="AIRO Root Max™">
-                AIRO Root Max™</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Bimatoprost 0.12% + Dutasteride 0.1%
-                + Minoxidil 10%</p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,999</span>
-
-                <span class="text-xs text-[#736E67] font-medium">($55)</span>
-                <span class="text-[11px] text-[#8A857F]">/ month</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('HAIR_LOSS')"
-              aria-label="Add AIRO Root Max™ to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Max Strength</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="AIRO Root Max™">AIRO Root Max™</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Bimatoprost 0.12% + Dutasteride 0.1% + Minoxidil 10%</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,999</span>
+            
+            <span class="text-xs text-[#736E67] font-medium">($55)</span>
+            <span class="text-[11px] text-[#8A857F]">/ month</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('HAIR_LOSS')" data-audience="HIM" data-category="HAIR_LOSS">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/airo_opt/med-50-airo-her-products-image-01-1790630716125-434e2f95.jpg"
-              alt="AIRO Root Plus™"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#D84A38] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Sale</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('HAIR_LOSS')" aria-label="Add AIRO Root Max™ to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('HAIR_LOSS')" data-audience="HIM" data-category="HAIR_LOSS">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/airo_opt/med-50-airo-her-products-image-01-1790630716125-434e2f95.jpg" alt="AIRO Root Plus™" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#D84A38] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Sale</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span
-                class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Triple-Action</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="AIRO Root Plus™">
-                AIRO Root Plus™</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Topical Minoxidil 10% + Finasteride
-                0.3% + Tretinoin</p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,499</span>
-                <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹1,899</span>
-                <span class="text-xs text-[#736E67] font-medium">($45)</span>
-                <span class="text-[11px] text-[#8A857F]">/ month</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('HAIR_LOSS')"
-              aria-label="Add AIRO Root Plus™ to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Triple-Action</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="AIRO Root Plus™">AIRO Root Plus™</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Topical Minoxidil 10% + Finasteride 0.3% + Tretinoin</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,499</span>
+            <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹1,899</span>
+            <span class="text-xs text-[#736E67] font-medium">($45)</span>
+            <span class="text-[11px] text-[#8A857F]">/ month</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('HAIR_LOSS')" data-audience="HIM" data-category="HAIR_LOSS">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/airo_opt/med-49-airo-her-products-image-03-1790630673068-0916c440.jpg"
-              alt="AIRO Root Start™"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Doctor-Formulated</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('HAIR_LOSS')" aria-label="Add AIRO Root Plus™ to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('HAIR_LOSS')" data-audience="HIM" data-category="HAIR_LOSS">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/airo_opt/med-49-airo-her-products-image-03-1790630673068-0916c440.jpg" alt="AIRO Root Start™" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Doctor-Formulated</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Hair
-                Starter</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="AIRO Root Start™">
-                AIRO Root Start™</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Topical Minoxidil 6% + Finasteride
-                0.3% Solution</p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,299</span>
-
-                <span class="text-xs text-[#736E67] font-medium">($39)</span>
-                <span class="text-[11px] text-[#8A857F]">/ month</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('HAIR_LOSS')"
-              aria-label="Add AIRO Root Start™ to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Hair Starter</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="AIRO Root Start™">AIRO Root Start™</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Topical Minoxidil 6% + Finasteride 0.3% Solution</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,299</span>
+            
+            <span class="text-xs text-[#736E67] font-medium">($39)</span>
+            <span class="text-[11px] text-[#8A857F]">/ month</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('HAIR_LOSS')" data-audience="HER" data-category="HAIR_LOSS">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/airo_opt/med-64-airo-her-products-image-08-1790630948054-12984353.jpg"
-              alt="AIRO ROOT HER™ Scalp Solution"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#5B7E6F] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Best
-                Sellers</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('HAIR_LOSS')" aria-label="Add AIRO Root Start™ to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('HAIR_LOSS')" data-audience="HER" data-category="HAIR_LOSS">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/airo_opt/med-64-airo-her-products-image-08-1790630948054-12984353.jpg" alt="AIRO ROOT HER™ Scalp Solution" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#5B7E6F] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Best Sellers</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Women’s
-                Scalp</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate"
-                title="AIRO ROOT HER™ Scalp Solution">AIRO ROOT HER™ Scalp Solution</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Minoxidil 5% + Azelaic Acid 5% +
-                Tretinoin</p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹999</span>
-                <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹1,499</span>
-                <span class="text-xs text-[#736E67] font-medium">($32)</span>
-                <span class="text-[11px] text-[#8A857F]">/ month</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('HAIR_LOSS')"
-              aria-label="Add AIRO ROOT HER™ Scalp Solution to consult"
-              class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Women’s Scalp</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="AIRO ROOT HER™ Scalp Solution">AIRO ROOT HER™ Scalp Solution</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Minoxidil 5% + Azelaic Acid 5% + Tretinoin</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹999</span>
+            <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹1,499</span>
+            <span class="text-xs text-[#736E67] font-medium">($32)</span>
+            <span class="text-[11px] text-[#8A857F]">/ month</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('HAIR_LOSS')" data-audience="HER" data-category="HAIR_LOSS">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/airo_opt/med-65-airo-her-products-image-06-1790631045347-b997ca0f.jpg"
-              alt="AIRO ROOT HER™ Advance"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Doctor-Formulated</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('HAIR_LOSS')" aria-label="Add AIRO ROOT HER™ Scalp Solution to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('HAIR_LOSS')" data-audience="HER" data-category="HAIR_LOSS">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/airo_opt/med-65-airo-her-products-image-06-1790631045347-b997ca0f.jpg" alt="AIRO ROOT HER™ Advance" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Doctor-Formulated</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Density Rx</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate"
-                title="AIRO ROOT HER™ Advance">AIRO ROOT HER™ Advance</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Finasteride 0.1% + Minoxidil 5% +
-                Vitamin A</p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹999</span>
-
-                <span class="text-xs text-[#736E67] font-medium">($32)</span>
-                <span class="text-[11px] text-[#8A857F]">/ month</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('HAIR_LOSS')"
-              aria-label="Add AIRO ROOT HER™ Advance to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Density Rx</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="AIRO ROOT HER™ Advance">AIRO ROOT HER™ Advance</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Finasteride 0.1% + Minoxidil 5% + Vitamin A</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹999</span>
+            
+            <span class="text-xs text-[#736E67] font-medium">($32)</span>
+            <span class="text-[11px] text-[#8A857F]">/ month</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('HAIR_LOSS')" data-audience="HER" data-category="HAIR_LOSS">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/airo_opt/med-66-airo-her-products-image-07-1790630969888-533bf89c.jpg"
-              alt="AIRO ROOT HER™ Nourish Oil"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#D84A38] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Sale</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('HAIR_LOSS')" aria-label="Add AIRO ROOT HER™ Advance to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('HAIR_LOSS')" data-audience="HER" data-category="HAIR_LOSS">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/airo_opt/med-66-airo-her-products-image-07-1790630969888-533bf89c.jpg" alt="AIRO ROOT HER™ Nourish Oil" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#D84A38] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Sale</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Scalp
-                Nourish</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate"
-                title="AIRO ROOT HER™ Nourish Oil">AIRO ROOT HER™ Nourish Oil</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Minoxidil 5% + Biotin 0.2% +
-                Caffeine 0.5%</p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹999</span>
-                <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹1,399</span>
-                <span class="text-xs text-[#736E67] font-medium">($32)</span>
-                <span class="text-[11px] text-[#8A857F]">/ month</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('HAIR_LOSS')"
-              aria-label="Add AIRO ROOT HER™ Nourish Oil to consult"
-              class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Scalp Nourish</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="AIRO ROOT HER™ Nourish Oil">AIRO ROOT HER™ Nourish Oil</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Minoxidil 5% + Biotin 0.2% + Caffeine 0.5%</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹999</span>
+            <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹1,399</span>
+            <span class="text-xs text-[#736E67] font-medium">($32)</span>
+            <span class="text-[11px] text-[#8A857F]">/ month</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('WEIGHT_MANAGEMENT')" data-audience="BOTH" data-category="WEIGHT_MANAGEMENT">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/airo_opt/med-67-weight-loss-01-1790712283441-d3dbb9ba.jpg" alt="AIRO SEMA Injection Vial"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#5B7E6F] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Best
-                Sellers</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('HAIR_LOSS')" aria-label="Add AIRO ROOT HER™ Nourish Oil to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('WEIGHT_MANAGEMENT')" data-audience="BOTH" data-category="WEIGHT_MANAGEMENT">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/airo_opt/med-67-weight-loss-01-1790712283441-d3dbb9ba.jpg" alt="AIRO SEMA Injection Vial" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#5B7E6F] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Best Sellers</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">GLP-1
-                Injection</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate"
-                title="AIRO SEMA Injection Vial">AIRO SEMA Injection Vial</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Compounded Semaglutide Subcutaneous
-                Vial</p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹4,999</span>
-                <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹6,499</span>
-                <span class="text-xs text-[#736E67] font-medium">($199)</span>
-                <span class="text-[11px] text-[#8A857F]">/ month</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('WEIGHT_MANAGEMENT')"
-              aria-label="Add AIRO SEMA Injection Vial to consult"
-              class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">GLP-1 Injection</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="AIRO SEMA Injection Vial">AIRO SEMA Injection Vial</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Compounded Semaglutide Subcutaneous Vial</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹4,999</span>
+            <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹6,499</span>
+            <span class="text-xs text-[#736E67] font-medium">($199)</span>
+            <span class="text-[11px] text-[#8A857F]">/ month</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('WEIGHT_MANAGEMENT')" data-audience="BOTH" data-category="WEIGHT_MANAGEMENT">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/airo_opt/med-71-rybelsus-2-1790712161977-c9475b04.jpg" alt="Rybelsus® Tablets"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#5B7E6F] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Best
-                Sellers</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('WEIGHT_MANAGEMENT')" aria-label="Add AIRO SEMA Injection Vial to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('WEIGHT_MANAGEMENT')" data-audience="BOTH" data-category="WEIGHT_MANAGEMENT">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/airo_opt/med-71-rybelsus-2-1790712161977-c9475b04.jpg" alt="Rybelsus® Tablets" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#5B7E6F] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Best Sellers</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Oral GLP-1</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="Rybelsus® Tablets">
-                Rybelsus® Tablets</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Semaglutide Oral Tablets (3mg / 7mg
-                / 14mg)</p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹4,499</span>
-                <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹5,999</span>
-                <span class="text-xs text-[#736E67] font-medium">($189)</span>
-                <span class="text-[11px] text-[#8A857F]">/ month</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('WEIGHT_MANAGEMENT')"
-              aria-label="Add Rybelsus® Tablets to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Oral GLP-1</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="Rybelsus® Tablets">Rybelsus® Tablets</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Semaglutide Oral Tablets (3mg / 7mg / 14mg)</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹4,499</span>
+            <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹5,999</span>
+            <span class="text-xs text-[#736E67] font-medium">($189)</span>
+            <span class="text-[11px] text-[#8A857F]">/ month</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('WEIGHT_MANAGEMENT')" data-audience="BOTH" data-category="WEIGHT_MANAGEMENT">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img
-              src="/images/airo_opt/med-70-adobe-stock-1725102072-editorial-use-only-92862a9a3b-1790712132898-750fa8b5.jpg"
-              alt="Mounjaro® Pen"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Doctor-Formulated</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('WEIGHT_MANAGEMENT')" aria-label="Add Rybelsus® Tablets to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('WEIGHT_MANAGEMENT')" data-audience="BOTH" data-category="WEIGHT_MANAGEMENT">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/airo_opt/med-70-adobe-stock-1725102072-editorial-use-only-92862a9a3b-1790712132898-750fa8b5.jpg" alt="Mounjaro® Pen" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Doctor-Formulated</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Dual
-                Incretin</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="Mounjaro® Pen">
-                Mounjaro® Pen</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Tirzepatide Weekly Dual GIP/GLP-1
-                Pen</p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹8,499</span>
-                <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹9,999</span>
-                <span class="text-xs text-[#736E67] font-medium">($249)</span>
-                <span class="text-[11px] text-[#8A857F]">/ month</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('WEIGHT_MANAGEMENT')"
-              aria-label="Add Mounjaro® Pen to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Dual Incretin</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="Mounjaro® Pen">Mounjaro® Pen</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Tirzepatide Weekly Dual GIP/GLP-1 Pen</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹8,499</span>
+            <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹9,999</span>
+            <span class="text-xs text-[#736E67] font-medium">($249)</span>
+            <span class="text-[11px] text-[#8A857F]">/ month</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('WEIGHT_MANAGEMENT')" data-audience="BOTH" data-category="WEIGHT_MANAGEMENT">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/airo_opt/med-68-saxenda-weight-loss-injection-pen-uk-1790712202026-8f24dc9c.jpg"
-              alt="Saxenda® Pen"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#5B7E6F] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Popular</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('WEIGHT_MANAGEMENT')" aria-label="Add Mounjaro® Pen to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('WEIGHT_MANAGEMENT')" data-audience="BOTH" data-category="WEIGHT_MANAGEMENT">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/airo_opt/med-68-saxenda-weight-loss-injection-pen-uk-1790712202026-8f24dc9c.jpg" alt="Saxenda® Pen" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#5B7E6F] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Popular</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Liraglutide
-                Pen</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="Saxenda® Pen">
-                Saxenda® Pen</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Liraglutide 3mg Daily Multi-Dose Pen
-              </p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹6,999</span>
-
-                <span class="text-xs text-[#736E67] font-medium">($229)</span>
-                <span class="text-[11px] text-[#8A857F]">/ month</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('WEIGHT_MANAGEMENT')"
-              aria-label="Add Saxenda® Pen to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Liraglutide Pen</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="Saxenda® Pen">Saxenda® Pen</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Liraglutide 3mg Daily Multi-Dose Pen</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹6,999</span>
+            
+            <span class="text-xs text-[#736E67] font-medium">($229)</span>
+            <span class="text-[11px] text-[#8A857F]">/ month</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('WEIGHT_MANAGEMENT')" data-audience="BOTH" data-category="WEIGHT_MANAGEMENT">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/airo_opt/med-72-victoza-1600x800px-1790712232230-47b558fd.jpg" alt="Victoza® Pen"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Doctor-Formulated</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('WEIGHT_MANAGEMENT')" aria-label="Add Saxenda® Pen to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('WEIGHT_MANAGEMENT')" data-audience="BOTH" data-category="WEIGHT_MANAGEMENT">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/airo_opt/med-72-victoza-1600x800px-1790712232230-47b558fd.jpg" alt="Victoza® Pen" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Doctor-Formulated</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Metabolic
-                Care</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="Victoza® Pen">
-                Victoza® Pen</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Liraglutide 1.2mg / 1.8mg Injection
-                Pen</p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹6,499</span>
-
-                <span class="text-xs text-[#736E67] font-medium">($219)</span>
-                <span class="text-[11px] text-[#8A857F]">/ month</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('WEIGHT_MANAGEMENT')"
-              aria-label="Add Victoza® Pen to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Metabolic Care</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="Victoza® Pen">Victoza® Pen</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Liraglutide 1.2mg / 1.8mg Injection Pen</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹6,499</span>
+            
+            <span class="text-xs text-[#736E67] font-medium">($219)</span>
+            <span class="text-[11px] text-[#8A857F]">/ month</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('SEXUAL_HEALTH_ED')" data-audience="HIM" data-category="SEXUAL_HEALTH_ED">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/airo_opt/med-62-sexual-health-product-images-12-1786655381163-377c05e2.jpg"
-              alt="GO BEYOND™ Limits"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#5B7E6F] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Best
-                Sellers</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('WEIGHT_MANAGEMENT')" aria-label="Add Victoza® Pen to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('SEXUAL_HEALTH_ED')" data-audience="HIM" data-category="SEXUAL_HEALTH_ED">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/airo_opt/med-62-sexual-health-product-images-12-1786655381163-377c05e2.jpg" alt="GO BEYOND™ Limits" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#5B7E6F] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Best Sellers</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Dual
-                Performance</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="GO BEYOND™ Limits">
-                GO BEYOND™ Limits</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Sildenafil 50 mg + Tadalafil 20 mg
-                Compound</p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,499</span>
-                <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹1,999</span>
-                <span class="text-xs text-[#736E67] font-medium">($40)</span>
-                <span class="text-[11px] text-[#8A857F]">/ month</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('SEXUAL_HEALTH_ED')"
-              aria-label="Add GO BEYOND™ Limits to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Dual Performance</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="GO BEYOND™ Limits">GO BEYOND™ Limits</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Sildenafil 50 mg + Tadalafil 20 mg Compound</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,499</span>
+            <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹1,999</span>
+            <span class="text-xs text-[#736E67] font-medium">($40)</span>
+            <span class="text-[11px] text-[#8A857F]">/ month</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('SEXUAL_HEALTH_ED')" data-audience="HIM" data-category="SEXUAL_HEALTH_ED">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/airo_opt/med-77-go-beyond-tadalafil-gummies-and-torcha-03-1790632741563-af64c6aa.jpg"
-              alt="GO BEYOND™ Gummies"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#5B7E6F] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Best
-                Sellers</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('SEXUAL_HEALTH_ED')" aria-label="Add GO BEYOND™ Limits to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('SEXUAL_HEALTH_ED')" data-audience="HIM" data-category="SEXUAL_HEALTH_ED">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/airo_opt/med-77-go-beyond-tadalafil-gummies-and-torcha-03-1790632741563-af64c6aa.jpg" alt="GO BEYOND™ Gummies" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#5B7E6F] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Best Sellers</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Chewable
-                Gummies</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate"
-                title="GO BEYOND™ Gummies">GO BEYOND™ Gummies</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Daily Tadalafil 5mg Chewable Gummy
-              </p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,499</span>
-
-                <span class="text-xs text-[#736E67] font-medium">($40)</span>
-                <span class="text-[11px] text-[#8A857F]">/ month</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('SEXUAL_HEALTH_ED')"
-              aria-label="Add GO BEYOND™ Gummies to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Chewable Gummies</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="GO BEYOND™ Gummies">GO BEYOND™ Gummies</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Daily Tadalafil 5mg Chewable Gummy</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,499</span>
+            
+            <span class="text-xs text-[#736E67] font-medium">($40)</span>
+            <span class="text-[11px] text-[#8A857F]">/ month</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('SEXUAL_HEALTH_ED')" data-audience="HIM" data-category="SEXUAL_HEALTH_ED">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/airo_opt/med-79-sublingual-tablets-01-1790711324016-497b066b.jpg" alt="GO BEYOND™ Rapid"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Doctor-Formulated</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('SEXUAL_HEALTH_ED')" aria-label="Add GO BEYOND™ Gummies to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('SEXUAL_HEALTH_ED')" data-audience="HIM" data-category="SEXUAL_HEALTH_ED">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/airo_opt/med-79-sublingual-tablets-01-1790711324016-497b066b.jpg" alt="GO BEYOND™ Rapid" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Doctor-Formulated</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Rapid
-                Dissolve</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="GO BEYOND™ Rapid">
-                GO BEYOND™ Rapid</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Tadalafil Sublingual Rapid-Dissolve
-                Tablet</p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,399</span>
-
-                <span class="text-xs text-[#736E67] font-medium">($38)</span>
-                <span class="text-[11px] text-[#8A857F]">/ month</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('SEXUAL_HEALTH_ED')"
-              aria-label="Add GO BEYOND™ Rapid to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Rapid Dissolve</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="GO BEYOND™ Rapid">GO BEYOND™ Rapid</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Tadalafil Sublingual Rapid-Dissolve Tablet</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,399</span>
+            
+            <span class="text-xs text-[#736E67] font-medium">($38)</span>
+            <span class="text-[11px] text-[#8A857F]">/ month</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('SEXUAL_HEALTH_ED')" data-audience="HIM" data-category="SEXUAL_HEALTH_ED">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/airo_opt/med-82-sild-1790712089716-134e7a4c.jpg" alt="GO BEYOND™ Rapid Quick"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#D84A38] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Sale</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('SEXUAL_HEALTH_ED')" aria-label="Add GO BEYOND™ Rapid to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('SEXUAL_HEALTH_ED')" data-audience="HIM" data-category="SEXUAL_HEALTH_ED">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/airo_opt/med-82-sild-1790712089716-134e7a4c.jpg" alt="GO BEYOND™ Rapid Quick" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#D84A38] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Sale</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span
-                class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Fast-Acting</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate"
-                title="GO BEYOND™ Rapid Quick">GO BEYOND™ Rapid Quick</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Sildenafil Sublingual Rapid-Dissolve
-                Tablet</p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,199</span>
-                <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹1,699</span>
-                <span class="text-xs text-[#736E67] font-medium">($32)</span>
-                <span class="text-[11px] text-[#8A857F]">/ month</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('SEXUAL_HEALTH_ED')"
-              aria-label="Add GO BEYOND™ Rapid Quick to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Fast-Acting</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="GO BEYOND™ Rapid Quick">GO BEYOND™ Rapid Quick</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Sildenafil Sublingual Rapid-Dissolve Tablet</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,199</span>
+            <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹1,699</span>
+            <span class="text-xs text-[#736E67] font-medium">($32)</span>
+            <span class="text-[11px] text-[#8A857F]">/ month</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('SEXUAL_HEALTH_ED')" data-audience="HIM" data-category="SEXUAL_HEALTH_ED">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/airo_opt/med-60-sexual-health-product-images-18-1786655682803-773cc248.jpg"
-              alt="GO BEYOND™ Control"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#D84A38] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Sale</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('SEXUAL_HEALTH_ED')" aria-label="Add GO BEYOND™ Rapid Quick to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('SEXUAL_HEALTH_ED')" data-audience="HIM" data-category="SEXUAL_HEALTH_ED">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/airo_opt/med-60-sexual-health-product-images-18-1786655682803-773cc248.jpg" alt="GO BEYOND™ Control" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#D84A38] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Sale</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">ED & PE Dual
-                Care</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate"
-                title="GO BEYOND™ Control">GO BEYOND™ Control</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Paroxetine 20 mg + Sildenafil 20 mg
-              </p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,299</span>
-                <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹1,799</span>
-                <span class="text-xs text-[#736E67] font-medium">($35)</span>
-                <span class="text-[11px] text-[#8A857F]">/ month</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('SEXUAL_HEALTH_ED')"
-              aria-label="Add GO BEYOND™ Control to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">ED & PE Dual Care</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="GO BEYOND™ Control">GO BEYOND™ Control</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Paroxetine 20 mg + Sildenafil 20 mg</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,299</span>
+            <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹1,799</span>
+            <span class="text-xs text-[#736E67] font-medium">($35)</span>
+            <span class="text-[11px] text-[#8A857F]">/ month</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('SEXUAL_HEALTH_ED')" data-audience="HIM" data-category="SEXUAL_HEALTH_ED">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/airo_opt/med-73-go-beyond-tadalafil-gummies-and-torcha-01-1790632810138-f5affa85.jpg"
-              alt="GO BEYOND™ Troche Daily"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Doctor-Formulated</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('SEXUAL_HEALTH_ED')" aria-label="Add GO BEYOND™ Control to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('SEXUAL_HEALTH_ED')" data-audience="HIM" data-category="SEXUAL_HEALTH_ED">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/airo_opt/med-73-go-beyond-tadalafil-gummies-and-torcha-01-1790632810138-f5affa85.jpg" alt="GO BEYOND™ Troche Daily" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Doctor-Formulated</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Daily
-                Troche</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate"
-                title="GO BEYOND™ Troche Daily">GO BEYOND™ Troche Daily</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Daily Tadalafil Buccal Troche</p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,499</span>
-
-                <span class="text-xs text-[#736E67] font-medium">($40)</span>
-                <span class="text-[11px] text-[#8A857F]">/ month</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('SEXUAL_HEALTH_ED')"
-              aria-label="Add GO BEYOND™ Troche Daily to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Daily Troche</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="GO BEYOND™ Troche Daily">GO BEYOND™ Troche Daily</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Daily Tadalafil Buccal Troche</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,499</span>
+            
+            <span class="text-xs text-[#736E67] font-medium">($40)</span>
+            <span class="text-[11px] text-[#8A857F]">/ month</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('SEXUAL_HEALTH_ED')" data-audience="HIM" data-category="SEXUAL_HEALTH_ED">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/airo_opt/med-61-gemini-generated-image-98oh0n98oh0n98oh-1787265391379-ec03fda1.jpg"
-              alt="GO BEYOND™ Plus Testosterone"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Popular</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('SEXUAL_HEALTH_ED')" aria-label="Add GO BEYOND™ Troche Daily to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('SEXUAL_HEALTH_ED')" data-audience="HIM" data-category="SEXUAL_HEALTH_ED">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/airo_opt/med-61-gemini-generated-image-98oh0n98oh0n98oh-1787265391379-ec03fda1.jpg" alt="GO BEYOND™ Plus Testosterone" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Popular</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Testosterone
-                Support</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate"
-                title="GO BEYOND™ Plus Testosterone">GO BEYOND™ Plus Testosterone</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Tadalafil 5 mg Capsule + Botanical
-                T-Support</p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,599</span>
-
-                <span class="text-xs text-[#736E67] font-medium">($45)</span>
-                <span class="text-[11px] text-[#8A857F]">/ month</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('SEXUAL_HEALTH_ED')"
-              aria-label="Add GO BEYOND™ Plus Testosterone to consult"
-              class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Testosterone Support</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="GO BEYOND™ Plus Testosterone">GO BEYOND™ Plus Testosterone</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Tadalafil 5 mg Capsule + Botanical T-Support</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,599</span>
+            
+            <span class="text-xs text-[#736E67] font-medium">($45)</span>
+            <span class="text-[11px] text-[#8A857F]">/ month</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('DERMATOLOGY')" data-audience="BOTH" data-category="DERMATOLOGY">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/card-prod-glow-serum.jpg" alt="Glow Renewal Serum"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Doctor-Formulated</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('SEXUAL_HEALTH_ED')" aria-label="Add GO BEYOND™ Plus Testosterone to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('DERMATOLOGY')" data-audience="BOTH" data-category="DERMATOLOGY">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/card-prod-glow-serum.jpg" alt="Glow Renewal Serum" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Doctor-Formulated</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Night
-                Serum</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate"
-                title="Glow Renewal Serum">Glow Renewal Serum</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Retinol 0.5% + Niacinamide 5%</p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,299</span>
-                <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹1,699</span>
-                <span class="text-xs text-[#736E67] font-medium">($42)</span>
-                <span class="text-[11px] text-[#8A857F]">/ bottle</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('DERMATOLOGY')"
-              aria-label="Add Glow Renewal Serum to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Night Serum</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="Glow Renewal Serum">Glow Renewal Serum</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Retinol 0.5% + Niacinamide 5%</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,299</span>
+            <span class="text-xs text-[#9E9B94] line-through tabular-nums">₹1,699</span>
+            <span class="text-xs text-[#736E67] font-medium">($42)</span>
+            <span class="text-[11px] text-[#8A857F]">/ bottle</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('DERMATOLOGY')" data-audience="BOTH" data-category="DERMATOLOGY">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/card-prod-clear-gel.jpg" alt="ClearSkin Acne Gel"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#5B7E6F] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Best
-                Sellers</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('DERMATOLOGY')" aria-label="Add Glow Renewal Serum to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('DERMATOLOGY')" data-audience="BOTH" data-category="DERMATOLOGY">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/card-prod-clear-gel.jpg" alt="ClearSkin Acne Gel" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#5B7E6F] text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Best Sellers</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Acne Care</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate"
-                title="ClearSkin Acne Gel">ClearSkin Acne Gel</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Salicylic Acid 2% (Clinical BHA)</p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹899</span>
-
-                <span class="text-xs text-[#736E67] font-medium">($28)</span>
-                <span class="text-[11px] text-[#8A857F]">/ tube</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('DERMATOLOGY')"
-              aria-label="Add ClearSkin Acne Gel to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Acne Care</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="ClearSkin Acne Gel">ClearSkin Acne Gel</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Salicylic Acid 2% (Clinical BHA)</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹899</span>
+            
+            <span class="text-xs text-[#736E67] font-medium">($28)</span>
+            <span class="text-[11px] text-[#8A857F]">/ tube</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('DERMATOLOGY')" data-audience="BOTH" data-category="DERMATOLOGY">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/card-prod-tretinoin.jpg" alt="Tretinoin 0.025% Cream"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Doctor-Formulated</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('DERMATOLOGY')" aria-label="Add ClearSkin Acne Gel to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('DERMATOLOGY')" data-audience="BOTH" data-category="DERMATOLOGY">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/card-prod-tretinoin.jpg" alt="Tretinoin 0.025% Cream" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Doctor-Formulated</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Prescription
-                Rx</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate"
-                title="Tretinoin 0.025% Cream">Tretinoin 0.025% Cream</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Prescription Retinoid Cream 0.025%
-              </p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,199</span>
-
-                <span class="text-xs text-[#736E67] font-medium">($35)</span>
-                <span class="text-[11px] text-[#8A857F]">/ tube</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('DERMATOLOGY')"
-              aria-label="Add Tretinoin 0.025% Cream to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Prescription Rx</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="Tretinoin 0.025% Cream">Tretinoin 0.025% Cream</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Prescription Retinoid Cream 0.025%</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹1,199</span>
+            
+            <span class="text-xs text-[#736E67] font-medium">($35)</span>
+            <span class="text-[11px] text-[#8A857F]">/ tube</span>
           </div>
         </div>
-        <div
-          class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-          onclick="startIntakeFor('DERMATOLOGY')" data-audience="BOTH" data-category="DERMATOLOGY">
-          <div
-            class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-            <img src="/images/card-prod-niacinamide.jpg" alt="Bright Balance Serum"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
-            <div class="absolute top-4 left-4 z-10 pointer-events-none">
-              <span
-                class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Doctor-Formulated</span>
-            </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('DERMATOLOGY')" aria-label="Add Tretinoin 0.025% Cream to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('DERMATOLOGY')" data-audience="BOTH" data-category="DERMATOLOGY">
+      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
+        <img src="/images/card-prod-niacinamide.jpg" alt="Bright Balance Serum" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);" loading="lazy" />
+        <div class="absolute top-4 left-4 z-10 pointer-events-none">
+            <span class="bg-[#191817]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">Doctor-Formulated</span>
           </div>
-          <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-            <div class="pr-3 flex-1 min-w-0">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Barrier
-                Support</span>
-              <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate"
-                title="Bright Balance Serum">Bright Balance Serum</h3>
-              <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Niacinamide 10% + Zinc 1%</p>
-              <div class="flex items-baseline space-x-1.5 mt-2">
-                <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹799</span>
-
-                <span class="text-xs text-[#736E67] font-medium">($25)</span>
-                <span class="text-[11px] text-[#8A857F]">/ bottle</span>
-              </div>
-            </div>
-            <button onclick="event.stopPropagation(); startIntakeFor('DERMATOLOGY')"
-              aria-label="Add Bright Balance Serum to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </button>
+      </div>
+      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
+        <div class="pr-3 flex-1 min-w-0">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">Barrier Support</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="Bright Balance Serum">Bright Balance Serum</h3>
+          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">Niacinamide 10% + Zinc 1%</p>
+          <div class="flex items-baseline space-x-1.5 mt-2">
+            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">₹799</span>
+            
+            <span class="text-xs text-[#736E67] font-medium">($25)</span>
+            <span class="text-[11px] text-[#8A857F]">/ bottle</span>
           </div>
         </div>
+        <button onclick="event.stopPropagation(); startIntakeFor('DERMATOLOGY')" aria-label="Add Bright Balance Serum to consult" class="product-cart-btn flex-shrink-0 cursor-pointer">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+        </button>
+      </div>
+    </div>
       </div>
 
     </div>
@@ -2254,6 +1928,10 @@
 
 
   <!-- ======================================================== -->
+
+
+
+    <!-- ======================================================== -->
   <!-- SECTION 8: WHY WE'RE DIFFERENT — THE AIRO ADVANTAGE      -->
   <!-- ======================================================== -->
   <section id="airo-advantage-section"

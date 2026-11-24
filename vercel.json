@@ -6,7 +6,7 @@
   "rewrites": [
     { "source": "/concerns", "destination": "/concerns.html" },
     { "source": "/treatments", "destination": "/treatments.html" },
-    { "source": "/shop", "destination": "/treatments.html" },
+    { "source": "/shop", "destination": "/shop.html" },
     { "source": "/questionnaire", "destination": "/questionnaire.html" }
   ]
 }
