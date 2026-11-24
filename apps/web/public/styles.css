@@ -2074,32 +2074,46 @@ body {
 
 /* Inner Grey Canvas holding Title, Status, and Photo (Exact Sienna Brooks container) */
 .concern-card-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  flex: 1;
+  position: relative;
   width: 100%;
-  background-color: #EAE7E1;
+  aspect-ratio: 4 / 5;
   border-radius: 1.5rem;
   overflow: hidden;
-  padding-top: 1.25rem;
-  position: relative;
+  background-color: #EAE7E1;
+  display: flex;
+  flex-direction: column;
 }
 
+.concern-card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.concern-card:hover .concern-card-img {
+  transform: scale(1.04);
+}
+
+/* Text sits directly on the image at the top with NO gradient overlay cutoffs */
 .concern-inner-header {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 0 1rem;
-  margin-bottom: 0.75rem;
-  min-height: 3.75rem;
-  justify-content: flex-start;
+  padding: 1.25rem 1rem 0;
+  width: 100%;
+  pointer-events: none;
 }
 
 .concern-card-title {
-  font-size: clamp(0.95rem, 1.05vw, 1.0625rem);
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
   font-weight: 700;
   color: #191817;
   line-height: 1.25;
@@ -2118,50 +2132,6 @@ body {
   font-size: 0.75rem;
   font-weight: 500;
   color: #55514C;
-}
-
-/* Photo sits cleanly below text inside the grey canvas (ZERO text on top of photo) */
-.concern-inner-photo {
-  position: relative;
-  width: 100%;
-  height: 215px;
-  overflow: hidden;
-}
-
-.concern-inner-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center bottom;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.concern-inner-photo::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 16px;
-  background: linear-gradient(to bottom, #EAE7E1 0%, transparent 100%);
-  z-index: 2;
-  pointer-events: none;
-}
-
-.concern-inner-photo::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 32px;
-  background: linear-gradient(to top, rgba(234, 231, 225, 0.75) 0%, transparent 100%);
-  z-index: 2;
-  pointer-events: none;
-}
-
-.concern-card:hover .concern-inner-photo img {
-  transform: scale(1.04);
 }
 
 /* Bottom Footer (Below Grey Canvas, on White Card) */

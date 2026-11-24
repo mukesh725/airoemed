@@ -404,8 +404,10 @@ export default function ConcernsPage() {
                         key={item.id}
                         className="concern-card group relative"
                       >
-                        {/* Inner Rounded Media Canvas (Sienna Brooks Card Style) */}
+                        {/* Inner Rounded Media Canvas (Sienna Brooks Card Style - Text on Image, Zero Overlays) */}
                         <div className="concern-card-inner">
+                          <img src={item.image} alt={item.title} className="concern-card-img" loading="lazy" />
+                          
                           <div className="concern-inner-header">
                             <h3 className="concern-card-title" title={item.title}>
                               {item.title}
@@ -423,10 +425,6 @@ export default function ConcernsPage() {
                               </svg>
                               <span>{item.status}</span>
                             </div>
-                          </div>
-
-                          <div className="concern-inner-photo">
-                            <img src={item.image} alt={item.title} loading="lazy" />
                           </div>
                         </div>
 

@@ -557,8 +557,10 @@
               ${items.map(item => `
                 <article class="concern-card group relative">
                   
-                  <!-- Inner Rounded Media Canvas (Sienna Brooks Card Style) -->
+                  <!-- Inner Rounded Media Canvas (Sienna Brooks Card Style - Text on Image, Zero Overlays) -->
                   <div class="concern-card-inner">
+                    <img src="${item.image}" alt="${item.title}" class="concern-card-img" loading="lazy">
+                    
                     <div class="concern-inner-header">
                       <h3 class="concern-card-title" title="${item.title}">${item.title}</h3>
                       <div class="concern-card-status">
@@ -574,10 +576,6 @@
                         </svg>
                         <span>${item.status}</span>
                       </div>
-                    </div>
-
-                    <div class="concern-inner-photo">
-                      <img src="${item.image}" alt="${item.title}" loading="lazy">
                     </div>
                   </div>
 
