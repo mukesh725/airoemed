@@ -637,6 +637,77 @@ export default function HomePage() {
     };
   }, [resetSlideTimer]);
 
+  // Apple-style scroll-driven chapter activation for Sexual Wellness & Dermatology in Next.js
+  useEffect(() => {
+    const handleScrollSections = () => {
+      const windowH = window.innerHeight;
+
+      // 1. Sexual Wellness
+      const edContainer = document.getElementById('sexual-wellness-scroll-section');
+      const edVideo = document.getElementById('ed-scroll-video');
+      const edStep1 = document.getElementById('ed-step-1');
+      const edStep2 = document.getElementById('ed-step-2');
+      const edStep3 = document.getElementById('ed-step-3');
+      const edDots = [document.getElementById('ed-dot-1'), document.getElementById('ed-dot-2'), document.getElementById('ed-dot-3')];
+
+      if (edContainer && edStep1 && edStep2 && edStep3) {
+        const rect = edContainer.getBoundingClientRect();
+        if (rect.top <= windowH && rect.bottom >= 0) {
+          const totalDist = rect.height - windowH;
+          const scrolled = -rect.top;
+          const progress = Math.max(0, Math.min(1, scrolled / totalDist));
+          if (edVideo) edVideo.style.transform = `scale(${(1 + progress * 0.08).toFixed(3)})`;
+
+          const activeIdx = progress < 0.33 ? 1 : progress < 0.67 ? 2 : 3;
+          edStep1.classList.toggle('active', activeIdx === 1);
+          edStep2.classList.toggle('active', activeIdx === 2);
+          edStep3.classList.toggle('active', activeIdx === 3);
+
+          edDots.forEach((dot, i) => {
+            if (!dot) return;
+            dot.className = (i + 1 === activeIdx)
+              ? 'ed-progress-dot active w-2 h-6 rounded-full bg-white transition-all duration-300 shadow-md'
+              : 'ed-progress-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300';
+          });
+        }
+      }
+
+      // 2. Skincare & Dermatology
+      const skinContainer = document.getElementById('skincare-scroll-section');
+      const skinBg = document.getElementById('skin-scroll-bg');
+      const skinStep1 = document.getElementById('skin-step-1');
+      const skinStep2 = document.getElementById('skin-step-2');
+      const skinStep3 = document.getElementById('skin-step-3');
+      const skinDots = [document.getElementById('skin-dot-1'), document.getElementById('skin-dot-2'), document.getElementById('skin-dot-3')];
+
+      if (skinContainer && skinStep1 && skinStep2 && skinStep3) {
+        const rect = skinContainer.getBoundingClientRect();
+        if (rect.top <= windowH && rect.bottom >= 0) {
+          const totalDist = rect.height - windowH;
+          const scrolled = -rect.top;
+          const progress = Math.max(0, Math.min(1, scrolled / totalDist));
+          if (skinBg) skinBg.style.transform = `scale(${(1 + progress * 0.08).toFixed(3)})`;
+
+          const activeIdx = progress < 0.33 ? 1 : progress < 0.67 ? 2 : 3;
+          skinStep1.classList.toggle('active', activeIdx === 1);
+          skinStep2.classList.toggle('active', activeIdx === 2);
+          skinStep3.classList.toggle('active', activeIdx === 3);
+
+          skinDots.forEach((dot, i) => {
+            if (!dot) return;
+            dot.className = (i + 1 === activeIdx)
+              ? 'skin-progress-dot active w-2 h-6 rounded-full bg-white transition-all duration-300 shadow-md'
+              : 'skin-progress-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300';
+          });
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScrollSections, { passive: true });
+    handleScrollSections();
+    return () => window.removeEventListener('scroll', handleScrollSections);
+  }, []);
+
   return (
     <div className="bg-[#FAF7F2] text-[#191817] font-sans min-h-screen antialiased">
       {/* Top Header */}
@@ -1217,11 +1288,14 @@ export default function HomePage() {
                 No waiting rooms. No pharmacy lines. Free discreet delivery in an unmarked box right to your door.
               </p>
 
-              {/* Apple Glowing CTA Button */}
-              <div className="pt-7 sm:pt-9 flex flex-col items-center justify-center gap-3 pointer-events-auto">
-                <button className="apple-glowing-btn group/btn relative inline-flex items-center space-x-3 px-8 sm:px-10 py-4 sm:py-4.5 rounded-full bg-white hover:bg-white/95 text-[#191817] font-bold text-sm sm:text-base shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer">
+              {/* Apple Brand Solid Blue CTA Button */}
+              <div className="pt-7 sm:pt-9 flex flex-col items-center justify-center gap-3">
+                <button
+                  onClick={() => { setAudience('HIM'); filterCategory('SEXUAL_HEALTH_ED'); }}
+                  className="apple-glowing-btn group/btn relative inline-flex items-center space-x-3 px-8 sm:px-10 py-4 sm:py-4.5 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white font-bold text-sm sm:text-base shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer border border-white/20 hover:border-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0C0A09]"
+                >
                   <span>Explore Sexual Wellness Treatments</span>
-                  <span className="inline-block transition-transform duration-300 group-hover/btn:translate-x-1.5">→</span>
+                  <span className="inline-block transition-transform duration-300 group-hover/btn:translate-x-1.5 font-bold">→</span>
                 </button>
                 <span className="text-xs text-white/70 font-medium tracking-wide">
                   Prescription products require an online consultation with a licensed clinician.
@@ -1423,14 +1497,14 @@ export default function HomePage() {
                 Online photo consultation with a licensed dermatologist. Tailored to your exact skin type and delivered fresh to your door.
               </p>
 
-              {/* Apple Glowing CTA Button */}
-              <div className="pt-7 sm:pt-9 flex flex-col items-center justify-center gap-3 pointer-events-auto">
+              {/* Apple Brand Solid Blue CTA Button */}
+              <div className="pt-7 sm:pt-9 flex flex-col items-center justify-center gap-3">
                 <button
                   onClick={() => filterCategory('DERMATOLOGY')}
-                  className="apple-glowing-btn group/btn relative inline-flex items-center space-x-3 px-8 sm:px-10 py-4 sm:py-4.5 rounded-full bg-white hover:bg-white/95 text-[#191817] font-bold text-sm sm:text-base shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer"
+                  className="apple-glowing-btn group/btn relative inline-flex items-center space-x-3 px-8 sm:px-10 py-4 sm:py-4.5 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white font-bold text-sm sm:text-base shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer border border-white/20 hover:border-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0C0A09]"
                 >
                   <span>Explore Dermatology & Skincare</span>
-                  <span className="inline-block transition-transform duration-300 group-hover/btn:translate-x-1.5">→</span>
+                  <span className="inline-block transition-transform duration-300 group-hover/btn:translate-x-1.5 font-bold">→</span>
                 </button>
                 <span className="text-xs text-white/70 font-medium tracking-wide">
                   Prescription skincare requires a quick online medical consultation with a licensed dermatologist.

@@ -194,8 +194,8 @@ body {
   pointer-events: none;
   visibility: hidden;
   transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              visibility 0.25s;
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.25s;
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
 }
@@ -1241,6 +1241,7 @@ body {
 .ed-scroll-step.active,
 .skin-scroll-step.active {
   opacity: 1;
+  visibility: visible;
   transform: translateY(-50%) scale(1);
   filter: blur(0px);
   pointer-events: auto;
@@ -1249,36 +1250,32 @@ body {
 .ed-scroll-step:not(.active),
 .skin-scroll-step:not(.active) {
   opacity: 0;
+  visibility: hidden;
   transform: translateY(calc(-50% + 28px)) scale(0.96);
   filter: blur(8px);
   pointer-events: none;
 }
 
-/* Apple Glowing CTA Button */
+/* Apple Brand Solid Blue CTA Button (Zero Gradient, Luxury Royal & Navy Blue) */
 .apple-glowing-btn {
   position: relative;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 35px rgba(255, 255, 255, 0.22);
+  background-color: #0F1B38 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 10px 30px rgba(15, 27, 56, 0.45), 0 2px 10px rgba(30, 64, 175, 0.25);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .apple-glowing-btn:hover {
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6), 0 0 55px rgba(255, 255, 255, 0.4);
-  transform: scale(1.04);
+  background-color: #1E40AF !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 16px 45px rgba(30, 64, 175, 0.45);
+  border-color: rgba(255, 255, 255, 0.45);
 }
 
-.apple-glowing-btn::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: 9999px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(244, 162, 97, 0.8), rgba(224, 122, 95, 0.8));
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.35s ease;
-}
-
-.apple-glowing-btn:hover::before {
-  opacity: 1;
+.apple-glowing-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.8), 0 0 0 5px #0F1B38;
 }
 
 /* ==========================================================================
@@ -1851,38 +1848,42 @@ body {
 }
 
 /* ==========================================================================
-   DOCTORS CARDS (FULL-CARD PHOTO + FROSTED GLASS BLEND DOWN-TO-UP)
+   DOCTORS CARDS (SARAH SWIFT EXACT EDITORIAL PROFILE CARD STYLE)
    ========================================================================== */
+.sarah-doctor-card,
 .doctor-frosted-card {
   position: relative;
-  width: 290px;
-  height: 440px;
+  width: 295px;
+  height: 490px;
   flex-shrink: 0;
   border-radius: 2.25rem;
   overflow: hidden;
-  background-color: #191817;
-  border: 1.5px solid rgba(255, 255, 255, 0.65);
-  box-shadow: 0 12px 36px -6px rgba(25, 24, 23, 0.12),
-    0 2px 8px rgba(0, 0, 0, 0.04);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.4s ease,
-    border-color 0.4s ease;
+  background-color: #F7F6F2;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 16px 40px -8px rgba(25, 24, 23, 0.08),
+              0 2px 6px rgba(0, 0, 0, 0.03);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
   cursor: pointer;
 }
 
 @media (min-width: 640px) {
+  .sarah-doctor-card,
   .doctor-frosted-card {
     width: 320px;
-    height: 470px;
+    height: 510px;
   }
 }
 
+.sarah-doctor-card:hover,
 .doctor-frosted-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 24px 50px -10px rgba(15, 38, 92, 0.22);
-  border-color: rgba(30, 64, 175, 0.6);
+  transform: translateY(-8px);
+  box-shadow: 0 24px 50px -10px rgba(15, 38, 92, 0.16);
+  border-color: rgba(255, 255, 255, 1);
 }
 
+.sarah-card-bg-photo,
 .doctor-card-full-img {
   position: absolute;
   inset: 0;
@@ -1890,14 +1891,16 @@ body {
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.sarah-doctor-card:hover .sarah-card-bg-photo,
 .doctor-frosted-card:hover .doctor-card-full-img {
-  transform: scale(1.06);
+  transform: scale(1.04);
 }
 
 /* Seamless Blended Frosted Glass: Smooth Feathered Transition into Photo (Down to Up) */
+.sarah-card-frosted,
 .doctor-frosted-blend {
   position: absolute;
   left: 0;
@@ -1906,37 +1909,35 @@ body {
   height: 65%;
   pointer-events: none;
   z-index: 4;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   background: linear-gradient(to top,
-      rgba(255, 255, 255, 0.96) 0%,
-      rgba(255, 255, 255, 0.90) 35%,
-      rgba(255, 255, 255, 0.65) 60%,
-      rgba(255, 255, 255, 0.30) 80%,
-      rgba(255, 255, 255, 0.08) 92%,
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(255, 255, 255, 0.94) 45%,
+      rgba(255, 255, 255, 0.75) 75%,
+      rgba(255, 255, 255, 0.25) 90%,
       transparent 100%);
   -webkit-mask-image: linear-gradient(to top,
       rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 1) 40%,
-      rgba(0, 0, 0, 0.85) 60%,
-      rgba(0, 0, 0, 0.45) 80%,
-      rgba(0, 0, 0, 0.10) 94%,
+      rgba(0, 0, 0, 1) 55%,
+      rgba(0, 0, 0, 0.85) 75%,
+      rgba(0, 0, 0, 0.35) 90%,
       transparent 100%);
   mask-image: linear-gradient(to top,
       rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 1) 40%,
-      rgba(0, 0, 0, 0.85) 60%,
-      rgba(0, 0, 0, 0.45) 80%,
-      rgba(0, 0, 0, 0.10) 94%,
+      rgba(0, 0, 0, 1) 55%,
+      rgba(0, 0, 0, 0.85) 75%,
+      rgba(0, 0, 0, 0.35) 90%,
       transparent 100%);
 }
 
+.sarah-card-content,
 .doctor-frosted-content {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 1.5rem 1.25rem 1.25rem;
+  padding: 1.5rem 1.35rem 1.35rem;
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -1944,146 +1945,7 @@ body {
 }
 
 @media (min-width: 640px) {
-  .doctor-frosted-content {
-    padding: 1.75rem 1.5rem 1.5rem;
-  }
-}
-
-/* ==========================================================================
-   HORIZONTAL INFINITE LOOP SCROLL MARQUEE
-   ========================================================================== */
-.doctors-marquee-wrap {
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  position: relative;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding: 1rem 0 1.5rem;
-  mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
-}
-
-.doctors-marquee-wrap::-webkit-scrollbar {
-  display: none;
-}
-
-.doctors-marquee-track {
-  display: flex;
-  width: max-content;
-  gap: 1.5rem;
-  animation: doctorMarqueeScroll 40s linear infinite;
-}
-
-.doctors-marquee-wrap:hover .doctors-marquee-track {
-  animation-play-state: paused;
-}
-
-@keyframes doctorMarqueeScroll {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-
-/* ==========================================================================
-   DOCTORS CARDS (FULL-CARD PHOTO + FROSTED GLASS BLEND DOWN-TO-UP)
-   ========================================================================== */
-.doctor-frosted-card {
-  position: relative;
-  width: 290px;
-  height: 440px;
-  flex-shrink: 0;
-  border-radius: 2.25rem;
-  overflow: hidden;
-  background-color: #191817;
-  border: 1.5px solid rgba(255, 255, 255, 0.65);
-  box-shadow: 0 12px 36px -6px rgba(25, 24, 23, 0.12),
-    0 2px 8px rgba(0, 0, 0, 0.04);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.4s ease,
-    border-color 0.4s ease;
-  cursor: pointer;
-}
-
-@media (min-width: 640px) {
-  .doctor-frosted-card {
-    width: 320px;
-    height: 470px;
-  }
-}
-
-.doctor-frosted-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 24px 50px -10px rgba(15, 38, 92, 0.22);
-  border-color: rgba(30, 64, 175, 0.6);
-}
-
-.doctor-card-full-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.doctor-frosted-card:hover .doctor-card-full-img {
-  transform: scale(1.06);
-}
-
-/* Seamless Blended Frosted Glass: Smooth Feathered Transition into Photo (Down to Up) */
-.doctor-frosted-blend {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 65%;
-  pointer-events: none;
-  z-index: 4;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  background: linear-gradient(to top,
-      rgba(255, 255, 255, 0.96) 0%,
-      rgba(255, 255, 255, 0.90) 35%,
-      rgba(255, 255, 255, 0.65) 60%,
-      rgba(255, 255, 255, 0.30) 80%,
-      rgba(255, 255, 255, 0.08) 92%,
-      transparent 100%);
-  -webkit-mask-image: linear-gradient(to top,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 1) 40%,
-      rgba(0, 0, 0, 0.85) 60%,
-      rgba(0, 0, 0, 0.45) 80%,
-      rgba(0, 0, 0, 0.10) 94%,
-      transparent 100%);
-  mask-image: linear-gradient(to top,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 1) 40%,
-      rgba(0, 0, 0, 0.85) 60%,
-      rgba(0, 0, 0, 0.45) 80%,
-      rgba(0, 0, 0, 0.10) 94%,
-      transparent 100%);
-}
-
-.doctor-frosted-content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1.5rem 1.25rem 1.25rem;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-@media (min-width: 640px) {
+  .sarah-card-content,
   .doctor-frosted-content {
     padding: 1.75rem 1.5rem 1.5rem;
   }
@@ -2200,8 +2062,8 @@ body {
   justify-content: space-between;
   box-shadow: 0 4px 18px -2px rgba(25, 24, 23, 0.05);
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.35s ease,
-              border-color 0.35s ease;
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
 }
 
 .concern-card:hover {
