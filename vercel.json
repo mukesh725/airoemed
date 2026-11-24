@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "name": "airoemed",
   "cleanUrls": true,
+  "buildCommand": "echo 'Build ready'",
   "outputDirectory": "apps/web/public",
   "rewrites": [
     { "source": "/concerns", "destination": "/concerns.html" },
