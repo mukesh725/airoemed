@@ -9,395 +9,324 @@
 // ----------------------------------------------------
 const PRODUCTS = [
   {
-    id: 'med-51',
-    audience: 'HIM',
-    category: 'HAIR_LOSS',
-    categoryLabel: 'Hair Regrowth',
-    title: 'AIRO Root Advance™',
-    ingredients: 'Minoxidil 8% + Dutasteride 0.25% + Tretinoin 0.1%',
-    badge: 'Best Sellers',
-    badgeType: 'bestseller',
-    price: 45,
-    priceInr: 1499,
-    originalPrice: 65, originalPriceInr: 1999,
-    period: '/ month',
-    image: '/images/airo_opt/med-51-airo-her-products-image-04-1790631088568-61708b29.jpg',
-    description: 'Personalized Rx DHT-targeted hair restoration therapy combining Minoxidil, Dutasteride, and Tretinoin.',
-    icon: '💇‍♂️'
-  },
-  {
-    id: 'med-53',
-    audience: 'HIM',
-    category: 'HAIR_LOSS',
-    categoryLabel: 'Max Strength',
-    title: 'AIRO Root Max™',
-    ingredients: 'Bimatoprost 0.12% + Dutasteride 0.1% + Minoxidil 10%',
-    badge: 'Doctor-Formulated',
-    badgeType: 'doctor',
-    price: 55,
-    priceInr: 1999,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ month',
-    image: '/images/airo_opt/med-53-airo-her-products-image-02-1790630888485-197da52b.jpg',
-    description: 'Personalized Rx five-pathway maximum restoration therapy with Bimatoprost and Melatonin.',
-    icon: '⚡'
-  },
-  {
-    id: 'med-50',
-    audience: 'HIM',
-    category: 'HAIR_LOSS',
-    categoryLabel: 'Triple-Action',
-    title: 'AIRO Root Plus™',
-    ingredients: 'Topical Minoxidil 10% + Finasteride 0.3% + Tretinoin',
-    badge: 'Sale',
-    badgeType: 'sale',
-    price: 45,
-    priceInr: 1499,
-    originalPrice: 60, originalPriceInr: 1899,
-    period: '/ month',
-    image: '/images/airo_opt/med-50-airo-her-products-image-01-1790630716125-434e2f95.jpg',
-    description: 'Personalized Rx triple-action solution halting follicular miniaturization and promoting dense regrowth.',
-    icon: '💇‍♂️'
-  },
-  {
-    id: 'med-49',
-    audience: 'HIM',
-    category: 'HAIR_LOSS',
-    categoryLabel: 'Hair Starter',
-    title: 'AIRO Root Start™',
-    ingredients: 'Topical Minoxidil 6% + Finasteride 0.3% Solution',
-    badge: 'Doctor-Formulated',
-    badgeType: 'doctor',
-    price: 39,
-    priceInr: 1299,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ month',
-    image: '/images/airo_opt/med-49-airo-her-products-image-03-1790630673068-0916c440.jpg',
-    description: 'Gentle clinical starter compound for early-stage androgenetic thinning and temple maintenance.',
-    icon: '🌱'
-  },
-  {
-    id: 'med-64',
-    audience: 'HER',
-    category: 'HAIR_LOSS',
-    categoryLabel: 'Women’s Scalp',
-    title: 'AIRO ROOT HER™ Scalp Solution',
-    ingredients: 'Minoxidil 5% + Azelaic Acid 5% + Tretinoin',
-    badge: 'Best Sellers',
-    badgeType: 'bestseller',
-    price: 32,
-    priceInr: 999,
-    originalPrice: 45, originalPriceInr: 1499,
-    period: '/ month',
-    image: '/images/airo_opt/med-64-airo-her-products-image-08-1790630948054-12984353.jpg',
-    description: 'Physician-directed compounded topical scalp solution designed for women’s diffuse hair thinning.',
-    icon: '💇‍♀️'
-  },
-  {
-    id: 'med-65',
-    audience: 'HER',
-    category: 'HAIR_LOSS',
-    categoryLabel: 'Density Rx',
-    title: 'AIRO ROOT HER™ Advance',
-    ingredients: 'Finasteride 0.1% + Minoxidil 5% + Vitamin A',
-    badge: 'Doctor-Formulated',
-    badgeType: 'doctor',
-    price: 32,
-    priceInr: 999,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ month',
-    image: '/images/airo_opt/med-65-airo-her-products-image-06-1790631045347-b997ca0f.jpg',
-    description: 'Advanced physician-directed compounded topical therapy for female hormonal pattern thinning.',
-    icon: '🌸'
-  },
-  {
-    id: 'med-66',
-    audience: 'HER',
-    category: 'HAIR_LOSS',
-    categoryLabel: 'Scalp Nourish',
-    title: 'AIRO ROOT HER™ Nourish Oil',
-    ingredients: 'Minoxidil 5% + Biotin 0.2% + Caffeine 0.5%',
-    badge: 'Sale',
-    badgeType: 'sale',
-    price: 32,
-    priceInr: 999,
-    originalPrice: 45, originalPriceInr: 1399,
-    period: '/ month',
-    image: '/images/airo_opt/med-66-airo-her-products-image-07-1790630969888-533bf89c.jpg',
-    description: 'Oil-based physician-directed topical treatment to nourish scalp barrier and stimulate microcirculation.',
-    icon: '💧'
-  },
-  {
-    id: 'med-67',
+    id: 'med-semaglutide',
     audience: 'BOTH',
     category: 'WEIGHT_MANAGEMENT',
-    categoryLabel: 'GLP-1 Injection',
-    title: 'AIRO SEMA Injection Vial',
-    ingredients: 'Compounded Semaglutide Subcutaneous Vial',
-    badge: 'Best Sellers',
-    badgeType: 'bestseller',
-    price: 199,
+    categoryLabel: 'Weight Management',
+    title: 'Semaglutide Oral Tablets',
+    ingredients: 'Oral Semaglutide 3mg / 7mg / 14mg',
+    badge: 'Rx Required · Oral GLP-1',
+    badgeType: 'rx',
+    price: 59,
     priceInr: 4999,
-    originalPrice: 249, originalPriceInr: 6499,
+    originalPrice: 79,
+    originalPriceInr: 6499,
     period: '/ month',
-    image: '/images/airo_opt/med-67-weight-loss-01-1790712283441-d3dbb9ba.jpg',
-    description: 'Physician-titrated Semaglutide vial clinically proven for chronic weight management and appetite control.',
-    icon: '⚖️'
-  },
-  {
-    id: 'med-71',
-    audience: 'BOTH',
-    category: 'WEIGHT_MANAGEMENT',
-    categoryLabel: 'Oral GLP-1',
-    title: 'Rybelsus® Tablets',
-    ingredients: 'Semaglutide Oral Tablets (3mg / 7mg / 14mg)',
-    badge: 'Best Sellers',
-    badgeType: 'bestseller',
-    price: 189,
-    priceInr: 4499,
-    originalPrice: 229, originalPriceInr: 5999,
-    period: '/ month',
-    image: '/images/airo_opt/med-71-rybelsus-2-1790712161977-c9475b04.jpg',
-    description: 'Once-daily oral GLP-1 tablets providing effective appetite regulation without injections.',
-    icon: '💊'
-  },
-  {
-    id: 'med-70',
-    audience: 'BOTH',
-    category: 'WEIGHT_MANAGEMENT',
-    categoryLabel: 'Dual Incretin',
-    title: 'Mounjaro® Pen',
-    ingredients: 'Tirzepatide Weekly Dual GIP/GLP-1 Pen',
-    badge: 'Doctor-Formulated',
-    badgeType: 'doctor',
-    price: 249,
-    priceInr: 8499,
-    originalPrice: 299, originalPriceInr: 9999,
-    period: '/ month',
-    image: '/images/airo_opt/med-70-adobe-stock-1725102072-editorial-use-only-92862a9a3b-1790712132898-750fa8b5.jpg',
-    description: 'Advanced dual GIP and GLP-1 receptor agonist pen for profound metabolic regulation and satiety.',
-    icon: '⚖️'
-  },
-  {
-    id: 'med-68',
-    audience: 'BOTH',
-    category: 'WEIGHT_MANAGEMENT',
-    categoryLabel: 'Liraglutide Pen',
-    title: 'Saxenda® Pen',
-    ingredients: 'Liraglutide 3mg Daily Multi-Dose Pen',
-    badge: 'Popular',
-    badgeType: 'bestseller',
-    price: 229,
-    priceInr: 6999,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ month',
-    image: '/images/airo_opt/med-68-saxenda-weight-loss-injection-pen-uk-1790712202026-8f24dc9c.jpg',
-    description: 'Once-daily GLP-1 injection pen formulated for steady caloric regulation and metabolic health.',
-    icon: '🩺'
-  },
-  {
-    id: 'med-72',
-    audience: 'BOTH',
-    category: 'WEIGHT_MANAGEMENT',
-    categoryLabel: 'Metabolic Care',
-    title: 'Victoza® Pen',
-    ingredients: 'Liraglutide 1.2mg / 1.8mg Injection Pen',
-    badge: 'Doctor-Formulated',
-    badgeType: 'doctor',
-    price: 219,
-    priceInr: 6499,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ month',
-    image: '/images/airo_opt/med-72-victoza-1600x800px-1790712232230-47b558fd.jpg',
-    description: 'Proven GLP-1 incretin pen for glycemic stability and gradual metabolic management.',
-    icon: '💉'
-  },
-  {
-    id: 'med-62',
-    audience: 'HIM',
-    category: 'SEXUAL_HEALTH_ED',
-    categoryLabel: 'Dual Performance',
-    title: 'GO BEYOND™ Limits',
-    ingredients: 'Sildenafil 50 mg + Tadalafil 20 mg Compound',
-    badge: 'Best Sellers',
-    badgeType: 'bestseller',
-    price: 40,
-    priceInr: 1499,
-    originalPrice: 55, originalPriceInr: 1999,
-    period: '/ month',
-    image: '/images/airo_opt/med-62-sexual-health-product-images-12-1786655381163-377c05e2.jpg',
-    description: 'On-demand prescription dual therapy combining fast onset (Sildenafil) with 36-hour duration (Tadalafil).',
-    icon: '⚡'
-  },
-  {
-    id: 'med-77',
-    audience: 'HIM',
-    category: 'SEXUAL_HEALTH_ED',
-    categoryLabel: 'Chewable Gummies',
-    title: 'GO BEYOND™ Gummies',
-    ingredients: 'Daily Tadalafil 5mg Chewable Gummy',
-    badge: 'Best Sellers',
-    badgeType: 'bestseller',
-    price: 40,
-    priceInr: 1499,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ month',
-    image: '/images/airo_opt/med-77-go-beyond-tadalafil-gummies-and-torcha-03-1790632741563-af64c6aa.jpg',
-    description: 'Daily chewable tadalafil gummy for spontaneous intimate readiness without swallowing pills.',
-    icon: '🍬'
-  },
-  {
-    id: 'med-79',
-    audience: 'HIM',
-    category: 'SEXUAL_HEALTH_ED',
-    categoryLabel: 'Rapid Dissolve',
-    title: 'GO BEYOND™ Rapid',
-    ingredients: 'Tadalafil Sublingual Rapid-Dissolve Tablet',
-    badge: 'Doctor-Formulated',
-    badgeType: 'doctor',
-    price: 38,
-    priceInr: 1399,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ month',
-    image: '/images/airo_opt/med-79-sublingual-tablets-01-1790711324016-497b066b.jpg',
-    description: 'Sublingual daily tadalafil dissolving under the tongue for faster, bypass-the-gut absorption.',
-    icon: '⚡'
-  },
-  {
-    id: 'med-82',
-    audience: 'HIM',
-    category: 'SEXUAL_HEALTH_ED',
-    categoryLabel: 'Fast-Acting',
-    title: 'GO BEYOND™ Rapid Quick',
-    ingredients: 'Sildenafil Sublingual Rapid-Dissolve Tablet',
-    badge: 'Sale',
-    badgeType: 'sale',
-    price: 32,
-    priceInr: 1199,
-    originalPrice: 45, originalPriceInr: 1699,
-    period: '/ month',
-    image: '/images/airo_opt/med-82-sild-1790712089716-134e7a4c.jpg',
-    description: 'Fast-acting on-demand sublingual sildenafil dissolving rapidly before intimacy.',
-    icon: '🔥'
-  },
-  {
-    id: 'med-60',
-    audience: 'HIM',
-    category: 'SEXUAL_HEALTH_ED',
-    categoryLabel: 'ED & PE Dual Care',
-    title: 'GO BEYOND™ Control',
-    ingredients: 'Paroxetine 20 mg + Sildenafil 20 mg',
-    badge: 'Sale',
-    badgeType: 'sale',
-    price: 35,
-    priceInr: 1299,
-    originalPrice: 48, originalPriceInr: 1799,
-    period: '/ month',
-    image: '/images/airo_opt/med-60-sexual-health-product-images-18-1786655682803-773cc248.jpg',
-    description: 'Prescription compound treating erectile dysfunction while extending endurance and stamina.',
-    icon: '⏱️'
-  },
-  {
-    id: 'med-73',
-    audience: 'HIM',
-    category: 'SEXUAL_HEALTH_ED',
-    categoryLabel: 'Daily Troche',
-    title: 'GO BEYOND™ Troche Daily',
-    ingredients: 'Daily Tadalafil Buccal Troche',
-    badge: 'Doctor-Formulated',
-    badgeType: 'doctor',
-    price: 40,
-    priceInr: 1499,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ month',
-    image: '/images/airo_opt/med-73-go-beyond-tadalafil-gummies-and-torcha-01-1790632810138-f5affa85.jpg',
-    description: 'Compounded cheek-dissolving troche providing steady daily systemic bioavailability.',
-    icon: '🍬'
-  },
-  {
-    id: 'med-61',
-    audience: 'HIM',
-    category: 'SEXUAL_HEALTH_ED',
-    categoryLabel: 'Testosterone Support',
-    title: 'GO BEYOND™ Plus Testosterone',
-    ingredients: 'Tadalafil 5 mg Capsule + Botanical T-Support',
-    badge: 'Popular',
-    badgeType: 'doctor',
-    price: 45,
-    priceInr: 1599,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ month',
-    image: '/images/airo_opt/med-61-gemini-generated-image-98oh0n98oh0n98oh-1787265391379-ec03fda1.jpg',
-    description: 'Daily tadalafil combined with clinical zinc, ashwagandha, and D-aspartic acid for vitality.',
-    icon: '💪'
+    image: '/images/pdp/semaglutide/main.jpg',
+    description: 'Once-daily oral GLP-1 tablet — clinically proven to reduce hunger, curb cravings, and support sustainable metabolic weight loss without injections.',
+    rating: 4.9,
+    reviews: 320,
+    concernKey: 'WEIGHT_MANAGEMENT'
   },
   {
     id: 'med-glow-serum',
     audience: 'BOTH',
     category: 'DERMATOLOGY',
-    categoryLabel: 'Night Serum',
-    title: 'Glow Renewal Serum',
+    categoryLabel: 'Skin Care',
+    title: 'Glow Renewal Night Serum',
     ingredients: 'Retinol 0.5% + Niacinamide 5%',
-    badge: 'Doctor-Formulated',
+    badge: 'Dermatologist Formulated',
     badgeType: 'doctor',
-    price: 42,
+    price: 15,
     priceInr: 1299,
-    originalPrice: 55, originalPriceInr: 1699,
+    originalPrice: 20,
+    originalPriceInr: 1699,
     period: '/ bottle',
-    image: '/images/card-prod-glow-serum.jpg',
-    description: 'A nightly serum combining retinol and niacinamide for smoother, brighter skin.',
-    icon: '✨'
+    image: '/images/pdp/glow-serum/main.jpg',
+    description: 'Dermatologist-formulated nightly serum that pairs retinol with niacinamide to smooth fine lines, fade dark spots, and brighten dull skin without irritation.',
+    rating: 4.8,
+    reviews: 342,
+    concernKey: 'DERMATOLOGY'
   },
   {
-    id: 'med-clear-gel',
-    audience: 'BOTH',
-    category: 'DERMATOLOGY',
-    categoryLabel: 'Acne Care',
-    title: 'ClearSkin Acne Gel',
-    ingredients: 'Salicylic Acid 2% (Clinical BHA)',
-    badge: 'Best Sellers',
+    id: 'med-hair-regrow',
+    audience: 'HIM',
+    category: 'HAIR_LOSS',
+    categoryLabel: 'Hair Care',
+    title: 'Hair Regrow Solution',
+    ingredients: 'Minoxidil 5% + Finasteride 0.1%',
+    badge: 'Clinically Proven',
     badgeType: 'bestseller',
-    price: 28,
-    priceInr: 899,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ tube',
-    image: '/images/card-prod-clear-gel.jpg',
-    description: 'Targeted clinical BHA gel that unclogs pores, dissolves trapped sebum, and clears breakouts.',
-    icon: '🫧'
+    price: 18,
+    priceInr: 1499,
+    originalPrice: 24,
+    originalPriceInr: 1999,
+    period: '/ month',
+    image: '/images/card-prod-hair-spray.jpg',
+    description: 'Dual-active topical solution that reactivates shrinking hair follicles, extends the growth phase, and reduces scalp DHT at the root.',
+    rating: 4.8,
+    reviews: 891,
+    concernKey: 'HAIR_LOSS'
+  },
+  {
+    id: 'med-finasteride',
+    audience: 'HIM',
+    category: 'HAIR_LOSS',
+    categoryLabel: 'Hair Care',
+    title: 'Finasteride 1 mg Tablets',
+    ingredients: 'Finasteride USP 1 mg',
+    badge: 'Rx Required · DHT Blocker',
+    badgeType: 'rx',
+    price: 12,
+    priceInr: 999,
+    originalPrice: 17,
+    originalPriceInr: 1399,
+    period: '/ month',
+    image: '/images/card-prod-finasteride.jpg',
+    description: 'FDA-approved daily oral tablet that blocks up to 70% of DHT, halting male pattern hair thinning and restoring follicular thickness.',
+    rating: 4.9,
+    reviews: 612,
+    concernKey: 'HAIR_LOSS'
+  },
+  {
+    id: 'med-hair-her',
+    audience: 'HER',
+    category: 'HAIR_LOSS',
+    categoryLabel: 'Hair Care',
+    title: 'Women’s Hair Regrowth System',
+    ingredients: 'Minoxidil 2% + Biotin + Caffeine',
+    badge: 'Formulated for Women',
+    badgeType: 'doctor',
+    price: 16,
+    priceInr: 1299,
+    originalPrice: 20,
+    originalPriceInr: 1599,
+    period: '/ month',
+    image: '/images/card-prod-hair-her.jpg',
+    description: 'Specially balanced topical formula for female diffuse thinning and part-line widening without scalp dryness or unwanted systemic effects.',
+    rating: 4.8,
+    reviews: 420,
+    concernKey: 'HAIR_LOSS'
+  },
+  {
+    id: 'med-sildenafil',
+    audience: 'HIM',
+    category: 'SEXUAL_HEALTH_ED',
+    categoryLabel: 'Sexual Health',
+    title: 'Sildenafil 50 mg Tablets',
+    ingredients: 'Sildenafil Citrate 50 mg / 100 mg',
+    badge: 'Rx Required · Fast-Acting',
+    badgeType: 'rx',
+    price: 14,
+    priceInr: 1199,
+    originalPrice: 20,
+    originalPriceInr: 1699,
+    period: '/ month',
+    image: '/images/card-prod-sildenafil.jpg',
+    description: 'Fast-acting PDE-5 inhibitor for reliable erectile performance. Works in 30–60 minutes for up to 4–6 hours of confidence.',
+    rating: 4.9,
+    reviews: 950,
+    concernKey: 'SEXUAL_HEALTH_ED'
+  },
+  {
+    id: 'med-hard-mints',
+    audience: 'HIM',
+    category: 'SEXUAL_HEALTH_ED',
+    categoryLabel: 'Sexual Health',
+    title: 'Tadalafil Chewable Mints',
+    ingredients: 'Compounded Tadalafil 10 mg Mint',
+    badge: 'Most Popular · 36-Hr Window',
+    badgeType: 'bestseller',
+    price: 18,
+    priceInr: 1499,
+    originalPrice: 24,
+    originalPriceInr: 1999,
+    period: '/ month',
+    image: '/images/card-prod-hard-mints.jpg',
+    description: 'Discreet, fresh mint-flavored chewable offering up to 36 hours of readiness. Take daily or on-demand without water.',
+    rating: 4.9,
+    reviews: 780,
+    concernKey: 'SEXUAL_HEALTH_ED'
   },
   {
     id: 'med-tretinoin',
     audience: 'BOTH',
     category: 'DERMATOLOGY',
-    categoryLabel: 'Prescription Rx',
+    categoryLabel: 'Skin Care',
     title: 'Tretinoin 0.025% Cream',
-    ingredients: 'Prescription Retinoid Cream 0.025%',
-    badge: 'Doctor-Formulated',
-    badgeType: 'doctor',
-    price: 35,
+    ingredients: 'Micronized Tretinoin 0.025%',
+    badge: 'Rx Gold Standard',
+    badgeType: 'rx',
+    price: 14,
     priceInr: 1199,
-    originalPrice: null, originalPriceInr: null,
+    originalPrice: 18,
+    originalPriceInr: 1499,
     period: '/ tube',
     image: '/images/card-prod-tretinoin.jpg',
-    description: 'Prescription retinoid cream for acne, cellular turnover, texture, and photoaging.',
-    icon: '🧴'
+    description: 'Gold-standard prescription retinoid for acne, texture, and cellular collagen renewal. Evaluated by licensed dermatologists.',
+    rating: 4.8,
+    reviews: 518,
+    concernKey: 'DERMATOLOGY'
+  },
+  {
+    id: 'med-clear-gel',
+    audience: 'BOTH',
+    category: 'DERMATOLOGY',
+    categoryLabel: 'Skin Care',
+    title: 'ClearSkin Acne Gel',
+    ingredients: 'Salicylic Acid 2% (Clinical BHA)',
+    badge: 'Clarifying Formula',
+    badgeType: 'bestseller',
+    price: 11,
+    priceInr: 899,
+    originalPrice: 15,
+    originalPriceInr: 1199,
+    period: '/ tube',
+    image: '/images/card-prod-clear-gel.jpg',
+    description: 'Targeted purifying BHA gel that unclogs trapped sebum, clarifies blemishes, and refines pores without over-drying.',
+    rating: 4.6,
+    reviews: 380,
+    concernKey: 'DERMATOLOGY'
+  },
+  {
+    id: 'med-shampoo',
+    audience: 'BOTH',
+    category: 'HAIR_LOSS',
+    categoryLabel: 'Hair Care',
+    title: 'Scalp Relief Shampoo',
+    ingredients: 'Ketoconazole 2% Scalp Therapy',
+    badge: 'Doctor Recommended',
+    badgeType: 'doctor',
+    price: 7,
+    priceInr: 549,
+    originalPrice: 10,
+    originalPriceInr: 799,
+    period: '/ bottle',
+    image: '/images/card-prod-shampoo.jpg',
+    description: 'Clinical-strength antifungal shampoo that eliminates stubborn dandruff flakes and calms scalp irritation.',
+    rating: 4.7,
+    reviews: 450,
+    concernKey: 'HAIR_LOSS'
   },
   {
     id: 'med-niacinamide',
     audience: 'BOTH',
     category: 'DERMATOLOGY',
-    categoryLabel: 'Barrier Support',
+    categoryLabel: 'Skin Care',
     title: 'Bright Balance Serum',
-    ingredients: 'Niacinamide 10% + Zinc 1%',
-    badge: 'Doctor-Formulated',
+    ingredients: 'Niacinamide 10% + Zinc PCA 1%',
+    badge: 'Barrier Support',
     badgeType: 'doctor',
-    price: 25,
+    price: 10,
     priceInr: 799,
-    originalPrice: null, originalPriceInr: null,
+    originalPrice: 12,
+    originalPriceInr: 999,
     period: '/ bottle',
     image: '/images/card-prod-niacinamide.jpg',
-    description: 'Lightweight clarifying serum formulated to strengthen lipid barrier and fade spots.',
-    icon: '🌿'
+    description: 'High-potency balancing serum that refines enlarged pores, regulates sebum, and repairs the lipid moisture barrier.',
+    rating: 4.8,
+    reviews: 290,
+    concernKey: 'DERMATOLOGY'
+  },
+  {
+    id: 'med-metformin',
+    audience: 'BOTH',
+    category: 'WEIGHT_MANAGEMENT',
+    categoryLabel: 'Weight Management',
+    title: 'Metformin 500 mg ER',
+    ingredients: 'Metformin Hydrochloride 500 mg',
+    badge: 'Metabolic Health',
+    badgeType: 'rx',
+    price: 6,
+    priceInr: 499,
+    originalPrice: 9,
+    originalPriceInr: 699,
+    period: '/ month',
+    image: '/images/card-prod-metformin.jpg',
+    description: 'First-line prescription metabolic therapy supporting insulin sensitivity, steady glucose control, and healthy weight management.',
+    rating: 4.7,
+    reviews: 215,
+    concernKey: 'WEIGHT_MANAGEMENT'
+  },
+  {
+    id: 'med-b12',
+    audience: 'BOTH',
+    category: 'SUPPLEMENTS',
+    categoryLabel: 'Daily Supplements',
+    title: 'Vitamin B12 1000 mcg',
+    ingredients: 'Methylcobalamin 1000 mcg Sublingual',
+    badge: 'Metabolic Energy',
+    badgeType: 'doctor',
+    price: 5,
+    priceInr: 449,
+    originalPrice: 7,
+    originalPriceInr: 599,
+    period: '/ bottle',
+    image: '/images/card-prod-b12.jpg',
+    description: 'Bioactive sublingual B12 designed for rapid absorption, cellular energy production, and nerve health support.',
+    rating: 4.8,
+    reviews: 190,
+    concernKey: 'WEIGHT_MANAGEMENT'
+  },
+  {
+    id: 'med-omega3',
+    audience: 'BOTH',
+    category: 'SUPPLEMENTS',
+    categoryLabel: 'Daily Supplements',
+    title: 'Omega-3 Marine Fish Oil',
+    ingredients: 'Purified Marine EPA 600 mg + DHA 400 mg',
+    badge: 'Heart & Inflammation',
+    badgeType: 'doctor',
+    price: 8,
+    priceInr: 699,
+    originalPrice: 11,
+    originalPriceInr: 899,
+    period: '/ bottle',
+    image: '/images/card-prod-omega3.jpg',
+    description: 'Pharmaceutical-grade, molecularly distilled wild omega-3 fatty acids for cardiovascular endurance and joint comfort.',
+    rating: 4.9,
+    reviews: 310,
+    concernKey: 'WEIGHT_MANAGEMENT'
+  },
+  {
+    id: 'med-rybelsus',
+    audience: 'BOTH',
+    category: 'WEIGHT_MANAGEMENT',
+    categoryLabel: 'Weight Management',
+    title: 'Rybelsus® Oral Tablets',
+    ingredients: 'Oral Semaglutide 7 mg / 14 mg',
+    badge: 'Oral GLP-1 · Brand',
+    badgeType: 'rx',
+    price: 54,
+    priceInr: 4499,
+    originalPrice: 72,
+    originalPriceInr: 5999,
+    period: '/ month',
+    image: '/images/airo_opt/med-71-rybelsus-2-1790712161977-c9475b04.jpg',
+    description: 'Brand-name oral GLP-1 peptide absorption technology for clinically demonstrated weight and glycemic control without injections.',
+    rating: 4.9,
+    reviews: 480,
+    concernKey: 'WEIGHT_MANAGEMENT'
+  },
+  {
+    id: 'med-limits',
+    audience: 'HIM',
+    category: 'SEXUAL_HEALTH_ED',
+    categoryLabel: 'Sexual Health',
+    title: 'GO BEYOND™ Limits Dual',
+    ingredients: 'Sildenafil 50 mg + Tadalafil 20 mg Compound',
+    badge: 'Dual Action Compound',
+    badgeType: 'doctor',
+    price: 18,
+    priceInr: 1499,
+    originalPrice: 24,
+    originalPriceInr: 1999,
+    period: '/ month',
+    image: '/images/airo_opt/med-62-sexual-health-product-images-12-1786655381163-377c05e2.jpg',
+    description: 'Compounded dual-action formula pairing the 30-minute rapid onset of sildenafil with the 36-hour weekend longevity of tadalafil.',
+    rating: 4.9,
+    reviews: 620,
+    concernKey: 'SEXUAL_HEALTH_ED'
   }
 ];
 
@@ -774,11 +703,24 @@ function selectMegaMenuItem(audience, category) {
   closeAllMegaMenus();
   if (audience === 'HIM' || audience === 'HER') {
     switchAudience(audience);
+    setCatalogAudience(audience);
     if (typeof selectHeroAudience === 'function') {
       selectHeroAudience(audience);
     }
+  } else {
+    setCatalogAudience('ALL');
   }
-  filterCategory(category);
+
+  if (category === 'ALL') {
+    filterCatalogCategory('ALL');
+  } else if (category) {
+    filterCatalogCategory(category);
+  }
+
+  const el = document.getElementById('catalog-section');
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 function scrollToDoctors() {
@@ -917,9 +859,7 @@ function filterCategory(category) {
   scrollToCatalog();
 }
 
-// catalog filters
-currentCatalogAudience = 'ALL';
-currentCategoryFilter = 'ALL';
+// catalog filters (state declared above at application state block)
 
 function setCatalogAudience(aud) {
   currentCatalogAudience = aud;
@@ -927,9 +867,9 @@ function setCatalogAudience(aud) {
     const btn = document.getElementById(`catalog-aud-${a}`);
     if (btn) {
       if (a === aud) {
-        btn.className = 'catalog-filter-pill active';
+        btn.classList.add('active');
       } else {
-        btn.className = 'catalog-filter-pill';
+        btn.classList.remove('active');
       }
     }
   });
@@ -949,6 +889,26 @@ function filterCatalogCategory(category) {
   renderProducts();
 }
 
+function showAllTreatmentsCatalog() {
+  closeAllMegaMenus();
+  setCatalogAudience('ALL');
+  filterCatalogCategory('ALL');
+  const el = document.getElementById('catalog-section');
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+function filterCatalogBy(audience, category) {
+  closeAllMegaMenus();
+  if (audience) setCatalogAudience(audience);
+  if (category) filterCatalogCategory(category);
+  const el = document.getElementById('catalog-section');
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
 function scrollProductCatalog(direction) {
   const container = document.getElementById('product-grid');
   if (!container) return;
@@ -960,90 +920,134 @@ function scrollProductCatalog(direction) {
 }
 
 // ----------------------------------------------------
-// RENDER PRODUCT CATALOG (SCROLLABLE WELLINA / SEED CAROUSEL)
+// RENDER PRODUCT CATALOG (4-COLUMN MINIM GRID AESTHETIC)
 // ----------------------------------------------------
 function renderProducts() {
   const container = document.getElementById('product-grid');
   if (!container) return;
 
-  const filtered = PRODUCTS;
+  // Ensure grid classes are present
+  container.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 pt-4 pb-8';
+
+  let filtered = PRODUCTS;
+
+  // Filter by Audience (Hims, Hers, All)
+  if (currentCatalogAudience === 'HIM') {
+    filtered = filtered.filter(p => p.audience === 'HIM' || p.audience === 'BOTH');
+  } else if (currentCatalogAudience === 'HER') {
+    filtered = filtered.filter(p => p.audience === 'HER' || p.audience === 'BOTH');
+  }
+
+  // Filter by Category
+  if (currentCategoryFilter !== 'ALL') {
+    filtered = filtered.filter(p => p.category === currentCategoryFilter);
+  }
+
+  // Update count indicator
+  const countBadge = document.getElementById('catalog-count-badge');
+  if (countBadge) {
+    countBadge.textContent = `Showing ${filtered.length} treatment${filtered.length === 1 ? '' : 's'}`;
+  }
 
   if (filtered.length === 0) {
     container.innerHTML = `
-      <div class="w-full text-center py-16 text-[#54504C] bg-white rounded-3xl border border-[#DDD5C9] my-4">
-        <p class="text-base font-serif font-bold text-[#191817]">No formulations found for this filter.</p>
-        <p class="text-xs text-[#736E67] mt-1">Try selecting "All Categories" or "All Treatments" to see all formulations.</p>
+      <div class="col-span-full w-full text-center py-16 text-[#54504C] bg-[#FAF7F2] rounded-3xl border border-[#DDD5C9] my-4">
+        <p class="text-base font-serif font-bold text-[#191817]">No treatments match this filter.</p>
+        <p class="text-xs text-[#736E67] mt-1 mb-4">Try clearing filters or selecting "All Treatments" to see all formulations.</p>
+        <button onclick="showAllTreatmentsCatalog()" class="px-5 py-2 rounded-full bg-[#0F1B38] text-white text-xs font-semibold hover:bg-[#1E40AF] transition-colors shadow-sm">
+          Reset All Filters
+        </button>
       </div>
     `;
     return;
   }
 
-  container.innerHTML = filtered.map(p => `
-    <div class="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('${p.category}')" data-audience="${p.audience}" data-category="${p.category}">
-      
-      <!-- Upper Card: Full Studio Photography (Official airoemed.com Assets) -->
-      <div class="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#EAE8E2] flex items-center justify-center">
-        <img src="${p.image}" 
-             alt="${p.title}" 
-             class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" 
-             style="image-rendering: -webkit-optimize-contrast; transform: translateZ(0);"
-             loading="lazy" />
-        
-        <!-- Top Pill Badge -->
-        ${p.badge ? `
-          <div class="absolute top-4 left-4 z-10 pointer-events-none">
-            <span class="${p.badgeType === 'sale' 
-              ? 'bg-[#D84A38] text-white' 
-              : p.badgeType === 'bestseller' 
-              ? 'bg-[#5B7E6F] text-white' 
-              : 'bg-[#191817]/90 backdrop-blur-md text-white'} 
-              text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block">
-              ${p.badge}
-            </span>
-          </div>
-        ` : ''}
-      </div>
+  container.innerHTML = filtered.map(p => {
+    const badgeBg = p.badgeType === 'sale'
+      ? 'bg-[#D84A38] text-white'
+      : p.badgeType === 'bestseller'
+      ? 'bg-[#5B7E6F] text-white'
+      : p.badgeType === 'rx'
+      ? 'bg-[#0F1B38] text-white'
+      : 'bg-[#191817]/90 text-white';
 
-      <!-- Bottom Content: Metadata, Actives, Pricing & Floating Cart Button -->
-      <div class="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-        <div class="pr-3 flex-1 min-w-0">
-          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">
-            ${p.categoryLabel || p.category.replace('_', ' ')}
-          </span>
-          <h3 class="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title="${p.title}">
-            ${p.title}
-          </h3>
-          <p class="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">
-            ${p.ingredients}
-          </p>
+    const audienceLabel = p.audience === 'HIM' ? 'Hims' : p.audience === 'HER' ? 'Hers' : 'Unisex';
+    const concernKey = p.concernKey || p.category;
+
+    return `
+      <div class="product-treatment-card group select-none flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('${concernKey}')" data-audience="${p.audience}" data-category="${p.category}">
+        
+        <!-- Square Image Box (Minim Style) -->
+        <div class="treatment-image-box aspect-square bg-[#F5F4F0] rounded-2xl flex items-center justify-center p-6 sm:p-7 relative overflow-hidden border border-[#EBE8E2] transition-all duration-300">
           
-          <!-- Price Row: Official INR Authentic Price + USD Equivalent -->
-          <div class="flex items-baseline space-x-1.5 mt-2">
-            <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">
-              ₹${p.priceInr.toLocaleString('en-IN')}
-            </span>
-            ${p.originalPriceInr ? `
-              <span class="text-xs text-[#9E9B94] line-through tabular-nums">
-                ₹${p.originalPriceInr.toLocaleString('en-IN')}
+          <!-- Top Badge -->
+          ${p.badge ? `
+            <div class="absolute top-3.5 left-3.5 z-10 pointer-events-none">
+              <span class="${badgeBg} text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-sm inline-block">
+                ${p.badge}
               </span>
-            ` : ''}
-            <span class="text-xs text-[#736E67] font-medium">($${p.price.toFixed(0)})</span>
-            <span class="text-[11px] text-[#8A857F]">${p.period || '/ mo'}</span>
+            </div>
+          ` : ''}
+
+          <!-- Centered Product Photo from airoemed.com -->
+          <img src="${p.image}" 
+               alt="${p.title}" 
+               class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500 ease-out" 
+               loading="lazy" />
+        </div>
+
+        <!-- Lower Metadata & Details -->
+        <div class="pt-3.5 pb-1 flex flex-col justify-between flex-1">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-[#78726A]">
+                ${p.categoryLabel || p.category.replace('_', ' ')}
+              </span>
+              <span class="text-[10px] font-semibold text-[#1E40AF] bg-[#1E40AF]/10 px-2 py-0.5 rounded-full">
+                ${audienceLabel}
+              </span>
+            </div>
+
+            <h3 class="text-sm sm:text-base font-bold text-[#191817] mt-1 group-hover:text-[#1E40AF] transition-colors leading-snug line-clamp-1" title="${p.title}">
+              ${p.title}
+            </h3>
+
+            <p class="text-xs font-mono text-[#8A857F] truncate mt-0.5" title="${p.ingredients}">
+              ${p.ingredients}
+            </p>
+
+            <!-- Star Ratings -->
+            <div class="flex items-center space-x-1.5 mt-2">
+              <div class="flex text-amber-500 text-xs">★★★★★</div>
+              <span class="text-xs font-bold text-[#191817] tabular-nums">${p.rating || '4.8'}</span>
+              <span class="text-[11px] text-[#8A857F]">(${p.reviews || '300'}+)</span>
+            </div>
+          </div>
+
+          <!-- Price & Action Button -->
+          <div class="flex items-center justify-between pt-3 mt-3 border-t border-[#EAE5DD]/80">
+            <div>
+              <span class="text-base sm:text-lg font-bold text-[#191817] tabular-nums">
+                ₹${p.priceInr.toLocaleString('en-IN')}
+              </span>
+              <span class="text-xs text-[#736E67] font-medium ml-1">($${p.price.toFixed(0)})</span>
+              <span class="text-[10px] text-[#8A857F] block">${p.period || '/ month'}</span>
+            </div>
+
+            <button onclick="event.stopPropagation(); startIntakeFor('${concernKey}')" 
+                    aria-label="Start consult for ${p.title}" 
+                    class="px-3.5 py-1.5 rounded-full bg-[#0F1B38] text-white text-xs font-semibold hover:bg-[#1E40AF] transition-colors shadow-sm cursor-pointer flex items-center space-x-1">
+              <span>Consult</span>
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
           </div>
         </div>
 
-        <!-- Floating Circular Black Cart Button -->
-        <button onclick="event.stopPropagation(); startIntakeFor('${p.category}')" 
-                aria-label="Add ${p.title} to consult" 
-                class="product-cart-btn flex-shrink-0 cursor-pointer">
-          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-          </svg>
-        </button>
       </div>
-
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 // ----------------------------------------------------
@@ -1052,18 +1056,32 @@ function renderProducts() {
 function startIntakeFlow() {
   closeAllMegaMenus();
   intakeState.step = 1;
-  updateModalStepUI();
-  document.getElementById('intake-modal').classList.remove('hidden');
+  const modal = document.getElementById('intake-modal');
+  if (modal) {
+    updateModalStepUI();
+    modal.classList.remove('hidden');
+  } else {
+    const cat = intakeState.category || 'HAIR_LOSS';
+    window.location.href = `/questionnaire.html?category=${encodeURIComponent(cat)}`;
+  }
 }
 
 function startIntakeFor(category) {
   intakeState.category = category;
-  startIntakeFlow();
-  selectIntakeCategory(category);
+  const modal = document.getElementById('intake-modal');
+  if (modal) {
+    startIntakeFlow();
+    selectIntakeCategory(category);
+  } else {
+    window.location.href = `/questionnaire.html?category=${encodeURIComponent(category || 'HAIR_LOSS')}`;
+  }
 }
 
 function closeIntakeModal() {
-  document.getElementById('intake-modal').classList.add('hidden');
+  const modal = document.getElementById('intake-modal');
+  if (modal) {
+    modal.classList.add('hidden');
+  }
 }
 
 function setupStateSelectorListener() {

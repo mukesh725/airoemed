@@ -120,8 +120,8 @@ export default function ConcernsPage() {
     setActiveMegaMenu(null);
   };
 
-  const heroImageSrc = audience === 'HIM' 
-    ? '/images/hero-concern-him.jpg' 
+  const heroImageSrc = audience === 'HIM'
+    ? '/images/hero-concern-him.jpg'
     : '/images/hero-concern-her.jpg';
 
   // Calculate total visible items
@@ -148,9 +148,8 @@ export default function ConcernsPage() {
               type="button"
               onClick={() => toggleMegaMenu('treatments')}
               aria-expanded={activeMegaMenu === 'treatments'}
-              className={`nav-pill-btn flex items-center space-x-1.5 px-4 py-1.5 rounded-full font-semibold transition-all duration-200 cursor-pointer ${
-                activeMegaMenu === 'treatments' ? 'active bg-white text-[#191817] shadow-md border border-[#DDD5C9]' : 'text-[#191817]/85 hover:bg-[#FAF7F2]/60'
-              }`}
+              className={`nav-pill-btn flex items-center space-x-1.5 px-4 py-1.5 rounded-full font-semibold transition-all duration-200 cursor-pointer ${activeMegaMenu === 'treatments' ? 'active bg-white text-[#191817] shadow-md border border-[#DDD5C9]' : 'text-[#191817]/85 hover:bg-[#FAF7F2]/60'
+                }`}
             >
               <span>Treatments</span>
               <svg className={`nav-chevron w-3.5 h-3.5 text-[#191817]/70 transition-transform duration-200 ${activeMegaMenu === 'treatments' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
@@ -159,9 +158,8 @@ export default function ConcernsPage() {
               type="button"
               onClick={() => toggleMegaMenu('shop')}
               aria-expanded={activeMegaMenu === 'shop'}
-              className={`nav-pill-btn flex items-center space-x-1.5 px-4 py-1.5 rounded-full font-semibold transition-all duration-200 cursor-pointer ${
-                activeMegaMenu === 'shop' ? 'active bg-white text-[#191817] shadow-md border border-[#DDD5C9]' : 'text-[#191817]/85 hover:bg-[#FAF7F2]/60'
-              }`}
+              className={`nav-pill-btn flex items-center space-x-1.5 px-4 py-1.5 rounded-full font-semibold transition-all duration-200 cursor-pointer ${activeMegaMenu === 'shop' ? 'active bg-white text-[#191817] shadow-md border border-[#DDD5C9]' : 'text-[#191817]/85 hover:bg-[#FAF7F2]/60'
+                }`}
             >
               <span>Shop</span>
               <svg className={`nav-chevron w-3.5 h-3.5 text-[#191817]/70 transition-transform duration-200 ${activeMegaMenu === 'shop' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
@@ -190,7 +188,7 @@ export default function ConcernsPage() {
         <div id="treatments-mega-menu" className={`mega-menu-panel ${activeMegaMenu === 'treatments' ? 'active' : ''}`} role="region" aria-label="Treatments Menu">
           <div className="mega-menu-card bg-white rounded-3xl p-7 sm:p-8 lg:p-10 shadow-2xl border border-[#EAE5DD]">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-              
+
               {/* COLUMN 1: Hims */}
               <div className="lg:col-span-4 flex flex-col justify-start">
                 <h3 className="dropdown-col-title">Hims</h3>
@@ -276,7 +274,7 @@ export default function ConcernsPage() {
 
             {/* Browse All Treatments Link with Underline */}
             <div className="pt-6 mt-2 border-t border-[#F0ECE4]">
-              <Link href="/#catalog-section" onClick={closeMegaMenus} className="dropdown-browse-link">
+              <Link href="/treatments" onClick={closeMegaMenus} className="dropdown-browse-link">
                 <span>Browse All Treatments</span>
                 <span className="font-bold">→</span>
               </Link>
@@ -287,7 +285,7 @@ export default function ConcernsPage() {
 
       {/* MAIN CONTAINER */}
       <main className="flex-1 w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 py-6 sm:py-10">
-        
+
         {/* HERO SECTION MATCHING REFERENCE IMAGE 1 */}
         <section className="concern-hero-card mb-12 sm:mb-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-center min-h-[360px] sm:min-h-[420px] lg:min-h-[460px]">
@@ -310,9 +308,8 @@ export default function ConcernsPage() {
                     type="button"
                     onClick={() => setAudience('HIM')}
                     aria-pressed={audience === 'HIM'}
-                    className={`px-7 sm:px-8 py-2.5 rounded-full font-semibold text-xs sm:text-sm transition-all duration-200 cursor-pointer ${
-                      audience === 'HIM' ? 'bg-[#0F2119] text-white shadow-sm' : 'text-[#191817]/75 hover:text-black'
-                    }`}
+                    className={`px-7 sm:px-8 py-2.5 rounded-full font-semibold text-xs sm:text-sm transition-all duration-200 cursor-pointer ${audience === 'HIM' ? 'bg-[#0F2119] text-white shadow-sm' : 'text-[#191817]/75 hover:text-black'
+                      }`}
                   >
                     Hims
                   </button>
@@ -320,9 +317,8 @@ export default function ConcernsPage() {
                     type="button"
                     onClick={() => setAudience('HER')}
                     aria-pressed={audience === 'HER'}
-                    className={`px-7 sm:px-8 py-2.5 rounded-full font-semibold text-xs sm:text-sm transition-all duration-200 cursor-pointer ${
-                      audience === 'HER' ? 'bg-[#0F2119] text-white shadow-sm' : 'text-[#191817]/75 hover:text-black'
-                    }`}
+                    className={`px-7 sm:px-8 py-2.5 rounded-full font-semibold text-xs sm:text-sm transition-all duration-200 cursor-pointer ${audience === 'HER' ? 'bg-[#0F2119] text-white shadow-sm' : 'text-[#191817]/75 hover:text-black'
+                      }`}
                   >
                     Hers
                   </button>
@@ -407,7 +403,7 @@ export default function ConcernsPage() {
                         {/* Inner Rounded Media Canvas (Sienna Brooks Card Style - Text on Image, Zero Overlays) */}
                         <div className="concern-card-inner">
                           <img src={item.image} alt={item.title} className="concern-card-img" loading="lazy" />
-                          
+
                           <div className="concern-inner-header">
                             <h3 className="concern-card-title" title={item.title}>
                               {item.title}
@@ -463,9 +459,9 @@ export default function ConcernsPage() {
 
       {/* CLINICAL INTAKE MODAL */}
       {intakeModalOpen && (
-        <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" 
-          role="dialog" 
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+          role="dialog"
           aria-modal="true"
           aria-labelledby="modal-concern-title"
         >

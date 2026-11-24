@@ -224,6 +224,8 @@ const server = http.createServer(async (req, res) => {
     filePath = path.join(PUBLIC_DIR, 'index.html');
   } else if (pathname === '/concerns' || pathname === '/concerns/') {
     filePath = path.join(PUBLIC_DIR, 'concerns.html');
+  } else if (pathname === '/treatments' || pathname === '/treatments/' || pathname === '/shop' || pathname === '/shop/') {
+    filePath = path.join(PUBLIC_DIR, 'treatments.html');
   } else if (pathname === '/questionnaire' || pathname === '/questionnaire/') {
     filePath = path.join(PUBLIC_DIR, 'questionnaire.html');
   } else {

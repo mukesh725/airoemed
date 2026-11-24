@@ -13,6 +13,8 @@ export default function HomePage() {
   const [audience, setAudience] = useState<'HIM' | 'HER'>('HER');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [catalogFilter, setCatalogFilter] = useState('ALL');
+  const [catalogAudience, setCatalogAudience] = useState<'ALL' | 'HIM' | 'HER'>('ALL');
+  const [catalogCategory, setCatalogCategory] = useState<string>('ALL');
   const [activeMegaMenu, setActiveMegaMenu] = useState<'treatments' | 'shop' | null>(null);
   const [intakeModalOpen, setIntakeModalOpen] = useState(false);
   const scrollRef = React.useRef<HTMLDivElement>(null);
@@ -27,10 +29,10 @@ export default function HomePage() {
 
   const filterCategory = (cat: string) => {
     setActiveMegaMenu(null);
-    setCatalogFilter(cat);
+    setCatalogCategory(cat);
     const catalogEl = document.getElementById('catalog-section');
     if (catalogEl) {
-      catalogEl.scrollIntoView({ behavior: 'smooth' });
+      catalogEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -44,14 +46,33 @@ export default function HomePage() {
 
   const selectMegaMenuItem = (aud: 'HIM' | 'HER' | 'ALL', cat: string) => {
     setActiveMegaMenu(null);
+    setCatalogAudience(aud);
     if (aud === 'HIM' || aud === 'HER') {
       setAudience(aud);
     }
-    filterCategory(cat);
+    setCatalogCategory(cat);
+    const catalogEl = document.getElementById('catalog-section');
+    if (catalogEl) {
+      catalogEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const showAllTreatmentsCatalog = () => {
+    setActiveMegaMenu(null);
+    setCatalogAudience('ALL');
+    setCatalogCategory('ALL');
+    const catalogEl = document.getElementById('catalog-section');
+    if (catalogEl) {
+      catalogEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   const toggleMegaMenu = (menu: 'treatments' | 'shop') => {
     setActiveMegaMenu((prev) => (prev === menu ? null : menu));
+  };
+
+  const closeMegaMenus = () => {
+    setActiveMegaMenu(null);
   };
 
   useEffect(() => {
@@ -86,400 +107,335 @@ export default function HomePage() {
   }, [activeMegaMenu]);
 
   const catalogProducts = [
-  {
-    id: 'med-51',
-    audience: 'HIM',
-    category: 'HAIR_LOSS',
-    categoryLabel: 'Hair Regrowth',
-    title: 'AIRO Root Advance™',
-    ingredients: 'Minoxidil 8% + Dutasteride 0.25% + Tretinoin 0.1%',
-    badge: 'Best Sellers',
-    badgeType: 'bestseller',
-    price: 45,
-    priceInr: 1499,
-    originalPrice: 65, originalPriceInr: 1999,
-    period: '/ month',
-    image: '/images/airo_opt/med-51-airo-her-products-image-04-1790631088568-61708b29.jpg',
-    description: 'Personalized Rx DHT-targeted hair restoration therapy combining Minoxidil, Dutasteride, and Tretinoin.',
-    icon: '💇‍♂️'
-  },
-  {
-    id: 'med-53',
-    audience: 'HIM',
-    category: 'HAIR_LOSS',
-    categoryLabel: 'Max Strength',
-    title: 'AIRO Root Max™',
-    ingredients: 'Bimatoprost 0.12% + Dutasteride 0.1% + Minoxidil 10%',
-    badge: 'Doctor-Formulated',
-    badgeType: 'doctor',
-    price: 55,
-    priceInr: 1999,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ month',
-    image: '/images/airo_opt/med-53-airo-her-products-image-02-1790630888485-197da52b.jpg',
-    description: 'Personalized Rx five-pathway maximum restoration therapy with Bimatoprost and Melatonin.',
-    icon: '⚡'
-  },
-  {
-    id: 'med-50',
-    audience: 'HIM',
-    category: 'HAIR_LOSS',
-    categoryLabel: 'Triple-Action',
-    title: 'AIRO Root Plus™',
-    ingredients: 'Topical Minoxidil 10% + Finasteride 0.3% + Tretinoin',
-    badge: 'Sale',
-    badgeType: 'sale',
-    price: 45,
-    priceInr: 1499,
-    originalPrice: 60, originalPriceInr: 1899,
-    period: '/ month',
-    image: '/images/airo_opt/med-50-airo-her-products-image-01-1790630716125-434e2f95.jpg',
-    description: 'Personalized Rx triple-action solution halting follicular miniaturization and promoting dense regrowth.',
-    icon: '💇‍♂️'
-  },
-  {
-    id: 'med-49',
-    audience: 'HIM',
-    category: 'HAIR_LOSS',
-    categoryLabel: 'Hair Starter',
-    title: 'AIRO Root Start™',
-    ingredients: 'Topical Minoxidil 6% + Finasteride 0.3% Solution',
-    badge: 'Doctor-Formulated',
-    badgeType: 'doctor',
-    price: 39,
-    priceInr: 1299,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ month',
-    image: '/images/airo_opt/med-49-airo-her-products-image-03-1790630673068-0916c440.jpg',
-    description: 'Gentle clinical starter compound for early-stage androgenetic thinning and temple maintenance.',
-    icon: '🌱'
-  },
-  {
-    id: 'med-64',
-    audience: 'HER',
-    category: 'HAIR_LOSS',
-    categoryLabel: 'Women’s Scalp',
-    title: 'AIRO ROOT HER™ Scalp Solution',
-    ingredients: 'Minoxidil 5% + Azelaic Acid 5% + Tretinoin',
-    badge: 'Best Sellers',
-    badgeType: 'bestseller',
-    price: 32,
-    priceInr: 999,
-    originalPrice: 45, originalPriceInr: 1499,
-    period: '/ month',
-    image: '/images/airo_opt/med-64-airo-her-products-image-08-1790630948054-12984353.jpg',
-    description: 'Physician-directed compounded topical scalp solution designed for women’s diffuse hair thinning.',
-    icon: '💇‍♀️'
-  },
-  {
-    id: 'med-65',
-    audience: 'HER',
-    category: 'HAIR_LOSS',
-    categoryLabel: 'Density Rx',
-    title: 'AIRO ROOT HER™ Advance',
-    ingredients: 'Finasteride 0.1% + Minoxidil 5% + Vitamin A',
-    badge: 'Doctor-Formulated',
-    badgeType: 'doctor',
-    price: 32,
-    priceInr: 999,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ month',
-    image: '/images/airo_opt/med-65-airo-her-products-image-06-1790631045347-b997ca0f.jpg',
-    description: 'Advanced physician-directed compounded topical therapy for female hormonal pattern thinning.',
-    icon: '🌸'
-  },
-  {
-    id: 'med-66',
-    audience: 'HER',
-    category: 'HAIR_LOSS',
-    categoryLabel: 'Scalp Nourish',
-    title: 'AIRO ROOT HER™ Nourish Oil',
-    ingredients: 'Minoxidil 5% + Biotin 0.2% + Caffeine 0.5%',
-    badge: 'Sale',
-    badgeType: 'sale',
-    price: 32,
-    priceInr: 999,
-    originalPrice: 45, originalPriceInr: 1399,
-    period: '/ month',
-    image: '/images/airo_opt/med-66-airo-her-products-image-07-1790630969888-533bf89c.jpg',
-    description: 'Oil-based physician-directed topical treatment to nourish scalp barrier and stimulate microcirculation.',
-    icon: '💧'
-  },
-  {
-    id: 'med-67',
-    audience: 'BOTH',
-    category: 'WEIGHT_MANAGEMENT',
-    categoryLabel: 'GLP-1 Injection',
-    title: 'AIRO SEMA Injection Vial',
-    ingredients: 'Compounded Semaglutide Subcutaneous Vial',
-    badge: 'Best Sellers',
-    badgeType: 'bestseller',
-    price: 199,
-    priceInr: 4999,
-    originalPrice: 249, originalPriceInr: 6499,
-    period: '/ month',
-    image: '/images/airo_opt/med-67-weight-loss-01-1790712283441-d3dbb9ba.jpg',
-    description: 'Physician-titrated Semaglutide vial clinically proven for chronic weight management and appetite control.',
-    icon: '⚖️'
-  },
-  {
-    id: 'med-71',
-    audience: 'BOTH',
-    category: 'WEIGHT_MANAGEMENT',
-    categoryLabel: 'Oral GLP-1',
-    title: 'Rybelsus® Tablets',
-    ingredients: 'Semaglutide Oral Tablets (3mg / 7mg / 14mg)',
-    badge: 'Best Sellers',
-    badgeType: 'bestseller',
-    price: 189,
-    priceInr: 4499,
-    originalPrice: 229, originalPriceInr: 5999,
-    period: '/ month',
-    image: '/images/airo_opt/med-71-rybelsus-2-1790712161977-c9475b04.jpg',
-    description: 'Once-daily oral GLP-1 tablets providing effective appetite regulation without injections.',
-    icon: '💊'
-  },
-  {
-    id: 'med-70',
-    audience: 'BOTH',
-    category: 'WEIGHT_MANAGEMENT',
-    categoryLabel: 'Dual Incretin',
-    title: 'Mounjaro® Pen',
-    ingredients: 'Tirzepatide Weekly Dual GIP/GLP-1 Pen',
-    badge: 'Doctor-Formulated',
-    badgeType: 'doctor',
-    price: 249,
-    priceInr: 8499,
-    originalPrice: 299, originalPriceInr: 9999,
-    period: '/ month',
-    image: '/images/airo_opt/med-70-adobe-stock-1725102072-editorial-use-only-92862a9a3b-1790712132898-750fa8b5.jpg',
-    description: 'Advanced dual GIP and GLP-1 receptor agonist pen for profound metabolic regulation and satiety.',
-    icon: '⚖️'
-  },
-  {
-    id: 'med-68',
-    audience: 'BOTH',
-    category: 'WEIGHT_MANAGEMENT',
-    categoryLabel: 'Liraglutide Pen',
-    title: 'Saxenda® Pen',
-    ingredients: 'Liraglutide 3mg Daily Multi-Dose Pen',
-    badge: 'Popular',
-    badgeType: 'bestseller',
-    price: 229,
-    priceInr: 6999,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ month',
-    image: '/images/airo_opt/med-68-saxenda-weight-loss-injection-pen-uk-1790712202026-8f24dc9c.jpg',
-    description: 'Once-daily GLP-1 injection pen formulated for steady caloric regulation and metabolic health.',
-    icon: '🩺'
-  },
-  {
-    id: 'med-72',
-    audience: 'BOTH',
-    category: 'WEIGHT_MANAGEMENT',
-    categoryLabel: 'Metabolic Care',
-    title: 'Victoza® Pen',
-    ingredients: 'Liraglutide 1.2mg / 1.8mg Injection Pen',
-    badge: 'Doctor-Formulated',
-    badgeType: 'doctor',
-    price: 219,
-    priceInr: 6499,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ month',
-    image: '/images/airo_opt/med-72-victoza-1600x800px-1790712232230-47b558fd.jpg',
-    description: 'Proven GLP-1 incretin pen for glycemic stability and gradual metabolic management.',
-    icon: '💉'
-  },
-  {
-    id: 'med-62',
-    audience: 'HIM',
-    category: 'SEXUAL_HEALTH_ED',
-    categoryLabel: 'Dual Performance',
-    title: 'GO BEYOND™ Limits',
-    ingredients: 'Sildenafil 50 mg + Tadalafil 20 mg Compound',
-    badge: 'Best Sellers',
-    badgeType: 'bestseller',
-    price: 40,
-    priceInr: 1499,
-    originalPrice: 55, originalPriceInr: 1999,
-    period: '/ month',
-    image: '/images/airo_opt/med-62-sexual-health-product-images-12-1786655381163-377c05e2.jpg',
-    description: 'On-demand prescription dual therapy combining fast onset (Sildenafil) with 36-hour duration (Tadalafil).',
-    icon: '⚡'
-  },
-  {
-    id: 'med-77',
-    audience: 'HIM',
-    category: 'SEXUAL_HEALTH_ED',
-    categoryLabel: 'Chewable Gummies',
-    title: 'GO BEYOND™ Gummies',
-    ingredients: 'Daily Tadalafil 5mg Chewable Gummy',
-    badge: 'Best Sellers',
-    badgeType: 'bestseller',
-    price: 40,
-    priceInr: 1499,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ month',
-    image: '/images/airo_opt/med-77-go-beyond-tadalafil-gummies-and-torcha-03-1790632741563-af64c6aa.jpg',
-    description: 'Daily chewable tadalafil gummy for spontaneous intimate readiness without swallowing pills.',
-    icon: '🍬'
-  },
-  {
-    id: 'med-79',
-    audience: 'HIM',
-    category: 'SEXUAL_HEALTH_ED',
-    categoryLabel: 'Rapid Dissolve',
-    title: 'GO BEYOND™ Rapid',
-    ingredients: 'Tadalafil Sublingual Rapid-Dissolve Tablet',
-    badge: 'Doctor-Formulated',
-    badgeType: 'doctor',
-    price: 38,
-    priceInr: 1399,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ month',
-    image: '/images/airo_opt/med-79-sublingual-tablets-01-1790711324016-497b066b.jpg',
-    description: 'Sublingual daily tadalafil dissolving under the tongue for faster, bypass-the-gut absorption.',
-    icon: '⚡'
-  },
-  {
-    id: 'med-82',
-    audience: 'HIM',
-    category: 'SEXUAL_HEALTH_ED',
-    categoryLabel: 'Fast-Acting',
-    title: 'GO BEYOND™ Rapid Quick',
-    ingredients: 'Sildenafil Sublingual Rapid-Dissolve Tablet',
-    badge: 'Sale',
-    badgeType: 'sale',
-    price: 32,
-    priceInr: 1199,
-    originalPrice: 45, originalPriceInr: 1699,
-    period: '/ month',
-    image: '/images/airo_opt/med-82-sild-1790712089716-134e7a4c.jpg',
-    description: 'Fast-acting on-demand sublingual sildenafil dissolving rapidly before intimacy.',
-    icon: '🔥'
-  },
-  {
-    id: 'med-60',
-    audience: 'HIM',
-    category: 'SEXUAL_HEALTH_ED',
-    categoryLabel: 'ED & PE Dual Care',
-    title: 'GO BEYOND™ Control',
-    ingredients: 'Paroxetine 20 mg + Sildenafil 20 mg',
-    badge: 'Sale',
-    badgeType: 'sale',
-    price: 35,
-    priceInr: 1299,
-    originalPrice: 48, originalPriceInr: 1799,
-    period: '/ month',
-    image: '/images/airo_opt/med-60-sexual-health-product-images-18-1786655682803-773cc248.jpg',
-    description: 'Prescription compound treating erectile dysfunction while extending endurance and stamina.',
-    icon: '⏱️'
-  },
-  {
-    id: 'med-73',
-    audience: 'HIM',
-    category: 'SEXUAL_HEALTH_ED',
-    categoryLabel: 'Daily Troche',
-    title: 'GO BEYOND™ Troche Daily',
-    ingredients: 'Daily Tadalafil Buccal Troche',
-    badge: 'Doctor-Formulated',
-    badgeType: 'doctor',
-    price: 40,
-    priceInr: 1499,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ month',
-    image: '/images/airo_opt/med-73-go-beyond-tadalafil-gummies-and-torcha-01-1790632810138-f5affa85.jpg',
-    description: 'Compounded cheek-dissolving troche providing steady daily systemic bioavailability.',
-    icon: '🍬'
-  },
-  {
-    id: 'med-61',
-    audience: 'HIM',
-    category: 'SEXUAL_HEALTH_ED',
-    categoryLabel: 'Testosterone Support',
-    title: 'GO BEYOND™ Plus Testosterone',
-    ingredients: 'Tadalafil 5 mg Capsule + Botanical T-Support',
-    badge: 'Popular',
-    badgeType: 'doctor',
-    price: 45,
-    priceInr: 1599,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ month',
-    image: '/images/airo_opt/med-61-gemini-generated-image-98oh0n98oh0n98oh-1787265391379-ec03fda1.jpg',
-    description: 'Daily tadalafil combined with clinical zinc, ashwagandha, and D-aspartic acid for vitality.',
-    icon: '💪'
-  },
-  {
-    id: 'med-glow-serum',
-    audience: 'BOTH',
-    category: 'DERMATOLOGY',
-    categoryLabel: 'Night Serum',
-    title: 'Glow Renewal Serum',
-    ingredients: 'Retinol 0.5% + Niacinamide 5%',
-    badge: 'Doctor-Formulated',
-    badgeType: 'doctor',
-    price: 42,
-    priceInr: 1299,
-    originalPrice: 55, originalPriceInr: 1699,
-    period: '/ bottle',
-    image: '/images/card-prod-glow-serum.jpg',
-    description: 'A nightly serum combining retinol and niacinamide for smoother, brighter skin.',
-    icon: '✨'
-  },
-  {
-    id: 'med-clear-gel',
-    audience: 'BOTH',
-    category: 'DERMATOLOGY',
-    categoryLabel: 'Acne Care',
-    title: 'ClearSkin Acne Gel',
-    ingredients: 'Salicylic Acid 2% (Clinical BHA)',
-    badge: 'Best Sellers',
-    badgeType: 'bestseller',
-    price: 28,
-    priceInr: 899,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ tube',
-    image: '/images/card-prod-clear-gel.jpg',
-    description: 'Targeted clinical BHA gel that unclogs pores, dissolves trapped sebum, and clears breakouts.',
-    icon: '🫧'
-  },
-  {
-    id: 'med-tretinoin',
-    audience: 'BOTH',
-    category: 'DERMATOLOGY',
-    categoryLabel: 'Prescription Rx',
-    title: 'Tretinoin 0.025% Cream',
-    ingredients: 'Prescription Retinoid Cream 0.025%',
-    badge: 'Doctor-Formulated',
-    badgeType: 'doctor',
-    price: 35,
-    priceInr: 1199,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ tube',
-    image: '/images/card-prod-tretinoin.jpg',
-    description: 'Prescription retinoid cream for acne, cellular turnover, texture, and photoaging.',
-    icon: '🧴'
-  },
-  {
-    id: 'med-niacinamide',
-    audience: 'BOTH',
-    category: 'DERMATOLOGY',
-    categoryLabel: 'Barrier Support',
-    title: 'Bright Balance Serum',
-    ingredients: 'Niacinamide 10% + Zinc 1%',
-    badge: 'Doctor-Formulated',
-    badgeType: 'doctor',
-    price: 25,
-    priceInr: 799,
-    originalPrice: null, originalPriceInr: null,
-    period: '/ bottle',
-    image: '/images/card-prod-niacinamide.jpg',
-    description: 'Lightweight clarifying serum formulated to strengthen lipid barrier and fade spots.',
-    icon: '🌿'
-  }
+    {
+      id: 'med-semaglutide',
+      audience: 'BOTH',
+      category: 'WEIGHT_MANAGEMENT',
+      categoryLabel: 'Weight Management',
+      title: 'Semaglutide Oral Tablets',
+      ingredients: 'Oral Semaglutide 3mg / 7mg / 14mg',
+      badge: 'Rx Required · Oral GLP-1',
+      badgeType: 'rx',
+      price: 59,
+      priceInr: 4999,
+      originalPrice: 79,
+      originalPriceInr: 6499,
+      period: '/ month',
+      image: '/images/pdp/semaglutide/main.jpg',
+      description: 'Once-daily oral GLP-1 tablet — clinically proven to reduce hunger, curb cravings, and support sustainable metabolic weight loss without injections.',
+      rating: 4.9,
+      reviews: 320,
+      concernKey: 'WEIGHT_MANAGEMENT'
+    },
+    {
+      id: 'med-glow-serum',
+      audience: 'BOTH',
+      category: 'DERMATOLOGY',
+      categoryLabel: 'Skin Care',
+      title: 'Glow Renewal Night Serum',
+      ingredients: 'Retinol 0.5% + Niacinamide 5%',
+      badge: 'Dermatologist Formulated',
+      badgeType: 'doctor',
+      price: 15,
+      priceInr: 1299,
+      originalPrice: 20,
+      originalPriceInr: 1699,
+      period: '/ bottle',
+      image: '/images/pdp/glow-serum/main.jpg',
+      description: 'Dermatologist-formulated nightly serum that pairs retinol with niacinamide to smooth fine lines, fade dark spots, and brighten dull skin without irritation.',
+      rating: 4.8,
+      reviews: 342,
+      concernKey: 'DERMATOLOGY'
+    },
+    {
+      id: 'med-hair-regrow',
+      audience: 'HIM',
+      category: 'HAIR_LOSS',
+      categoryLabel: 'Hair Care',
+      title: 'Hair Regrow Solution',
+      ingredients: 'Minoxidil 5% + Finasteride 0.1%',
+      badge: 'Clinically Proven',
+      badgeType: 'bestseller',
+      price: 18,
+      priceInr: 1499,
+      originalPrice: 24,
+      originalPriceInr: 1999,
+      period: '/ month',
+      image: '/images/card-prod-hair-spray.jpg',
+      description: 'Dual-active topical solution that reactivates shrinking hair follicles, extends the growth phase, and reduces scalp DHT at the root.',
+      rating: 4.8,
+      reviews: 891,
+      concernKey: 'HAIR_LOSS'
+    },
+    {
+      id: 'med-finasteride',
+      audience: 'HIM',
+      category: 'HAIR_LOSS',
+      categoryLabel: 'Hair Care',
+      title: 'Finasteride 1 mg Tablets',
+      ingredients: 'Finasteride USP 1 mg',
+      badge: 'Rx Required · DHT Blocker',
+      badgeType: 'rx',
+      price: 12,
+      priceInr: 999,
+      originalPrice: 17,
+      originalPriceInr: 1399,
+      period: '/ month',
+      image: '/images/card-prod-finasteride.jpg',
+      description: 'FDA-approved daily oral tablet that blocks up to 70% of DHT, halting male pattern hair thinning and restoring follicular thickness.',
+      rating: 4.9,
+      reviews: 612,
+      concernKey: 'HAIR_LOSS'
+    },
+    {
+      id: 'med-hair-her',
+      audience: 'HER',
+      category: 'HAIR_LOSS',
+      categoryLabel: 'Hair Care',
+      title: 'Women’s Hair Regrowth System',
+      ingredients: 'Minoxidil 2% + Biotin + Caffeine',
+      badge: 'Formulated for Women',
+      badgeType: 'doctor',
+      price: 16,
+      priceInr: 1299,
+      originalPrice: 20,
+      originalPriceInr: 1599,
+      period: '/ month',
+      image: '/images/card-prod-hair-her.jpg',
+      description: 'Specially balanced topical formula for female diffuse thinning and part-line widening without scalp dryness or unwanted systemic effects.',
+      rating: 4.8,
+      reviews: 420,
+      concernKey: 'HAIR_LOSS'
+    },
+    {
+      id: 'med-sildenafil',
+      audience: 'HIM',
+      category: 'SEXUAL_HEALTH_ED',
+      categoryLabel: 'Sexual Health',
+      title: 'Sildenafil 50 mg Tablets',
+      ingredients: 'Sildenafil Citrate 50 mg / 100 mg',
+      badge: 'Rx Required · Fast-Acting',
+      badgeType: 'rx',
+      price: 14,
+      priceInr: 1199,
+      originalPrice: 20,
+      originalPriceInr: 1699,
+      period: '/ month',
+      image: '/images/card-prod-sildenafil.jpg',
+      description: 'Fast-acting PDE-5 inhibitor for reliable erectile performance. Works in 30–60 minutes for up to 4–6 hours of confidence.',
+      rating: 4.9,
+      reviews: 950,
+      concernKey: 'SEXUAL_HEALTH_ED'
+    },
+    {
+      id: 'med-hard-mints',
+      audience: 'HIM',
+      category: 'SEXUAL_HEALTH_ED',
+      categoryLabel: 'Sexual Health',
+      title: 'Tadalafil Chewable Mints',
+      ingredients: 'Compounded Tadalafil 10 mg Mint',
+      badge: 'Most Popular · 36-Hr Window',
+      badgeType: 'bestseller',
+      price: 18,
+      priceInr: 1499,
+      originalPrice: 24,
+      originalPriceInr: 1999,
+      period: '/ month',
+      image: '/images/card-prod-hard-mints.jpg',
+      description: 'Discreet, fresh mint-flavored chewable offering up to 36 hours of readiness. Take daily or on-demand without water.',
+      rating: 4.9,
+      reviews: 780,
+      concernKey: 'SEXUAL_HEALTH_ED'
+    },
+    {
+      id: 'med-tretinoin',
+      audience: 'BOTH',
+      category: 'DERMATOLOGY',
+      categoryLabel: 'Skin Care',
+      title: 'Tretinoin 0.025% Cream',
+      ingredients: 'Micronized Tretinoin 0.025%',
+      badge: 'Rx Gold Standard',
+      badgeType: 'rx',
+      price: 14,
+      priceInr: 1199,
+      originalPrice: 18,
+      originalPriceInr: 1499,
+      period: '/ tube',
+      image: '/images/card-prod-tretinoin.jpg',
+      description: 'Gold-standard prescription retinoid for acne, texture, and cellular collagen renewal. Evaluated by licensed dermatologists.',
+      rating: 4.8,
+      reviews: 518,
+      concernKey: 'DERMATOLOGY'
+    },
+    {
+      id: 'med-clear-gel',
+      audience: 'BOTH',
+      category: 'DERMATOLOGY',
+      categoryLabel: 'Skin Care',
+      title: 'ClearSkin Acne Gel',
+      ingredients: 'Salicylic Acid 2% (Clinical BHA)',
+      badge: 'Clarifying Formula',
+      badgeType: 'bestseller',
+      price: 11,
+      priceInr: 899,
+      originalPrice: 15,
+      originalPriceInr: 1199,
+      period: '/ tube',
+      image: '/images/card-prod-clear-gel.jpg',
+      description: 'Targeted purifying BHA gel that unclogs trapped sebum, clarifies blemishes, and refines pores without over-drying.',
+      rating: 4.6,
+      reviews: 380,
+      concernKey: 'DERMATOLOGY'
+    },
+    {
+      id: 'med-shampoo',
+      audience: 'BOTH',
+      category: 'HAIR_LOSS',
+      categoryLabel: 'Hair Care',
+      title: 'Scalp Relief Shampoo',
+      ingredients: 'Ketoconazole 2% Scalp Therapy',
+      badge: 'Doctor Recommended',
+      badgeType: 'doctor',
+      price: 7,
+      priceInr: 549,
+      originalPrice: 10,
+      originalPriceInr: 799,
+      period: '/ bottle',
+      image: '/images/card-prod-shampoo.jpg',
+      description: 'Clinical-strength antifungal shampoo that eliminates stubborn dandruff flakes and calms scalp irritation.',
+      rating: 4.7,
+      reviews: 450,
+      concernKey: 'HAIR_LOSS'
+    },
+    {
+      id: 'med-niacinamide',
+      audience: 'BOTH',
+      category: 'DERMATOLOGY',
+      categoryLabel: 'Skin Care',
+      title: 'Bright Balance Serum',
+      ingredients: 'Niacinamide 10% + Zinc PCA 1%',
+      badge: 'Barrier Support',
+      badgeType: 'doctor',
+      price: 10,
+      priceInr: 799,
+      originalPrice: 12,
+      originalPriceInr: 999,
+      period: '/ bottle',
+      image: '/images/card-prod-niacinamide.jpg',
+      description: 'High-potency balancing serum that refines enlarged pores, regulates sebum, and repairs the lipid moisture barrier.',
+      rating: 4.8,
+      reviews: 290,
+      concernKey: 'DERMATOLOGY'
+    },
+    {
+      id: 'med-metformin',
+      audience: 'BOTH',
+      category: 'WEIGHT_MANAGEMENT',
+      categoryLabel: 'Weight Management',
+      title: 'Metformin 500 mg ER',
+      ingredients: 'Metformin Hydrochloride 500 mg',
+      badge: 'Metabolic Health',
+      badgeType: 'rx',
+      price: 6,
+      priceInr: 499,
+      originalPrice: 9,
+      originalPriceInr: 699,
+      period: '/ month',
+      image: '/images/card-prod-metformin.jpg',
+      description: 'First-line prescription metabolic therapy supporting insulin sensitivity, steady glucose control, and healthy weight management.',
+      rating: 4.7,
+      reviews: 215,
+      concernKey: 'WEIGHT_MANAGEMENT'
+    },
+    {
+      id: 'med-b12',
+      audience: 'BOTH',
+      category: 'SUPPLEMENTS',
+      categoryLabel: 'Daily Supplements',
+      title: 'Vitamin B12 1000 mcg',
+      ingredients: 'Methylcobalamin 1000 mcg Sublingual',
+      badge: 'Metabolic Energy',
+      badgeType: 'doctor',
+      price: 5,
+      priceInr: 449,
+      originalPrice: 7,
+      originalPriceInr: 599,
+      period: '/ bottle',
+      image: '/images/card-prod-b12.jpg',
+      description: 'Bioactive sublingual B12 designed for rapid absorption, cellular energy production, and nerve health support.',
+      rating: 4.8,
+      reviews: 190,
+      concernKey: 'WEIGHT_MANAGEMENT'
+    },
+    {
+      id: 'med-omega3',
+      audience: 'BOTH',
+      category: 'SUPPLEMENTS',
+      categoryLabel: 'Daily Supplements',
+      title: 'Omega-3 Marine Fish Oil',
+      ingredients: 'Purified Marine EPA 600 mg + DHA 400 mg',
+      badge: 'Heart & Inflammation',
+      badgeType: 'doctor',
+      price: 8,
+      priceInr: 699,
+      originalPrice: 11,
+      originalPriceInr: 899,
+      period: '/ bottle',
+      image: '/images/card-prod-omega3.jpg',
+      description: 'Pharmaceutical-grade, molecularly distilled wild omega-3 fatty acids for cardiovascular endurance and joint comfort.',
+      rating: 4.9,
+      reviews: 310,
+      concernKey: 'WEIGHT_MANAGEMENT'
+    },
+    {
+      id: 'med-rybelsus',
+      audience: 'BOTH',
+      category: 'WEIGHT_MANAGEMENT',
+      categoryLabel: 'Weight Management',
+      title: 'Rybelsus® Oral Tablets',
+      ingredients: 'Oral Semaglutide 7 mg / 14 mg',
+      badge: 'Oral GLP-1 · Brand',
+      badgeType: 'rx',
+      price: 54,
+      priceInr: 4499,
+      originalPrice: 72,
+      originalPriceInr: 5999,
+      period: '/ month',
+      image: '/images/airo_opt/med-71-rybelsus-2-1790712161977-c9475b04.jpg',
+      description: 'Brand-name oral GLP-1 peptide absorption technology for clinically demonstrated weight and glycemic control without injections.',
+      rating: 4.9,
+      reviews: 480,
+      concernKey: 'WEIGHT_MANAGEMENT'
+    },
+    {
+      id: 'med-limits',
+      audience: 'HIM',
+      category: 'SEXUAL_HEALTH_ED',
+      categoryLabel: 'Sexual Health',
+      title: 'GO BEYOND™ Limits Dual',
+      ingredients: 'Sildenafil 50 mg + Tadalafil 20 mg Compound',
+      badge: 'Dual Action Compound',
+      badgeType: 'doctor',
+      price: 18,
+      priceInr: 1499,
+      originalPrice: 24,
+      originalPriceInr: 1999,
+      period: '/ month',
+      image: '/images/airo_opt/med-62-sexual-health-product-images-12-1786655381163-377c05e2.jpg',
+      description: 'Compounded dual-action formula pairing the 30-minute rapid onset of sildenafil with the 36-hour weekend longevity of tadalafil.',
+      rating: 4.9,
+      reviews: 620,
+      concernKey: 'SEXUAL_HEALTH_ED'
+    }
   ];
 
-  const filteredProducts = catalogProducts;
+  const filteredProducts = catalogProducts.filter((p) => {
+    const matchesAudience =
+      catalogAudience === 'ALL' || p.audience === catalogAudience || p.audience === 'BOTH';
+    const matchesCategory =
+      catalogCategory === 'ALL' || p.category === catalogCategory;
+    return matchesAudience && matchesCategory;
+  });
 
   const categoryCardsData = {
     HER: [
@@ -736,9 +692,8 @@ export default function HomePage() {
             aria-expanded={activeMegaMenu === 'treatments'}
             aria-haspopup="dialog"
             aria-controls="treatments-mega-menu"
-            className={`nav-pill-btn flex items-center space-x-1.5 px-4 py-1.5 rounded-full font-semibold transition-all duration-200 cursor-pointer ${
-              activeMegaMenu === 'treatments' ? 'active bg-white text-[#191817] shadow-md border border-[#DDD5C9]' : 'text-[#191817]/85 hover:bg-[#FAF7F2]/60'
-            }`}
+            className={`nav-pill-btn flex items-center space-x-1.5 px-4 py-1.5 rounded-full font-semibold transition-all duration-200 cursor-pointer ${activeMegaMenu === 'treatments' ? 'active bg-white text-[#191817] shadow-md border border-[#DDD5C9]' : 'text-[#191817]/85 hover:bg-[#FAF7F2]/60'
+              }`}
           >
             <span>Treatments</span>
             <svg className={`nav-chevron w-3.5 h-3.5 text-[#191817]/70 transition-transform duration-200 ${activeMegaMenu === 'treatments' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
@@ -752,9 +707,8 @@ export default function HomePage() {
             aria-expanded={activeMegaMenu === 'shop'}
             aria-haspopup="dialog"
             aria-controls="shop-mega-menu"
-            className={`nav-pill-btn flex items-center space-x-1.5 px-4 py-1.5 rounded-full font-semibold transition-all duration-200 cursor-pointer ${
-              activeMegaMenu === 'shop' ? 'active bg-white text-[#191817] shadow-md border border-[#DDD5C9]' : 'text-[#191817]/85 hover:bg-[#FAF7F2]/60'
-            }`}
+            className={`nav-pill-btn flex items-center space-x-1.5 px-4 py-1.5 rounded-full font-semibold transition-all duration-200 cursor-pointer ${activeMegaMenu === 'shop' ? 'active bg-white text-[#191817] shadow-md border border-[#DDD5C9]' : 'text-[#191817]/85 hover:bg-[#FAF7F2]/60'
+              }`}
           >
             <span>Shop</span>
             <svg className={`nav-chevron w-3.5 h-3.5 text-[#191817]/70 transition-transform duration-200 ${activeMegaMenu === 'shop' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
@@ -765,7 +719,7 @@ export default function HomePage() {
         <div id="treatments-mega-menu" className={`mega-menu-panel ${activeMegaMenu === 'treatments' ? 'active' : ''}`} role="region" aria-label="Treatments Menu">
           <div className="mega-menu-card bg-white rounded-3xl p-7 sm:p-8 lg:p-10 shadow-2xl border border-[#EAE5DD]">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-              
+
               {/* COLUMN 1: Hims */}
               <div className="lg:col-span-4 flex flex-col justify-start">
                 <h3 className="dropdown-col-title">Hims</h3>
@@ -880,9 +834,8 @@ export default function HomePage() {
             <div
               key={s.id}
               aria-hidden={idx !== currentSlide}
-              className={`hero-slide ${s.slideClassName} absolute inset-0 transition-opacity duration-700 ease-in-out flex items-center ${
-                idx === currentSlide ? 'opacity-100 pointer-events-auto z-10' : 'opacity-0 pointer-events-none invisible'
-              }`}
+              className={`hero-slide ${s.slideClassName} absolute inset-0 transition-opacity duration-700 ease-in-out flex items-center ${idx === currentSlide ? 'opacity-100 pointer-events-auto z-10' : 'opacity-0 pointer-events-none invisible'
+                }`}
             >
               <div className="hero-bg absolute inset-0 z-0">
                 <img
@@ -918,21 +871,19 @@ export default function HomePage() {
                   <div className="hero-toggle-capsule inline-flex items-center p-1 rounded-full bg-[#EEE7DD] border border-[#DDD5C9] shadow-sm select-none">
                     <button
                       onClick={() => setAudience('HIM')}
-                      className={`hero-toggle-btn px-6 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 ${
-                        audience === 'HIM'
-                          ? 'active bg-white text-[#1E6BFF] border-2 border-[#1E6BFF] shadow-sm font-bold'
-                          : 'text-[#191817]/80'
-                      }`}
+                      className={`hero-toggle-btn px-6 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 ${audience === 'HIM'
+                        ? 'active bg-white text-[#1E6BFF] border-2 border-[#1E6BFF] shadow-sm font-bold'
+                        : 'text-[#191817]/80'
+                        }`}
                     >
                       for him
                     </button>
                     <button
                       onClick={() => setAudience('HER')}
-                      className={`hero-toggle-btn px-6 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 ${
-                        audience === 'HER'
-                          ? 'active bg-white text-[#1E6BFF] border-2 border-[#1E6BFF] shadow-sm font-bold'
-                          : 'text-[#191817]/80'
-                      }`}
+                      className={`hero-toggle-btn px-6 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 ${audience === 'HER'
+                        ? 'active bg-white text-[#1E6BFF] border-2 border-[#1E6BFF] shadow-sm font-bold'
+                        : 'text-[#191817]/80'
+                        }`}
                     >
                       for her
                     </button>
@@ -1078,7 +1029,7 @@ export default function HomePage() {
           {/* Split 2-Card Flagship Grid (One Side Men's Hair Care, One Side Women's) */}
           {/* Tighter gap (gap-3 sm:gap-4) & bigger squares with full images & bottom-up frosted glass */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 lg:gap-4.5">
-            
+
             {/* Left Flagship Card: Men's Hair Care (Full Image Card) */}
             <div className="seed-split-card group cursor-pointer">
               {/* Full-Bleed Background Image */}
@@ -1522,130 +1473,212 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 7: SCROLLABLE PRODUCTS CAROUSEL (WELLINA / SEED STYLE) */}
-      <section id="catalog-section" className="py-20 sm:py-24 lg:py-28 bg-white overflow-hidden border-b border-[#DDD5C9]">
+      {/* SECTION 7: ALL TREATMENTS CATALOG (4-COLUMN MINIM GRID) */}
+      <section id="catalog-section" className="py-20 sm:py-24 lg:py-28 bg-white border-b border-[#DDD5C9]">
         <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16">
-          
-          {/* Section Header with Serif Title, Filter Pills, and Carousel Arrows */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 sm:mb-10 gap-6">
+
+          {/* Section Header with Serif Title, Subtitle and Audience Segmented Switcher */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 sm:mb-8 gap-6">
             <div>
               <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#C8623D]">
                 Doctor-Formulated Compounds
               </span>
               <h2 id="catalog-heading" className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#191817] mt-1.5 tracking-tight">
-                Find your treatment
+                All Treatments
               </h2>
-              <p className="text-xs sm:text-sm text-[#736E67] mt-1">
-                Free online clinician consult, discreet unmarked packaging & auto-refills included.
+              <p className="text-xs sm:text-sm text-[#736E67] mt-1.5 max-w-2xl">
+                Clinically tested active ingredients prescribed online by US-licensed physicians. Free shipping in discreet unmarked packaging with auto-refills included.
               </p>
             </div>
 
-            {/* Carousel Scroll Left & Right Navigation Buttons */}
-            <div className="hidden sm:flex items-center space-x-2">
+            {/* Audience Switcher: Hims / Hers / All Segmented Pill Toggle */}
+            <div className="inline-flex p-1 bg-[#F2EFE9] border border-[#DDD5C9] rounded-full self-start md:self-end shadow-sm">
               <button
-                onClick={() => scrollCatalog(-1)}
-                aria-label="Scroll treatments left"
-                className="w-11 h-11 rounded-full bg-white hover:bg-[#191817] text-[#191817] hover:text-white border border-[#DDD5C9] flex items-center justify-center shadow-sm transition-all duration-200 active:scale-95 cursor-pointer"
+                type="button"
+                onClick={() => setCatalogAudience('ALL')}
+                className={`catalog-aud-btn ${catalogAudience === 'ALL' ? 'active' : ''}`}
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-                </svg>
+                All Treatments
               </button>
               <button
-                onClick={() => scrollCatalog(1)}
-                aria-label="Scroll treatments right"
-                className="w-11 h-11 rounded-full bg-white hover:bg-[#191817] text-[#191817] hover:text-white border border-[#DDD5C9] flex items-center justify-center shadow-sm transition-all duration-200 active:scale-95 cursor-pointer"
+                type="button"
+                onClick={() => setCatalogAudience('HIM')}
+                className={`catalog-aud-btn ${catalogAudience === 'HIM' ? 'active' : ''}`}
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                </svg>
+                Hims
+              </button>
+              <button
+                type="button"
+                onClick={() => setCatalogAudience('HER')}
+                className={`catalog-aud-btn ${catalogAudience === 'HER' ? 'active' : ''}`}
+              >
+                Hers
               </button>
             </div>
           </div>
 
-          {/* Horizontal Scrollable Product Track (Snap Scroll Carousel) */}
-          <div
-            ref={scrollRef}
-            className="product-scroll-track flex gap-5 sm:gap-6 overflow-x-auto pb-8 pt-2 scrollbar-hide snap-x snap-mandatory scroll-smooth -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-12 lg:px-12 xl:-mx-16 xl:px-16"
-          >
+          {/* Filter Bar: Category Pills + Live Counter */}
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-8 pt-4 border-t border-[#EAE5DD]/70">
+            {/* Category Filter Pills */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
+              <button
+                type="button"
+                onClick={() => setCatalogCategory('ALL')}
+                className={`catalog-filter-pill ${catalogCategory === 'ALL' ? 'active' : ''}`}
+              >
+                All Categories
+              </button>
+              <button
+                type="button"
+                onClick={() => setCatalogCategory('HAIR_LOSS')}
+                className={`catalog-filter-pill ${catalogCategory === 'HAIR_LOSS' ? 'active' : ''}`}
+              >
+                Hair Care
+              </button>
+              <button
+                type="button"
+                onClick={() => setCatalogCategory('SEXUAL_HEALTH_ED')}
+                className={`catalog-filter-pill ${catalogCategory === 'SEXUAL_HEALTH_ED' ? 'active' : ''}`}
+              >
+                Sexual Health
+              </button>
+              <button
+                type="button"
+                onClick={() => setCatalogCategory('DERMATOLOGY')}
+                className={`catalog-filter-pill ${catalogCategory === 'DERMATOLOGY' ? 'active' : ''}`}
+              >
+                Skin Care
+              </button>
+              <button
+                type="button"
+                onClick={() => setCatalogCategory('WEIGHT_MANAGEMENT')}
+                className={`catalog-filter-pill ${catalogCategory === 'WEIGHT_MANAGEMENT' ? 'active' : ''}`}
+              >
+                Weight Management
+              </button>
+              <button
+                type="button"
+                onClick={() => setCatalogCategory('SUPPLEMENTS')}
+                className={`catalog-filter-pill ${catalogCategory === 'SUPPLEMENTS' ? 'active' : ''}`}
+              >
+                Daily Supplements
+              </button>
+            </div>
+
+            {/* Treatments Count */}
+            <div className="text-xs font-semibold text-[#78726A] whitespace-nowrap">
+              Showing {filteredProducts.length} treatment{filteredProducts.length === 1 ? '' : 's'}
+            </div>
+          </div>
+
+          {/* 4-Column Product Grid (Minim Aesthetic from User Reference Image) */}
+          <div id="product-grid" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 pt-2 pb-8">
             {filteredProducts.length === 0 ? (
-              <div className="w-full text-center py-16 text-[#54504C] bg-white rounded-3xl border border-[#DDD5C9] my-4">
-                <p className="text-base font-serif font-bold text-[#191817]">No formulations found for this filter.</p>
-                <p className="text-xs text-[#736E67] mt-1">Try selecting &ldquo;All Formulations&rdquo; to see all available treatments.</p>
+              <div className="col-span-full w-full text-center py-16 text-[#54504C] bg-[#FAF7F2] rounded-3xl border border-[#DDD5C9] my-4">
+                <p className="text-base font-serif font-bold text-[#191817]">No treatments match this filter.</p>
+                <p className="text-xs text-[#736E67] mt-1 mb-4">Try clearing filters or selecting &ldquo;All Treatments&rdquo; to see all formulations.</p>
+                <button
+                  type="button"
+                  onClick={showAllTreatmentsCatalog}
+                  className="px-5 py-2 rounded-full bg-[#0F1B38] text-white text-xs font-semibold hover:bg-[#1E40AF] transition-colors shadow-sm"
+                >
+                  Reset All Filters
+                </button>
               </div>
             ) : (
-              filteredProducts.map((p) => (
-                <div
-                  key={p.id}
-                  className="product-carousel-card group select-none relative flex-shrink-0 w-[270px] sm:w-[290px] md:w-[315px] bg-[#F2F2EE] rounded-[2rem] overflow-hidden border border-[#E5E0D8]/75 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 snap-start flex flex-col justify-between cursor-pointer"
-                >
-                  {/* Upper Card: Full Studio Photography (NOT transparent PNG) */}
-                  <div className="relative w-full h-[270px] sm:h-[295px] overflow-hidden bg-[#F2F2EE] flex items-center justify-center">
-                    <img
-                      src={p.image}
-                      alt={p.title}
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                      loading="lazy"
-                    />
+              filteredProducts.map((p) => {
+                const badgeBg =
+                  p.badgeType === 'sale'
+                    ? 'bg-[#D84A38] text-white'
+                    : p.badgeType === 'bestseller'
+                    ? 'bg-[#5B7E6F] text-white'
+                    : p.badgeType === 'rx'
+                    ? 'bg-[#0F1B38] text-white'
+                    : 'bg-[#191817]/90 text-white';
 
-                    {/* Top Pill Badge */}
-                    {p.badge && (
-                      <div className="absolute top-4 left-4 z-10 pointer-events-none">
-                        <span
-                          className={`${
-                            p.badgeType === 'sale'
-                              ? 'bg-[#D84A38] text-white'
-                              : p.badgeType === 'bestseller'
-                              ? 'bg-[#5B7E6F] text-white'
-                              : 'bg-[#191817]/90 backdrop-blur-md text-white'
-                          } text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full shadow-sm inline-block`}
-                        >
-                          {p.badge}
-                        </span>
-                      </div>
-                    )}
-                  </div>
+                const audienceLabel = p.audience === 'HIM' ? 'Hims' : p.audience === 'HER' ? 'Hers' : 'Unisex';
 
-                  {/* Bottom Content: Metadata, Actives, Pricing & Floating Cart Button */}
-                  <div className="p-5 pt-3 flex items-end justify-between relative bg-[#F2F2EE]">
-                    <div className="pr-3 flex-1 min-w-0">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-[#8A857F] block mb-0.5">
-                        {p.categoryLabel}
-                      </span>
-                      <h3 className="text-base sm:text-lg font-bold text-[#191817] leading-snug truncate" title={p.title}>
-                        {p.title}
-                      </h3>
-                      <p className="text-xs font-mono font-medium text-[#C8623D] truncate mt-1">
-                        {p.ingredients}
-                      </p>
-
-                      {/* Price Row */}
-                      <div className="flex items-baseline space-x-1.5 mt-2">
-                        <span className="text-base sm:text-lg font-bold text-[#191817] tabular-nums">
-                          ₹{(p.priceInr || Math.round(p.price * 83)).toLocaleString('en-IN')}
-                        </span>
-                        {p.originalPriceInr && (
-                          <span className="text-xs text-[#9E9B94] line-through tabular-nums">
-                            ₹{p.originalPriceInr.toLocaleString('en-IN')}
+                return (
+                  <div
+                    key={p.id}
+                    onClick={() => setIntakeModalOpen(true)}
+                    className="product-treatment-card group select-none flex flex-col justify-between cursor-pointer"
+                  >
+                    {/* Square Image Box (Minim Style) */}
+                    <div className="treatment-image-box aspect-square bg-[#F5F4F0] rounded-2xl flex items-center justify-center p-6 sm:p-7 relative overflow-hidden border border-[#EBE8E2] transition-all duration-300">
+                      {p.badge && (
+                        <div className="absolute top-3.5 left-3.5 z-10 pointer-events-none">
+                          <span className={`${badgeBg} text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-sm inline-block`}>
+                            {p.badge}
                           </span>
-                        )}
-                        <span className="text-xs text-[#736E67] font-medium">(${p.price.toFixed(0)})</span>
-                        <span className="text-[11px] text-[#8A857F]">{p.period}</span>
-                      </div>
+                        </div>
+                      )}
+
+                      <img
+                        src={p.image}
+                        alt={p.title}
+                        className="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500 ease-out"
+                        loading="lazy"
+                      />
                     </div>
 
-                    {/* Floating Circular Black Cart Button */}
-                    <button
-                      aria-label={`Add ${p.title} to consult`}
-                      className="product-cart-btn flex-shrink-0 cursor-pointer"
-                    >
-                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                      </svg>
-                    </button>
+                    {/* Lower Metadata & Details */}
+                    <div className="pt-3.5 pb-1 flex flex-col justify-between flex-1">
+                      <div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-[11px] font-bold uppercase tracking-wider text-[#78726A]">
+                            {p.categoryLabel}
+                          </span>
+                          <span className="text-[10px] font-semibold text-[#1E40AF] bg-[#1E40AF]/10 px-2 py-0.5 rounded-full">
+                            {audienceLabel}
+                          </span>
+                        </div>
+
+                        <h3 className="text-sm sm:text-base font-bold text-[#191817] mt-1 group-hover:text-[#1E40AF] transition-colors leading-snug line-clamp-1" title={p.title}>
+                          {p.title}
+                        </h3>
+
+                        <p className="text-xs font-mono text-[#8A857F] truncate mt-0.5" title={p.ingredients}>
+                          {p.ingredients}
+                        </p>
+
+                        {/* Star Ratings */}
+                        <div className="flex items-center space-x-1.5 mt-2">
+                          <div className="flex text-amber-500 text-xs">★★★★★</div>
+                          <span className="text-xs font-bold text-[#191817] tabular-nums">{p.rating || '4.8'}</span>
+                          <span className="text-[11px] text-[#8A857F]">({p.reviews || '300'}+)</span>
+                        </div>
+                      </div>
+
+                      {/* Price & Action Button */}
+                      <div className="flex items-center justify-between pt-3 mt-3 border-t border-[#EAE5DD]/80">
+                        <div>
+                          <span className="text-base sm:text-lg font-bold text-[#191817] tabular-nums">
+                            ₹{p.priceInr.toLocaleString('en-IN')}
+                          </span>
+                          <span className="text-xs text-[#736E67] font-medium ml-1">(${p.price.toFixed(0)})</span>
+                          <span className="text-[10px] text-[#8A857F] block">{p.period || '/ month'}</span>
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setIntakeModalOpen(true);
+                          }}
+                          aria-label={`Start consult for ${p.title}`}
+                          className="px-3.5 py-1.5 rounded-full bg-[#0F1B38] text-white text-xs font-semibold hover:bg-[#1E40AF] transition-colors shadow-sm cursor-pointer flex items-center space-x-1"
+                        >
+                          <span>Consult</span>
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              ))
+                );
+              })
             )}
           </div>
 
@@ -2040,442 +2073,442 @@ export default function HomePage() {
       </section>
 
       {/* SECTION 10: DOCTORS — GENUINE MEDICINES, VERIFIED FOR YOU */}
-            <section id="doctors" className="py-20 sm:py-24 lg:py-28 bg-[#FAF7F2] border-b border-[#DDD5C9] relative overflow-hidden w-full max-w-full">
-    {/* Header */}
-    <div className="text-center w-full max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3 px-4">
-      <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.24em] text-[#1E40AF] font-sans block">
-        Licensed Medical Board
-      </span>
-      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-bold text-[#191817] tracking-tight">
-        Genuine medicines, verified for you
-      </h2>
-      <p className="text-sm sm:text-base text-[#6E6962] font-normal leading-relaxed max-w-2xl mx-auto font-sans">
-        Every Rx medicine is dispensed against a verified prescription by our licensed physicians and CDSCO/US-compliant pharmacy partners.
-      </p>
-    </div>
+      <section id="doctors" className="py-20 sm:py-24 lg:py-28 bg-[#FAF7F2] border-b border-[#DDD5C9] relative overflow-hidden w-full max-w-full">
+        {/* Header */}
+        <div className="text-center w-full max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3 px-4">
+          <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.24em] text-[#1E40AF] font-sans block">
+            Licensed Medical Board
+          </span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-bold text-[#191817] tracking-tight">
+            Genuine medicines, verified for you
+          </h2>
+          <p className="text-sm sm:text-base text-[#6E6962] font-normal leading-relaxed max-w-2xl mx-auto font-sans">
+            Every Rx medicine is dispensed against a verified prescription by our licensed physicians and CDSCO/US-compliant pharmacy partners.
+          </p>
+        </div>
 
-    {/* Horizontal Infinite Loop Scroll Marquee Track */}
-    <div className="doctors-marquee-wrap">
-      <div className="doctors-marquee-track">
-        
-        {/* ================= SET 1 (CARDS EXACTLY LIKE SARAH SWIFT IMAGE) ================= */}
-        {/* CARD 1: Sarah Swift (Exact match to reference photo!) */}
-        <div className="sarah-doctor-card group" onClick={() => setIntakeModalOpen(true)}>
-          <img src="/images/doctor-swift.jpg" alt="Sarah Swift" className="sarah-card-bg-photo" />
-          <div className="sarah-card-frosted"></div>
-          <div className="sarah-card-content">
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <h3 className="text-xl sm:text-[22px] font-sans font-bold text-[#191817] tracking-tight">
-                Sarah Swift
-              </h3>
-              <svg className="w-5 h-5 text-[#00875A] flex-shrink-0 inline-block drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor" title="Verified">
-                <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.67-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.33 2.33 4.99-4.99 1.41 1.41-6.4 6.41z"/>
-              </svg>
-            </div>
-            <p className="text-sm text-[#4A4742] leading-snug font-normal font-sans mb-4">
-              Product Designer who focuses on simplicity & usability.
-            </p>
-            <div className="flex items-center justify-between pt-1">
-              <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#4A4742] font-medium font-sans">
-                <span className="inline-flex items-center space-x-1.5">
-                  <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        {/* Horizontal Infinite Loop Scroll Marquee Track */}
+        <div className="doctors-marquee-wrap">
+          <div className="doctors-marquee-track">
+
+            {/* ================= SET 1 (CARDS EXACTLY LIKE SARAH SWIFT IMAGE) ================= */}
+            {/* CARD 1: Sarah Swift (Exact match to reference photo!) */}
+            <div className="sarah-doctor-card group" onClick={() => setIntakeModalOpen(true)}>
+              <img src="/images/doctor-swift.jpg" alt="Sarah Swift" className="sarah-card-bg-photo" />
+              <div className="sarah-card-frosted"></div>
+              <div className="sarah-card-content">
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <h3 className="text-xl sm:text-[22px] font-sans font-bold text-[#191817] tracking-tight">
+                    Sarah Swift
+                  </h3>
+                  <svg className="w-5 h-5 text-[#00875A] flex-shrink-0 inline-block drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor" title="Verified">
+                    <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.67-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.33 2.33 4.99-4.99 1.41 1.41-6.4 6.41z" />
                   </svg>
-                  <span>312</span>
-                </span>
-                <span className="inline-flex items-center space-x-1.5">
-                  <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15l5-5 4 4 5-5 4 4" />
-                  </svg>
-                  <span>48</span>
-                </span>
+                </div>
+                <p className="text-sm text-[#4A4742] leading-snug font-normal font-sans mb-4">
+                  Product Designer who focuses on simplicity & usability.
+                </p>
+                <div className="flex items-center justify-between pt-1">
+                  <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#4A4742] font-medium font-sans">
+                    <span className="inline-flex items-center space-x-1.5">
+                      <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                      <span>312</span>
+                    </span>
+                    <span className="inline-flex items-center space-x-1.5">
+                      <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15l5-5 4 4 5-5 4 4" />
+                      </svg>
+                      <span>48</span>
+                    </span>
+                  </div>
+                  <button onClick={() => setIntakeModalOpen(true)} className="inline-flex items-center space-x-1 bg-white text-[#191817] font-semibold text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.08)] border border-black/[0.04] hover:shadow-md hover:scale-105 active:scale-95 transition-all">
+                    <span>Follow</span>
+                    <span className="text-sm font-bold leading-none">+</span>
+                  </button>
+                </div>
               </div>
-              <button onClick={() => setIntakeModalOpen(true)} className="inline-flex items-center space-x-1 bg-white text-[#191817] font-semibold text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.08)] border border-black/[0.04] hover:shadow-md hover:scale-105 active:scale-95 transition-all">
-                <span>Follow</span>
-                <span className="text-sm font-bold leading-none">+</span>
-              </button>
             </div>
+
+            {/* CARD 2: Dr Lokendra Thakur */}
+            <div className="sarah-doctor-card group" onClick={() => setIntakeModalOpen(true)}>
+              <img src="/images/doctor-thakur.jpg" alt="Dr Lokendra K Thakur" className="sarah-card-bg-photo" />
+              <div className="sarah-card-frosted"></div>
+              <div className="sarah-card-content">
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <h3 className="text-xl sm:text-[22px] font-sans font-bold text-[#191817] tracking-tight">
+                    Lokendra Thakur
+                  </h3>
+                  <svg className="w-5 h-5 text-[#00875A] flex-shrink-0 inline-block drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor" title="Verified">
+                    <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.67-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.33 2.33 4.99-4.99 1.41 1.41-6.4 6.41z" />
+                  </svg>
+                </div>
+                <p className="text-sm text-[#4A4742] leading-snug font-normal font-sans mb-4">
+                  Internal Medicine specialist who focuses on metabolic health & longevity.
+                </p>
+                <div className="flex items-center justify-between pt-1">
+                  <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#4A4742] font-medium font-sans">
+                    <span className="inline-flex items-center space-x-1.5">
+                      <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                      <span>428</span>
+                    </span>
+                    <span className="inline-flex items-center space-x-1.5">
+                      <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15l5-5 4 4 5-5 4 4" />
+                      </svg>
+                      <span>56</span>
+                    </span>
+                  </div>
+                  <button onClick={() => setIntakeModalOpen(true)} className="inline-flex items-center space-x-1 bg-white text-[#191817] font-semibold text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.08)] border border-black/[0.04] hover:shadow-md hover:scale-105 active:scale-95 transition-all">
+                    <span>Follow</span>
+                    <span className="text-sm font-bold leading-none">+</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* CARD 3: DR LENIN REDDY */}
+            <div className="sarah-doctor-card group" onClick={() => setIntakeModalOpen(true)}>
+              <img src="/images/doctor-reddy.jpg" alt="DR LENIN REDDY" className="sarah-card-bg-photo" />
+              <div className="sarah-card-frosted"></div>
+              <div className="sarah-card-content">
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <h3 className="text-xl sm:text-[22px] font-sans font-bold text-[#191817] tracking-tight">
+                    Lenin Reddy
+                  </h3>
+                  <svg className="w-5 h-5 text-[#00875A] flex-shrink-0 inline-block drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor" title="Verified">
+                    <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.67-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.33 2.33 4.99-4.99 1.41 1.41-6.4 6.41z" />
+                  </svg>
+                </div>
+                <p className="text-sm text-[#4A4742] leading-snug font-normal font-sans mb-4">
+                  General Medicine doctor who focuses on preventative care & chronic health.
+                </p>
+                <div className="flex items-center justify-between pt-1">
+                  <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#4A4742] font-medium font-sans">
+                    <span className="inline-flex items-center space-x-1.5">
+                      <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                      <span>384</span>
+                    </span>
+                    <span className="inline-flex items-center space-x-1.5">
+                      <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15l5-5 4 4 5-5 4 4" />
+                      </svg>
+                      <span>62</span>
+                    </span>
+                  </div>
+                  <button onClick={() => setIntakeModalOpen(true)} className="inline-flex items-center space-x-1 bg-white text-[#191817] font-semibold text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.08)] border border-black/[0.04] hover:shadow-md hover:scale-105 active:scale-95 transition-all">
+                    <span>Follow</span>
+                    <span className="text-sm font-bold leading-none">+</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* CARD 4: Dr. K. Raman */}
+            <div className="sarah-doctor-card group" onClick={() => setIntakeModalOpen(true)}>
+              <img src="/images/doctor-raman.jpg" alt="Dr. K. Raman" className="sarah-card-bg-photo" />
+              <div className="sarah-card-frosted"></div>
+              <div className="sarah-card-content">
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <h3 className="text-xl sm:text-[22px] font-sans font-bold text-[#191817] tracking-tight">
+                    K. Raman
+                  </h3>
+                  <svg className="w-5 h-5 text-[#00875A] flex-shrink-0 inline-block drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor" title="Verified">
+                    <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.67-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.33 2.33 4.99-4.99 1.41 1.41-6.4 6.41z" />
+                  </svg>
+                </div>
+                <p className="text-sm text-[#4A4742] leading-snug font-normal font-sans mb-4">
+                  Cardiometabolic specialist who focuses on clinical pharmacology & custom Rx.
+                </p>
+                <div className="flex items-center justify-between pt-1">
+                  <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#4A4742] font-medium font-sans">
+                    <span className="inline-flex items-center space-x-1.5">
+                      <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                      <span>290</span>
+                    </span>
+                    <span className="inline-flex items-center space-x-1.5">
+                      <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15l5-5 4 4 5-5 4 4" />
+                      </svg>
+                      <span>39</span>
+                    </span>
+                  </div>
+                  <button onClick={() => setIntakeModalOpen(true)} className="inline-flex items-center space-x-1 bg-white text-[#191817] font-semibold text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.08)] border border-black/[0.04] hover:shadow-md hover:scale-105 active:scale-95 transition-all">
+                    <span>Follow</span>
+                    <span className="text-sm font-bold leading-none">+</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* CARD 5: Dr. Maya Chen */}
+            <div className="sarah-doctor-card group" onClick={() => setIntakeModalOpen(true)}>
+              <img src="/images/doctor-avatar.jpg" alt="Dr. Maya Chen" className="sarah-card-bg-photo" />
+              <div className="sarah-card-frosted"></div>
+              <div className="sarah-card-content">
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <h3 className="text-xl sm:text-[22px] font-sans font-bold text-[#191817] tracking-tight">
+                    Maya Chen
+                  </h3>
+                  <svg className="w-5 h-5 text-[#00875A] flex-shrink-0 inline-block drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor" title="Verified">
+                    <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.67-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.33 2.33 4.99-4.99 1.41 1.41-6.4 6.41z" />
+                  </svg>
+                </div>
+                <p className="text-sm text-[#4A4742] leading-snug font-normal font-sans mb-4">
+                  Endocrinology physician who focuses on sustainable metabolic wellness.
+                </p>
+                <div className="flex items-center justify-between pt-1">
+                  <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#4A4742] font-medium font-sans">
+                    <span className="inline-flex items-center space-x-1.5">
+                      <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                      <span>512</span>
+                    </span>
+                    <span className="inline-flex items-center space-x-1.5">
+                      <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15l5-5 4 4 5-5 4 4" />
+                      </svg>
+                      <span>74</span>
+                    </span>
+                  </div>
+                  <button onClick={() => setIntakeModalOpen(true)} className="inline-flex items-center space-x-1 bg-white text-[#191817] font-semibold text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.08)] border border-black/[0.04] hover:shadow-md hover:scale-105 active:scale-95 transition-all">
+                    <span>Follow</span>
+                    <span className="text-sm font-bold leading-none">+</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+
+            {/* ================= SET 2 (DUPLICATE FOR SEAMLESS CONTINUOUS LOOP) ================= */}
+            {/* CARD 1 (DUPLICATE) */}
+            <div className="sarah-doctor-card group" onClick={() => setIntakeModalOpen(true)}>
+              <img src="/images/doctor-swift.jpg" alt="Sarah Swift" className="sarah-card-bg-photo" />
+              <div className="sarah-card-frosted"></div>
+              <div className="sarah-card-content">
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <h3 className="text-xl sm:text-[22px] font-sans font-bold text-[#191817] tracking-tight">
+                    Sarah Swift
+                  </h3>
+                  <svg className="w-5 h-5 text-[#00875A] flex-shrink-0 inline-block drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor" title="Verified">
+                    <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.67-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.33 2.33 4.99-4.99 1.41 1.41-6.4 6.41z" />
+                  </svg>
+                </div>
+                <p className="text-sm text-[#4A4742] leading-snug font-normal font-sans mb-4">
+                  Product Designer who focuses on simplicity & usability.
+                </p>
+                <div className="flex items-center justify-between pt-1">
+                  <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#4A4742] font-medium font-sans">
+                    <span className="inline-flex items-center space-x-1.5">
+                      <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                      <span>312</span>
+                    </span>
+                    <span className="inline-flex items-center space-x-1.5">
+                      <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15l5-5 4 4 5-5 4 4" />
+                      </svg>
+                      <span>48</span>
+                    </span>
+                  </div>
+                  <button onClick={() => setIntakeModalOpen(true)} className="inline-flex items-center space-x-1 bg-white text-[#191817] font-semibold text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.08)] border border-black/[0.04] hover:shadow-md hover:scale-105 active:scale-95 transition-all">
+                    <span>Follow</span>
+                    <span className="text-sm font-bold leading-none">+</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* CARD 2 (DUPLICATE) */}
+            <div className="sarah-doctor-card group" onClick={() => setIntakeModalOpen(true)}>
+              <img src="/images/doctor-thakur.jpg" alt="Dr Lokendra K Thakur" className="sarah-card-bg-photo" />
+              <div className="sarah-card-frosted"></div>
+              <div className="sarah-card-content">
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <h3 className="text-xl sm:text-[22px] font-sans font-bold text-[#191817] tracking-tight">
+                    Lokendra Thakur
+                  </h3>
+                  <svg className="w-5 h-5 text-[#00875A] flex-shrink-0 inline-block drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor" title="Verified">
+                    <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.67-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.33 2.33 4.99-4.99 1.41 1.41-6.4 6.41z" />
+                  </svg>
+                </div>
+                <p className="text-sm text-[#4A4742] leading-snug font-normal font-sans mb-4">
+                  Internal Medicine specialist who focuses on metabolic health & longevity.
+                </p>
+                <div className="flex items-center justify-between pt-1">
+                  <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#4A4742] font-medium font-sans">
+                    <span className="inline-flex items-center space-x-1.5">
+                      <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                      <span>428</span>
+                    </span>
+                    <span className="inline-flex items-center space-x-1.5">
+                      <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15l5-5 4 4 5-5 4 4" />
+                      </svg>
+                      <span>56</span>
+                    </span>
+                  </div>
+                  <button onClick={() => setIntakeModalOpen(true)} className="inline-flex items-center space-x-1 bg-white text-[#191817] font-semibold text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.08)] border border-black/[0.04] hover:shadow-md hover:scale-105 active:scale-95 transition-all">
+                    <span>Follow</span>
+                    <span className="text-sm font-bold leading-none">+</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* CARD 3 (DUPLICATE) */}
+            <div className="sarah-doctor-card group" onClick={() => setIntakeModalOpen(true)}>
+              <img src="/images/doctor-reddy.jpg" alt="DR LENIN REDDY" className="sarah-card-bg-photo" />
+              <div className="sarah-card-frosted"></div>
+              <div className="sarah-card-content">
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <h3 className="text-xl sm:text-[22px] font-sans font-bold text-[#191817] tracking-tight">
+                    Lenin Reddy
+                  </h3>
+                  <svg className="w-5 h-5 text-[#00875A] flex-shrink-0 inline-block drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor" title="Verified">
+                    <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.67-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.33 2.33 4.99-4.99 1.41 1.41-6.4 6.41z" />
+                  </svg>
+                </div>
+                <p className="text-sm text-[#4A4742] leading-snug font-normal font-sans mb-4">
+                  General Medicine doctor who focuses on preventative care & chronic health.
+                </p>
+                <div className="flex items-center justify-between pt-1">
+                  <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#4A4742] font-medium font-sans">
+                    <span className="inline-flex items-center space-x-1.5">
+                      <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                      <span>384</span>
+                    </span>
+                    <span className="inline-flex items-center space-x-1.5">
+                      <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15l5-5 4 4 5-5 4 4" />
+                      </svg>
+                      <span>62</span>
+                    </span>
+                  </div>
+                  <button onClick={() => setIntakeModalOpen(true)} className="inline-flex items-center space-x-1 bg-white text-[#191817] font-semibold text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.08)] border border-black/[0.04] hover:shadow-md hover:scale-105 active:scale-95 transition-all">
+                    <span>Follow</span>
+                    <span className="text-sm font-bold leading-none">+</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* CARD 4 (DUPLICATE) */}
+            <div className="sarah-doctor-card group" onClick={() => setIntakeModalOpen(true)}>
+              <img src="/images/doctor-raman.jpg" alt="Dr. K. Raman" className="sarah-card-bg-photo" />
+              <div className="sarah-card-frosted"></div>
+              <div className="sarah-card-content">
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <h3 className="text-xl sm:text-[22px] font-sans font-bold text-[#191817] tracking-tight">
+                    K. Raman
+                  </h3>
+                  <svg className="w-5 h-5 text-[#00875A] flex-shrink-0 inline-block drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor" title="Verified">
+                    <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.67-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.33 2.33 4.99-4.99 1.41 1.41-6.4 6.41z" />
+                  </svg>
+                </div>
+                <p className="text-sm text-[#4A4742] leading-snug font-normal font-sans mb-4">
+                  Cardiometabolic specialist who focuses on clinical pharmacology & custom Rx.
+                </p>
+                <div className="flex items-center justify-between pt-1">
+                  <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#4A4742] font-medium font-sans">
+                    <span className="inline-flex items-center space-x-1.5">
+                      <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                      <span>290</span>
+                    </span>
+                    <span className="inline-flex items-center space-x-1.5">
+                      <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15l5-5 4 4 5-5 4 4" />
+                      </svg>
+                      <span>39</span>
+                    </span>
+                  </div>
+                  <button onClick={() => setIntakeModalOpen(true)} className="inline-flex items-center space-x-1 bg-white text-[#191817] font-semibold text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.08)] border border-black/[0.04] hover:shadow-md hover:scale-105 active:scale-95 transition-all">
+                    <span>Follow</span>
+                    <span className="text-sm font-bold leading-none">+</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* CARD 5 (DUPLICATE) */}
+            <div className="sarah-doctor-card group" onClick={() => setIntakeModalOpen(true)}>
+              <img src="/images/doctor-avatar.jpg" alt="Dr. Maya Chen" className="sarah-card-bg-photo" />
+              <div className="sarah-card-frosted"></div>
+              <div className="sarah-card-content">
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <h3 className="text-xl sm:text-[22px] font-sans font-bold text-[#191817] tracking-tight">
+                    Maya Chen
+                  </h3>
+                  <svg className="w-5 h-5 text-[#00875A] flex-shrink-0 inline-block drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor" title="Verified">
+                    <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.67-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.33 2.33 4.99-4.99 1.41 1.41-6.4 6.41z" />
+                  </svg>
+                </div>
+                <p className="text-sm text-[#4A4742] leading-snug font-normal font-sans mb-4">
+                  Endocrinology physician who focuses on sustainable metabolic wellness.
+                </p>
+                <div className="flex items-center justify-between pt-1">
+                  <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#4A4742] font-medium font-sans">
+                    <span className="inline-flex items-center space-x-1.5">
+                      <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                      <span>512</span>
+                    </span>
+                    <span className="inline-flex items-center space-x-1.5">
+                      <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15l5-5 4 4 5-5 4 4" />
+                      </svg>
+                      <span>74</span>
+                    </span>
+                  </div>
+                  <button onClick={() => setIntakeModalOpen(true)} className="inline-flex items-center space-x-1 bg-white text-[#191817] font-semibold text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.08)] border border-black/[0.04] hover:shadow-md hover:scale-105 active:scale-95 transition-all">
+                    <span>Follow</span>
+                    <span className="text-sm font-bold leading-none">+</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
-        {/* CARD 2: Dr Lokendra Thakur */}
-        <div className="sarah-doctor-card group" onClick={() => setIntakeModalOpen(true)}>
-          <img src="/images/doctor-thakur.jpg" alt="Dr Lokendra K Thakur" className="sarah-card-bg-photo" />
-          <div className="sarah-card-frosted"></div>
-          <div className="sarah-card-content">
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <h3 className="text-xl sm:text-[22px] font-sans font-bold text-[#191817] tracking-tight">
-                Lokendra Thakur
-              </h3>
-              <svg className="w-5 h-5 text-[#00875A] flex-shrink-0 inline-block drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor" title="Verified">
-                <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.67-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.33 2.33 4.99-4.99 1.41 1.41-6.4 6.41z"/>
-              </svg>
-            </div>
-            <p className="text-sm text-[#4A4742] leading-snug font-normal font-sans mb-4">
-              Internal Medicine specialist who focuses on metabolic health & longevity.
-            </p>
-            <div className="flex items-center justify-between pt-1">
-              <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#4A4742] font-medium font-sans">
-                <span className="inline-flex items-center space-x-1.5">
-                  <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                  <span>428</span>
-                </span>
-                <span className="inline-flex items-center space-x-1.5">
-                  <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15l5-5 4 4 5-5 4 4" />
-                  </svg>
-                  <span>56</span>
-                </span>
-              </div>
-              <button onClick={() => setIntakeModalOpen(true)} className="inline-flex items-center space-x-1 bg-white text-[#191817] font-semibold text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.08)] border border-black/[0.04] hover:shadow-md hover:scale-105 active:scale-95 transition-all">
-                <span>Follow</span>
-                <span className="text-sm font-bold leading-none">+</span>
-              </button>
-            </div>
+        {/* Pharmacy Partners Compliance Badges */}
+        <div className="mt-12 pt-8 border-t border-[#DDD5C9]/70 flex flex-wrap items-center justify-between gap-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 xl:px-16">
+          <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#6E6962] font-sans">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            <span>100% CDSCO & State Board Verified • LegitScript Certified • US FDA-Inspected Compounding</span>
+          </div>
+          <div className="flex items-center space-x-2 text-xs font-semibold text-[#1E40AF] font-sans">
+            <span className="px-3.5 py-1.5 bg-white rounded-full border border-[#DDD5C9] shadow-sm">Verified Rx Dispensing</span>
+            <span className="px-3.5 py-1.5 bg-white rounded-full border border-[#DDD5C9] shadow-sm">Licensed Doctors in 50 States</span>
           </div>
         </div>
-
-        {/* CARD 3: DR LENIN REDDY */}
-        <div className="sarah-doctor-card group" onClick={() => setIntakeModalOpen(true)}>
-          <img src="/images/doctor-reddy.jpg" alt="DR LENIN REDDY" className="sarah-card-bg-photo" />
-          <div className="sarah-card-frosted"></div>
-          <div className="sarah-card-content">
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <h3 className="text-xl sm:text-[22px] font-sans font-bold text-[#191817] tracking-tight">
-                Lenin Reddy
-              </h3>
-              <svg className="w-5 h-5 text-[#00875A] flex-shrink-0 inline-block drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor" title="Verified">
-                <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.67-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.33 2.33 4.99-4.99 1.41 1.41-6.4 6.41z"/>
-              </svg>
-            </div>
-            <p className="text-sm text-[#4A4742] leading-snug font-normal font-sans mb-4">
-              General Medicine doctor who focuses on preventative care & chronic health.
-            </p>
-            <div className="flex items-center justify-between pt-1">
-              <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#4A4742] font-medium font-sans">
-                <span className="inline-flex items-center space-x-1.5">
-                  <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                  <span>384</span>
-                </span>
-                <span className="inline-flex items-center space-x-1.5">
-                  <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15l5-5 4 4 5-5 4 4" />
-                  </svg>
-                  <span>62</span>
-                </span>
-              </div>
-              <button onClick={() => setIntakeModalOpen(true)} className="inline-flex items-center space-x-1 bg-white text-[#191817] font-semibold text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.08)] border border-black/[0.04] hover:shadow-md hover:scale-105 active:scale-95 transition-all">
-                <span>Follow</span>
-                <span className="text-sm font-bold leading-none">+</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* CARD 4: Dr. K. Raman */}
-        <div className="sarah-doctor-card group" onClick={() => setIntakeModalOpen(true)}>
-          <img src="/images/doctor-raman.jpg" alt="Dr. K. Raman" className="sarah-card-bg-photo" />
-          <div className="sarah-card-frosted"></div>
-          <div className="sarah-card-content">
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <h3 className="text-xl sm:text-[22px] font-sans font-bold text-[#191817] tracking-tight">
-                K. Raman
-              </h3>
-              <svg className="w-5 h-5 text-[#00875A] flex-shrink-0 inline-block drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor" title="Verified">
-                <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.67-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.33 2.33 4.99-4.99 1.41 1.41-6.4 6.41z"/>
-              </svg>
-            </div>
-            <p className="text-sm text-[#4A4742] leading-snug font-normal font-sans mb-4">
-              Cardiometabolic specialist who focuses on clinical pharmacology & custom Rx.
-            </p>
-            <div className="flex items-center justify-between pt-1">
-              <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#4A4742] font-medium font-sans">
-                <span className="inline-flex items-center space-x-1.5">
-                  <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                  <span>290</span>
-                </span>
-                <span className="inline-flex items-center space-x-1.5">
-                  <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15l5-5 4 4 5-5 4 4" />
-                  </svg>
-                  <span>39</span>
-                </span>
-              </div>
-              <button onClick={() => setIntakeModalOpen(true)} className="inline-flex items-center space-x-1 bg-white text-[#191817] font-semibold text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.08)] border border-black/[0.04] hover:shadow-md hover:scale-105 active:scale-95 transition-all">
-                <span>Follow</span>
-                <span className="text-sm font-bold leading-none">+</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* CARD 5: Dr. Maya Chen */}
-        <div className="sarah-doctor-card group" onClick={() => setIntakeModalOpen(true)}>
-          <img src="/images/doctor-avatar.jpg" alt="Dr. Maya Chen" className="sarah-card-bg-photo" />
-          <div className="sarah-card-frosted"></div>
-          <div className="sarah-card-content">
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <h3 className="text-xl sm:text-[22px] font-sans font-bold text-[#191817] tracking-tight">
-                Maya Chen
-              </h3>
-              <svg className="w-5 h-5 text-[#00875A] flex-shrink-0 inline-block drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor" title="Verified">
-                <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.67-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.33 2.33 4.99-4.99 1.41 1.41-6.4 6.41z"/>
-              </svg>
-            </div>
-            <p className="text-sm text-[#4A4742] leading-snug font-normal font-sans mb-4">
-              Endocrinology physician who focuses on sustainable metabolic wellness.
-            </p>
-            <div className="flex items-center justify-between pt-1">
-              <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#4A4742] font-medium font-sans">
-                <span className="inline-flex items-center space-x-1.5">
-                  <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                  <span>512</span>
-                </span>
-                <span className="inline-flex items-center space-x-1.5">
-                  <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15l5-5 4 4 5-5 4 4" />
-                  </svg>
-                  <span>74</span>
-                </span>
-              </div>
-              <button onClick={() => setIntakeModalOpen(true)} className="inline-flex items-center space-x-1 bg-white text-[#191817] font-semibold text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.08)] border border-black/[0.04] hover:shadow-md hover:scale-105 active:scale-95 transition-all">
-                <span>Follow</span>
-                <span className="text-sm font-bold leading-none">+</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-
-        {/* ================= SET 2 (DUPLICATE FOR SEAMLESS CONTINUOUS LOOP) ================= */}
-        {/* CARD 1 (DUPLICATE) */}
-        <div className="sarah-doctor-card group" onClick={() => setIntakeModalOpen(true)}>
-          <img src="/images/doctor-swift.jpg" alt="Sarah Swift" className="sarah-card-bg-photo" />
-          <div className="sarah-card-frosted"></div>
-          <div className="sarah-card-content">
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <h3 className="text-xl sm:text-[22px] font-sans font-bold text-[#191817] tracking-tight">
-                Sarah Swift
-              </h3>
-              <svg className="w-5 h-5 text-[#00875A] flex-shrink-0 inline-block drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor" title="Verified">
-                <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.67-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.33 2.33 4.99-4.99 1.41 1.41-6.4 6.41z"/>
-              </svg>
-            </div>
-            <p className="text-sm text-[#4A4742] leading-snug font-normal font-sans mb-4">
-              Product Designer who focuses on simplicity & usability.
-            </p>
-            <div className="flex items-center justify-between pt-1">
-              <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#4A4742] font-medium font-sans">
-                <span className="inline-flex items-center space-x-1.5">
-                  <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                  <span>312</span>
-                </span>
-                <span className="inline-flex items-center space-x-1.5">
-                  <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15l5-5 4 4 5-5 4 4" />
-                  </svg>
-                  <span>48</span>
-                </span>
-              </div>
-              <button onClick={() => setIntakeModalOpen(true)} className="inline-flex items-center space-x-1 bg-white text-[#191817] font-semibold text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.08)] border border-black/[0.04] hover:shadow-md hover:scale-105 active:scale-95 transition-all">
-                <span>Follow</span>
-                <span className="text-sm font-bold leading-none">+</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* CARD 2 (DUPLICATE) */}
-        <div className="sarah-doctor-card group" onClick={() => setIntakeModalOpen(true)}>
-          <img src="/images/doctor-thakur.jpg" alt="Dr Lokendra K Thakur" className="sarah-card-bg-photo" />
-          <div className="sarah-card-frosted"></div>
-          <div className="sarah-card-content">
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <h3 className="text-xl sm:text-[22px] font-sans font-bold text-[#191817] tracking-tight">
-                Lokendra Thakur
-              </h3>
-              <svg className="w-5 h-5 text-[#00875A] flex-shrink-0 inline-block drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor" title="Verified">
-                <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.67-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.33 2.33 4.99-4.99 1.41 1.41-6.4 6.41z"/>
-              </svg>
-            </div>
-            <p className="text-sm text-[#4A4742] leading-snug font-normal font-sans mb-4">
-              Internal Medicine specialist who focuses on metabolic health & longevity.
-            </p>
-            <div className="flex items-center justify-between pt-1">
-              <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#4A4742] font-medium font-sans">
-                <span className="inline-flex items-center space-x-1.5">
-                  <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                  <span>428</span>
-                </span>
-                <span className="inline-flex items-center space-x-1.5">
-                  <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15l5-5 4 4 5-5 4 4" />
-                  </svg>
-                  <span>56</span>
-                </span>
-              </div>
-              <button onClick={() => setIntakeModalOpen(true)} className="inline-flex items-center space-x-1 bg-white text-[#191817] font-semibold text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.08)] border border-black/[0.04] hover:shadow-md hover:scale-105 active:scale-95 transition-all">
-                <span>Follow</span>
-                <span className="text-sm font-bold leading-none">+</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* CARD 3 (DUPLICATE) */}
-        <div className="sarah-doctor-card group" onClick={() => setIntakeModalOpen(true)}>
-          <img src="/images/doctor-reddy.jpg" alt="DR LENIN REDDY" className="sarah-card-bg-photo" />
-          <div className="sarah-card-frosted"></div>
-          <div className="sarah-card-content">
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <h3 className="text-xl sm:text-[22px] font-sans font-bold text-[#191817] tracking-tight">
-                Lenin Reddy
-              </h3>
-              <svg className="w-5 h-5 text-[#00875A] flex-shrink-0 inline-block drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor" title="Verified">
-                <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.67-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.33 2.33 4.99-4.99 1.41 1.41-6.4 6.41z"/>
-              </svg>
-            </div>
-            <p className="text-sm text-[#4A4742] leading-snug font-normal font-sans mb-4">
-              General Medicine doctor who focuses on preventative care & chronic health.
-            </p>
-            <div className="flex items-center justify-between pt-1">
-              <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#4A4742] font-medium font-sans">
-                <span className="inline-flex items-center space-x-1.5">
-                  <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                  <span>384</span>
-                </span>
-                <span className="inline-flex items-center space-x-1.5">
-                  <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15l5-5 4 4 5-5 4 4" />
-                  </svg>
-                  <span>62</span>
-                </span>
-              </div>
-              <button onClick={() => setIntakeModalOpen(true)} className="inline-flex items-center space-x-1 bg-white text-[#191817] font-semibold text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.08)] border border-black/[0.04] hover:shadow-md hover:scale-105 active:scale-95 transition-all">
-                <span>Follow</span>
-                <span className="text-sm font-bold leading-none">+</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* CARD 4 (DUPLICATE) */}
-        <div className="sarah-doctor-card group" onClick={() => setIntakeModalOpen(true)}>
-          <img src="/images/doctor-raman.jpg" alt="Dr. K. Raman" className="sarah-card-bg-photo" />
-          <div className="sarah-card-frosted"></div>
-          <div className="sarah-card-content">
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <h3 className="text-xl sm:text-[22px] font-sans font-bold text-[#191817] tracking-tight">
-                K. Raman
-              </h3>
-              <svg className="w-5 h-5 text-[#00875A] flex-shrink-0 inline-block drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor" title="Verified">
-                <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.67-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.33 2.33 4.99-4.99 1.41 1.41-6.4 6.41z"/>
-              </svg>
-            </div>
-            <p className="text-sm text-[#4A4742] leading-snug font-normal font-sans mb-4">
-              Cardiometabolic specialist who focuses on clinical pharmacology & custom Rx.
-            </p>
-            <div className="flex items-center justify-between pt-1">
-              <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#4A4742] font-medium font-sans">
-                <span className="inline-flex items-center space-x-1.5">
-                  <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                  <span>290</span>
-                </span>
-                <span className="inline-flex items-center space-x-1.5">
-                  <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15l5-5 4 4 5-5 4 4" />
-                  </svg>
-                  <span>39</span>
-                </span>
-              </div>
-              <button onClick={() => setIntakeModalOpen(true)} className="inline-flex items-center space-x-1 bg-white text-[#191817] font-semibold text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.08)] border border-black/[0.04] hover:shadow-md hover:scale-105 active:scale-95 transition-all">
-                <span>Follow</span>
-                <span className="text-sm font-bold leading-none">+</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* CARD 5 (DUPLICATE) */}
-        <div className="sarah-doctor-card group" onClick={() => setIntakeModalOpen(true)}>
-          <img src="/images/doctor-avatar.jpg" alt="Dr. Maya Chen" className="sarah-card-bg-photo" />
-          <div className="sarah-card-frosted"></div>
-          <div className="sarah-card-content">
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <h3 className="text-xl sm:text-[22px] font-sans font-bold text-[#191817] tracking-tight">
-                Maya Chen
-              </h3>
-              <svg className="w-5 h-5 text-[#00875A] flex-shrink-0 inline-block drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor" title="Verified">
-                <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.67-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.33 2.33 4.99-4.99 1.41 1.41-6.4 6.41z"/>
-              </svg>
-            </div>
-            <p className="text-sm text-[#4A4742] leading-snug font-normal font-sans mb-4">
-              Endocrinology physician who focuses on sustainable metabolic wellness.
-            </p>
-            <div className="flex items-center justify-between pt-1">
-              <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#4A4742] font-medium font-sans">
-                <span className="inline-flex items-center space-x-1.5">
-                  <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                  <span>512</span>
-                </span>
-                <span className="inline-flex items-center space-x-1.5">
-                  <svg className="w-4 h-4 text-[#7A756E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15l5-5 4 4 5-5 4 4" />
-                  </svg>
-                  <span>74</span>
-                </span>
-              </div>
-              <button onClick={() => setIntakeModalOpen(true)} className="inline-flex items-center space-x-1 bg-white text-[#191817] font-semibold text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.08)] border border-black/[0.04] hover:shadow-md hover:scale-105 active:scale-95 transition-all">
-                <span>Follow</span>
-                <span className="text-sm font-bold leading-none">+</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    {/* Pharmacy Partners Compliance Badges */}
-    <div className="mt-12 pt-8 border-t border-[#DDD5C9]/70 flex flex-wrap items-center justify-between gap-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 xl:px-16">
-      <div className="flex items-center space-x-3 text-xs sm:text-sm text-[#6E6962] font-sans">
-        <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-        <span>100% CDSCO & State Board Verified • LegitScript Certified • US FDA-Inspected Compounding</span>
-      </div>
-      <div className="flex items-center space-x-2 text-xs font-semibold text-[#1E40AF] font-sans">
-        <span className="px-3.5 py-1.5 bg-white rounded-full border border-[#DDD5C9] shadow-sm">Verified Rx Dispensing</span>
-        <span className="px-3.5 py-1.5 bg-white rounded-full border border-[#DDD5C9] shadow-sm">Licensed Doctors in 50 States</span>
-      </div>
-    </div>
-  </section>
+      </section>
 
       {/* SECTION 11: PATIENT REVIEWS */}
       <section id="reviews" className="py-20 sm:py-24 lg:py-28 bg-white border-b border-[#DDD5C9]">
@@ -2529,10 +2562,10 @@ export default function HomePage() {
       {/* FOOTER (Navy Royal Theme — Exactly as Reference Screenshot) */}
       <footer className="bg-[#0F1B38] text-white pt-16 sm:pt-20 lg:pt-24 pb-4 sm:pb-8 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-          
+
           {/* Main Top Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
-            
+
             {/* Left Brand & Info Column (Span 6) */}
             <div className="lg:col-span-6 space-y-7">
               <div>
@@ -2556,17 +2589,17 @@ export default function HomePage() {
                   <div className="flex items-center space-x-3">
                     <a href="#" aria-label="Instagram" className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:border-white/50 hover:bg-white/5 transition-all">
                       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                       </svg>
                     </a>
                     <a href="#" aria-label="YouTube" className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:border-white/50 hover:bg-white/5 transition-all">
                       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                       </svg>
                     </a>
                     <a href="#" aria-label="X (Twitter)" className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:border-white/50 hover:bg-white/5 transition-all">
                       <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                       </svg>
                     </a>
                   </div>
@@ -2578,7 +2611,7 @@ export default function HomePage() {
                   <div className="flex items-center space-x-3">
                     <a href="#" className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-xl border border-white/20 bg-transparent hover:bg-white/5 transition-all text-left">
                       <svg className="w-5 h-5 text-white flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.47c.61-.75 1.04-1.8 0.92-2.85-.92.04-2.06.62-2.73 1.4-.57.66-.99 1.73-.86 2.76 1.03.08 2.06-.56 2.67-1.31z"/>
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.47c.61-.75 1.04-1.8 0.92-2.85-.92.04-2.06.62-2.73 1.4-.57.66-.99 1.73-.86 2.76 1.03.08 2.06-.56 2.67-1.31z" />
                       </svg>
                       <div className="leading-none">
                         <span className="text-[9px] text-slate-400 block tracking-tight font-sans">Download on the</span>
@@ -2587,10 +2620,10 @@ export default function HomePage() {
                     </a>
                     <a href="#" className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-xl border border-white/20 bg-transparent hover:bg-white/5 transition-all text-left">
                       <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24">
-                        <path fill="#4285F4" d="M3.6 1.5c-.2.2-.4.6-.4 1v19c0 .4.2.8.4 1l10.9-10.5L3.6 1.5z"/>
-                        <path fill="#FBBC05" d="M17.8 8.6L14.5 12l3.3 3.4 3.9-2.2c1.1-.6 1.1-1.7 0-2.3l-3.9-2.3z"/>
-                        <path fill="#EA4335" d="M3.6 22.5l10.9-10.5 3.3 3.4-11.7 6.6c-.9.5-1.9.5-2.5.5z"/>
-                        <path fill="#34A853" d="M3.6 1.5l14.2 8-3.3 3.4-10.9-10.5c.6-.6 1.6-.4 2.5.1z"/>
+                        <path fill="#4285F4" d="M3.6 1.5c-.2.2-.4.6-.4 1v19c0 .4.2.8.4 1l10.9-10.5L3.6 1.5z" />
+                        <path fill="#FBBC05" d="M17.8 8.6L14.5 12l3.3 3.4 3.9-2.2c1.1-.6 1.1-1.7 0-2.3l-3.9-2.3z" />
+                        <path fill="#EA4335" d="M3.6 22.5l10.9-10.5 3.3 3.4-11.7 6.6c-.9.5-1.9.5-2.5.5z" />
+                        <path fill="#34A853" d="M3.6 1.5l14.2 8-3.3 3.4-10.9-10.5c.6-.6 1.6-.4 2.5.1z" />
                       </svg>
                       <div className="leading-none">
                         <span className="text-[9px] text-slate-400 block tracking-tight font-sans">Get it on</span>
@@ -2655,10 +2688,10 @@ export default function HomePage() {
 
           {/* Giant Brand Watermark at Bottom */}
           <div className="w-full mt-6 sm:mt-8 pt-2 overflow-hidden pointer-events-none select-none flex justify-center">
-            <img 
-              src="/images/footer_watermark_clean.png" 
-              alt="AIRO eMed" 
-              className="w-full max-w-5xl h-auto opacity-75 object-contain" 
+            <img
+              src="/images/footer_watermark_clean.png"
+              alt="AIRO eMed"
+              className="w-full max-w-5xl h-auto opacity-75 object-contain"
             />
           </div>
 

@@ -1788,8 +1788,8 @@ body {
   font-size: 0.75rem;
   font-weight: 700;
   color: #54504C;
-  background: transparent;
-  border: 1px solid transparent;
+  background: #FFFFFF;
+  border: 1px solid #DDD5C9;
   white-space: nowrap;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -1797,13 +1797,47 @@ body {
 
 .catalog-filter-pill:hover {
   color: #191817;
-  background: rgba(0, 0, 0, 0.04);
+  border-color: #191817;
+  background: #FAF7F2;
 }
 
 .catalog-filter-pill.active {
-  background: #191817 !important;
+  background: #0F1B38 !important;
   color: #FFFFFF !important;
-  box-shadow: 0 2px 8px rgba(25, 24, 23, 0.18);
+  border-color: #0F1B38 !important;
+  box-shadow: 0 2px 8px rgba(15, 27, 56, 0.2);
+}
+
+.catalog-aud-btn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #78726A;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.catalog-aud-btn:hover {
+  color: #191817;
+}
+
+.catalog-aud-btn.active {
+  background: #0F1B38 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(15, 27, 56, 0.25);
+}
+
+.product-treatment-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-treatment-card:hover .treatment-image-box {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.08);
 }
 
 /* ==========================================================================
