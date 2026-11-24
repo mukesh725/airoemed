@@ -2151,3 +2151,168 @@ body {
   opacity: 0;
   animation: wordFadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* ==========================================================================
+   CONCERNS DIRECTORY & SIENNA BROOKS STYLE CARD SYSTEM
+   ========================================================================== */
+.concern-hero-card {
+  background-color: #FAF8F5;
+  border-radius: 2rem;
+  border: 1px solid #EBE5DC;
+  overflow: hidden;
+  box-shadow: 0 4px 20px -2px rgba(25, 24, 23, 0.04);
+}
+
+.concern-category-pill {
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #615C56;
+  background-color: #FAF8F5;
+  border: 1px solid #DDD5C9;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.concern-category-pill:hover {
+  color: #191817;
+  border-color: #191817;
+  background-color: #FFFFFF;
+}
+
+.concern-category-pill.active {
+  background-color: #191817 !important;
+  color: #FFFFFF !important;
+  border-color: #191817 !important;
+  box-shadow: 0 2px 8px rgba(25, 24, 23, 0.18);
+}
+
+/* Sienna Brooks Reference Card Structure */
+.concern-card {
+  background-color: #FFFFFF;
+  border-radius: 2rem;
+  border: 1px solid #EBE6DF;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 18px -2px rgba(25, 24, 23, 0.05);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+}
+
+.concern-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px -8px rgba(25, 24, 23, 0.12);
+  border-color: #DDD5C9;
+}
+
+.concern-card-inner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.concern-inner-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 0.875rem;
+}
+
+.concern-card-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #191817;
+  line-height: 1.25;
+  margin-bottom: 0.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.concern-card-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #615C56;
+}
+
+.concern-inner-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background-color: #F5F2EB;
+  margin-bottom: 1rem;
+}
+
+.concern-inner-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.concern-card:hover .concern-inner-photo img {
+  transform: scale(1.04);
+}
+
+.concern-inner-badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: #191817;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(221, 213, 201, 0.6);
+}
+
+.concern-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+}
+
+.concern-clinician-info {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.concern-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background-color: #191817;
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.5rem 0.875rem;
+  border-radius: 9999px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.concern-card:hover .concern-pill-btn {
+  background-color: #000000;
+  box-shadow: 0 4px 12px rgba(25, 24, 23, 0.25);
+  transform: scale(1.02);
+}

@@ -30,32 +30,37 @@ interface StepConfig {
 }
 
 const HAIR_CONCERNS_MEN: PhotoCardItem[] = [
-  { id: 'male-pattern-hair-loss', title: 'Male pattern hair loss', image: '/images/intake/concern-male-pattern-hair-loss.jpg' },
-  { id: 'receding-hairline', title: 'Receding Hairline', image: '/images/intake/concern-receding-hairline.jpg' },
-  { id: 'thinning-hair', title: 'Thinning Hair', image: '/images/intake/concern-thinning-hair.jpg' },
-  { id: 'crown-hair-loss', title: 'Crown Hair Loss', image: '/images/intake/concern-crown-hair-loss.jpg' },
-  { id: 'bald-spots', title: 'Bald Spots', image: '/images/intake/concern-bald-spots.jpg' },
-  { id: 'hair-shedding', title: 'Hair Shedding', image: '/images/intake/concern-hair-shedding.jpg' },
-  { id: 'stress-related-hair-loss', title: 'Stress-Related Hair Loss', image: '/images/intake/concern-stress-related-hair-loss.jpg' },
-  { id: 'patchy-hair-loss', title: 'Patchy Hair Loss', image: '/images/intake/concern-patchy-hair-loss.jpg' },
-  { id: 'weak-damaged-hair', title: 'Weak or Damaged Hair', image: '/images/intake/concern-weak-damaged-hair.jpg' },
-  { id: 'prevent-hair-loss', title: 'Prevent Hair Loss', image: '/images/intake/concern-prevent-hair-loss.jpg' },
-  { id: 'hair-growth', title: 'Hair Growth', image: '/images/intake/concern-hair-growth.jpg' },
+  { id: 'male-pattern-hair-loss', title: 'Male pattern hair loss', image: '/images/concerns/hims/male-pattern-hair-loss.png' },
+  { id: 'receding-hairline', title: 'Receding Hairline', image: '/images/concerns/hims/receding-hairline.png' },
+  { id: 'deep-receding-hairline', title: 'Deep Receding Hairline', image: '/images/concerns/hims/deep-receding-hairline.png' },
+  { id: 'thinning-hair', title: 'Thinning Hair', image: '/images/concerns/hims/thinning-hair.png' },
+  { id: 'crown-hair-loss', title: 'Crown Hair Loss', image: '/images/concerns/hims/crown-hair-loss.png' },
+  { id: 'crown-balding', title: 'Crown Balding Spot', image: '/images/concerns/hims/crown-balding.png' },
+  { id: 'patchy-hair-loss', title: 'Patchy Hair Loss', image: '/images/concerns/hims/patchy-hair-loss.png' },
+  { id: 'hair-shedding', title: 'Excessive Hair Shedding', image: '/images/concerns/hims/hair-shedding.png' },
+  { id: 'weak-damaged-hair', title: 'Weak or Damaged Hair', image: '/images/concerns/hims/weak-damaged-hair.png' },
+  { id: 'prevent-hair-loss', title: 'Prevent Hair Loss', image: '/images/concerns/hims/prevent-hair-loss.png' },
   { id: 'not-sure', title: 'Not Sure', image: '/images/intake/concern-not-sure.jpg' }
 ];
 
 const HAIR_CONCERNS_WOMEN: PhotoCardItem[] = [
-  { id: 'female-pattern-thinning', title: 'Female Pattern Thinning', image: '/images/intake/concern-thinning-hair.jpg' },
-  { id: 'receding-hairline', title: 'Receding Hairline', image: '/images/intake/concern-receding-hairline.jpg' },
-  { id: 'part-line-widening', title: 'Part Line Widening', image: '/images/intake/ref-front-hairline.jpg' },
-  { id: 'hair-shedding', title: 'Hair Shedding', image: '/images/intake/concern-hair-shedding.jpg' },
-  { id: 'postpartum-shedding', title: 'Postpartum Shedding', image: '/images/intake/concern-weak-damaged-hair.jpg' },
-  { id: 'stress-related-loss', title: 'Stress-Related Hair Loss', image: '/images/intake/concern-stress-related-hair-loss.jpg' },
-  { id: 'patchy-loss', title: 'Patchy Hair Loss', image: '/images/intake/concern-patchy-hair-loss.jpg' },
-  { id: 'brittle-damaged', title: 'Weak or Damaged Hair', image: '/images/intake/concern-weak-damaged-hair.jpg' },
-  { id: 'prevent-thinning', title: 'Prevent Hair Loss', image: '/images/intake/concern-prevent-hair-loss.jpg' },
-  { id: 'density-regrowth', title: 'Density & Volume Growth', image: '/images/intake/concern-hair-growth.jpg' },
+  { id: 'female-pattern-thinning', title: 'Female Pattern Thinning', image: '/images/concerns/hers/female-pattern-thinning.png' },
+  { id: 'part-line-widening', title: 'Part Line Widening', image: '/images/concerns/hers/part-line-widening.png' },
+  { id: 'part-line-widening-moderate', title: 'Moderate Part Widening', image: '/images/concerns/hers/part-line-widening-moderate.png' },
+  { id: 'diffuse-thinning', title: 'Diffuse Thinning Along Part', image: '/images/concerns/hers/diffuse-thinning.png' },
+  { id: 'receding-hairline', title: 'Receding Frontal Hairline', image: '/images/concerns/hers/receding-hairline.png' },
+  { id: 'hair-shedding', title: 'Excessive Daily Shedding', image: '/images/concerns/hers/hair-shedding.png' },
+  { id: 'postpartum-shedding', title: 'Postpartum Hair Shedding', image: '/images/concerns/hers/postpartum-shedding.png' },
+  { id: 'patchy-loss', title: 'Patchy Hair Loss', image: '/images/concerns/hers/patchy-hair-loss.png' },
+  { id: 'weak-damaged-hair', title: 'Weak, Brittle & Split Ends', image: '/images/concerns/hers/weak-damaged-hair.png' },
+  { id: 'prevent-thinning', title: 'Prevent Hair Loss', image: '/images/concerns/hers/prevent-hair-loss.png' },
   { id: 'not-sure-w', title: 'Not Sure', image: '/images/intake/concern-not-sure.jpg' }
+];
+
+const SEXUAL_HEALTH_CONCERNS: PhotoCardItem[] = [
+  { id: 'erectile-dysfunction', title: 'Erectile Dysfunction (ED)', image: '/images/concerns/sexual/erectile-dysfunction.jpg' },
+  { id: 'premature-ejaculation', title: 'Premature Ejaculation (PE)', image: '/images/concerns/sexual/premature-ejaculation.jpg' },
+  { id: 'both-ed-pe', title: 'Both Performance & Control', image: '/images/card-prod-sildenafil.jpg' }
 ];
 
 const SKIN_CONCERNS_MEN: PhotoCardItem[] = [
@@ -118,13 +123,22 @@ export default function QuestionnairePage() {
   const isWeight = category === 'WEIGHT';
   const isHim = audience === 'HIM';
 
-  if (isHair || isSkin) {
+  if (isHair || isSkin || isSex) {
+    let concernItems: PhotoCardItem[] = [];
+    if (isHair) {
+      concernItems = isHim ? HAIR_CONCERNS_MEN : HAIR_CONCERNS_WOMEN;
+    } else if (isSkin) {
+      concernItems = isHim ? SKIN_CONCERNS_MEN : SKIN_CONCERNS_WOMEN;
+    } else if (isSex) {
+      concernItems = SEXUAL_HEALTH_CONCERNS;
+    }
+
     steps.push({
       id: 'step_concern_selection',
       type: 'photo_grid_multi',
       title: "What's your concern?",
       subtitle: "Select all that apply.",
-      items: isHair ? (isHim ? HAIR_CONCERNS_MEN : HAIR_CONCERNS_WOMEN) : (isHim ? SKIN_CONCERNS_MEN : SKIN_CONCERNS_WOMEN),
+      items: concernItems,
       required: true
     });
   }

@@ -15,20 +15,29 @@ interface ConcernItem {
 }
 
 const CONCERNS: ConcernItem[] = [
-  // HAIR CARE (Includes HIM, HER and Shared ALL)
-  { id: 'hair-1', audience: 'HIM', category: 'HAIR', title: 'Male pattern hair loss', desc: 'Androgenetic / male pattern hair loss', tag: 'Rx Regrowth', status: 'Online Doctor Consult', image: '/images/mens-hair-seed.jpg' },
-  { id: 'hair-2', audience: 'HIM', category: 'HAIR', title: 'Receding Hairline', desc: 'Receding hairline & temple restoration', tag: 'Early Action', status: 'Online Doctor Consult', image: '/images/mens-hair-lifestyle.jpg' },
-  { id: 'hair-3', audience: 'ALL', category: 'HAIR', title: 'Thinning Hair', desc: 'Diffuse hair thinning & volume loss', tag: 'Density Rx', status: 'Online Doctor Consult', image: '/images/slide-1-hair.jpg' },
-  { id: 'hair-4', audience: 'HIM', category: 'HAIR', title: 'Crown Hair Loss', desc: 'Thinning or balding at the crown / vertex', tag: 'Targeted Care', status: 'Online Doctor Consult', image: '/images/card-prod-finasteride.jpg' },
-  { id: 'hair-5', audience: 'ALL', category: 'HAIR', title: 'Bald Spots', desc: 'Defined round bald spots or patches', tag: 'Clinical Focus', status: 'Online Doctor Consult', image: '/images/hero-hair.jpg' },
-  { id: 'hair-6', audience: 'ALL', category: 'HAIR', title: 'Hair Shedding', desc: 'Excessive daily hair shedding & fallout', tag: 'Follicle Reset', status: 'Online Doctor Consult', image: '/images/cat-hair.jpg' },
-  { id: 'hair-7', audience: 'ALL', category: 'HAIR', title: 'Stress-Related Hair Loss', desc: 'Telogen effluvium related to stress or illness', tag: 'Recovery Plan', status: 'Online Doctor Consult', image: '/images/card-prod-hair-spray.jpg' },
-  { id: 'hair-8', audience: 'ALL', category: 'HAIR', title: 'Patchy Hair Loss', desc: 'Irregular patchy hair loss needing review', tag: 'Specialist Care', status: 'Online Doctor Consult', image: '/images/card-prod-shampoo.jpg' },
-  { id: 'hair-9', audience: 'ALL', category: 'HAIR', title: 'Weak or Damaged Hair', desc: 'Weak, brittle, breakage-prone hair fibers', tag: 'Scalp Health', status: 'Online Doctor Consult', image: '/images/womens-hair-lifestyle.jpg' },
-  { id: 'hair-10', audience: 'ALL', category: 'HAIR', title: 'Prevent Hair Loss', desc: 'Preventive care to maintain hair density', tag: 'Prevention', status: 'Online Doctor Consult', image: '/images/womens-hair-seed.jpg' },
-  { id: 'hair-11', audience: 'ALL', category: 'HAIR', title: 'Hair Growth & Density', desc: 'Advanced multi-ingredient progressive treatment', tag: 'Doctor Formulated', status: 'Online Doctor Consult', image: '/images/card-prod-hair-her.jpg' },
-  { id: 'hair-12', audience: 'HER', category: 'HAIR', title: 'Female Pattern Thinning', desc: 'Wide part line & diffuse scalp volume loss', tag: "Women's Rx", status: 'Online Doctor Consult', image: '/images/womens-hair-lifestyle.jpg' },
-  { id: 'hair-13', audience: 'HER', category: 'HAIR', title: 'Postpartum Hair Shedding', desc: 'Hormonal shedding & shedding reset post-childbirth', tag: 'Postpartum Care', status: 'Online Doctor Consult', image: '/images/womens-hair-seed.jpg' },
+  // HAIR CARE - HIM (Real High-Definition Concern Stage Photos)
+  { id: 'hair-1', audience: 'HIM', category: 'HAIR', title: 'Male pattern hair loss', desc: 'Androgenetic / male pattern hair loss across crown & temples', tag: 'Rx Regrowth', status: 'Online Doctor Consult', image: '/images/concerns/hims/male-pattern-hair-loss.png' },
+  { id: 'hair-2', audience: 'HIM', category: 'HAIR', title: 'Receding Hairline', desc: 'Receding hairline & temple restoration', tag: 'Early Action', status: 'Online Doctor Consult', image: '/images/concerns/hims/receding-hairline.png' },
+  { id: 'hair-3', audience: 'HIM', category: 'HAIR', title: 'Deep Receding Hairline', desc: 'Advanced temple recession (Norwood 3+)', tag: 'Targeted Rx', status: 'Online Doctor Consult', image: '/images/concerns/hims/deep-receding-hairline.png' },
+  { id: 'hair-4', audience: 'HIM', category: 'HAIR', title: 'Thinning Hair', desc: 'Diffuse hair thinning & density loss', tag: 'Density Rx', status: 'Online Doctor Consult', image: '/images/concerns/hims/thinning-hair.png' },
+  { id: 'hair-5', audience: 'HIM', category: 'HAIR', title: 'Crown Hair Loss', desc: 'Thinning or balding at the crown / vertex', tag: 'Targeted Care', status: 'Online Doctor Consult', image: '/images/concerns/hims/crown-hair-loss.png' },
+  { id: 'hair-6', audience: 'HIM', category: 'HAIR', title: 'Crown Balding Spot', desc: 'Visible circular thinning at the crown', tag: 'Vertex Regrowth', status: 'Online Doctor Consult', image: '/images/concerns/hims/crown-balding.png' },
+  { id: 'hair-7', audience: 'HIM', category: 'HAIR', title: 'Patchy Hair Loss', desc: 'Defined circular bald spots (alopecia areata)', tag: 'Clinical Focus', status: 'Online Doctor Consult', image: '/images/concerns/hims/patchy-hair-loss.png' },
+  { id: 'hair-8', audience: 'HIM', category: 'HAIR', title: 'Excessive Hair Shedding', desc: 'Noticeable daily shedding & fallout', tag: 'Follicle Reset', status: 'Online Doctor Consult', image: '/images/concerns/hims/hair-shedding.png' },
+  { id: 'hair-9', audience: 'HIM', category: 'HAIR', title: 'Weak or Damaged Hair', desc: 'Dry, brittle, thinning or graying strands', tag: 'Scalp Health', status: 'Online Doctor Consult', image: '/images/concerns/hims/weak-damaged-hair.png' },
+  { id: 'hair-10', audience: 'HIM', category: 'HAIR', title: 'Prevent Hair Loss', desc: 'Maintain full density & protect healthy follicles', tag: 'Prevention', status: 'Online Doctor Consult', image: '/images/concerns/hims/prevent-hair-loss.png' },
+
+  // HAIR CARE - HER (Real High-Definition Concern Stage Photos)
+  { id: 'hair-w-1', audience: 'HER', category: 'HAIR', title: 'Female Pattern Thinning', desc: 'Diffuse scalp thinning & density reduction', tag: "Women's Rx", status: 'Online Doctor Consult', image: '/images/concerns/hers/female-pattern-thinning.png' },
+  { id: 'hair-w-2', audience: 'HER', category: 'HAIR', title: 'Part Line Widening', desc: 'Noticeable space expanding along the center part', tag: 'Early Action', status: 'Online Doctor Consult', image: '/images/concerns/hers/part-line-widening.png' },
+  { id: 'hair-w-3', audience: 'HER', category: 'HAIR', title: 'Moderate Part Widening', desc: 'Progressive part line separation (Ludwig II)', tag: 'Targeted Rx', status: 'Online Doctor Consult', image: '/images/concerns/hers/part-line-widening-moderate.png' },
+  { id: 'hair-w-4', audience: 'HER', category: 'HAIR', title: 'Diffuse Thinning Along Part', desc: 'Overall scalp visibility & crown density loss', tag: 'Density Boost', status: 'Online Doctor Consult', image: '/images/concerns/hers/diffuse-thinning.png' },
+  { id: 'hair-w-5', audience: 'HER', category: 'HAIR', title: 'Receding Frontal Hairline', desc: 'Frontal edges and temple line thinning', tag: 'Edge Care', status: 'Online Doctor Consult', image: '/images/concerns/hers/receding-hairline.png' },
+  { id: 'hair-w-6', audience: 'HER', category: 'HAIR', title: 'Excessive Daily Shedding', desc: 'Handfuls of shedding in the shower or brush', tag: 'Follicle Reset', status: 'Online Doctor Consult', image: '/images/concerns/hers/hair-shedding.png' },
+  { id: 'hair-w-7', audience: 'HER', category: 'HAIR', title: 'Postpartum Hair Shedding', desc: 'Hormonal shedding & recovery post-childbirth', tag: 'Postpartum Care', status: 'Online Doctor Consult', image: '/images/concerns/hers/postpartum-shedding.png' },
+  { id: 'hair-w-8', audience: 'HER', category: 'HAIR', title: 'Patchy Hair Loss', desc: 'Circular localized bald spots needing clinical care', tag: 'Specialist Care', status: 'Online Doctor Consult', image: '/images/concerns/hers/patchy-hair-loss.png' },
+  { id: 'hair-w-9', audience: 'HER', category: 'HAIR', title: 'Weak, Brittle & Split Ends', desc: 'Breakage, dryness, and split damaged ends', tag: 'Hair Health', status: 'Online Doctor Consult', image: '/images/concerns/hers/weak-damaged-hair.png' },
+  { id: 'hair-w-10', audience: 'HER', category: 'HAIR', title: 'Prevent Hair Thinning', desc: 'Protect volume, scalp nutrition & follicle vitality', tag: 'Prevention', status: 'Online Doctor Consult', image: '/images/concerns/hers/prevent-hair-loss.png' },
 
   // SKINCARE (ALL)
   { id: 'skin-1', audience: 'ALL', category: 'SKIN', title: 'Dark Spots', desc: 'Fade melasma, sun spots, and post-acne marks', tag: 'Brightening', status: 'Clinician Evaluated', image: '/images/card-prod-glow-serum.jpg' },
@@ -38,9 +47,9 @@ const CONCERNS: ConcernItem[] = [
   { id: 'skin-5', audience: 'ALL', category: 'SKIN', title: 'Acne', desc: 'Prescription compound targeting excess oil & bacteria', tag: 'Blemish Clear', status: 'Clinician Evaluated', image: '/images/card-prod-clear-gel.jpg' },
   { id: 'skin-6', audience: 'ALL', category: 'SKIN', title: 'Sleep & Wellness', desc: 'Topical bedtime cream with magnesium & melatonin', tag: 'Night Recovery', status: 'Clinician Evaluated', image: '/images/slide-skin.jpg' },
 
-  // SEXUAL HEALTH
-  { id: 'sex-1', audience: 'HIM', category: 'SEXUAL_HEALTH', title: 'Erectile Dysfunction (ED)', desc: 'Difficulty getting or keeping an erection', tag: 'Discreet Delivery', status: 'Licensed Physician Rx', image: '/images/card-prod-sildenafil.jpg' },
-  { id: 'sex-2', audience: 'HIM', category: 'SEXUAL_HEALTH', title: 'Premature Ejaculation (PE)', desc: 'Climaxing sooner than desired — delay therapy', tag: 'Last Longer', status: 'Licensed Physician Rx', image: '/images/card-prod-hard-mints.jpg' },
+  // SEXUAL HEALTH (Editorial Knit Metaphor Imagery from Hims)
+  { id: 'sex-1', audience: 'HIM', category: 'SEXUAL_HEALTH', title: 'Erectile Dysfunction (ED)', desc: 'Difficulty getting or keeping an erection firm', tag: 'Discreet Delivery', status: 'Licensed Physician Rx', image: '/images/concerns/sexual/erectile-dysfunction.jpg' },
+  { id: 'sex-2', audience: 'HIM', category: 'SEXUAL_HEALTH', title: 'Premature Ejaculation (PE)', desc: 'Climaxing sooner than desired — delay therapy & stamina', tag: 'Last Longer', status: 'Licensed Physician Rx', image: '/images/concerns/sexual/premature-ejaculation.jpg' },
 
   // WEIGHT MANAGEMENT (ALL)
   { id: 'weight-1', audience: 'ALL', category: 'WEIGHT', title: 'Lose Weight', desc: 'Support healthy clinically-guided weight loss', tag: 'GLP-1 Therapy', status: 'Doctor-Guided Rx', image: '/images/weight-pens-editorial.jpg' },
