@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Treatment Details — AIRO eMed</title>
   <meta name="description"
-    content="Doctor-formulated prescription treatment details, clinical ingredients, how it works, and online physician consultation at AIRO eMed.">
+    content="Doctor-formulated prescription treatment details, clinical ingredients, how it works, dosing schedule, and online physician consultation at AIRO eMed.">
 
-  <!-- Google Fonts: Plus Jakarta Sans -->
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
     rel="stylesheet">
 
   <!-- Tailwind CSS Play CDN -->
@@ -23,258 +23,151 @@
         extend: {
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
           },
           colors: {
-            brand: {
-              cream: '#FAF8F5',
-              linen: '#F4F0E8',
-              sand: '#EAE4DA',
-              dark: '#1D1B19',
-              muted: '#6E6860',
-              navy: '#0F1B38',
-              blue: '#1E40AF',
-            }
+            canvas: '#F3F1EC',
+            ink: '#191714',
+            'ink-muted': '#6E6860',
+            cream: '#F5F2EB',
+            apricot: '#E89D5E',
+            'apricot-soft': '#FDF2E6',
           }
         }
       }
     }
   </script>
 
-  <!-- Core App Stylesheet -->
   <link rel="stylesheet" href="/styles.css">
+  <style>
+    body {
+      background-color: #F3F1EC;
+      color: #191714;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+    .sheet {
+      background-color: #FFFFFF;
+      border-radius: 24px;
+    }
+    .sheet-ink {
+      background-color: #191714;
+      color: #FFFFFF;
+      border-radius: 24px;
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
 </head>
 
-<body
-  class="bg-white text-[#1D1B19] font-sans antialiased min-h-screen flex flex-col selection:bg-[#0F1B38]/10 selection:text-[#0F1B38]">
+<body class="antialiased min-h-screen flex flex-col selection:bg-[#E89D5E]/25 selection:text-[#191714]">
 
   <!-- ======================================================== -->
-  <!-- TOP GLOBAL HEADER                                        -->
+  <!-- M01 · HEADER + PRODUCT TABS                              -->
   <!-- ======================================================== -->
-  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-[#EFECE6] transition-all duration-300">
-    <div class="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 h-20 flex items-center justify-between">
-
-      <!-- Left: Logo -->
-      <a href="/" class="brand-logo flex items-baseline space-x-1.5 group select-none">
-        <span class="brand-airo font-extrabold text-2xl sm:text-3xl tracking-tight text-[#191817]">AIRO</span>
-        <span class="brand-emed text-xl sm:text-2xl font-normal text-[#191817]/85 tracking-tight">eMed</span>
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#EAE5DC]">
+    <div class="max-w-[1280px] mx-auto px-5 sm:px-8 h-[72px] flex items-center justify-between">
+      <a href="/" class="brand-logo flex items-baseline space-x-1.5 select-none">
+        <span class="font-extrabold text-2xl tracking-tight text-[#191714]">AIRO</span>
+        <span class="text-xl font-normal text-[#191714]/80 tracking-tight">eMed</span>
       </a>
 
-      <!-- Center Nav Capsule -->
-      <nav
-        class="nav-capsule flex items-center bg-[#EBE5DC] border border-[#DDD5C9]/70 px-2 py-1.5 rounded-full space-x-1 sm:space-x-1.5 text-xs font-semibold text-[#191817] shadow-sm relative">
-        <a href="/concerns.html"
-          class="nav-pill-btn flex items-center space-x-1.5 px-4 py-1.5 rounded-full font-semibold text-[#191817]/85 hover:bg-[#FAF7F2]/60 transition-all duration-200">
-          <span>Concerns</span>
-        </a>
-
-        <button id="treatments-menu-btn" onclick="toggleMegaMenu('treatments', event)" aria-expanded="false"
-          aria-haspopup="dialog" aria-controls="treatments-mega-menu"
-          class="nav-pill-btn flex items-center space-x-1.5 px-4 py-1.5 rounded-full font-semibold text-[#191817]/85 hover:bg-[#FAF7F2]/60 transition-all duration-200 cursor-pointer">
-          <span>Treatments</span>
-          <svg id="treatments-chevron"
-            class="nav-chevron w-3.5 h-3.5 text-[#191817]/70 transition-transform duration-200" fill="none"
-            stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-          </svg>
-        </button>
-
-        <button id="shop-menu-btn" onclick="toggleMegaMenu('shop', event)" aria-expanded="false" aria-haspopup="dialog"
-          aria-controls="shop-mega-menu"
-          class="nav-pill-btn flex items-center space-x-1.5 px-4 py-1.5 rounded-full font-semibold text-[#191817]/85 hover:bg-[#FAF7F2]/60 transition-all duration-200 cursor-pointer">
-          <span>Shop</span>
-          <svg id="shop-chevron" class="nav-chevron w-3.5 h-3.5 text-[#191817]/70 transition-transform duration-200"
-            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-          </svg>
-        </button>
+      <nav class="hidden md:flex items-center space-x-7 text-[13px] font-medium text-[#6E6860]">
+        <a href="/concerns.html" class="hover:text-[#191714] transition-colors">Concerns</a>
+        <a href="/treatments.html" class="hover:text-[#191714] transition-colors">Treatments</a>
+        <a href="/shop.html" class="hover:text-[#191714] transition-colors">Shop All</a>
       </nav>
 
-      <!-- Right Actions -->
-      <div class="nav-actions flex items-center space-x-5 text-[#191817]">
-        <a href="/shop.html" class="nav-icon-btn hover:text-[#1E40AF] transition-colors p-1" title="Browse All Treatments">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-          </svg>
-        </a>
-        <button onclick="openPortalModal()" class="nav-icon-btn hover:text-[#1E40AF] transition-colors p-1"
-          title="My Account">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-          </svg>
+      <div class="flex items-center space-x-3">
+        <button onclick="openPortalModal()"
+          class="px-4 py-2 rounded-full text-xs font-medium text-[#191714] bg-[#F5F2EB] hover:bg-[#EAE5DC] transition-colors cursor-pointer">
+          Patient Portal
         </button>
-        <button id="header-consult-btn" onclick="startCurrentProductIntake()"
-          class="nav-icon-btn hover:text-[#1E40AF] transition-colors p-1 relative" title="Start Consultation">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-          </svg>
+        <button onclick="startCurrentProductIntake()"
+          class="px-5 py-2 rounded-full text-xs font-medium bg-[#191714] hover:bg-[#0F1B38] text-white transition-colors cursor-pointer">
+          Get started
         </button>
-      </div>
-
-    </div>
-
-    <!-- TREATMENTS DROPDOWN PANEL -->
-    <div id="treatments-mega-menu" class="mega-menu-panel" role="region" aria-label="Treatments Menu">
-      <div class="mega-menu-card bg-white rounded-3xl p-7 sm:p-8 lg:p-10 shadow-2xl border border-[#EAE5DD]">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-          <div class="lg:col-span-4 flex flex-col justify-start">
-            <h3 class="dropdown-col-title">Hims</h3>
-            <div class="space-y-4">
-              <a href="/shop.html?audience=HIM&category=HAIR_LOSS" class="dropdown-menu-item group block text-left">
-                <div class="dropdown-item-title group-hover:text-[#1E6BFF] transition-colors">Hair</div>
-                <p class="dropdown-item-desc">Thinning · regrowth · density</p>
-              </a>
-              <a href="/shop.html?audience=HIM&category=SEXUAL_HEALTH_ED" class="dropdown-menu-item group block text-left">
-                <div class="dropdown-item-title group-hover:text-[#1E6BFF] transition-colors">Sexual Health</div>
-                <p class="dropdown-item-desc">Performance · wellness</p>
-              </a>
-              <a href="/shop.html?audience=HIM&category=DERMATOLOGY" class="dropdown-menu-item group block text-left">
-                <div class="dropdown-item-title group-hover:text-[#1E6BFF] transition-colors">Skin</div>
-                <p class="dropdown-item-desc">Acne · anti-aging · glow</p>
-              </a>
-              <a href="/shop.html?audience=HIM&category=WEIGHT_MANAGEMENT" class="dropdown-menu-item group block text-left">
-                <div class="dropdown-item-title group-hover:text-[#1E6BFF] transition-colors">Weight Management</div>
-                <p class="dropdown-item-desc">GLP-1 & metabolic care</p>
-              </a>
-            </div>
-          </div>
-
-          <div class="lg:col-span-4 flex flex-col justify-start">
-            <h3 class="dropdown-col-title">Hers</h3>
-            <div class="space-y-4">
-              <a href="/shop.html?audience=HER&category=HAIR_LOSS" class="dropdown-menu-item group block text-left">
-                <div class="dropdown-item-title group-hover:text-[#1E6BFF] transition-colors">Hair</div>
-                <p class="dropdown-item-desc">Thinning · regrowth · postpartum</p>
-              </a>
-              <a href="/shop.html?audience=HER&category=DERMATOLOGY" class="dropdown-menu-item group block text-left">
-                <div class="dropdown-item-title group-hover:text-[#1E6BFF] transition-colors">Skin</div>
-                <p class="dropdown-item-desc">Acne · anti-aging · glow</p>
-              </a>
-              <a href="/shop.html?audience=HER&category=WEIGHT_MANAGEMENT" class="dropdown-menu-item group block text-left">
-                <div class="dropdown-item-title group-hover:text-[#1E6BFF] transition-colors">Weight Management</div>
-                <p class="dropdown-item-desc">GLP-1 & metabolic care</p>
-              </a>
-            </div>
-          </div>
-
-          <div class="lg:col-span-4 flex items-center">
-            <a href="/concerns.html"
-              class="block w-full h-[280px] sm:h-[320px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm bg-neutral-100 group select-none cursor-pointer">
-              <img src="/images/mega-menu-treatments-couple.jpg" alt="AIRO eMed Treatments"
-                class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500 rounded-2xl sm:rounded-3xl">
-            </a>
-          </div>
-        </div>
       </div>
     </div>
 
-    <!-- SHOP DROPDOWN PANEL -->
-    <div id="shop-mega-menu" class="mega-menu-panel shop-dropdown-panel" role="region" aria-label="Shop Menu">
-      <div class="mega-menu-card bg-white rounded-3xl p-6 sm:p-7 shadow-2xl border border-[#EAE5DD]">
-        <div class="space-y-4">
-          <a href="/shop.html?category=HAIR_LOSS" class="dropdown-menu-item group block text-left">
-            <div class="dropdown-item-title group-hover:text-[#1E6BFF] transition-colors">Hair</div>
-            <p class="dropdown-item-desc">Thinning · regrowth · postpartum</p>
-          </a>
-          <a href="/shop.html?audience=HIM&category=SEXUAL_HEALTH_ED" class="dropdown-menu-item group block text-left">
-            <div class="dropdown-item-title group-hover:text-[#1E6BFF] transition-colors">Sexual Health</div>
-            <p class="dropdown-item-desc">Performance · wellness</p>
-          </a>
-          <a href="/shop.html?category=DERMATOLOGY" class="dropdown-menu-item group block text-left">
-            <div class="dropdown-item-title group-hover:text-[#1E6BFF] transition-colors">Skin</div>
-            <p class="dropdown-item-desc">Acne · anti-aging · glow</p>
-          </a>
-          <a href="/shop.html?category=WEIGHT_MANAGEMENT" class="dropdown-menu-item group block text-left">
-            <div class="dropdown-item-title group-hover:text-[#1E6BFF] transition-colors">Weight Management</div>
-            <p class="dropdown-item-desc">GLP-1 & metabolic care</p>
-          </a>
-        </div>
-
-        <div class="pt-6 mt-2 border-t border-[#F0ECE4]">
-          <a href="/shop.html" class="dropdown-browse-link w-full text-left cursor-pointer flex items-center justify-between">
-            <span>Browse All Treatments</span>
-            <span class="font-bold">→</span>
-          </a>
-        </div>
+    <!-- Product Pill Tabs Row (below hairline) -->
+    <div class="border-t border-[#F0ECE4] bg-white">
+      <div id="pdp-product-tabs"
+        class="max-w-[1280px] mx-auto px-5 sm:px-8 py-2.5 flex items-center space-x-2 overflow-x-auto scrollbar-hide">
+        <!-- Populated dynamically with category/related product pills -->
       </div>
     </div>
   </header>
 
   <!-- ======================================================== -->
-  <!-- MAIN PRODUCT DETAIL PAGE (SOFT HIMS-INSPIRED EDITORIAL)  -->
+  <!-- 12-MODULE CALM CARE CANVAS (12px GAPS, 24px SHEETS)      -->
   <!-- ======================================================== -->
-  <main class="flex-1 w-full bg-white">
+  <main class="flex-1 w-full max-w-[1280px] mx-auto px-3 sm:px-5 py-3 space-y-3">
 
-    <!-- ======================================================== -->
-    <!-- SECTION 1: SOFT SPLIT HERO                               -->
-    <!-- ======================================================== -->
-    <section class="max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-12 pt-8 sm:pt-12 pb-16 sm:pb-24">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+    <!-- M02 · PRODUCT HERO -->
+    <section class="sheet px-6 sm:px-10 lg:px-14 py-12 sm:py-16 lg:py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
 
-        <!-- Left: Soft Warm-Taupe Image Canvas -->
-        <div class="lg:col-span-7">
-          <div class="relative aspect-square bg-[#EFECE6] rounded-[24px] overflow-hidden">
-            <div id="pdp-badge-wrap" class="absolute top-5 left-5 z-10"></div>
-            <img id="pdp-image" src="" alt="" class="w-full h-full object-cover object-center transition-transform duration-700" />
-            <!-- Minimal Hims-style dot indicator -->
-            <div class="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center space-x-2">
-              <span class="w-5 h-1.5 rounded-full bg-white/90 shadow-xs"></span>
-              <span class="w-1.5 h-1.5 rounded-full bg-white/45"></span>
-              <span class="w-1.5 h-1.5 rounded-full bg-white/45"></span>
-            </div>
+        <!-- Left (1.1): 1:1 Media (radius 40) + 4 Thumbnails -->
+        <div class="lg:col-span-6 space-y-3">
+          <div class="aspect-square bg-[#F5F2EB] rounded-[32px] lg:rounded-[40px] overflow-hidden relative">
+            <img id="pdp-hero-img" src="" alt="" class="w-full h-full object-cover object-center transition-opacity duration-300" />
+          </div>
+          <div id="pdp-thumbs" class="grid grid-cols-4 gap-3">
+            <!-- 4 thumbnail buttons -->
           </div>
         </div>
 
-        <!-- Right: Clean Soft Typography, CTA & Minimal Accordions -->
-        <div class="lg:col-span-5 flex flex-col pt-2 lg:pt-4">
-          <div class="flex items-center space-x-2.5 text-[11px] font-medium uppercase tracking-[0.12em] text-[#8E857B]">
-            <span id="pdp-eyebrow">Prescription Treatment</span>
-            <span>·</span>
-            <span id="pdp-audience-pill">Hims</span>
-          </div>
+        <!-- Right (1): Badges, Big Short Title, Bullets, Price Box, CTA, 4 Accordions -->
+        <div class="lg:col-span-6 lg:pl-2">
+          <div id="pdp-badges" class="flex flex-wrap items-center gap-2 mb-4"></div>
 
-          <h1 id="pdp-title" class="text-3xl sm:text-[38px] font-semibold text-[#1D1B19] mt-2.5 leading-[1.15] tracking-[-0.025em]">
+          <p id="pdp-eyebrow" class="font-mono text-[11px] uppercase tracking-[0.14em] text-[#6E6860] mb-2">
+            PRESCRIPTION · CLINICIAN REVIEWED
+          </p>
+
+          <h1 id="pdp-title" class="text-4xl sm:text-5xl lg:text-[56px] font-medium text-[#191714] tracking-[-0.03em] leading-[1.06]">
             Treatment Name
           </h1>
 
-          <p id="pdp-ingredients" class="text-[13px] text-[#7D756C] mt-2 font-normal">
-            Active clinical ingredients
+          <p id="pdp-subtitle" class="text-base sm:text-[17px] text-[#6E6860] mt-4 leading-relaxed max-w-lg">
+            Active ingredients &amp; clinical description.
           </p>
 
-          <!-- Subtle Rating -->
-          <div class="flex items-center space-x-2 mt-3.5">
-            <div class="flex text-[#C59B6D] text-xs tracking-wider">★★★★★</div>
-            <span id="pdp-rating" class="text-xs font-semibold text-[#1D1B19] tabular-nums">4.9</span>
-            <span id="pdp-reviews" class="text-xs text-[#8E857B]">(400+ reviews)</span>
-          </div>
-
-          <!-- 3 Soft Bullet Benefits -->
-          <ul id="pdp-bullets" class="mt-7 space-y-3 text-[13.5px] text-[#46423D] leading-relaxed">
-            <!-- Populated dynamically -->
+          <ul id="pdp-bullets" class="mt-6 space-y-2.5 text-[15px] text-[#191714]">
+            <!-- 3 concise bullets -->
           </ul>
 
-          <!-- Price Line -->
-          <div class="mt-7 flex items-baseline space-x-2">
-            <span id="pdp-price-inr" class="text-xl font-semibold text-[#1D1B19] tabular-nums">₹1,499</span>
-            <span id="pdp-orig-inr" class="text-xs text-[#A39B91] line-through tabular-nums hidden">₹1,999</span>
-            <span id="pdp-price-usd" class="text-xs text-[#8E857B]">($45)</span>
-            <span id="pdp-period" class="text-xs text-[#8E857B]">/ month</span>
+          <!-- Soft Cream Price Bar -->
+          <div class="mt-7 bg-[#F5F2EB] rounded-2xl p-4 sm:p-5 flex items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+              <span id="pdp-price-pill" class="px-3.5 py-1.5 rounded-full bg-[#191714] text-white text-xs font-medium tabular-nums">
+                ₹1,499/mo
+              </span>
+              <span id="pdp-orig-price" class="text-xs text-[#8E857B] line-through tabular-nums hidden">₹1,999</span>
+            </div>
+            <div class="text-right">
+              <span id="pdp-price-usd" class="text-xs font-medium text-[#191714] block">($45 / month)</span>
+              <span class="text-[11px] text-[#6E6860]">Consult &amp; shipping included</span>
+            </div>
           </div>
 
-          <!-- Solid Brand Navy CTA Pill -->
+          <!-- Primary CTA Pill -->
           <button onclick="startCurrentProductIntake()"
-            class="mt-4 w-full py-3.5 px-6 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-[13px] font-semibold tracking-wide transition-all duration-200 cursor-pointer">
+            class="mt-4 w-full py-4 px-7 rounded-full bg-[#191714] hover:bg-[#0F1B38] text-white text-sm font-medium transition-colors cursor-pointer">
             Get started
           </button>
 
-          <p class="text-[11px] text-center text-[#8E857B] mt-3">
-            Includes online physician evaluation &amp; free discreet delivery
+          <p class="text-[11px] text-center text-[#6E6860] mt-3">
+            Requires an online consultation with a US-licensed physician · Cancel anytime
           </p>
 
-          <!-- 4 Minimal Hairline Accordions -->
-          <div id="pdp-top-accordions" class="mt-8 border-t border-[#ECE7DF] divide-y divide-[#ECE7DF]">
+          <!-- 4 Hairline Accordions -->
+          <div id="pdp-hero-accordions" class="mt-8 border-t border-[#EAE5DC] divide-y divide-[#EAE5DC]">
             <!-- Populated dynamically -->
           </div>
         </div>
@@ -282,425 +175,385 @@
       </div>
     </section>
 
-    <!-- ======================================================== -->
-    <!-- SECTION 2: WHY THIS TREATMENT? (2 SOFT LINEN CARDS)      -->
-    <!-- ======================================================== -->
-    <section class="bg-white py-14 sm:py-20">
-      <div class="max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-12">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-10">
-          <h2 id="pdp-why-heading" class="text-2xl sm:text-[32px] font-semibold text-[#1D1B19] tracking-[-0.02em]">
-            Why this treatment
-          </h2>
-          <button onclick="startCurrentProductIntake()"
-            class="self-start sm:self-auto px-5 py-2.5 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-xs font-semibold transition-colors cursor-pointer">
-            Get started
-          </button>
-        </div>
-
-        <div id="pdp-why-cards" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Populated dynamically -->
-        </div>
-
-        <p class="text-[11px] text-[#9A9288] mt-5">
-          Prescription products require an online consultation with a licensed clinician who determines if a treatment is right for you.
-        </p>
+    <!-- M03 · PROOF STRIP (INK BAND, 4 STATS, FIRST IN APRICOT) -->
+    <section class="sheet-ink px-6 sm:px-10 lg:px-14 py-10 sm:py-12">
+      <div id="pdp-proof-strip" class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Populated dynamically -->
       </div>
     </section>
 
-    <!-- ======================================================== -->
-    <!-- SECTION 3: HOW IT WORKS (SOFT EDITORIAL SPLIT)           -->
-    <!-- ======================================================== -->
-    <section class="bg-white py-14 sm:py-20">
-      <div class="max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-12">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-          <div class="lg:col-span-6">
-            <div class="aspect-square rounded-[24px] overflow-hidden bg-[#F4F0E8]">
-              <img id="pdp-how-img" src="/images/explore-hair.jpg" alt="How AIRO eMed works"
-                class="w-full h-full object-cover object-center" loading="lazy" />
+    <!-- M04 · SECTION TITLE + FEATURE CARDS (2 IMAGE CARDS + 2 TEXT CARDS) -->
+    <section class="sheet px-6 sm:px-10 lg:px-14 py-16 sm:py-22">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
+        <div>
+          <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[#6E6860] mb-2">WHY THIS FORMULA</p>
+          <h2 id="pdp-feature-title" class="text-3xl sm:text-5xl font-medium text-[#191714] tracking-[-0.03em] leading-[1.08]">
+            Built for real results
+          </h2>
+        </div>
+        <button onclick="startCurrentProductIntake()"
+          class="self-start sm:self-auto px-6 py-3 rounded-full bg-[#191714] hover:bg-[#0F1B38] text-white text-xs font-medium transition-colors cursor-pointer shrink-0">
+          Get started
+        </button>
+      </div>
+
+      <!-- 2 Image Feature Cards -->
+      <div id="pdp-feature-image-cards" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <!-- Populated dynamically -->
+      </div>
+
+      <!-- 2 Text Feature Cards -->
+      <div id="pdp-feature-text-cards" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Populated dynamically -->
+      </div>
+
+      <p id="pdp-feature-note" class="text-[11px] text-[#6E6860] mt-6">
+        *Individual results vary. All prescription compounds are prescribed only after clinician evaluation.
+      </p>
+    </section>
+
+    <!-- M05 · HOW IT WORKS (4:5 IMAGE LEFT + 4 APRICOT STEPS RIGHT) -->
+    <section class="sheet px-6 sm:px-10 lg:px-14 py-16 sm:py-22">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        <div class="lg:col-span-6">
+          <div class="aspect-[4/5] rounded-[32px] lg:rounded-[40px] bg-[#F5F2EB] overflow-hidden">
+            <img id="pdp-how-img" src="/images/explore-hair.jpg" alt="How AIRO eMed works"
+              class="w-full h-full object-cover object-center" loading="lazy" />
+          </div>
+        </div>
+
+        <div class="lg:col-span-6">
+          <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[#6E6860] mb-2">THE PROCESS</p>
+          <h2 class="text-3xl sm:text-5xl font-medium text-[#191714] tracking-[-0.03em] leading-[1.08] mb-8">
+            Simple from start to refill
+          </h2>
+
+          <div class="space-y-6">
+            <div class="flex items-start space-x-4">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#E89D5E] shrink-0 mt-2"></span>
+              <div>
+                <h3 class="text-base font-medium text-[#191714]">01. Complete your online intake</h3>
+                <p class="text-[15px] text-[#6E6860] mt-1 leading-relaxed">Answer a 3-minute medical questionnaire about your health history and goals.</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-4">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#E89D5E] shrink-0 mt-2"></span>
+              <div>
+                <h3 class="text-base font-medium text-[#191714]">02. Licensed physician review</h3>
+                <p class="text-[15px] text-[#6E6860] mt-1 leading-relaxed">A US-licensed doctor evaluates your profile within 24 hours and writes your prescription.</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-4">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#E89D5E] shrink-0 mt-2"></span>
+              <div>
+                <h3 class="text-base font-medium text-[#191714]">03. Compounded &amp; shipped free</h3>
+                <p class="text-[15px] text-[#6E6860] mt-1 leading-relaxed">Prepared at verified 503A pharmacies and delivered discreetly in unmarked packaging.</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-4">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#E89D5E] shrink-0 mt-2"></span>
+              <div>
+                <h3 class="text-base font-medium text-[#191714]">04. Ongoing clinician check-ins</h3>
+                <p class="text-[15px] text-[#6E6860] mt-1 leading-relaxed">Message your care team anytime and adjust strengths or refill dates on your schedule.</p>
+              </div>
             </div>
           </div>
 
-          <div class="lg:col-span-6">
-            <h2 class="text-2xl sm:text-[32px] font-semibold text-[#1D1B19] tracking-[-0.02em] mb-7">
-              How it works
-            </h2>
+          <button onclick="startCurrentProductIntake()"
+            class="mt-9 px-7 py-3.5 rounded-full bg-[#191714] hover:bg-[#0F1B38] text-white text-xs font-medium transition-colors cursor-pointer">
+            Get started
+          </button>
+        </div>
+      </div>
+    </section>
 
-            <div class="space-y-6">
-              <div class="flex items-start space-x-4">
-                <div class="w-7 h-7 rounded-full bg-[#F4F0E8] text-[#1D1B19] text-xs font-semibold flex items-center justify-center shrink-0 mt-0.5">1</div>
-                <div>
-                  <h3 class="text-[15px] font-semibold text-[#1D1B19]">Tell us about your health</h3>
-                  <p class="text-[13px] text-[#6E6860] mt-1 leading-relaxed">Complete a quick online intake covering your health history, symptoms, and goals in just a few minutes.</p>
-                </div>
-              </div>
-              <div class="flex items-start space-x-4">
-                <div class="w-7 h-7 rounded-full bg-[#F4F0E8] text-[#1D1B19] text-xs font-semibold flex items-center justify-center shrink-0 mt-0.5">2</div>
-                <div>
-                  <h3 class="text-[15px] font-semibold text-[#1D1B19]">Licensed doctor evaluation</h3>
-                  <p class="text-[13px] text-[#6E6860] mt-1 leading-relaxed">A US-licensed physician reviews your profile within 24 hours and prescribes the clinical strength right for you.</p>
-                </div>
-              </div>
-              <div class="flex items-start space-x-4">
-                <div class="w-7 h-7 rounded-full bg-[#F4F0E8] text-[#1D1B19] text-xs font-semibold flex items-center justify-center shrink-0 mt-0.5">3</div>
-                <div>
-                  <h3 class="text-[15px] font-semibold text-[#1D1B19]">Discreet doorstep delivery</h3>
-                  <p class="text-[13px] text-[#6E6860] mt-1 leading-relaxed">Prepared by verified 503A pharmacy partners and delivered free in plain, unmarked packaging.</p>
-                </div>
-              </div>
-              <div class="flex items-start space-x-4">
-                <div class="w-7 h-7 rounded-full bg-[#F4F0E8] text-[#1D1B19] text-xs font-semibold flex items-center justify-center shrink-0 mt-0.5">4</div>
-                <div>
-                  <h3 class="text-[15px] font-semibold text-[#1D1B19]">Ongoing care &amp; check-ins</h3>
-                  <p class="text-[13px] text-[#6E6860] mt-1 leading-relaxed">Message your care team anytime and manage refills or dosage adjustments seamlessly.</p>
-                </div>
-              </div>
+    <!-- M06 · MEMBERSHIP OFFER (INK PRICE CARD LEFT + 5 CHECK ROWS RIGHT) -->
+    <section class="sheet px-6 sm:px-10 lg:px-14 py-16 sm:py-22">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+        <div class="lg:col-span-5">
+          <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[#6E6860] mb-2">ALL-INCLUSIVE CARE</p>
+          <h2 class="text-3xl sm:text-[44px] font-medium text-[#191714] tracking-[-0.03em] leading-[1.08] mb-6">
+            One transparent monthly plan
+          </h2>
+
+          <div class="bg-[#191714] text-white rounded-[24px] p-7 sm:p-8">
+            <span class="inline-block px-3 py-1 rounded-full bg-[#E89D5E] text-[#191714] font-mono text-[10px] uppercase tracking-[0.12em] font-medium">
+              DOCTOR REVIEW INCLUDED
+            </span>
+            <div class="mt-5 flex items-baseline space-x-2">
+              <span id="pdp-member-price" class="text-4xl font-medium tracking-tight tabular-nums">₹1,499</span>
+              <span id="pdp-member-period" class="text-sm text-white/70">/ month</span>
             </div>
-
+            <p class="text-[13px] text-white/70 mt-2 leading-relaxed">
+              No hidden consultation fees, no pharmacy lines, cancel or pause anytime.
+            </p>
             <button onclick="startCurrentProductIntake()"
-              class="mt-8 px-6 py-3 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-xs font-semibold transition-colors cursor-pointer">
-              Get started
+              class="mt-6 w-full py-3.5 rounded-full bg-[#E89D5E] hover:bg-[#df8e49] text-[#191714] text-xs font-semibold transition-colors cursor-pointer">
+              Start online consultation
             </button>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ======================================================== -->
-    <!-- SECTION 4: 4-CARD STRIP + PERSONALIZED ACCORDIONS        -->
-    <!-- ======================================================== -->
-    <section class="bg-[#FAF8F5] py-16 sm:py-24">
-      <div class="max-w-[960px] mx-auto px-5 sm:px-8">
-
-        <!-- 4 Soft Visual Cards -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-12">
-          <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-[#EFECE6] relative">
-            <img src="/images/doctor-avatar.jpg" alt="US-Licensed Physician" class="w-full h-full object-cover" loading="lazy" />
-            <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/60 to-transparent">
-              <span class="text-[11px] font-medium text-white">Licensed Doctors</span>
-            </div>
+        <div class="lg:col-span-7 space-y-3">
+          <div id="pdp-membership-benefits" class="space-y-3">
+            <!-- 5 cream check rows -->
           </div>
-          <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-[#EFECE6] relative">
-            <img src="/images/doctor-raman.jpg" alt="Online Consultation" class="w-full h-full object-cover" loading="lazy" />
-            <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/60 to-transparent">
-              <span class="text-[11px] font-medium text-white">Online Evaluation</span>
-            </div>
-          </div>
-          <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-[#EFECE6] relative">
-            <img id="pdp-strip-prod-img" src="" alt="Treatment" class="w-full h-full object-cover" loading="lazy" />
-            <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/60 to-transparent">
-              <span class="text-[11px] font-medium text-white">Tailored Formula</span>
-            </div>
-          </div>
-          <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-[#EFECE6] relative">
-            <img src="/images/doctor-swift.jpg" alt="Ongoing Support" class="w-full h-full object-cover" loading="lazy" />
-            <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/60 to-transparent">
-              <span class="text-[11px] font-medium text-white">24/7 Care Team</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="text-center max-w-xl mx-auto mb-8">
-          <h2 class="text-2xl sm:text-[32px] font-semibold text-[#1D1B19] tracking-[-0.02em] leading-snug">
-            A personalized approach to your care
-          </h2>
-          <p class="text-[13px] text-[#6E6860] mt-2">
-            Every prescription is reviewed individually by a licensed clinician with transparent pricing.
+          <p class="text-[11px] text-[#6E6860] pt-2">
+            Prescription approval is at the sole clinical discretion of your evaluating physician.
           </p>
         </div>
-
-        <!-- 5 Soft Rounded Pill Accordions -->
-        <div id="pdp-approach-accordions" class="space-y-2.5 max-w-xl mx-auto">
-          <!-- Populated dynamically -->
-        </div>
-
-        <div class="text-center mt-8">
-          <button onclick="startCurrentProductIntake()"
-            class="px-7 py-3 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-xs font-semibold transition-colors cursor-pointer">
-            Get started
-          </button>
-        </div>
       </div>
     </section>
 
-    <!-- ======================================================== -->
-    <!-- SECTION 5: SOFT CHAMPAGNE-SAND FULL-WIDTH BANNER         -->
-    <!-- ======================================================== -->
-    <section class="relative bg-gradient-to-r from-[#D5C6B2] via-[#E3D7C7] to-[#C8B7A1] text-[#1D1B19] py-20 sm:py-28 overflow-hidden">
-      <img id="pdp-banner-img" src="/images/explore-mens.jpg" alt="Care on your terms"
-        class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-multiply" loading="lazy" />
-      <div class="relative z-10 max-w-3xl mx-auto px-5 sm:px-8 text-center">
-        <h2 id="pdp-banner-title" class="text-3xl sm:text-[42px] font-semibold tracking-[-0.025em] leading-tight text-[#1D1B19]">
-          Control your health, on your terms
+    <!-- M07 · RESULTS BANNER (FULL-BLEED PHOTO/INK, RADIUS 40, LIGHT PILL) -->
+    <section class="relative rounded-[32px] lg:rounded-[40px] bg-[#191714] text-white py-24 sm:py-32 px-6 sm:px-12 overflow-hidden">
+      <img id="pdp-banner-img" src="/images/explore-mens.jpg" alt="AIRO eMed Results"
+        class="absolute inset-0 w-full h-full object-cover opacity-30" loading="lazy" />
+      <div class="relative z-10 max-w-3xl mx-auto text-center">
+        <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-[#E89D5E] mb-3">CLINICAL CARE ON YOUR TERMS</p>
+        <h2 id="pdp-banner-title" class="text-4xl sm:text-5xl lg:text-[60px] font-medium tracking-[-0.03em] leading-[1.05]">
+          Real medicine, built around you
         </h2>
-        <p id="pdp-banner-sub" class="text-[14px] sm:text-[15px] text-[#3D3730] mt-3.5 max-w-lg mx-auto leading-relaxed">
-          No waiting rooms, no pharmacy lines. Get evaluated online by a licensed clinician and receive genuine treatments at your door.
+        <p id="pdp-banner-sub" class="text-base sm:text-[17px] text-white/80 mt-4 max-w-xl mx-auto leading-relaxed">
+          Complete your online consult in minutes and let licensed clinicians handle the rest.
         </p>
         <button onclick="startCurrentProductIntake()"
-          class="mt-7 px-7 py-3 rounded-full bg-white text-[#1D1B19] hover:bg-[#FAF8F5] text-xs font-semibold transition-colors shadow-sm cursor-pointer">
+          class="mt-8 px-8 py-3.5 rounded-full bg-white hover:bg-[#F5F2EB] text-[#191714] text-xs font-semibold transition-colors cursor-pointer">
           Get started
         </button>
       </div>
     </section>
 
-    <!-- ======================================================== -->
-    <!-- SECTION 6: SIMILAR TREATMENTS                            -->
-    <!-- ======================================================== -->
-    <section class="bg-white py-16 sm:py-24">
-      <div class="max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-12">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
-          <div>
-            <h2 class="text-2xl sm:text-[32px] font-semibold text-[#1D1B19] tracking-[-0.02em]">
-              Explore other treatment options
-            </h2>
-            <p class="text-[13px] text-[#6E6860] mt-1">Compare doctor-prescribed formulations across AIRO eMed.</p>
-          </div>
-          <a href="/shop.html" class="text-xs font-semibold text-[#0F1B38] hover:text-[#1E40AF] underline underline-offset-4">
-            Browse all treatments →
-          </a>
+    <!-- M08 · COMPARISON TABLE (5 COLUMNS, CURRENT ROW IN APRICOT TINT) -->
+    <section class="sheet px-6 sm:px-10 lg:px-14 py-16 sm:py-22">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+        <div>
+          <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[#6E6860] mb-2">COMPARE OPTIONS</p>
+          <h2 class="text-3xl sm:text-5xl font-medium text-[#191714] tracking-[-0.03em] leading-[1.08]">
+            Side by side
+          </h2>
         </div>
+        <p class="text-[15px] text-[#6E6860] max-w-sm">
+          Compare active ingredients, delivery format, and pricing across AIRO eMed treatments. Click any row to view.
+        </p>
+      </div>
 
-        <div id="pdp-related-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- Populated dynamically -->
-        </div>
+      <div class="overflow-x-auto -mx-2 px-2">
+        <table class="w-full min-w-[680px] text-left border-collapse">
+          <thead>
+            <tr class="border-b border-[#EAE5DC] font-mono text-[11px] uppercase tracking-[0.12em] text-[#6E6860]">
+              <th class="py-3.5 pr-4 font-medium">Treatment</th>
+              <th class="py-3.5 px-4 font-medium">Price</th>
+              <th class="py-3.5 px-4 font-medium">Timeline</th>
+              <th class="py-3.5 px-4 font-medium">Format</th>
+              <th class="py-3.5 pl-4 font-medium">Active Ingredient</th>
+            </tr>
+          </thead>
+          <tbody id="pdp-comparison-rows" class="divide-y divide-[#F0ECE4] text-[14px]">
+            <!-- Populated dynamically -->
+          </tbody>
+        </table>
       </div>
     </section>
 
-    <!-- ======================================================== -->
-    <!-- SECTION 7: SOFT WARM ESPRESSO STAT CARDS                 -->
-    <!-- ======================================================== -->
-    <section class="bg-[#FAF8F5] py-16 sm:py-24">
-      <div class="max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-12">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
-          <h2 class="text-2xl sm:text-[32px] font-semibold text-[#1D1B19] tracking-[-0.02em]">
-            Look after your health at your own pace
+    <!-- M09 · HEALTH BENEFITS (OPTIONAL: 2 CARDS — INK LEFT, CREAM RIGHT) -->
+    <section id="pdp-health-section" class="sheet px-6 sm:px-10 lg:px-14 py-16 sm:py-22">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
+        <div>
+          <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[#6E6860] mb-2">CLINICAL OUTCOMES</p>
+          <h2 class="text-3xl sm:text-5xl font-medium text-[#191714] tracking-[-0.03em] leading-[1.08]">
+            Beyond the surface
           </h2>
+        </div>
+        <button onclick="startCurrentProductIntake()"
+          class="self-start sm:self-auto px-6 py-3 rounded-full bg-[#191714] hover:bg-[#0F1B38] text-white text-xs font-medium transition-colors cursor-pointer shrink-0">
+          Get started
+        </button>
+      </div>
+
+      <div id="pdp-health-cards" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Populated dynamically: 1 ink card + 1 cream card -->
+      </div>
+
+      <p class="text-[11px] text-[#6E6860] mt-6">
+        Clinical outcomes shown reflect published studies on active ingredients and physician-monitored patient cohorts.
+      </p>
+    </section>
+
+    <!-- M10 · DOSING SCHEDULE (OPTIONAL: 4 PROGRESSIVELY WARMING CARDS) -->
+    <section id="pdp-dosing-section" class="sheet px-6 sm:px-10 lg:px-14 py-16 sm:py-22">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div>
+          <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[#6E6860] mb-2">DOSING &amp; PROGRESS</p>
+          <h2 class="text-3xl sm:text-5xl font-medium text-[#191714] tracking-[-0.03em] leading-[1.08]">
+            Month-by-month rhythm
+          </h2>
+        </div>
+        <button onclick="startCurrentProductIntake()"
+          class="self-start md:self-auto px-6 py-3 rounded-full bg-[#191714] hover:bg-[#0F1B38] text-white text-xs font-medium transition-colors cursor-pointer shrink-0">
+          Get started
+        </button>
+      </div>
+
+      <div id="pdp-dosing-cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <!-- 4 cards warming from cream to apricot -->
+      </div>
+
+      <!-- Provider access bar -->
+      <div class="mt-4 bg-[#F5F2EB] rounded-2xl px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="flex items-center space-x-2.5 text-xs text-[#191714]">
+          <span class="w-2 h-2 rounded-full bg-[#5B7E6F]"></span>
+          <span>Unlimited messaging with your US-licensed clinician included at every step.</span>
+        </div>
+        <button onclick="openPortalModal()" class="text-xs font-medium text-[#191714] underline underline-offset-4 cursor-pointer self-start sm:self-auto">
+          Patient Portal →
+        </button>
+      </div>
+    </section>
+
+    <!-- M11 · FAQ (2 COLUMNS: HEADING + SECONDARY BUTTON LEFT, ACCORDIONS RIGHT) -->
+    <section class="sheet px-6 sm:px-10 lg:px-14 py-16 sm:py-22">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        <div class="lg:col-span-4">
+          <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[#6E6860] mb-2">QUESTIONS</p>
+          <h2 class="text-3xl sm:text-[44px] font-medium text-[#191714] tracking-[-0.03em] leading-[1.08]">
+            Common questions
+          </h2>
+          <p class="text-[15px] text-[#6E6860] mt-3 leading-relaxed">
+            Everything you need to know before starting your online evaluation.
+          </p>
           <button onclick="startCurrentProductIntake()"
-            class="self-start sm:self-auto px-5 py-2.5 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-xs font-semibold transition-colors cursor-pointer">
-            Get started
+            class="mt-6 px-6 py-3 rounded-full bg-[#F5F2EB] hover:bg-[#EAE5DC] text-[#191714] text-xs font-medium transition-colors cursor-pointer">
+            Consult a Doctor
           </button>
         </div>
 
-        <div id="pdp-stat-cards" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div id="pdp-faq-list" class="lg:col-span-8 border-t border-[#EAE5DC] divide-y divide-[#EAE5DC]">
           <!-- Populated dynamically -->
         </div>
       </div>
     </section>
 
-    <!-- ======================================================== -->
-    <!-- SECTION 8: PROGRESS TIMELINE & CLINICAL TRAJECTORY       -->
-    <!-- ======================================================== -->
-    <section class="bg-white py-16 sm:py-24 border-b border-[#EFECE6]">
-      <div class="max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-12">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          <div class="lg:col-span-5">
-            <h2 class="text-3xl sm:text-[36px] font-semibold text-[#1D1B19] tracking-[-0.025em] leading-[1.15]">
-              Reach your goals.<br>Take care of you.
-            </h2>
-            <p class="text-[13.5px] text-[#6E6860] mt-3.5 leading-relaxed">
-              Consistent treatment paired with physician check-ins delivers steady, measurable progress over time.
-            </p>
-            <button onclick="startCurrentProductIntake()"
-              class="mt-6 px-6 py-3 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-xs font-semibold transition-colors cursor-pointer">
-              Get started
-            </button>
-          </div>
+    <!-- M12 · FOOTER + FOOTNOTES (INK SHEET + OVERSIZED WORDMARK) -->
+    <footer class="sheet-ink px-6 sm:px-10 lg:px-14 pt-14 pb-8 overflow-hidden">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+        <div class="md:col-span-5 space-y-3">
+          <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[#E89D5E]">MEDICAL FOOTNOTES</p>
+          <p class="text-xs text-white/65 leading-relaxed">
+            Prescription products require an online consultation with a US-licensed physician who will determine if a
+            treatment is clinically appropriate. Compounded medications are prepared by licensed 503A pharmacy partners
+            and are not FDA-approved as finished compounded products.
+          </p>
+        </div>
 
-          <div class="lg:col-span-7 space-y-6">
-            <!-- Soft Warm Curve Card -->
-            <div class="bg-[#FAF8F5] rounded-[20px] p-6 sm:p-8">
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-medium text-[#6E6860]">Clinical progress trajectory</span>
-                <span class="text-[11px] font-medium text-[#8E857B]">Physician monitored</span>
-              </div>
-              <svg viewBox="0 0 400 110" class="w-full h-28 overflow-visible" aria-hidden="true">
-                <defs>
-                  <linearGradient id="pdpCurveGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#C59B6D" stop-opacity="0.28" />
-                    <stop offset="100%" stop-color="#C59B6D" stop-opacity="0.0" />
-                  </linearGradient>
-                </defs>
-                <path d="M 10 92 C 90 88, 160 65, 240 42 C 300 24, 350 16, 390 12 L 390 100 L 10 100 Z" fill="url(#pdpCurveGrad)" />
-                <path d="M 10 92 C 90 88, 160 65, 240 42 C 300 24, 350 16, 390 12" fill="none" stroke="#C59B6D" stroke-width="2.5" stroke-linecap="round" />
-                <circle cx="10" cy="92" r="3.5" fill="#C59B6D" />
-                <circle cx="135" cy="70" r="3.5" fill="#C59B6D" />
-                <circle cx="260" cy="36" r="3.5" fill="#C59B6D" />
-                <circle cx="390" cy="12" r="4.5" fill="#9E7347" />
-              </svg>
-              <div class="grid grid-cols-4 text-[11px] font-medium text-[#8E857B] mt-2">
-                <span>Week 1–2</span>
-                <span class="text-center">Month 1</span>
-                <span class="text-center">Month 3</span>
-                <span class="text-right">Month 6+</span>
-              </div>
-            </div>
+        <div class="md:col-span-2">
+          <h4 class="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50 mb-3">Treatments</h4>
+          <ul class="space-y-2 text-xs text-white/80">
+            <li><a href="/shop.html?category=HAIR_LOSS" class="hover:text-white transition-colors">Hair Care</a></li>
+            <li><a href="/shop.html?audience=HIM&category=SEXUAL_HEALTH_ED" class="hover:text-white transition-colors">Sexual Health</a></li>
+            <li><a href="/shop.html?category=DERMATOLOGY" class="hover:text-white transition-colors">Skin Care</a></li>
+            <li><a href="/shop.html?category=WEIGHT_MANAGEMENT" class="hover:text-white transition-colors">Weight Care</a></li>
+          </ul>
+        </div>
 
-            <!-- 4 Minimal Timeline Accordions -->
-            <div id="pdp-timeline-accordions" class="divide-y divide-[#ECE7DF] border-y border-[#ECE7DF]">
-              <!-- Populated dynamically -->
-            </div>
-          </div>
+        <div class="md:col-span-2">
+          <h4 class="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50 mb-3">Explore</h4>
+          <ul class="space-y-2 text-xs text-white/80">
+            <li><a href="/concerns.html" class="hover:text-white transition-colors">Concerns</a></li>
+            <li><a href="/shop.html" class="hover:text-white transition-colors">Shop All</a></li>
+            <li><a href="/#doctors" class="hover:text-white transition-colors">Medical Board</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-3 space-y-3">
+          <h4 class="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50 mb-3">Support</h4>
+          <p class="text-xs text-white/65">24/7 clinical coordination for active patients.</p>
+          <button onclick="openPortalModal()"
+            class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-medium transition-colors cursor-pointer">
+            Patient Portal →
+          </button>
         </div>
       </div>
-    </section>
 
-    <!-- ======================================================== -->
-    <!-- SECTION 9: FREQUENTLY ASKED QUESTIONS                    -->
-    <!-- ======================================================== -->
-    <section class="bg-white py-16 sm:py-24">
-      <div class="max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-12">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          <div class="lg:col-span-4">
-            <h2 class="text-2xl sm:text-[32px] font-semibold text-[#1D1B19] tracking-[-0.02em] leading-tight">
-              Frequently asked questions
-            </h2>
-            <p class="text-[13px] text-[#6E6860] mt-3 leading-relaxed">
-              Have specific clinical questions? Our US-licensed medical team reviews every consultation individually.
-            </p>
-            <button onclick="startCurrentProductIntake()"
-              class="mt-6 px-5 py-2.5 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-xs font-semibold transition-colors cursor-pointer">
-              Consult a Doctor
-            </button>
-          </div>
-
-          <div id="pdp-faq-list" class="lg:col-span-8 divide-y divide-[#ECE7DF] border-y border-[#ECE7DF]">
-            <!-- Populated dynamically -->
-          </div>
+      <div class="py-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-white/45 gap-3">
+        <span>© 2026 AIRO eMed Inc. All rights reserved.</span>
+        <div class="flex space-x-5">
+          <a href="#" class="hover:text-white/75">Privacy</a>
+          <a href="#" class="hover:text-white/75">Terms</a>
+          <a href="#" class="hover:text-white/75">Telehealth Consent</a>
         </div>
       </div>
-    </section>
+
+      <!-- Oversized Wordmark -->
+      <div class="pt-4 select-none pointer-events-none text-center">
+        <div class="text-[14vw] sm:text-[11vw] lg:text-[140px] font-bold tracking-[-0.04em] leading-[0.85] text-white/[0.06]">
+          AIRO eMed
+        </div>
+      </div>
+    </footer>
 
   </main>
 
-  <!-- ======================================================== -->
-  <!-- FOOTER                                                   -->
-  <!-- ======================================================== -->
-  <footer class="bg-[#191817] text-white pt-16 pb-12 border-t border-neutral-800">
-    <div class="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-neutral-800">
-        <div class="md:col-span-4 space-y-4">
-          <a href="/" class="brand-logo flex items-baseline space-x-1.5 select-none">
-            <span class="font-extrabold text-2xl tracking-tight text-white">AIRO</span>
-            <span class="text-xl font-normal text-white/80 tracking-tight">eMed</span>
-          </a>
-          <p class="text-xs text-neutral-400 max-w-sm leading-relaxed">
-            AIRO eMed provides access to medical consultations and prescription compounds formulated by US-licensed
-            physicians and dispensed by verified pharmacy partners.
-          </p>
-          <div class="flex items-center space-x-4 text-xs text-neutral-400 pt-2">
-            <span>✓ LegitScript Certified</span>
-            <span>✓ HIPAA Compliant</span>
-            <span>✓ 503A Pharmacy</span>
-          </div>
-        </div>
-
-        <div class="md:col-span-2">
-          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Treatments</h4>
-          <ul class="space-y-2 text-xs text-neutral-400">
-            <li><a href="/shop.html?category=HAIR_LOSS" class="hover:text-white transition-colors">Hair Regrowth</a></li>
-            <li><a href="/shop.html?audience=HIM&category=SEXUAL_HEALTH_ED" class="hover:text-white transition-colors">Sexual Wellness</a></li>
-            <li><a href="/shop.html?category=DERMATOLOGY" class="hover:text-white transition-colors">Dermatology</a></li>
-            <li><a href="/shop.html?category=WEIGHT_MANAGEMENT" class="hover:text-white transition-colors">Weight Loss (GLP-1)</a></li>
-          </ul>
-        </div>
-
-        <div class="md:col-span-2">
-          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Learn More</h4>
-          <ul class="space-y-2 text-xs text-neutral-400">
-            <li><a href="/concerns.html" class="hover:text-white transition-colors">Health Concerns</a></li>
-            <li><a href="/shop.html" class="hover:text-white transition-colors">Shop All Treatments</a></li>
-            <li><a href="/#doctors" class="hover:text-white transition-colors">Medical Board</a></li>
-            <li><a href="/#safety-protocols" class="hover:text-white transition-colors">Clinical Standards</a></li>
-          </ul>
-        </div>
-
-        <div class="md:col-span-4 space-y-4">
-          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-2">Patient Security & Support</h4>
-          <p class="text-xs text-neutral-400 leading-relaxed">
-            Need assistance or have questions about an active prescription? Our clinical coordinators and licensed
-            physicians are available 24/7.
-          </p>
-          <div class="pt-2">
-            <button onclick="openPortalModal()"
-              class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-colors">
-              Patient Portal Login →
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-neutral-500 gap-4">
-        <p>© 2026 AIRO eMed Inc. All rights reserved. Prescription products require an online consultation with a licensed clinician.</p>
-        <div class="flex space-x-6">
-          <a href="#" class="hover:text-neutral-400">Privacy Policy</a>
-          <a href="#" class="hover:text-neutral-400">Terms of Service</a>
-          <a href="#" class="hover:text-neutral-400">Telehealth Consent</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Patient Portal Modal Container -->
+  <!-- Patient Portal Modal -->
   <div id="portal-modal" class="portal-modal fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-[#DDD5C9] transform scale-95 transition-transform duration-300">
-      <div class="flex justify-between items-center mb-6">
-        <h3 class="text-xl font-bold text-[#191817]">Patient Portal</h3>
-        <button onclick="closePortalModal()" class="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-600 hover:text-black">✕</button>
+    <div class="bg-white rounded-[24px] max-w-lg w-full p-6 sm:p-8 shadow-2xl transform scale-95 transition-transform duration-300">
+      <div class="flex justify-between items-center mb-5">
+        <h3 class="text-xl font-medium text-[#191714]">Patient Portal</h3>
+        <button onclick="closePortalModal()" class="w-8 h-8 rounded-full bg-[#F5F2EB] flex items-center justify-center text-[#191714] cursor-pointer">✕</button>
       </div>
-      <p class="text-xs text-neutral-600 mb-6">Log in to view active prescriptions, refills, or message your physician.</p>
+      <p class="text-xs text-[#6E6860] mb-5">Log in to view active prescriptions, refills, or message your physician.</p>
       <div class="space-y-4">
-        <div>
-          <label class="block text-xs font-semibold mb-1 text-neutral-700">Phone or Email</label>
-          <input type="text" placeholder="Enter your registered phone or email" class="w-full px-4 py-2.5 rounded-xl border border-neutral-300 text-sm focus:outline-none focus:border-[#1E40AF]" />
-        </div>
-        <button onclick="alert('Verification code sent to your mobile.')" class="w-full py-3 rounded-full bg-[#0F1B38] text-white text-xs font-semibold hover:bg-[#1E40AF] transition-colors shadow-sm">
+        <input type="text" placeholder="Enter your registered phone or email" class="w-full px-4 py-3 rounded-xl bg-[#F5F2EB] text-sm focus:outline-none" />
+        <button onclick="alert('Verification code sent to your mobile.')" class="w-full py-3.5 rounded-full bg-[#191714] text-white text-xs font-medium hover:bg-[#0F1B38] transition-colors cursor-pointer">
           Send Verification Code
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Live Toast Notification Container -->
-  <div id="toast"
-    class="fixed bottom-6 right-6 z-[100] transform translate-y-24 opacity-0 transition-all duration-300 bg-[#191817] text-white px-5 py-3.5 rounded-2xl shadow-2xl text-xs font-semibold flex items-center space-x-2 border border-white/10">
-    <span id="toast-icon" class="text-emerald-400">✓</span>
-    <span id="toast-msg">Notification message</span>
-  </div>
-
   <script src="/app.js"></script>
   <script>
-    const CATEGORY_PDP_META = {
+    const CATEGORY_SYSTEM = {
       HAIR_LOSS: {
         label: 'Hair Care',
         howImg: '/images/explore-hair.jpg',
         bannerImg: '/images/explore-hair.jpg',
         bannerTitle: 'Thicker, fuller hair on your schedule',
-        bannerSub: 'Doctor-prescribed topical and oral therapies engineered to reactivate dormant follicles and protect existing density.',
+        bannerSub: 'Doctor-prescribed topical and oral therapies engineered to reactivate dormant follicles and protect density.',
+        timelineLabel: '4–6 months',
+        formatLabel: 'Topical / Oral',
         bullets: [
-          'Clinically proven dual & triple-active hair regrowth compounds',
-          'Online evaluation by a US-licensed physician in under 24 hours',
-          'Free discreet delivery in unmarked packaging with auto-refills'
+          'Clinically proven follicle-activating prescription actives',
+          'Evaluated online by a US-licensed physician in 24 hours',
+          'Free discreet delivery in plain, unmarked packaging'
         ],
-        whyHeading: 'Why Hair Care at AIRO eMed',
-        whyCards: [
-          { title: 'Targets the root cause', desc: 'Blocks follicle-shrinking DHT while stimulating micro-circulation to reactivate dormant growth cycles.' },
-          { title: 'Tailored to your stage', desc: 'Available in targeted strengths for early thinning, crown density, or female pattern hair loss.' }
+        proofStats: [
+          { num: '86%', label: 'Saw less daily shedding within 12 weeks' },
+          { num: '24h', label: 'Average licensed physician review time' },
+          { num: '503A', label: 'Verified US compounding pharmacy partners' },
+          { num: '$0', label: 'Shipping & ongoing clinician follow-ups' }
         ],
-        stats: [
-          { metric: '86%', title: 'Saw visible reduction in shedding', desc: 'Patients using consistent daily prescription therapy reported less daily shedding within 3–4 months.' },
-          { metric: '4–6 mo', title: 'Measurable density improvement', desc: 'Clinically formulated actives extend the anagen growth phase for visibly thicker hair coverage.' }
+        features: [
+          { title: 'Blocks DHT at the root', desc: 'Targets the primary hormonal driver of follicle miniaturization to preserve existing density.', isImg: true },
+          { title: 'Reactivates dormant cycles', desc: 'Stimulates scalp micro-circulation to extend the active anagen growth phase.', isImg: true },
+          { title: 'Tailored clinical strength', desc: 'Formulated across multiple strengths for early thinning, crown coverage, or female pattern hair loss.', isImg: false },
+          { title: 'Zero pharmacy waiting rooms', desc: 'Complete your consult from home and receive automatic refills before you run low.', isImg: false }
         ],
-        timeline: [
-          { title: 'Weeks 1–4: Scalp acclimation', desc: 'Your follicles begin responding to targeted actives. Mild initial shedding can occur as weaker hairs make room for new growth.' },
-          { title: 'Months 2–3: Reduced shedding', desc: 'Daily shedding slows noticeably and scalp coverage begins stabilizing under consistent application.' },
-          { title: 'Months 4–6: Visible regrowth', desc: 'New baby hairs thicken along the hairline, crown, or part line with measurable improvements in density.' },
-          { title: 'Ongoing: Long-term retention', desc: 'Continued care maintains follicle protection and preserves your regrowth gains with doctor check-ins.' }
+        healthCards: [
+          { tag: 'FOLLICLE DENSITY', metric: '+31%', title: 'Stronger, thicker hair shafts', desc: 'Consistent therapy supports denser coverage along the hairline, crown, and center part.' },
+          { tag: 'SCALP HEALTH', metric: '2–3 mo', title: 'Noticeably calmer shedding', desc: 'Stabilizes daily shedding in the shower and brush while nourishing scalp barrier health.' }
+        ],
+        dosing: [
+          { step: 'MONTH 01', dose: 'Acclimation', title: 'Follicle reset', text: 'Scalp adjusts to active ingredients; dormant follicles begin transitioning into growth.' },
+          { step: 'MONTH 02', dose: 'Stabilize', title: 'Shedding slows', text: 'Daily shedding tapers noticeably under consistent daily or nightly application.' },
+          { step: 'MONTH 03', dose: 'Regrowth', title: 'Fine new hairs', text: 'Early vellus hairs emerge along thinning zones and part lines.' },
+          { step: 'MONTH 06', dose: 'Density', title: 'Visible fullness', text: 'New strands thicken and blend for measurable overall hair density.' }
         ],
         faqs: [
-          { q: 'How long does it take to see hair regrowth results?', a: 'Most patients notice reduced shedding within 8–12 weeks and visible thickening or regrowth between months 4 and 6 of consistent use.' },
-          { q: 'Do I need an in-person doctor visit?', a: 'No. Your entire consultation is completed online and reviewed by a licensed physician who determines the right strength for you.' },
-          { q: 'Are these formulas safe for daily use?', a: 'Yes, when prescribed after your medical review. Your clinician screens for contraindications and provides clear usage guidance.' },
-          { q: 'What happens if I stop using the treatment?', a: 'Hair regrowth treatments work as long as you use them consistently. Stopping treatment may cause gradual return of hair thinning over several months.' },
-          { q: 'How is my medication shipped?', a: 'All orders ship free in discreet, unmarked packaging directly from our verified 503A pharmacy partners.' }
+          { q: 'How long does it take to see results?', a: 'Most patients notice reduced shedding within 8–12 weeks and visible thickening between months 4 and 6 of consistent use.' },
+          { q: 'Do I need an in-person doctor visit?', a: 'No. Your medical intake is reviewed online by a US-licensed physician.' },
+          { q: 'How is my treatment shipped?', a: 'All orders ship free in discreet, unmarked packaging directly to your door.' },
+          { q: 'What if I want to pause or cancel?', a: 'You can pause, adjust, or cancel your subscription anytime inside your patient portal.' }
         ]
       },
       WEIGHT_MANAGEMENT: {
@@ -708,33 +561,41 @@
         howImg: '/images/explore-weight.jpg',
         bannerImg: '/images/explore-weight.jpg',
         bannerTitle: 'Sustainable metabolic care, guided by doctors',
-        bannerSub: 'Clinically proven GLP-1 and metabolic therapies prescribed online to help quiet food noise and support lasting weight loss.',
+        bannerSub: 'Clinically proven GLP-1 and metabolic therapies prescribed online to quiet food noise and support lasting weight loss.',
+        timelineLabel: '12–24 weeks',
+        formatLabel: 'Weekly Pen / Oral',
         bullets: [
-          'Clinically studied GLP-1 & dual-agonist metabolic formulations',
-          'Personalized dosing schedule overseen by a licensed physician',
-          'Discreet pharmacy delivery included at no extra cost'
+          'Clinically studied GLP-1 & dual-agonist metabolic therapies',
+          'Step-by-step physician titration tailored to your body',
+          'Free discreet delivery & 24/7 care team messaging'
         ],
-        whyHeading: 'Why Weight Management at AIRO eMed',
-        whyCards: [
-          { title: 'Quiets food noise naturally', desc: 'Works with your body’s GLP-1 receptors to regulate appetite, slow gastric emptying, and curb cravings.' },
-          { title: 'Doctor-guided titration', desc: 'Your clinician adjusts your dose gradually over time to maximize results while minimizing side effects.' }
+        proofStats: [
+          { num: '15%+', label: 'Average body weight reduction in GLP-1 trials' },
+          { num: '24h', label: 'Physician review of your metabolic intake' },
+          { num: '1x/wk', label: 'Simple weekly or daily dosing schedule' },
+          { num: '100%', label: 'Online care with zero hidden consult fees' }
         ],
-        stats: [
-          { metric: '15%+', title: 'Average body weight reduction', desc: 'Clinical GLP-1 studies demonstrate meaningful, sustained weight reduction when paired with healthy habits.' },
-          { metric: '24/7', title: 'Direct clinician support', desc: 'Message your medical team anytime for dosage guidance, side-effect management, or nutrition support.' }
+        features: [
+          { title: 'Quiets food noise naturally', desc: 'Activates GLP-1 receptors to regulate appetite, curb cravings, and help you feel full sooner.', isImg: true },
+          { title: 'Doctor-guided titration', desc: 'Your clinician steps your dose up gradually over time to maximize progress and comfort.', isImg: true },
+          { title: 'Verified pharmacy sourcing', desc: 'Every prescription is dispensed through licensed pharmacy partners with strict quality standards.', isImg: false },
+          { title: 'Support whenever you need it', desc: 'Message your clinical team anytime for dosage questions or side-effect guidance.', isImg: false }
         ],
-        timeline: [
-          { title: 'Weeks 1–4: Appetite calibration', desc: 'Starting at a gentle introductory dose helps your body adjust while early appetite and craving control begins.' },
-          { title: 'Months 2–3: Steady metabolic momentum', desc: 'As your clinician titrates your dosage, meals feel more satisfying and steady weekly progress builds.' },
-          { title: 'Months 4–6: Significant transformation', desc: 'Consistent therapy supports substantial fat loss, improved energy, and healthier metabolic markers.' },
-          { title: 'Ongoing: Maintenance & balance', desc: 'Your doctor helps you transition to a sustainable long-term plan to protect your results.' }
+        healthCards: [
+          { tag: 'METABOLIC HEALTH', metric: 'GLP-1', title: 'Steadier energy & glycemic balance', desc: 'Supports healthier post-meal blood sugar responses and sustained daily energy.' },
+          { tag: 'SUSTAINABILITY', metric: 'Step-Up', title: 'Built for long-term maintenance', desc: 'Gradual dosing helps you build lasting habits without crash dieting.' }
+        ],
+        dosing: [
+          { step: 'MONTH 01', dose: '0.25 mg', title: 'Gentle start', text: 'Introductory dose helps your body adapt while early appetite control begins.' },
+          { step: 'MONTH 02', dose: '0.5 mg', title: 'Steady momentum', text: 'Cravings quiet further and portions naturally feel more satisfying.' },
+          { step: 'MONTH 03', dose: '1.0 mg', title: 'Active progress', text: 'Consistent weekly fat loss and improved metabolic markers build.' },
+          { step: 'MONTH 04+', dose: 'Target', title: 'Peak & maintain', text: 'Clinician fine-tunes your maintenance dose to protect long-term results.' }
         ],
         faqs: [
-          { q: 'Who qualifies for GLP-1 weight management?', a: 'Eligibility is determined by a licensed physician based on your BMI, health history, and metabolic goals during your online consultation.' },
-          { q: 'How are injections or tablets taken?', a: 'Injectable pens and vials are typically taken once weekly, while oral tablets like Rybelsus are taken once daily. Full instructions are included.' },
-          { q: 'What side effects might occur?', a: 'Mild nausea or digestive changes can occur during early dose adjustments. Gradual titration and physician check-ins help keep you comfortable.' },
-          { q: 'Do I need lab work?', a: 'Your clinician will let you know if any recent lab work is helpful based on your medical intake.' },
-          { q: 'Can I cancel or pause my plan?', a: 'Yes, you can pause, adjust, or cancel your auto-refill subscription anytime from your patient portal.' }
+          { q: 'Who qualifies for GLP-1 weight management?', a: 'A licensed physician reviews your BMI, medical history, and goals during your online intake to determine eligibility.' },
+          { q: 'How are GLP-1 treatments taken?', a: 'Injectable pens and vials are typically once weekly, while oral tablets are taken once daily.' },
+          { q: 'What side effects might occur?', a: 'Mild nausea can occur during early dose increases; gradual titration helps minimize discomfort.' },
+          { q: 'Can I pause or cancel anytime?', a: 'Yes, manage or cancel your plan anytime from your patient portal.' }
         ]
       },
       SEXUAL_HEALTH_ED: {
@@ -742,33 +603,36 @@
         howImg: '/images/explore-mens.jpg',
         bannerImg: '/images/explore-mens.jpg',
         bannerTitle: 'Confidence on your terms, delivered discreetly',
-        bannerSub: 'Fast-acting and 36-hour prescription compounds formulated for reliable performance, stamina, and spontaneity.',
+        bannerSub: 'Fast-acting sublinguals, chewables, and 36-hour compounds formulated for reliable performance and spontaneity.',
+        timelineLabel: '15–30 mins',
+        formatLabel: 'Sublingual / Chewable',
         bullets: [
-          'Fast-acting sublinguals, gummies, troches, and dual-action compounds',
-          '100% private online evaluation with a US-licensed physician',
-          'Shipped in plain, unmarked packaging straight to your door'
+          'Rapid-onset sublinguals & 36-hour longevity formulas',
+          '100% private online evaluation with a licensed doctor',
+          'Delivered free in plain, unmarked packaging'
         ],
-        whyHeading: 'Why Sexual Health at AIRO eMed',
-        whyCards: [
-          { title: 'Rapid onset & lasting confidence', desc: 'Choose between 15-minute sublingual rapid formulas or 36-hour weekend longevity options.' },
-          { title: 'Private, judgment-free care', desc: 'Complete your medical consult from home in minutes—no awkward waiting rooms or pharmacy pickups.' }
+        proofStats: [
+          { num: '15m', label: 'Rapid sublingual onset for spontaneous moments' },
+          { num: '36h', label: 'Extended readiness window on tadalafil plans' },
+          { num: '100%', label: 'Private online evaluation from home' },
+          { num: 'Plain', label: 'Unmarked packaging with zero external branding' }
         ],
-        stats: [
-          { metric: '15 min', title: 'Rapid sublingual onset', desc: 'Compounded sublingual and chewable options absorb quickly for spontaneous readiness.' },
-          { metric: '36 hrs', title: 'Extended performance window', desc: 'Long-acting tadalafil formulations let you focus on the moment without watching the clock.' }
+        features: [
+          { title: 'Fast-acting absorption', desc: 'Sublingual and chewable formats bypass slow digestion for predictable, rapid onset.', isImg: true },
+          { title: 'Stay ready longer', desc: 'Choose daily or 36-hour options so you never have to watch the clock.', isImg: true },
+          { title: 'Dual-action compounds', desc: 'Select formulas pair rapid sildenafil onset with long-lasting tadalafil support.', isImg: false },
+          { title: 'Complete discretion', desc: 'No waiting rooms, no pharmacy counter pickups, and unmarked doorstep delivery.', isImg: false }
         ],
-        timeline: [
-          { title: 'Step 1: Private online intake', desc: 'Share your health history and blood pressure details in a confidential 3-minute medical form.' },
-          { title: 'Step 2: Physician approval', desc: 'A licensed doctor verifies safety and prescribes the optimal strength for your needs.' },
-          { title: 'Step 3: Discreet delivery', desc: 'Your order arrives in a plain, unmarked box with clear dosing guidance.' },
-          { title: 'Ongoing: Flexible refills', desc: 'Adjust strengths or switch between daily and on-demand options anytime with your clinician.' }
+        healthCards: [
+          { tag: 'PERFORMANCE', metric: '92%', title: 'Improved confidence & firmness', desc: 'Targeted PDE-5 support enhances blood flow when you need it most.' },
+          { tag: 'PRIVACY', metric: '24h', title: 'Fast, confidential approval', desc: 'Licensed physicians review your health profile discreetly within one day.' }
         ],
+        dosing: null,
         faqs: [
-          { q: 'How quickly does the medication work?', a: 'Sublingual and rapid-dissolve options can begin working in 15–30 minutes, while standard oral tablets take 30–60 minutes.' },
-          { q: 'Is the packaging completely discreet?', a: 'Yes. Every shipment arrives in a plain, unmarked box with no mention of the contents on the outside.' },
-          { q: 'Can I take it with food or alcohol?', a: 'Heavy meals can slow standard oral tablets, whereas sublingual formulations absorb faster. Limit alcohol for best results.' },
-          { q: 'What if I take blood pressure medication?', a: 'Always list all current medications in your intake. Nitrates cannot be combined with ED medications, and your doctor will review everything safely.' },
-          { q: 'Can I adjust my dose later?', a: 'Yes, message your clinician anytime through the patient portal to adjust your strength.' }
+          { q: 'How quickly does it start working?', a: 'Sublingual and chewable options absorb in 15–30 minutes; standard tablets take 30–60 minutes.' },
+          { q: 'Is the packaging discreet?', a: 'Yes. Every order arrives in a plain, unmarked box with no product details visible.' },
+          { q: 'Can I take it with blood pressure medication?', a: 'List all medications in your intake; nitrates cannot be combined with ED treatments.' },
+          { q: 'Can I switch strengths later?', a: 'Yes, message your clinician anytime through your portal to adjust your formula.' }
         ]
       },
       DERMATOLOGY: {
@@ -776,33 +640,41 @@
         howImg: '/images/explore-skin.jpg',
         bannerImg: '/images/explore-skin.jpg',
         bannerTitle: 'Dermatologist-grade clarity and glow',
-        bannerSub: 'Targeted retinoids, clarifying BHA gels, and brightening serums prescribed online for smoother, clearer, more radiant skin.',
+        bannerSub: 'Targeted retinoids, clarifying BHA gels, and brightening serums prescribed online for smoother, clearer skin.',
+        timelineLabel: '4–8 weeks',
+        formatLabel: 'Topical Cream / Serum',
         bullets: [
-          'Prescription-strength retinoids & clinical-grade skin actives',
-          'Customized to your skin type by licensed dermatology clinicians',
-          'Gentle, balanced formulas designed to minimize irritation'
+          'Clinical-strength retinoids, niacinamide & clarifying actives',
+          'Customized to your skin sensitivity by licensed clinicians',
+          'Gentle, barrier-first formulations delivered to your door'
         ],
-        whyHeading: 'Why Skin Care at AIRO eMed',
-        whyCards: [
-          { title: 'Clinical-strength actives', desc: 'Formulated with proven concentrations of tretinoin, retinol, niacinamide, and salicylic acid.' },
-          { title: 'Barrier-first approach', desc: 'Balanced with soothing hydrators to clarify breakouts, fade dark spots, and smooth fine lines.' }
+        proofStats: [
+          { num: '4–6w', label: 'Visible clarity & texture refinement' },
+          { num: '0.025%', label: 'Dermatologist-trusted retinoid precision' },
+          { num: '100%', label: 'Personalized to your skin type online' },
+          { num: 'Free', label: 'Discreet delivery & care team check-ins' }
         ],
-        stats: [
-          { metric: '4–6 wk', title: 'Visible clarity & texture renewal', desc: 'Cellular turnover accelerates to unclog pores, calm breakouts, and refine uneven skin tone.' },
-          { metric: '100%', title: 'Dermatology-guided formulas', desc: 'Every prescription formula is evaluated by a licensed clinician for your specific skin goals.' }
+        features: [
+          { title: 'Accelerates cellular renewal', desc: 'Clears clogged pores, smooths uneven texture, and softens fine lines.', isImg: true },
+          { title: 'Supports your skin barrier', desc: 'Balanced with calming niacinamide and hydrators to keep skin comfortable.', isImg: true },
+          { title: 'Targets dark spots & tone', desc: 'Visibly brightens dullness and post-blemish marks with consistent nightly use.', isImg: false },
+          { title: 'Clinician-guided pacing', desc: 'Clear instructions help you introduce actives smoothly without over-drying.', isImg: false }
         ],
-        timeline: [
-          { title: 'Weeks 1–2: Skin adjustment', desc: 'Introduce your formula 2–3 nights per week paired with daily SPF and a gentle moisturizer.' },
-          { title: 'Weeks 4–6: Smoother texture', desc: 'Pores appear clearer, active breakouts calm down, and surface tone begins brightening.' },
-          { title: 'Months 3–4: Collagen & glow', desc: 'Fine lines soften and dark spots fade noticeably as cellular renewal compounds.' },
-          { title: 'Ongoing: Radiant maintenance', desc: 'Your clinician helps fine-tune your routine across seasons for lasting clarity.' }
+        healthCards: [
+          { tag: 'TEXTURE & CLARITY', metric: '4–6 wk', title: 'Clearer pores & smoother tone', desc: 'Unclogs congested sebum and refines surface texture with consistent evening use.' },
+          { tag: 'COLLAGEN SUPPORT', metric: '12 wk', title: 'Brighter, firmer-looking skin', desc: 'Supports natural collagen renewal for a healthy, luminous complexion.' }
+        ],
+        dosing: [
+          { step: 'WEEK 1–2', dose: '2x / wk', title: 'Gentle intro', text: 'Apply a pea-sized amount twice weekly with moisturizer and daily SPF.' },
+          { step: 'WEEK 3–4', dose: '3–4x / wk', title: 'Skin acclimates', text: 'Increase frequency as your skin builds tolerance and texture begins smoothing.' },
+          { step: 'MONTH 02', dose: 'Nightly', title: 'Visible clarity', text: 'Breakouts calm down and pores appear visibly refined.' },
+          { step: 'MONTH 03+', dose: 'Maintain', title: 'Radiant glow', text: 'Tone evens out and fine lines soften under steady cellular renewal.' }
         ],
         faqs: [
-          { q: 'Can I use this with my existing skincare routine?', a: 'Yes! Keep your cleanser and moisturizer gentle and apply broad-spectrum SPF every morning.' },
-          { q: 'Will prescription retinoids cause peeling?', a: 'Mild dryness can occur in the first 2 weeks. Starting slowly a few nights a week helps your skin adjust smoothly.' },
-          { q: 'How long before I see clearer skin?', a: 'Most patients see initial improvements in texture and clarity within 4–6 weeks, with full anti-aging and brightening benefits by 12 weeks.' },
-          { q: 'Is this suitable for sensitive skin?', a: 'Yes, your clinician considers your skin sensitivity during the online consultation before recommending a strength.' },
-          { q: 'How do refills work?', a: 'Refills ship automatically on your schedule, and you can pause or adjust anytime.' }
+          { q: 'Can I use this with my current skincare?', a: 'Yes—pair with a gentle cleanser, soothing moisturizer, and morning broad-spectrum SPF.' },
+          { q: 'Will retinoids cause dryness at first?', a: 'Mild adjustment dryness can happen in week 1–2; starting 2–3 nights per week helps prevent it.' },
+          { q: 'How long until I see clearer skin?', a: 'Texture and clarity typically improve in 4–6 weeks, with full glow benefits by 12 weeks.' },
+          { q: 'Is it safe for sensitive skin?', a: 'Your clinician reviews your skin sensitivity before prescribing.' }
         ]
       }
     };
@@ -829,16 +701,25 @@
         <div class="pdp-acc-item py-4">
           <button type="button" onclick="toggleAccordion(this)" aria-expanded="${openByDefault}"
             class="w-full flex items-center justify-between text-left gap-4 cursor-pointer group">
-            <span class="text-[13.5px] font-medium text-[#1D1B19] group-hover:text-[#0F1B38] transition-colors">${title}</span>
-            <svg class="pdp-acc-icon w-4 h-4 text-[#8E857B] shrink-0 transition-transform duration-200" style="transform: ${openByDefault ? 'rotate(180deg)' : 'rotate(0deg)'}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <span class="text-[15px] font-medium text-[#191714] group-hover:text-[#0F1B38] transition-colors">${title}</span>
+            <svg class="pdp-acc-icon w-4 h-4 text-[#6E6860] shrink-0 transition-transform duration-200" style="transform: ${openByDefault ? 'rotate(180deg)' : 'rotate(0deg)'}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          <div class="pdp-acc-body ${openByDefault ? '' : 'hidden'} pt-2.5 text-[13px] text-[#6E6860] leading-relaxed">
+          <div class="pdp-acc-body ${openByDefault ? '' : 'hidden'} pt-2.5 text-[14px] text-[#6E6860] leading-relaxed">
             ${content}
           </div>
         </div>
       `;
+    }
+
+    function selectHeroThumb(src, btn) {
+      const heroImg = document.getElementById('pdp-hero-img');
+      heroImg.src = src;
+      document.querySelectorAll('.pdp-thumb-btn').forEach(b => {
+        b.classList.remove('ring-2', 'ring-[#191714]');
+      });
+      btn.classList.add('ring-2', 'ring-[#191714]');
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -849,139 +730,190 @@
       const product = PRODUCTS.find(p => p.id === idParam) || PRODUCTS[0];
       currentPdpProduct = product;
 
-      const meta = CATEGORY_PDP_META[product.category] || CATEGORY_PDP_META.HAIR_LOSS;
+      const meta = CATEGORY_SYSTEM[product.category] || CATEGORY_SYSTEM.HAIR_LOSS;
       const audLabel = product.audience === 'HIM' ? 'Hims' : product.audience === 'HER' ? 'Hers' : 'Hims & Hers';
-
       document.title = `${product.title} — AIRO eMed`;
 
-      const imgEl = document.getElementById('pdp-image');
-      imgEl.src = product.image;
-      imgEl.alt = product.title;
-      document.getElementById('pdp-strip-prod-img').src = product.image;
-      document.getElementById('pdp-strip-prod-img').alt = product.title;
+      // M01: Product Tabs Row (all products in same category first, plus quick switch)
+      const sameCatProducts = PRODUCTS.filter(p => p.category === product.category);
+      const tabProducts = sameCatProducts.length > 1 ? sameCatProducts : PRODUCTS.slice(0, 8);
+      document.getElementById('pdp-product-tabs').innerHTML = tabProducts.map(t => {
+        const isActive = t.id === product.id;
+        return `
+          <a href="/product.html?id=${encodeURIComponent(t.id)}"
+            class="px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${isActive ? 'bg-[#191714] text-white' : 'bg-[#F5F2EB] text-[#6E6860] hover:text-[#191714]'}">
+            ${t.title}
+          </a>
+        `;
+      }).join('');
 
-      const badgeColor = product.badgeType === 'sale'
-        ? 'bg-[#D84A38] text-white'
-        : product.badgeType === 'bestseller'
-        ? 'bg-[#5B7E6F] text-white'
-        : 'bg-white/90 text-[#1D1B19]';
+      // M02: Hero Media + 4 Thumbnails
+      document.getElementById('pdp-hero-img').src = product.image;
+      document.getElementById('pdp-hero-img').alt = product.title;
 
-      document.getElementById('pdp-badge-wrap').innerHTML = product.badge
-        ? `<span class="${badgeColor} text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full backdrop-blur-sm inline-block">${product.badge}</span>`
-        : '';
+      const thumbImgs = [
+        { src: product.image, label: 'Product' },
+        { src: meta.howImg, label: 'Lifestyle' },
+        { src: '/images/doctor-avatar.jpg', label: 'Clinician' },
+        { src: product.image, label: 'Formula' }
+      ];
+      document.getElementById('pdp-thumbs').innerHTML = thumbImgs.map((th, idx) => `
+        <button type="button" onclick="selectHeroThumb('${th.src}', this)"
+          class="pdp-thumb-btn aspect-square rounded-2xl bg-[#F5F2EB] overflow-hidden cursor-pointer transition-all ${idx === 0 ? 'ring-2 ring-[#191714]' : 'opacity-80 hover:opacity-100'}">
+          <img src="${th.src}" alt="${th.label}" class="w-full h-full object-cover" />
+        </button>
+      `).join('');
 
-      document.getElementById('pdp-eyebrow').textContent = `${product.categoryLabel || meta.label}`;
-      document.getElementById('pdp-audience-pill').textContent = audLabel;
+      // M02: Badges + Copy + Price + Accordions
+      document.getElementById('pdp-badges').innerHTML = `
+        ${product.badge ? `<span class="px-3 py-1 rounded-full bg-[#FDF2E6] text-[#191714] font-mono text-[10px] uppercase tracking-[0.12em] font-medium">${product.badge}</span>` : ''}
+        <span class="px-3 py-1 rounded-full bg-[#F5F2EB] text-[#6E6860] font-mono text-[10px] uppercase tracking-[0.12em]">${audLabel}</span>
+      `;
+      document.getElementById('pdp-eyebrow').textContent = `${product.categoryLabel || meta.label} · PRESCRIPTION TREATMENT`;
       document.getElementById('pdp-title').textContent = product.title;
-      document.getElementById('pdp-ingredients').textContent = product.ingredients;
-      document.getElementById('pdp-rating').textContent = product.rating || '4.9';
-      document.getElementById('pdp-reviews').textContent = `(${product.reviews || 320}+ reviews)`;
+      document.getElementById('pdp-subtitle').textContent = `${product.ingredients} — compounded at verified 503A pharmacies and prescribed online by US-licensed clinicians.`;
 
       document.getElementById('pdp-bullets').innerHTML = meta.bullets.map(b => `
         <li class="flex items-start space-x-2.5">
-          <svg class="w-4 h-4 text-[#8E857B] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M5 13l4 4L19 7" />
-          </svg>
+          <span class="w-1.5 h-1.5 rounded-full bg-[#E89D5E] shrink-0 mt-2"></span>
           <span>${b}</span>
         </li>
       `).join('');
 
-      document.getElementById('pdp-price-inr').textContent = `₹${(product.priceInr || 999).toLocaleString('en-IN')}`;
-      const origInrEl = document.getElementById('pdp-orig-inr');
+      document.getElementById('pdp-price-pill').textContent = `₹${(product.priceInr || 999).toLocaleString('en-IN')}${product.period ? product.period.replace(' ', '') : '/mo'}`;
+      const origEl = document.getElementById('pdp-orig-price');
       if (product.originalPriceInr) {
-        origInrEl.textContent = `₹${product.originalPriceInr.toLocaleString('en-IN')}`;
-        origInrEl.classList.remove('hidden');
+        origEl.textContent = `₹${product.originalPriceInr.toLocaleString('en-IN')}`;
+        origEl.classList.remove('hidden');
       }
-      document.getElementById('pdp-price-usd').textContent = `($${product.price})`;
-      document.getElementById('pdp-period').textContent = product.period || '/ month';
+      document.getElementById('pdp-price-usd').textContent = `($${product.price} ${product.period || '/ month'})`;
 
-      const topAccordions = [
-        { title: 'Who is it for?', body: `${product.title} is formulated for ${audLabel === 'Hims' ? 'men' : audLabel === 'Hers' ? 'women' : 'adults'} seeking clinically proven ${meta.label.toLowerCase()} support, prescribed online after a licensed physician reviews your medical intake.` },
-        { title: 'Active ingredients', body: `<strong>${product.ingredients}</strong> — compounded at verified 503A pharmacy partners for consistent potency and purity.` },
-        { title: 'How to use', body: `Follow the personalized dosing schedule prescribed by your AIRO eMed clinician. Clear usage instructions arrive inside your discreet package.` },
-        { title: 'Safety info', body: `Prescription products require an online consultation with a licensed physician. Disclose all current medications and conditions during your intake.` }
+      const heroAcc = [
+        { title: 'Who is it for?', body: `${product.title} is formulated for ${audLabel === 'Hims' ? 'men' : audLabel === 'Hers' ? 'women' : 'adults'} seeking targeted ${meta.label.toLowerCase()} results, prescribed after an online doctor evaluation.` },
+        { title: 'Active ingredients', body: `<strong>${product.ingredients}</strong> — quality-tested for purity, potency, and consistent absorption.` },
+        { title: 'How to use', body: `Follow the personalized instructions prescribed by your clinician. Complete usage guidance arrives in your discreet box.` },
+        { title: 'Safety & prescribing info', body: `Requires evaluation by a US-licensed physician. Always disclose current medications and health conditions during intake.` }
       ];
-      document.getElementById('pdp-top-accordions').innerHTML = topAccordions.map((a, idx) => renderAccordionRow(a.title, a.body, idx === 0)).join('');
+      document.getElementById('pdp-hero-accordions').innerHTML = heroAcc.map((a, i) => renderAccordionRow(a.title, a.body, i === 0)).join('');
 
-      // Section 2: Soft Linen Feature Cards (borderless warm #F4F0E8)
-      document.getElementById('pdp-why-heading').textContent = meta.whyHeading;
-      document.getElementById('pdp-why-cards').innerHTML = meta.whyCards.map((c, idx) => `
-        <div class="bg-[#F4F0E8] rounded-[24px] p-7 sm:p-9 flex flex-col justify-between">
-          <div class="aspect-[16/10] rounded-2xl bg-[#EAE4DA] overflow-hidden mb-7">
-            <img src="${idx === 0 ? product.image : meta.howImg}" alt="${c.title}" class="w-full h-full object-cover" loading="lazy" />
+      // M03: Proof Strip (first stat in apricot)
+      document.getElementById('pdp-proof-strip').innerHTML = meta.proofStats.map((s, idx) => `
+        <div>
+          <div class="text-3xl sm:text-4xl font-medium tracking-tight ${idx === 0 ? 'text-[#E89D5E]' : 'text-white'}">${s.num}</div>
+          <p class="text-[13px] text-white/65 mt-2 leading-snug">${s.label}</p>
+        </div>
+      `).join('');
+
+      // M04: Feature Cards (2 image cards + 2 text cards)
+      const imgFeatures = meta.features.filter(f => f.isImg);
+      const txtFeatures = meta.features.filter(f => !f.isImg);
+
+      document.getElementById('pdp-feature-image-cards').innerHTML = imgFeatures.map((f, idx) => `
+        <div class="bg-[#F5F2EB] rounded-[24px] p-6 sm:p-8 flex flex-col justify-between">
+          <div class="aspect-[16/10] rounded-2xl bg-[#EAE5DC] overflow-hidden mb-6">
+            <img src="${idx === 0 ? product.image : meta.howImg}" alt="${f.title}" class="w-full h-full object-cover" loading="lazy" />
           </div>
           <div>
-            <h3 class="text-lg font-semibold text-[#1D1B19]">${c.title}</h3>
-            <p class="text-[13px] text-[#6E6860] mt-1.5 leading-relaxed">${c.desc}</p>
+            <h3 class="text-xl font-medium text-[#191714]">${f.title}</h3>
+            <p class="text-[15px] text-[#6E6860] mt-2 leading-relaxed">${f.desc}</p>
           </div>
         </div>
       `).join('');
 
+      document.getElementById('pdp-feature-text-cards').innerHTML = txtFeatures.map(f => `
+        <div class="bg-[#F5F2EB] rounded-[24px] p-6 sm:p-8">
+          <h3 class="text-xl font-medium text-[#191714]">${f.title}</h3>
+          <p class="text-[15px] text-[#6E6860] mt-2 leading-relaxed">${f.desc}</p>
+        </div>
+      `).join('');
+
+      // M05 & M07 images/copy
       document.getElementById('pdp-how-img').src = meta.howImg;
       document.getElementById('pdp-banner-img').src = meta.bannerImg;
       document.getElementById('pdp-banner-title').textContent = meta.bannerTitle;
       document.getElementById('pdp-banner-sub').textContent = meta.bannerSub;
 
-      // Section 4: Soft Pill Accordions
-      const approachItems = [
-        { title: 'Tailored clinical strength', body: `Your physician evaluates your health profile to match ${product.title} (${product.ingredients}) to your exact clinical needs.` },
-        { title: '100% online doctor evaluation', body: 'Skip the waiting room. Complete your medical questionnaire anytime and receive a physician review within 24 hours.' },
-        { title: 'Verified 503A pharmacy quality', body: 'Every prescription compound is prepared and quality-checked by licensed US pharmacy partners.' },
-        { title: 'Discreet, free doorstep delivery', body: 'Orders ship in plain, unmarked packaging with zero hidden shipping fees.' },
-        { title: 'Flexible refills & ongoing messaging', body: 'Pause, adjust, or message your care team anytime directly from your AIRO eMed patient portal.' }
+      // M06: Membership Offer
+      document.getElementById('pdp-member-price').textContent = `₹${(product.priceInr || 999).toLocaleString('en-IN')}`;
+      document.getElementById('pdp-member-period').textContent = product.period || '/ month';
+      const memberBenefits = [
+        'Online medical evaluation by a US-licensed physician',
+        `Personalized ${product.title} prescription strength`,
+        'Free discreet shipping in plain, unmarked packaging',
+        'Unlimited 24/7 messaging with your clinical care team',
+        'Flexible auto-refills — pause, skip, or cancel anytime'
       ];
-      document.getElementById('pdp-approach-accordions').innerHTML = approachItems.map(a => `
-        <div class="pdp-acc-item bg-white rounded-xl px-5 py-3.5">
-          <button type="button" onclick="toggleAccordion(this)" aria-expanded="false"
-            class="w-full flex items-center justify-between text-left gap-4 cursor-pointer">
-            <span class="text-[13px] font-medium text-[#1D1B19]">${a.title}</span>
-            <svg class="pdp-acc-icon w-4 h-4 text-[#8E857B] shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          <div class="pdp-acc-body hidden pt-2 text-[12.5px] text-[#6E6860] leading-relaxed">${a.body}</div>
+      document.getElementById('pdp-membership-benefits').innerHTML = memberBenefits.map(b => `
+        <div class="bg-[#F5F2EB] rounded-2xl px-5 py-4 flex items-center space-x-3.5">
+          <span class="w-5 h-5 rounded-full bg-[#191714] text-white text-[10px] flex items-center justify-center shrink-0">✓</span>
+          <span class="text-[15px] font-medium text-[#191714]">${b}</span>
         </div>
       `).join('');
 
-      // Section 6: Similar treatments
-      let related = PRODUCTS.filter(p => p.id !== product.id && p.category === product.category);
-      if (related.length < 4) {
-        related = related.concat(PRODUCTS.filter(p => p.id !== product.id && p.category !== product.category));
-      }
-      related = related.slice(0, 4);
+      // M08: Comparison Table (5 columns, current row highlighted in apricot)
+      const comparePool = PRODUCTS.filter(p => p.category === product.category).slice(0, 5);
+      document.getElementById('pdp-comparison-rows').innerHTML = comparePool.map(row => {
+        const isCurrent = row.id === product.id;
+        return `
+          <tr onclick="window.location.href='/product.html?id=${encodeURIComponent(row.id)}'"
+            class="cursor-pointer transition-colors ${isCurrent ? 'bg-[#FDF2E6]' : 'hover:bg-[#FAF8F4]'}">
+            <td class="py-4 pr-4 font-medium text-[#191714]">
+              <div class="flex items-center space-x-2">
+                <span>${row.title}</span>
+                ${isCurrent ? '<span class="px-2 py-0.5 rounded-full bg-[#E89D5E] text-[#191714] font-mono text-[10px] uppercase">Current</span>' : ''}
+              </div>
+            </td>
+            <td class="py-4 px-4 tabular-nums font-medium text-[#191714]">₹${row.priceInr.toLocaleString('en-IN')}</td>
+            <td class="py-4 px-4 text-[#6E6860]">${meta.timelineLabel}</td>
+            <td class="py-4 px-4 text-[#6E6860]">${meta.formatLabel}</td>
+            <td class="py-4 pl-4 text-[#6E6860] text-xs font-mono">${row.ingredients}</td>
+          </tr>
+        `;
+      }).join('');
 
-      document.getElementById('pdp-related-grid').innerHTML = related.map(r => `
-        <a href="/product.html?id=${encodeURIComponent(r.id)}"
-          class="group flex flex-col">
-          <div class="aspect-square rounded-2xl bg-[#F4F0E8] overflow-hidden relative">
-            <img src="${r.image}" alt="${r.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-          </div>
-          <div class="pt-3.5 flex flex-col flex-1 justify-between">
+      // M09: Health Benefits (Optional: 1 ink card + 1 cream card)
+      document.getElementById('pdp-health-cards').innerHTML = meta.healthCards.map((hc, idx) => {
+        const isDark = idx === 0;
+        return `
+          <div class="${isDark ? 'bg-[#191714] text-white' : 'bg-[#F5F2EB] text-[#191714]'} rounded-[24px] p-8 sm:p-10 flex flex-col justify-between min-h-[260px]">
             <div>
-              <span class="text-[10px] font-medium uppercase tracking-wider text-[#8E857B]">${r.categoryLabel}</span>
-              <h3 class="text-[14px] font-semibold text-[#1D1B19] mt-0.5 group-hover:text-[#0F1B38] transition-colors line-clamp-1">${r.title}</h3>
-              <p class="text-[12px] text-[#8E857B] truncate mt-0.5">${r.ingredients}</p>
+              <span class="font-mono text-[10px] uppercase tracking-[0.14em] ${isDark ? 'text-[#E89D5E]' : 'text-[#6E6860]'}">${hc.tag}</span>
+              <div class="text-4xl sm:text-5xl font-medium tracking-tight mt-3">${hc.metric}</div>
             </div>
-            <div class="mt-2.5 flex items-center justify-between">
-              <span class="text-[13px] font-semibold text-[#1D1B19] tabular-nums">₹${r.priceInr.toLocaleString('en-IN')}</span>
-              <span class="text-[11px] font-medium text-[#6E6860] group-hover:text-[#0F1B38]">View →</span>
+            <div class="mt-8">
+              <h3 class="text-xl font-medium">${hc.title}</h3>
+              <p class="text-[15px] ${isDark ? 'text-white/70' : 'text-[#6E6860]'} mt-2 leading-relaxed">${hc.desc}</p>
             </div>
           </div>
-        </a>
-      `).join('');
+        `;
+      }).join('');
 
-      // Section 7: Soft Warm Espresso Stat Cards
-      document.getElementById('pdp-stat-cards').innerHTML = meta.stats.map(s => `
-        <div class="bg-gradient-to-br from-[#3B3026] to-[#241D17] text-white rounded-[24px] p-8 sm:p-10 flex flex-col justify-between min-h-[240px]">
-          <div class="text-4xl sm:text-5xl font-semibold tracking-tight text-[#EDE3D5]">${s.metric}</div>
-          <div class="mt-8">
-            <h3 class="text-lg font-semibold text-white">${s.title}</h3>
-            <p class="text-[13px] text-white/75 mt-1.5 leading-relaxed">${s.desc}</p>
+      // M10: Dosing Schedule (Optional: 4 progressively warming cards)
+      const dosingEl = document.getElementById('pdp-dosing-section');
+      if (meta.dosing && meta.dosing.length) {
+        const warmBgs = [
+          'bg-[#FAF8F4]',
+          'bg-[#F7EFE2]',
+          'bg-[#F5E3CB]',
+          'bg-[#E89D5E]/40'
+        ];
+        document.getElementById('pdp-dosing-cards').innerHTML = meta.dosing.map((d, idx) => `
+          <div class="${warmBgs[idx]} rounded-[24px] p-6 flex flex-col justify-between min-h-[210px]">
+            <div>
+              <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-[#6E6860]">${d.step}</span>
+              <div class="inline-block mt-3 px-3 py-1 rounded-full bg-[#191714] text-white text-xs font-medium">${d.dose}</div>
+            </div>
+            <div class="mt-6">
+              <h3 class="text-base font-medium text-[#191714]">${d.title}</h3>
+              <p class="text-[13px] text-[#6E6860] mt-1.5 leading-relaxed">${d.text}</p>
+            </div>
           </div>
-        </div>
-      `).join('');
+        `).join('');
+      } else {
+        dosingEl.classList.add('hidden');
+      }
 
-      document.getElementById('pdp-timeline-accordions').innerHTML = meta.timeline.map((t, idx) => renderAccordionRow(t.title, t.desc, idx === 0)).join('');
+      // M11: FAQ
       document.getElementById('pdp-faq-list').innerHTML = meta.faqs.map((f, idx) => renderAccordionRow(f.q, f.a, idx === 0)).join('');
     });
   </script>
