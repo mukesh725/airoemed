@@ -909,6 +909,43 @@ function filterCatalogBy(audience, category) {
   }
 }
 
+// ----------------------------------------------------
+// FILTER CAROUSEL — homepage only (show/hide existing snap-scroll cards)
+// Called by renderProducts() when #product-grid is the flex carousel on the homepage
+// ----------------------------------------------------
+function filterCarousel() {
+  const cards = document.querySelectorAll('#product-grid .product-carousel-card');
+  if (!cards.length) return;
+
+  let visibleCount = 0;
+  cards.forEach(card => {
+    const cardAudience = card.dataset.audience || 'BOTH';
+    const cardCategory = card.dataset.category || 'ALL';
+
+    const audienceMatch =
+      currentCatalogAudience === 'ALL' ||
+      cardAudience === 'BOTH' ||
+      cardAudience === currentCatalogAudience;
+
+    const categoryMatch =
+      currentCategoryFilter === 'ALL' ||
+      cardCategory === currentCategoryFilter;
+
+    if (audienceMatch && categoryMatch) {
+      card.style.display = '';
+      visibleCount++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  // Update count badge if present
+  const countBadge = document.getElementById('catalog-count-badge');
+  if (countBadge) {
+    countBadge.textContent = `Showing ${visibleCount} treatment${visibleCount === 1 ? '' : 's'}`;
+  }
+}
+
 function scrollProductCatalog(direction) {
   const container = document.getElementById('product-grid');
   if (!container) return;
@@ -921,12 +958,20 @@ function scrollProductCatalog(direction) {
 
 // ----------------------------------------------------
 // RENDER PRODUCT CATALOG (4-COLUMN MINIM GRID AESTHETIC)
+// Only runs on /treatments.html and /shop.html — NOT on the homepage.
+// The homepage (#product-grid is a flex scroll carousel) uses filterCarousel() instead.
 // ----------------------------------------------------
 function renderProducts() {
   const container = document.getElementById('product-grid');
   if (!container) return;
 
-  // Ensure grid classes are present
+  // If this is the homepage carousel (flex scroll track), use filterCarousel instead
+  if (container.classList.contains('product-scroll-track') || container.closest('#catalog-section .product-scroll-track')) {
+    filterCarousel();
+    return;
+  }
+
+  // Ensure grid classes are present (only on shop/treatments pages)
   container.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 pt-4 pb-8';
 
   let filtered = PRODUCTS;
