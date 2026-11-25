@@ -8,11 +8,11 @@
   <meta name="description"
     content="Doctor-formulated prescription treatment details, clinical ingredients, how it works, and online physician consultation at AIRO eMed.">
 
-  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+  <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
 
   <!-- Tailwind CSS Play CDN -->
@@ -22,17 +22,17 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
           },
           colors: {
             brand: {
-              cream: '#FAF7F2',
-              dark: '#191817',
+              cream: '#FAF8F5',
+              linen: '#F4F0E8',
+              sand: '#EAE4DA',
+              dark: '#1D1B19',
+              muted: '#6E6860',
               navy: '#0F1B38',
               blue: '#1E40AF',
-              sand: '#EBE5DC',
-              border: '#DDD5C9',
             }
           }
         }
@@ -45,12 +45,12 @@
 </head>
 
 <body
-  class="bg-white text-[#191817] font-sans antialiased min-h-screen flex flex-col selection:bg-[#1E40AF]/15 selection:text-[#0F265C]">
+  class="bg-white text-[#1D1B19] font-sans antialiased min-h-screen flex flex-col selection:bg-[#0F1B38]/10 selection:text-[#0F1B38]">
 
   <!-- ======================================================== -->
   <!-- TOP GLOBAL HEADER                                        -->
   <!-- ======================================================== -->
-  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-[#E5E0D8] transition-all duration-300">
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-[#EFECE6] transition-all duration-300">
     <div class="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 h-20 flex items-center justify-between">
 
       <!-- Left: Logo -->
@@ -203,95 +203,78 @@
   </header>
 
   <!-- ======================================================== -->
-  <!-- MAIN PRODUCT DETAIL PAGE                                 -->
+  <!-- MAIN PRODUCT DETAIL PAGE (SOFT HIMS-INSPIRED EDITORIAL)  -->
   <!-- ======================================================== -->
   <main class="flex-1 w-full bg-white">
 
-    <!-- Breadcrumb -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-6 pb-2">
-      <nav class="flex items-center space-x-2 text-xs text-[#736E67]">
-        <a href="/" class="hover:text-[#191817] transition-colors">Home</a>
-        <span>/</span>
-        <a href="/shop.html" class="hover:text-[#191817] transition-colors">Shop</a>
-        <span>/</span>
-        <a id="pdp-breadcrumb-cat" href="/shop.html" class="hover:text-[#191817] transition-colors">Treatments</a>
-        <span>/</span>
-        <span id="pdp-breadcrumb-title" class="text-[#191817] font-semibold truncate">Loading...</span>
-      </nav>
-    </div>
-
     <!-- ======================================================== -->
-    <!-- SECTION 1: HERO SPLIT PRODUCT OVERVIEW                   -->
+    <!-- SECTION 1: SOFT SPLIT HERO                               -->
     <!-- ======================================================== -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-4 pb-16 sm:pb-24">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+    <section class="max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-12 pt-8 sm:pt-12 pb-16 sm:pb-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
-        <!-- Left: Large Product Photo Card -->
+        <!-- Left: Soft Warm-Taupe Image Canvas -->
         <div class="lg:col-span-7">
-          <div class="relative aspect-square sm:aspect-[4/3] lg:aspect-square bg-[#EDE9E0] rounded-3xl overflow-hidden border border-[#E5E0D8] shadow-sm">
+          <div class="relative aspect-square bg-[#EFECE6] rounded-[24px] overflow-hidden">
             <div id="pdp-badge-wrap" class="absolute top-5 left-5 z-10"></div>
             <img id="pdp-image" src="" alt="" class="w-full h-full object-cover object-center transition-transform duration-700" />
-            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center space-x-2 bg-white/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#E5E0D8] shadow-sm">
-              <span class="w-2 h-2 rounded-full bg-[#0F1B38]"></span>
-              <span class="text-[11px] font-semibold text-[#191817]">US-Licensed Clinician Prescribed</span>
+            <!-- Minimal Hims-style dot indicator -->
+            <div class="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center space-x-2">
+              <span class="w-5 h-1.5 rounded-full bg-white/90 shadow-xs"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-white/45"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-white/45"></span>
             </div>
           </div>
         </div>
 
-        <!-- Right: Product Info, Price, CTA & 4 Info Accordions -->
-        <div class="lg:col-span-5 flex flex-col pt-1">
-          <div class="flex items-center justify-between gap-3">
-            <span id="pdp-eyebrow" class="text-xs font-bold uppercase tracking-[0.15em] text-[#C8623D]">
-              Prescription Treatment
-            </span>
-            <span id="pdp-audience-pill" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#0F1B38]/10 text-[#0F1B38]">
-              Hims
-            </span>
+        <!-- Right: Clean Soft Typography, CTA & Minimal Accordions -->
+        <div class="lg:col-span-5 flex flex-col pt-2 lg:pt-4">
+          <div class="flex items-center space-x-2.5 text-[11px] font-medium uppercase tracking-[0.12em] text-[#8E857B]">
+            <span id="pdp-eyebrow">Prescription Treatment</span>
+            <span>·</span>
+            <span id="pdp-audience-pill">Hims</span>
           </div>
 
-          <h1 id="pdp-title" class="text-3xl sm:text-4xl lg:text-[42px] font-serif font-bold text-[#191817] mt-2 leading-[1.12] tracking-tight">
+          <h1 id="pdp-title" class="text-3xl sm:text-[38px] font-semibold text-[#1D1B19] mt-2.5 leading-[1.15] tracking-[-0.025em]">
             Treatment Name
           </h1>
 
-          <p id="pdp-ingredients" class="text-xs sm:text-sm font-mono text-[#736E67] mt-2.5">
+          <p id="pdp-ingredients" class="text-[13px] text-[#7D756C] mt-2 font-normal">
             Active clinical ingredients
           </p>
 
-          <!-- Star Rating -->
-          <div class="flex items-center space-x-2 mt-3">
-            <div class="flex text-amber-500 text-sm">★★★★★</div>
-            <span id="pdp-rating" class="text-xs font-bold text-[#191817] tabular-nums">4.9</span>
-            <span id="pdp-reviews" class="text-xs text-[#736E67]">(400+ verified reviews)</span>
+          <!-- Subtle Rating -->
+          <div class="flex items-center space-x-2 mt-3.5">
+            <div class="flex text-[#C59B6D] text-xs tracking-wider">★★★★★</div>
+            <span id="pdp-rating" class="text-xs font-semibold text-[#1D1B19] tabular-nums">4.9</span>
+            <span id="pdp-reviews" class="text-xs text-[#8E857B]">(400+ reviews)</span>
           </div>
 
-          <!-- 3 Key Bullet Benefits -->
-          <ul id="pdp-bullets" class="mt-6 space-y-2.5 text-sm text-[#3F3C38]">
+          <!-- 3 Soft Bullet Benefits -->
+          <ul id="pdp-bullets" class="mt-7 space-y-3 text-[13.5px] text-[#46423D] leading-relaxed">
             <!-- Populated dynamically -->
           </ul>
 
-          <!-- Price Box -->
-          <div class="mt-6 pt-5 border-t border-[#EAE5DD] flex items-baseline justify-between">
-            <div class="flex items-baseline space-x-2">
-              <span id="pdp-price-inr" class="text-2xl sm:text-3xl font-bold text-[#191817] tabular-nums">₹1,499</span>
-              <span id="pdp-orig-inr" class="text-sm text-[#9E9B94] line-through tabular-nums hidden">₹1,999</span>
-              <span id="pdp-price-usd" class="text-sm text-[#736E67] font-medium">($45)</span>
-            </div>
-            <span id="pdp-period" class="text-xs font-medium text-[#736E67]">/ month · Free shipping</span>
+          <!-- Price Line -->
+          <div class="mt-7 flex items-baseline space-x-2">
+            <span id="pdp-price-inr" class="text-xl font-semibold text-[#1D1B19] tabular-nums">₹1,499</span>
+            <span id="pdp-orig-inr" class="text-xs text-[#A39B91] line-through tabular-nums hidden">₹1,999</span>
+            <span id="pdp-price-usd" class="text-xs text-[#8E857B]">($45)</span>
+            <span id="pdp-period" class="text-xs text-[#8E857B]">/ month</span>
           </div>
 
-          <!-- Primary Solid Brand Navy CTA -->
+          <!-- Solid Brand Navy CTA Pill -->
           <button onclick="startCurrentProductIntake()"
-            class="mt-5 w-full py-4 px-6 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-sm font-bold tracking-wide transition-all duration-200 shadow-md hover:shadow-lg cursor-pointer flex items-center justify-center space-x-2">
-            <span>Get started</span>
-            <span>→</span>
+            class="mt-4 w-full py-3.5 px-6 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-[13px] font-semibold tracking-wide transition-all duration-200 cursor-pointer">
+            Get started
           </button>
 
-          <p class="text-[11px] text-center text-[#736E67] mt-2.5">
-            Online clinician consultation included · Cancel anytime · Discreet unmarked delivery
+          <p class="text-[11px] text-center text-[#8E857B] mt-3">
+            Includes online physician evaluation &amp; free discreet delivery
           </p>
 
-          <!-- 4 Collapsible Product Info Accordions -->
-          <div id="pdp-top-accordions" class="mt-7 border-t border-[#E5E0D8] divide-y divide-[#E5E0D8]">
+          <!-- 4 Minimal Hairline Accordions -->
+          <div id="pdp-top-accordions" class="mt-8 border-t border-[#ECE7DF] divide-y divide-[#ECE7DF]">
             <!-- Populated dynamically -->
           </div>
         </div>
@@ -300,81 +283,82 @@
     </section>
 
     <!-- ======================================================== -->
-    <!-- SECTION 2: WHY THIS TREATMENT? (2-COLUMN FEATURE CARDS)  -->
+    <!-- SECTION 2: WHY THIS TREATMENT? (2 SOFT LINEN CARDS)      -->
     <!-- ======================================================== -->
-    <section class="bg-[#FAF7F2] border-y border-[#E5E0D8] py-16 sm:py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
-          <h2 id="pdp-why-heading" class="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-[#191817] tracking-tight">
-            Why this treatment works
+    <section class="bg-white py-14 sm:py-20">
+      <div class="max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-12">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-10">
+          <h2 id="pdp-why-heading" class="text-2xl sm:text-[32px] font-semibold text-[#1D1B19] tracking-[-0.02em]">
+            Why this treatment
           </h2>
           <button onclick="startCurrentProductIntake()"
-            class="self-start sm:self-auto px-6 py-2.5 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-xs font-bold transition-colors cursor-pointer">
+            class="self-start sm:self-auto px-5 py-2.5 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-xs font-semibold transition-colors cursor-pointer">
             Get started
           </button>
         </div>
 
-        <div id="pdp-why-cards" class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        <div id="pdp-why-cards" class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <!-- Populated dynamically -->
         </div>
 
-        <p class="text-[11px] text-[#8A857F] mt-6">
-          *Prescription products require an online evaluation with a licensed physician who determines if a treatment is clinically appropriate.
+        <p class="text-[11px] text-[#9A9288] mt-5">
+          Prescription products require an online consultation with a licensed clinician who determines if a treatment is right for you.
         </p>
       </div>
     </section>
 
     <!-- ======================================================== -->
-    <!-- SECTION 3: HOW IT WORKS (2-COLUMN SPLIT)                 -->
+    <!-- SECTION 3: HOW IT WORKS (SOFT EDITORIAL SPLIT)           -->
     <!-- ======================================================== -->
-    <section class="bg-white py-16 sm:py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+    <section class="bg-white py-14 sm:py-20">
+      <div class="max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-12">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           <div class="lg:col-span-6">
-            <div class="aspect-[4/3] sm:aspect-square rounded-3xl overflow-hidden bg-[#F5F2EB] border border-[#E5E0D8] shadow-sm">
+            <div class="aspect-square rounded-[24px] overflow-hidden bg-[#F4F0E8]">
               <img id="pdp-how-img" src="/images/explore-hair.jpg" alt="How AIRO eMed works"
                 class="w-full h-full object-cover object-center" loading="lazy" />
             </div>
           </div>
 
           <div class="lg:col-span-6">
-            <span class="text-xs font-bold uppercase tracking-[0.18em] text-[#C8623D]">Simple Clinical Care</span>
-            <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#191817] mt-2 mb-8">How it works</h2>
+            <h2 class="text-2xl sm:text-[32px] font-semibold text-[#1D1B19] tracking-[-0.02em] mb-7">
+              How it works
+            </h2>
 
             <div class="space-y-6">
               <div class="flex items-start space-x-4">
-                <div class="w-8 h-8 rounded-full bg-[#0F1B38] text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">1</div>
+                <div class="w-7 h-7 rounded-full bg-[#F4F0E8] text-[#1D1B19] text-xs font-semibold flex items-center justify-center shrink-0 mt-0.5">1</div>
                 <div>
-                  <h3 class="text-base font-bold text-[#191817]">Complete your health profile</h3>
-                  <p class="text-sm text-[#6B665F] mt-1 leading-relaxed">Answer a quick 3-minute online medical questionnaire covering your health history, symptoms, and treatment goals.</p>
+                  <h3 class="text-[15px] font-semibold text-[#1D1B19]">Tell us about your health</h3>
+                  <p class="text-[13px] text-[#6E6860] mt-1 leading-relaxed">Complete a quick online intake covering your health history, symptoms, and goals in just a few minutes.</p>
                 </div>
               </div>
               <div class="flex items-start space-x-4">
-                <div class="w-8 h-8 rounded-full bg-[#0F1B38] text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">2</div>
+                <div class="w-7 h-7 rounded-full bg-[#F4F0E8] text-[#1D1B19] text-xs font-semibold flex items-center justify-center shrink-0 mt-0.5">2</div>
                 <div>
-                  <h3 class="text-base font-bold text-[#191817]">Licensed physician review</h3>
-                  <p class="text-sm text-[#6B665F] mt-1 leading-relaxed">A board-certified doctor reviews your intake within 24 hours and prescribes the exact clinical strength tailored to you.</p>
+                  <h3 class="text-[15px] font-semibold text-[#1D1B19]">Licensed doctor evaluation</h3>
+                  <p class="text-[13px] text-[#6E6860] mt-1 leading-relaxed">A US-licensed physician reviews your profile within 24 hours and prescribes the clinical strength right for you.</p>
                 </div>
               </div>
               <div class="flex items-start space-x-4">
-                <div class="w-8 h-8 rounded-full bg-[#0F1B38] text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">3</div>
+                <div class="w-7 h-7 rounded-full bg-[#F4F0E8] text-[#1D1B19] text-xs font-semibold flex items-center justify-center shrink-0 mt-0.5">3</div>
                 <div>
-                  <h3 class="text-base font-bold text-[#191817]">Discreet doorstep delivery</h3>
-                  <p class="text-sm text-[#6B665F] mt-1 leading-relaxed">Your prescription is compounded at our verified 503A pharmacy partners and shipped free in unmarked packaging.</p>
+                  <h3 class="text-[15px] font-semibold text-[#1D1B19]">Discreet doorstep delivery</h3>
+                  <p class="text-[13px] text-[#6E6860] mt-1 leading-relaxed">Prepared by verified 503A pharmacy partners and delivered free in plain, unmarked packaging.</p>
                 </div>
               </div>
               <div class="flex items-start space-x-4">
-                <div class="w-8 h-8 rounded-full bg-[#0F1B38] text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">4</div>
+                <div class="w-7 h-7 rounded-full bg-[#F4F0E8] text-[#1D1B19] text-xs font-semibold flex items-center justify-center shrink-0 mt-0.5">4</div>
                 <div>
-                  <h3 class="text-base font-bold text-[#191817]">Ongoing doctor check-ins</h3>
-                  <p class="text-sm text-[#6B665F] mt-1 leading-relaxed">Message your care team anytime, adjust dosage as needed, and manage refills seamlessly from your portal.</p>
+                  <h3 class="text-[15px] font-semibold text-[#1D1B19]">Ongoing care &amp; check-ins</h3>
+                  <p class="text-[13px] text-[#6E6860] mt-1 leading-relaxed">Message your care team anytime and manage refills or dosage adjustments seamlessly.</p>
                 </div>
               </div>
             </div>
 
             <button onclick="startCurrentProductIntake()"
-              class="mt-8 px-7 py-3.5 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-xs font-bold tracking-wide transition-colors shadow-sm cursor-pointer">
-              Get started →
+              class="mt-8 px-6 py-3 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-xs font-semibold transition-colors cursor-pointer">
+              Get started
             </button>
           </div>
         </div>
@@ -382,56 +366,56 @@
     </section>
 
     <!-- ======================================================== -->
-    <!-- SECTION 4: 4-CARD STRIP + PERSONALIZED ACCORDION         -->
+    <!-- SECTION 4: 4-CARD STRIP + PERSONALIZED ACCORDIONS        -->
     <!-- ======================================================== -->
-    <section class="bg-[#FAF7F2] border-y border-[#E5E0D8] py-16 sm:py-24">
-      <div class="max-w-5xl mx-auto px-4 sm:px-8">
+    <section class="bg-[#FAF8F5] py-16 sm:py-24">
+      <div class="max-w-[960px] mx-auto px-5 sm:px-8">
 
-        <!-- 4 Visual Step Cards -->
+        <!-- 4 Soft Visual Cards -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-12">
-          <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-white border border-[#E5E0D8] relative shadow-sm">
+          <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-[#EFECE6] relative">
             <img src="/images/doctor-avatar.jpg" alt="US-Licensed Physician" class="w-full h-full object-cover" loading="lazy" />
-            <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/75 to-transparent">
-              <span class="text-[11px] font-bold text-white block">Licensed Doctors</span>
+            <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/60 to-transparent">
+              <span class="text-[11px] font-medium text-white">Licensed Doctors</span>
             </div>
           </div>
-          <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-white border border-[#E5E0D8] relative shadow-sm">
-            <img src="/images/doctor-raman.jpg" alt="Clinical Review" class="w-full h-full object-cover" loading="lazy" />
-            <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/75 to-transparent">
-              <span class="text-[11px] font-bold text-white block">100% Online Consult</span>
+          <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-[#EFECE6] relative">
+            <img src="/images/doctor-raman.jpg" alt="Online Consultation" class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/60 to-transparent">
+              <span class="text-[11px] font-medium text-white">Online Evaluation</span>
             </div>
           </div>
-          <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-[#EDE9E0] border border-[#E5E0D8] relative shadow-sm">
-            <img id="pdp-strip-prod-img" src="" alt="Product" class="w-full h-full object-cover" loading="lazy" />
-            <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/75 to-transparent">
-              <span class="text-[11px] font-bold text-white block">Tailored Compound</span>
+          <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-[#EFECE6] relative">
+            <img id="pdp-strip-prod-img" src="" alt="Treatment" class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/60 to-transparent">
+              <span class="text-[11px] font-medium text-white">Tailored Formula</span>
             </div>
           </div>
-          <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-white border border-[#E5E0D8] relative shadow-sm">
+          <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-[#EFECE6] relative">
             <img src="/images/doctor-swift.jpg" alt="Ongoing Support" class="w-full h-full object-cover" loading="lazy" />
-            <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/75 to-transparent">
-              <span class="text-[11px] font-bold text-white block">Ongoing Care</span>
+            <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/60 to-transparent">
+              <span class="text-[11px] font-medium text-white">24/7 Care Team</span>
             </div>
           </div>
         </div>
 
-        <div class="text-center max-w-2xl mx-auto mb-8">
-          <h2 class="text-2xl sm:text-3xl font-serif font-bold text-[#191817]">
+        <div class="text-center max-w-xl mx-auto mb-8">
+          <h2 class="text-2xl sm:text-[32px] font-semibold text-[#1D1B19] tracking-[-0.02em] leading-snug">
             A personalized approach to your care
           </h2>
-          <p class="text-xs sm:text-sm text-[#736E67] mt-2">
-            Every prescription is reviewed individually by a licensed clinician with transparent pricing and zero hidden fees.
+          <p class="text-[13px] text-[#6E6860] mt-2">
+            Every prescription is reviewed individually by a licensed clinician with transparent pricing.
           </p>
         </div>
 
-        <!-- 5 Expandable Pill Accordions -->
-        <div id="pdp-approach-accordions" class="space-y-3 max-w-2xl mx-auto">
+        <!-- 5 Soft Rounded Pill Accordions -->
+        <div id="pdp-approach-accordions" class="space-y-2.5 max-w-xl mx-auto">
           <!-- Populated dynamically -->
         </div>
 
         <div class="text-center mt-8">
           <button onclick="startCurrentProductIntake()"
-            class="px-8 py-3.5 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-xs font-bold tracking-wide transition-colors shadow-sm cursor-pointer">
+            class="px-7 py-3 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-xs font-semibold transition-colors cursor-pointer">
             Get started
           </button>
         </div>
@@ -439,40 +423,39 @@
     </section>
 
     <!-- ======================================================== -->
-    <!-- SECTION 5: FULL-WIDTH EDITORIAL BANNER                   -->
+    <!-- SECTION 5: SOFT CHAMPAGNE-SAND FULL-WIDTH BANNER         -->
     <!-- ======================================================== -->
-    <section class="relative bg-[#0F1B38] text-white py-20 sm:py-28 overflow-hidden">
+    <section class="relative bg-gradient-to-r from-[#D5C6B2] via-[#E3D7C7] to-[#C8B7A1] text-[#1D1B19] py-20 sm:py-28 overflow-hidden">
       <img id="pdp-banner-img" src="/images/explore-mens.jpg" alt="Care on your terms"
-        class="absolute inset-0 w-full h-full object-cover opacity-30" loading="lazy" />
-      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-8 text-center">
-        <span class="text-xs font-bold uppercase tracking-[0.2em] text-white/75">AIRO eMed Clinical Care</span>
-        <h2 id="pdp-banner-title" class="text-3xl sm:text-5xl font-serif font-bold mt-3 leading-tight">
-          Care designed around your life
+        class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-multiply" loading="lazy" />
+      <div class="relative z-10 max-w-3xl mx-auto px-5 sm:px-8 text-center">
+        <h2 id="pdp-banner-title" class="text-3xl sm:text-[42px] font-semibold tracking-[-0.025em] leading-tight text-[#1D1B19]">
+          Control your health, on your terms
         </h2>
-        <p id="pdp-banner-sub" class="text-sm sm:text-base text-white/85 mt-4 max-w-xl mx-auto leading-relaxed">
-          No waiting rooms, no pharmacy lines. Get evaluated by a licensed clinician online and receive genuine treatments at your door.
+        <p id="pdp-banner-sub" class="text-[14px] sm:text-[15px] text-[#3D3730] mt-3.5 max-w-lg mx-auto leading-relaxed">
+          No waiting rooms, no pharmacy lines. Get evaluated online by a licensed clinician and receive genuine treatments at your door.
         </p>
         <button onclick="startCurrentProductIntake()"
-          class="mt-8 px-8 py-3.5 rounded-full bg-white text-[#0F1B38] hover:bg-[#FAF7F2] text-xs font-bold tracking-wide transition-colors shadow-lg cursor-pointer">
+          class="mt-7 px-7 py-3 rounded-full bg-white text-[#1D1B19] hover:bg-[#FAF8F5] text-xs font-semibold transition-colors shadow-sm cursor-pointer">
           Get started
         </button>
       </div>
     </section>
 
     <!-- ======================================================== -->
-    <!-- SECTION 6: RELATED TREATMENTS CAROUSEL                   -->
+    <!-- SECTION 6: SIMILAR TREATMENTS                            -->
     <!-- ======================================================== -->
-    <section class="bg-white py-16 sm:py-24 border-b border-[#E5E0D8]">
-      <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+    <section class="bg-white py-16 sm:py-24">
+      <div class="max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-12">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
-            <span class="text-xs font-bold uppercase tracking-[0.18em] text-[#C8623D]">Compare Formulations</span>
-            <h2 class="text-2xl sm:text-3xl font-serif font-bold text-[#191817] mt-1.5">
-              Explore similar AIRO eMed treatments
+            <h2 class="text-2xl sm:text-[32px] font-semibold text-[#1D1B19] tracking-[-0.02em]">
+              Explore other treatment options
             </h2>
+            <p class="text-[13px] text-[#6E6860] mt-1">Compare doctor-prescribed formulations across AIRO eMed.</p>
           </div>
-          <a href="/shop.html" class="text-xs font-bold text-[#0F1B38] hover:text-[#1E40AF] underline underline-offset-4">
-            View all treatments →
+          <a href="/shop.html" class="text-xs font-semibold text-[#0F1B38] hover:text-[#1E40AF] underline underline-offset-4">
+            Browse all treatments →
           </a>
         </div>
 
@@ -483,68 +466,67 @@
     </section>
 
     <!-- ======================================================== -->
-    <!-- SECTION 7: CLINICAL STATS (2 DARK CARDS)                 -->
+    <!-- SECTION 7: SOFT WARM ESPRESSO STAT CARDS                 -->
     <!-- ======================================================== -->
-    <section class="bg-[#FAF7F2] py-16 sm:py-24 border-b border-[#E5E0D8]">
-      <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+    <section class="bg-[#FAF8F5] py-16 sm:py-24">
+      <div class="max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-12">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
-          <h2 class="text-2xl sm:text-3xl font-serif font-bold text-[#191817]">
+          <h2 class="text-2xl sm:text-[32px] font-semibold text-[#1D1B19] tracking-[-0.02em]">
             Look after your health at your own pace
           </h2>
           <button onclick="startCurrentProductIntake()"
-            class="self-start sm:self-auto px-6 py-2.5 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-xs font-bold transition-colors cursor-pointer">
+            class="self-start sm:self-auto px-5 py-2.5 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-xs font-semibold transition-colors cursor-pointer">
             Get started
           </button>
         </div>
 
-        <div id="pdp-stat-cards" class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        <div id="pdp-stat-cards" class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <!-- Populated dynamically -->
         </div>
       </div>
     </section>
 
     <!-- ======================================================== -->
-    <!-- SECTION 8: PROGRESS TIMELINE & CLINICAL RESULTS          -->
+    <!-- SECTION 8: PROGRESS TIMELINE & CLINICAL TRAJECTORY       -->
     <!-- ======================================================== -->
-    <section class="bg-white py-16 sm:py-24 border-b border-[#E5E0D8]">
-      <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+    <section class="bg-white py-16 sm:py-24 border-b border-[#EFECE6]">
+      <div class="max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-12">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           <div class="lg:col-span-5">
-            <span class="text-xs font-bold uppercase tracking-[0.18em] text-[#C8623D]">What To Expect</span>
-            <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#191817] mt-2 leading-tight">
-              Reach your goals. Take care of you.
+            <h2 class="text-3xl sm:text-[36px] font-semibold text-[#1D1B19] tracking-[-0.025em] leading-[1.15]">
+              Reach your goals.<br>Take care of you.
             </h2>
-            <p class="text-sm text-[#6B665F] mt-4 leading-relaxed">
-              Consistent daily or weekly use paired with physician guidance delivers measurable clinical progress over time.
+            <p class="text-[13.5px] text-[#6E6860] mt-3.5 leading-relaxed">
+              Consistent treatment paired with physician check-ins delivers steady, measurable progress over time.
             </p>
             <button onclick="startCurrentProductIntake()"
-              class="mt-7 px-7 py-3.5 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-xs font-bold tracking-wide transition-colors cursor-pointer">
+              class="mt-6 px-6 py-3 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-xs font-semibold transition-colors cursor-pointer">
               Get started
             </button>
           </div>
 
           <div class="lg:col-span-7 space-y-6">
-            <!-- Minimal Clinical Progress Card -->
-            <div class="bg-[#FAF7F2] rounded-3xl p-6 sm:p-8 border border-[#E5E0D8]">
+            <!-- Soft Warm Curve Card -->
+            <div class="bg-[#FAF8F5] rounded-[20px] p-6 sm:p-8">
               <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-bold uppercase tracking-wider text-[#736E67]">Typical Clinical Trajectory</span>
-                <span class="text-xs font-bold text-[#0F1B38] bg-white px-3 py-1 rounded-full border border-[#E5E0D8]">Doctor Monitored</span>
+                <span class="text-xs font-medium text-[#6E6860]">Clinical progress trajectory</span>
+                <span class="text-[11px] font-medium text-[#8E857B]">Physician monitored</span>
               </div>
               <svg viewBox="0 0 400 110" class="w-full h-28 overflow-visible" aria-hidden="true">
                 <defs>
                   <linearGradient id="pdpCurveGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#0F1B38" stop-opacity="0.18" />
-                    <stop offset="100%" stop-color="#0F1B38" stop-opacity="0.0" />
+                    <stop offset="0%" stop-color="#C59B6D" stop-opacity="0.28" />
+                    <stop offset="100%" stop-color="#C59B6D" stop-opacity="0.0" />
                   </linearGradient>
                 </defs>
                 <path d="M 10 92 C 90 88, 160 65, 240 42 C 300 24, 350 16, 390 12 L 390 100 L 10 100 Z" fill="url(#pdpCurveGrad)" />
-                <path d="M 10 92 C 90 88, 160 65, 240 42 C 300 24, 350 16, 390 12" fill="none" stroke="#0F1B38" stroke-width="3" stroke-linecap="round" />
-                <circle cx="10" cy="92" r="4" fill="#0F1B38" />
-                <circle cx="135" cy="70" r="4" fill="#0F1B38" />
-                <circle cx="260" cy="36" r="4" fill="#0F1B38" />
-                <circle cx="390" cy="12" r="5" fill="#1E40AF" />
+                <path d="M 10 92 C 90 88, 160 65, 240 42 C 300 24, 350 16, 390 12" fill="none" stroke="#C59B6D" stroke-width="2.5" stroke-linecap="round" />
+                <circle cx="10" cy="92" r="3.5" fill="#C59B6D" />
+                <circle cx="135" cy="70" r="3.5" fill="#C59B6D" />
+                <circle cx="260" cy="36" r="3.5" fill="#C59B6D" />
+                <circle cx="390" cy="12" r="4.5" fill="#9E7347" />
               </svg>
-              <div class="grid grid-cols-4 text-[11px] font-semibold text-[#736E67] mt-2">
+              <div class="grid grid-cols-4 text-[11px] font-medium text-[#8E857B] mt-2">
                 <span>Week 1–2</span>
                 <span class="text-center">Month 1</span>
                 <span class="text-center">Month 3</span>
@@ -552,8 +534,8 @@
               </div>
             </div>
 
-            <!-- 4 Timeline Accordions -->
-            <div id="pdp-timeline-accordions" class="divide-y divide-[#E5E0D8] border-y border-[#E5E0D8]">
+            <!-- 4 Minimal Timeline Accordions -->
+            <div id="pdp-timeline-accordions" class="divide-y divide-[#ECE7DF] border-y border-[#ECE7DF]">
               <!-- Populated dynamically -->
             </div>
           </div>
@@ -564,23 +546,23 @@
     <!-- ======================================================== -->
     <!-- SECTION 9: FREQUENTLY ASKED QUESTIONS                    -->
     <!-- ======================================================== -->
-    <section class="bg-[#FAF7F2] py-16 sm:py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+    <section class="bg-white py-16 sm:py-24">
+      <div class="max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-12">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           <div class="lg:col-span-4">
-            <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#191817] leading-tight">
+            <h2 class="text-2xl sm:text-[32px] font-semibold text-[#1D1B19] tracking-[-0.02em] leading-tight">
               Frequently asked questions
             </h2>
-            <p class="text-xs sm:text-sm text-[#6B665F] mt-3 leading-relaxed">
+            <p class="text-[13px] text-[#6E6860] mt-3 leading-relaxed">
               Have specific clinical questions? Our US-licensed medical team reviews every consultation individually.
             </p>
             <button onclick="startCurrentProductIntake()"
-              class="mt-6 px-6 py-3 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-xs font-bold transition-colors cursor-pointer">
-              Consult a Doctor →
+              class="mt-6 px-5 py-2.5 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-xs font-semibold transition-colors cursor-pointer">
+              Consult a Doctor
             </button>
           </div>
 
-          <div id="pdp-faq-list" class="lg:col-span-8 divide-y divide-[#DDD5C9] border-t border-b border-[#DDD5C9]">
+          <div id="pdp-faq-list" class="lg:col-span-8 divide-y divide-[#ECE7DF] border-y border-[#ECE7DF]">
             <!-- Populated dynamically -->
           </div>
         </div>
@@ -698,7 +680,7 @@
           'Online evaluation by a US-licensed physician in under 24 hours',
           'Free discreet delivery in unmarked packaging with auto-refills'
         ],
-        whyHeading: 'Why Hair Care at AIRO eMed?',
+        whyHeading: 'Why Hair Care at AIRO eMed',
         whyCards: [
           { title: 'Targets the root cause', desc: 'Blocks follicle-shrinking DHT while stimulating micro-circulation to reactivate dormant growth cycles.' },
           { title: 'Tailored to your stage', desc: 'Available in targeted strengths for early thinning, crown density, or female pattern hair loss.' }
@@ -730,9 +712,9 @@
         bullets: [
           'Clinically studied GLP-1 & dual-agonist metabolic formulations',
           'Personalized dosing schedule overseen by a licensed physician',
-          'Cold-chain or discreet pharmacy delivery included at no extra cost'
+          'Discreet pharmacy delivery included at no extra cost'
         ],
-        whyHeading: 'Why Weight Management at AIRO eMed?',
+        whyHeading: 'Why Weight Management at AIRO eMed',
         whyCards: [
           { title: 'Quiets food noise naturally', desc: 'Works with your body’s GLP-1 receptors to regulate appetite, slow gastric emptying, and curb cravings.' },
           { title: 'Doctor-guided titration', desc: 'Your clinician adjusts your dose gradually over time to maximize results while minimizing side effects.' }
@@ -766,7 +748,7 @@
           '100% private online evaluation with a US-licensed physician',
           'Shipped in plain, unmarked packaging straight to your door'
         ],
-        whyHeading: 'Why Sexual Health at AIRO eMed?',
+        whyHeading: 'Why Sexual Health at AIRO eMed',
         whyCards: [
           { title: 'Rapid onset & lasting confidence', desc: 'Choose between 15-minute sublingual rapid formulas or 36-hour weekend longevity options.' },
           { title: 'Private, judgment-free care', desc: 'Complete your medical consult from home in minutes—no awkward waiting rooms or pharmacy pickups.' }
@@ -800,7 +782,7 @@
           'Customized to your skin type by licensed dermatology clinicians',
           'Gentle, balanced formulas designed to minimize irritation'
         ],
-        whyHeading: 'Why Skin Care at AIRO eMed?',
+        whyHeading: 'Why Skin Care at AIRO eMed',
         whyCards: [
           { title: 'Clinical-strength actives', desc: 'Formulated with proven concentrations of tretinoin, retinol, niacinamide, and salicylic acid.' },
           { title: 'Barrier-first approach', desc: 'Balanced with soothing hydrators to clarify breakouts, fade dark spots, and smooth fine lines.' }
@@ -847,12 +829,12 @@
         <div class="pdp-acc-item py-4">
           <button type="button" onclick="toggleAccordion(this)" aria-expanded="${openByDefault}"
             class="w-full flex items-center justify-between text-left gap-4 cursor-pointer group">
-            <span class="text-sm font-semibold text-[#191817] group-hover:text-[#1E40AF] transition-colors">${title}</span>
-            <svg class="pdp-acc-icon w-4 h-4 text-[#736E67] shrink-0 transition-transform duration-200" style="transform: ${openByDefault ? 'rotate(180deg)' : 'rotate(0deg)'}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            <span class="text-[13.5px] font-medium text-[#1D1B19] group-hover:text-[#0F1B38] transition-colors">${title}</span>
+            <svg class="pdp-acc-icon w-4 h-4 text-[#8E857B] shrink-0 transition-transform duration-200" style="transform: ${openByDefault ? 'rotate(180deg)' : 'rotate(0deg)'}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          <div class="pdp-acc-body ${openByDefault ? '' : 'hidden'} pt-2.5 text-xs sm:text-sm text-[#6B665F] leading-relaxed">
+          <div class="pdp-acc-body ${openByDefault ? '' : 'hidden'} pt-2.5 text-[13px] text-[#6E6860] leading-relaxed">
             ${content}
           </div>
         </div>
@@ -870,14 +852,8 @@
       const meta = CATEGORY_PDP_META[product.category] || CATEGORY_PDP_META.HAIR_LOSS;
       const audLabel = product.audience === 'HIM' ? 'Hims' : product.audience === 'HER' ? 'Hers' : 'Hims & Hers';
 
-      // Page title & breadcrumb
       document.title = `${product.title} — AIRO eMed`;
-      const bcCat = document.getElementById('pdp-breadcrumb-cat');
-      bcCat.textContent = meta.label;
-      bcCat.href = `/shop.html?category=${encodeURIComponent(product.category)}`;
-      document.getElementById('pdp-breadcrumb-title').textContent = product.title;
 
-      // Hero image & badge
       const imgEl = document.getElementById('pdp-image');
       imgEl.src = product.image;
       imgEl.alt = product.title;
@@ -888,26 +864,23 @@
         ? 'bg-[#D84A38] text-white'
         : product.badgeType === 'bestseller'
         ? 'bg-[#5B7E6F] text-white'
-        : product.badgeType === 'rx'
-        ? 'bg-[#0F1B38] text-white'
-        : 'bg-[#191817]/90 text-white';
+        : 'bg-white/90 text-[#1D1B19]';
 
       document.getElementById('pdp-badge-wrap').innerHTML = product.badge
-        ? `<span class="${badgeColor} text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm inline-block">${product.badge}</span>`
+        ? `<span class="${badgeColor} text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full backdrop-blur-sm inline-block">${product.badge}</span>`
         : '';
 
-      // Right column metadata
-      document.getElementById('pdp-eyebrow').textContent = `${product.categoryLabel || meta.label} · Prescription`;
+      document.getElementById('pdp-eyebrow').textContent = `${product.categoryLabel || meta.label}`;
       document.getElementById('pdp-audience-pill').textContent = audLabel;
       document.getElementById('pdp-title').textContent = product.title;
       document.getElementById('pdp-ingredients').textContent = product.ingredients;
       document.getElementById('pdp-rating').textContent = product.rating || '4.9';
-      document.getElementById('pdp-reviews').textContent = `(${product.reviews || 320}+ verified reviews)`;
+      document.getElementById('pdp-reviews').textContent = `(${product.reviews || 320}+ reviews)`;
 
       document.getElementById('pdp-bullets').innerHTML = meta.bullets.map(b => `
         <li class="flex items-start space-x-2.5">
-          <svg class="w-4 h-4 text-[#0F1B38] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+          <svg class="w-4 h-4 text-[#8E857B] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M5 13l4 4L19 7" />
           </svg>
           <span>${b}</span>
         </li>
@@ -920,38 +893,36 @@
         origInrEl.classList.remove('hidden');
       }
       document.getElementById('pdp-price-usd').textContent = `($${product.price})`;
-      document.getElementById('pdp-period').textContent = `${product.period || '/ month'} · Free shipping`;
+      document.getElementById('pdp-period').textContent = product.period || '/ month';
 
-      // Top 4 Accordions
       const topAccordions = [
         { title: 'Who is it for?', body: `${product.title} is formulated for ${audLabel === 'Hims' ? 'men' : audLabel === 'Hers' ? 'women' : 'adults'} seeking clinically proven ${meta.label.toLowerCase()} support, prescribed online after a licensed physician reviews your medical intake.` },
-        { title: 'Active ingredients', body: `<strong>${product.ingredients}</strong> — compounded at verified 503A pharmacy partners for consistent potency, purity, and bioavailability.` },
-        { title: 'How to use', body: `Follow the personalized dosing schedule prescribed by your AIRO eMed clinician. Full step-by-step usage instructions arrive inside your discreet package and patient portal.` },
-        { title: 'Important safety info', body: `Prescription products require an online consultation with a licensed physician. Disclose all current medications, allergies, and medical conditions during your intake.` }
+        { title: 'Active ingredients', body: `<strong>${product.ingredients}</strong> — compounded at verified 503A pharmacy partners for consistent potency and purity.` },
+        { title: 'How to use', body: `Follow the personalized dosing schedule prescribed by your AIRO eMed clinician. Clear usage instructions arrive inside your discreet package.` },
+        { title: 'Safety info', body: `Prescription products require an online consultation with a licensed physician. Disclose all current medications and conditions during your intake.` }
       ];
       document.getElementById('pdp-top-accordions').innerHTML = topAccordions.map((a, idx) => renderAccordionRow(a.title, a.body, idx === 0)).join('');
 
-      // Section 2: Why cards
+      // Section 2: Soft Linen Feature Cards (borderless warm #F4F0E8)
       document.getElementById('pdp-why-heading').textContent = meta.whyHeading;
       document.getElementById('pdp-why-cards').innerHTML = meta.whyCards.map((c, idx) => `
-        <div class="bg-white rounded-3xl p-7 sm:p-9 border border-[#E5E0D8] shadow-sm flex flex-col justify-between">
-          <div class="aspect-[16/10] rounded-2xl bg-[#F5F2EB] overflow-hidden mb-6 flex items-center justify-center border border-[#EBE5DC]">
+        <div class="bg-[#F4F0E8] rounded-[24px] p-7 sm:p-9 flex flex-col justify-between">
+          <div class="aspect-[16/10] rounded-2xl bg-[#EAE4DA] overflow-hidden mb-7">
             <img src="${idx === 0 ? product.image : meta.howImg}" alt="${c.title}" class="w-full h-full object-cover" loading="lazy" />
           </div>
           <div>
-            <h3 class="text-xl font-bold text-[#191817]">${c.title}</h3>
-            <p class="text-sm text-[#6B665F] mt-2 leading-relaxed">${c.desc}</p>
+            <h3 class="text-lg font-semibold text-[#1D1B19]">${c.title}</h3>
+            <p class="text-[13px] text-[#6E6860] mt-1.5 leading-relaxed">${c.desc}</p>
           </div>
         </div>
       `).join('');
 
-      // Section 3 & 5 images/copy
       document.getElementById('pdp-how-img').src = meta.howImg;
       document.getElementById('pdp-banner-img').src = meta.bannerImg;
       document.getElementById('pdp-banner-title').textContent = meta.bannerTitle;
       document.getElementById('pdp-banner-sub').textContent = meta.bannerSub;
 
-      // Section 4: 5 Approach accordions
+      // Section 4: Soft Pill Accordions
       const approachItems = [
         { title: 'Tailored clinical strength', body: `Your physician evaluates your health profile to match ${product.title} (${product.ingredients}) to your exact clinical needs.` },
         { title: '100% online doctor evaluation', body: 'Skip the waiting room. Complete your medical questionnaire anytime and receive a physician review within 24 hours.' },
@@ -960,19 +931,19 @@
         { title: 'Flexible refills & ongoing messaging', body: 'Pause, adjust, or message your care team anytime directly from your AIRO eMed patient portal.' }
       ];
       document.getElementById('pdp-approach-accordions').innerHTML = approachItems.map(a => `
-        <div class="pdp-acc-item bg-white rounded-2xl px-5 py-4 border border-[#E5E0D8] shadow-xs">
+        <div class="pdp-acc-item bg-white rounded-xl px-5 py-3.5">
           <button type="button" onclick="toggleAccordion(this)" aria-expanded="false"
             class="w-full flex items-center justify-between text-left gap-4 cursor-pointer">
-            <span class="text-sm font-semibold text-[#191817]">${a.title}</span>
-            <svg class="pdp-acc-icon w-4 h-4 text-[#736E67] shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            <span class="text-[13px] font-medium text-[#1D1B19]">${a.title}</span>
+            <svg class="pdp-acc-icon w-4 h-4 text-[#8E857B] shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          <div class="pdp-acc-body hidden pt-2.5 text-xs sm:text-sm text-[#6B665F] leading-relaxed">${a.body}</div>
+          <div class="pdp-acc-body hidden pt-2 text-[12.5px] text-[#6E6860] leading-relaxed">${a.body}</div>
         </div>
       `).join('');
 
-      // Section 6: Related treatments (same category first, fallback to others)
+      // Section 6: Similar treatments
       let related = PRODUCTS.filter(p => p.id !== product.id && p.category === product.category);
       if (related.length < 4) {
         related = related.concat(PRODUCTS.filter(p => p.id !== product.id && p.category !== product.category));
@@ -981,39 +952,36 @@
 
       document.getElementById('pdp-related-grid').innerHTML = related.map(r => `
         <a href="/product.html?id=${encodeURIComponent(r.id)}"
-          class="group bg-[#FAF7F2] rounded-2xl overflow-hidden border border-[#E5E0D8] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col">
-          <div class="aspect-square bg-[#EDE9E0] overflow-hidden relative">
+          class="group flex flex-col">
+          <div class="aspect-square rounded-2xl bg-[#F4F0E8] overflow-hidden relative">
             <img src="${r.image}" alt="${r.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
           </div>
-          <div class="p-4 flex flex-col flex-1 justify-between">
+          <div class="pt-3.5 flex flex-col flex-1 justify-between">
             <div>
-              <span class="text-[10px] font-bold uppercase tracking-wider text-[#78726A]">${r.categoryLabel}</span>
-              <h3 class="text-sm font-bold text-[#191817] mt-1 group-hover:text-[#1E40AF] transition-colors line-clamp-1">${r.title}</h3>
-              <p class="text-[11px] font-mono text-[#8A857F] truncate mt-0.5">${r.ingredients}</p>
+              <span class="text-[10px] font-medium uppercase tracking-wider text-[#8E857B]">${r.categoryLabel}</span>
+              <h3 class="text-[14px] font-semibold text-[#1D1B19] mt-0.5 group-hover:text-[#0F1B38] transition-colors line-clamp-1">${r.title}</h3>
+              <p class="text-[12px] text-[#8E857B] truncate mt-0.5">${r.ingredients}</p>
             </div>
-            <div class="mt-3 pt-3 border-t border-[#E5E0D8] flex items-center justify-between">
-              <span class="text-sm font-bold text-[#191817] tabular-nums">₹${r.priceInr.toLocaleString('en-IN')}</span>
-              <span class="text-xs font-semibold text-[#0F1B38] group-hover:text-[#1E40AF]">View →</span>
+            <div class="mt-2.5 flex items-center justify-between">
+              <span class="text-[13px] font-semibold text-[#1D1B19] tabular-nums">₹${r.priceInr.toLocaleString('en-IN')}</span>
+              <span class="text-[11px] font-medium text-[#6E6860] group-hover:text-[#0F1B38]">View →</span>
             </div>
           </div>
         </a>
       `).join('');
 
-      // Section 7: Stat cards
+      // Section 7: Soft Warm Espresso Stat Cards
       document.getElementById('pdp-stat-cards').innerHTML = meta.stats.map(s => `
-        <div class="bg-[#0F1B38] text-white rounded-3xl p-8 sm:p-10 flex flex-col justify-between min-h-[240px] shadow-md">
-          <div class="text-4xl sm:text-5xl font-serif font-bold text-white/95">${s.metric}</div>
-          <div class="mt-6">
-            <h3 class="text-lg sm:text-xl font-bold">${s.title}</h3>
-            <p class="text-xs sm:text-sm text-white/75 mt-2 leading-relaxed">${s.desc}</p>
+        <div class="bg-gradient-to-br from-[#3B3026] to-[#241D17] text-white rounded-[24px] p-8 sm:p-10 flex flex-col justify-between min-h-[240px]">
+          <div class="text-4xl sm:text-5xl font-semibold tracking-tight text-[#EDE3D5]">${s.metric}</div>
+          <div class="mt-8">
+            <h3 class="text-lg font-semibold text-white">${s.title}</h3>
+            <p class="text-[13px] text-white/75 mt-1.5 leading-relaxed">${s.desc}</p>
           </div>
         </div>
       `).join('');
 
-      // Section 8: Timeline accordions
       document.getElementById('pdp-timeline-accordions').innerHTML = meta.timeline.map((t, idx) => renderAccordionRow(t.title, t.desc, idx === 0)).join('');
-
-      // Section 9: FAQs
       document.getElementById('pdp-faq-list').innerHTML = meta.faqs.map((f, idx) => renderAccordionRow(f.q, f.a, idx === 0)).join('');
     });
   </script>
