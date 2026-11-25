@@ -8,6 +8,8 @@
     { "source": "/treatments", "destination": "/treatments.html" },
     { "source": "/shop", "destination": "/shop.html" },
     { "source": "/product", "destination": "/product.html" },
+    { "source": "/checkout", "destination": "/checkout.html" },
+    { "source": "/doctor-dashboard", "destination": "/doctor-dashboard.html" },
     { "source": "/questionnaire", "destination": "/questionnaire.html" }
   ]
 }

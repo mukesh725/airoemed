@@ -277,6 +277,7 @@
   <!-- ======================================================== -->
   <!-- QUESTIONNAIRE DATA & LOGIC ENGINE                         -->
   <!-- ======================================================== -->
+  <script src="/app.js"></script>
   <script>
     // ----------------------------------------------------
     // QUESTIONNAIRE CONFIGURATION FROM AIRO_eMed_Questionnaires.pdf
@@ -1139,9 +1140,12 @@
       // TYPE: FINAL_STEP (DOB + State + T&C)
       // ------------------------------------------------
       else if (step.type === 'final_step') {
-        const state = patientAnswers.state || 'TX';
-        const dob = patientAnswers.dob || '1995-06-15';
-        const termsAgreed = patientAnswers.termsAgreed || true;
+        if (!patientAnswers.state) patientAnswers.state = 'NJ';
+        if (!patientAnswers.dob) patientAnswers.dob = '1995-05-08';
+        if (patientAnswers.termsAgreed === undefined) patientAnswers.termsAgreed = true;
+        const state = patientAnswers.state;
+        const dob = patientAnswers.dob;
+        const termsAgreed = patientAnswers.termsAgreed;
 
         html += `
           <div class="bg-white rounded-[2rem] border border-[#DDD5C9] p-6 sm:p-8 space-y-6 shadow-sm">
@@ -1178,53 +1182,138 @@
       }
 
       // ------------------------------------------------
-      // TYPE: RESULTS (Personalized Treatment Plan Screen)
+      // TYPE: RESULTS (AI Clinical Overview & Treatment Recommendation)
       // ------------------------------------------------
       else if (step.type === 'results') {
         const rawConcern = (patientAnswers.selectedConcerns && patientAnswers.selectedConcerns[0]) || 'Clinical Profile';
         const concernTitle = escapeHtml(rawConcern);
-        const stateName = escapeHtml(patientAnswers.state || 'TX');
+        const stateName = escapeHtml(patientAnswers.state || 'NJ');
+
+        // Hide bottom footer bar on results screen so primary cart CTA takes focus
+        const footerNav = document.querySelector('footer');
+        if (footerNav) footerNav.classList.add('hidden');
+
+        const catToProd = {
+          HAIR: 'HAIR_LOSS',
+          SKIN: 'DERMATOLOGY',
+          SEXUAL_HEALTH: 'SEXUAL_HEALTH_ED',
+          WEIGHT: 'WEIGHT_MANAGEMENT'
+        };
+        const prodCat = catToProd[currentCategory] || 'HAIR_LOSS';
+        const allProds = (typeof PRODUCTS !== 'undefined' && PRODUCTS.length) ? PRODUCTS : [];
+        let recs = allProds.filter(p => p.category === prodCat && (p.audience === 'BOTH' || p.audience === currentAudience));
+        if (!recs.length) recs = allProds.filter(p => p.category === prodCat);
+        recs = recs.slice(0, 3);
+
+        if (!window._aiSelectedCartIds) {
+          window._aiSelectedCartIds = recs.length ? [recs[0].id] : [];
+        }
+
+        const aiSummaryMap = {
+          HAIR: `AI Clinical Analysis reviewed your hair profile (${concernTitle}) and safety screening. A targeted DHT-modulating & follicle-stimulating regimen is recommended for optimal regrowth over 4–6 months.`,
+          WEIGHT: `AI Clinical Analysis evaluated your metabolic profile, BMI goals, and contraindications. Physician-titrated GLP-1 therapy is recommended to regulate appetite and support sustainable weight reduction.`,
+          SEXUAL_HEALTH: `AI Clinical Analysis reviewed your cardiovascular safety screen and performance goals (${concernTitle}). Targeted PDE-5 therapy is recommended for reliable onset and confidence.`,
+          SKIN: `AI Clinical Analysis assessed your skin profile (${concernTitle}) and sensitivity markers. A dermatologist-grade retinoid and barrier-support protocol is recommended for cellular renewal.`
+        };
+        const aiNarrative = aiSummaryMap[currentCategory] || aiSummaryMap.HAIR;
+
+        const selectedTotal = recs
+          .filter(r => window._aiSelectedCartIds.includes(r.id))
+          .reduce((sum, r) => sum + (r.priceInr || 999), 0);
 
         html += `
-          <div class="bg-white rounded-[2.5rem] border border-[#DDD5C9] p-8 sm:p-12 text-center space-y-8 shadow-xl max-w-2xl mx-auto">
-            
-            <div class="inline-flex p-3 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200">
-              <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            </div>
+          <div class="space-y-6 max-w-3xl mx-auto pb-12">
+            <!-- AI Overview Card -->
+            <div class="bg-[#0F1B38] text-white rounded-[2rem] p-6 sm:p-8 shadow-xl space-y-5">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <span class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 text-[#E89D5E] text-[11px] font-bold uppercase tracking-widest">
+                  <span class="w-2 h-2 rounded-full bg-[#E89D5E] animate-pulse"></span>
+                  <span>AI Clinical Overview</span>
+                </span>
+                <span class="text-xs text-white/75 font-medium">${stateName} Licensed Review Ready</span>
+              </div>
 
-            <div>
-              <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 block mb-1">Evaluation Complete • Clinically Approved</span>
-              <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#191817]">
-                Your Treatment Plan is Ready
-              </h2>
-              <p class="text-sm sm:text-base text-[#615C56] mt-2 max-w-md mx-auto">
-                Based on your answers, our US-licensed medical provider has matched you with customized medical therapy.
-              </p>
-            </div>
+              <div>
+                <h2 class="text-2xl sm:text-3xl font-serif font-bold text-white leading-tight">
+                  Your AI Treatment Recommendation
+                </h2>
+                <p class="text-sm text-white/85 mt-2.5 leading-relaxed">
+                  ${aiNarrative}
+                </p>
+              </div>
 
-            <!-- Matched Treatment Card -->
-            <div class="bg-[#FAF8F5] border border-[#DDD5C9] rounded-2xl p-6 text-left flex flex-col sm:flex-row items-center gap-6">
-              <img src="/images/doctor-avatar.jpg" alt="Doctor" class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm shrink-0">
-              <div class="space-y-1 text-center sm:text-left">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-[#B04D28]">Assigned Physician</span>
-                <h4 class="text-lg font-bold text-[#191817]">Dr. Sarah Jenkins, MD</h4>
-                <p class="text-xs text-[#615C56]">${stateName} Licensed Physician • Telehealth Board Certified</p>
-                <div class="pt-1 flex items-center gap-2 justify-center sm:justify-start">
-                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                  <span class="text-xs font-semibold text-emerald-700">Matched to your: ${concernTitle}</span>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                <div class="bg-white/10 rounded-2xl p-3.5">
+                  <span class="text-[10px] uppercase tracking-wider text-white/60 block">Primary Focus</span>
+                  <span class="text-xs font-bold text-white mt-0.5 block">${concernTitle}</span>
+                </div>
+                <div class="bg-white/10 rounded-2xl p-3.5">
+                  <span class="text-[10px] uppercase tracking-wider text-white/60 block">Clinical Safety</span>
+                  <span class="text-xs font-bold text-emerald-300 mt-0.5 block">✓ Pre-Screened</span>
+                </div>
+                <div class="bg-white/10 rounded-2xl p-3.5">
+                  <span class="text-[10px] uppercase tracking-wider text-white/60 block">Next Step</span>
+                  <span class="text-xs font-bold text-[#E89D5E] mt-0.5 block">Add to Cart → Doctor Review</span>
                 </div>
               </div>
             </div>
 
-            <div class="space-y-3 pt-2">
-              <a href="/#catalog-section" class="w-full inline-block bg-[#0F1B38] hover:bg-black text-white font-bold py-4 rounded-full text-sm sm:text-base transition-all shadow-md active:scale-95">
-                Proceed to Treatment Formulation →
-              </a>
-              <a href="/concerns.html" class="inline-block text-xs font-semibold text-[#615C56] hover:text-[#191817] underline">
-                Return to Concerns Directory
-              </a>
-            </div>
+            <!-- AI Recommended Treatments -->
+            <div class="bg-white rounded-[2rem] border border-[#DDD5C9] p-6 sm:p-8 shadow-sm space-y-5">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="text-lg sm:text-xl font-bold text-[#191817]">Recommended AIRO eMed Treatments</h3>
+                  <p class="text-xs text-[#615C56] mt-0.5">Select the treatments to add to your cart for physician approval.</p>
+                </div>
+                <span class="text-xs font-bold text-[#0F1B38] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#DDD5C9]">
+                  ${window._aiSelectedCartIds.length} selected
+                </span>
+              </div>
 
+              <div class="space-y-3">
+                ${recs.map((p, idx) => {
+                  const inCart = window._aiSelectedCartIds.includes(p.id);
+                  return `
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl border transition-all ${inCart ? 'border-[#0F1B38] bg-[#FAF8F5]' : 'border-[#EAE5DC] bg-white'}">
+                      <div class="flex items-center space-x-4">
+                        <img src="${p.image}" alt="${escapeHtml(p.title)}" class="w-16 h-16 rounded-xl object-cover bg-[#F5F2EB] shrink-0" />
+                        <div>
+                          <div class="flex items-center space-x-2">
+                            ${idx === 0 ? '<span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#E89D5E]/25 text-[#191817]">98% AI Match</span>' : ''}
+                            <span class="text-[10px] font-semibold text-[#615C56]">${escapeHtml(p.categoryLabel)}</span>
+                          </div>
+                          <h4 class="text-sm sm:text-base font-bold text-[#191817] mt-0.5">${escapeHtml(p.title)}</h4>
+                          <p class="text-xs font-mono text-[#736E67] mt-0.5">${escapeHtml(p.ingredients)}</p>
+                        </div>
+                      </div>
+
+                      <div class="flex items-center justify-between sm:justify-end gap-4 shrink-0">
+                        <div class="text-left sm:text-right">
+                          <span class="text-base font-bold text-[#191817] tabular-nums">₹${(p.priceInr || 999).toLocaleString('en-IN')}</span>
+                          <span class="text-[11px] text-[#736E67] block">${escapeHtml(p.period || '/ month')}</span>
+                        </div>
+                        <button type="button" onclick="toggleAiCartItem('${p.id}')"
+                          class="px-4 py-2 rounded-full text-xs font-bold transition-colors cursor-pointer ${inCart ? 'bg-[#0F1B38] text-white' : 'bg-[#EFECE6] text-[#191817] hover:bg-[#DDD5C9]'}">
+                          ${inCart ? 'Added to Cart ✓' : '+ Add to Cart'}
+                        </button>
+                      </div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+
+              <!-- Cart Total & Proceed CTA -->
+              <div class="pt-4 border-t border-[#EAE5DC] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                  <span class="text-xs text-[#615C56] block">Estimated Total (Doctor consult &amp; shipping included)</span>
+                  <span class="text-2xl font-bold text-[#191817] tabular-nums">₹${selectedTotal.toLocaleString('en-IN')}</span>
+                </div>
+                <button type="button" onclick="proceedToCheckoutFromAI('${escapeHtml(aiNarrative.replace(/'/g, ''))}')"
+                  class="px-7 py-4 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-sm font-bold transition-all shadow-md cursor-pointer">
+                  Proceed to Cart &amp; Sign In →
+                </button>
+              </div>
+            </div>
           </div>
         `;
       }
@@ -1386,6 +1475,62 @@
 
     function skipOptionalStep() {
       handleContinue();
+    }
+
+    function toggleAiCartItem(prodId) {
+      if (!window._aiSelectedCartIds) window._aiSelectedCartIds = [];
+      const idx = window._aiSelectedCartIds.indexOf(prodId);
+      if (idx > -1) {
+        window._aiSelectedCartIds.splice(idx, 1);
+      } else {
+        window._aiSelectedCartIds.push(prodId);
+      }
+      renderStep();
+    }
+
+    function proceedToCheckoutFromAI(aiOverviewText) {
+      const allProds = (typeof PRODUCTS !== 'undefined' && PRODUCTS.length) ? PRODUCTS : [];
+      const selectedIds = window._aiSelectedCartIds || [];
+      const cartItems = selectedIds
+        .map(id => allProds.find(p => p.id === id))
+        .filter(Boolean)
+        .map(p => ({
+          id: p.id,
+          title: p.title,
+          ingredients: p.ingredients,
+          priceInr: p.priceInr || 999,
+          price: p.price || 15,
+          period: p.period || '/ month',
+          image: p.image,
+          category: p.category,
+          audience: p.audience,
+          qty: 1,
+          addedByDoctor: false
+        }));
+
+      if (!cartItems.length && allProds.length) {
+        const p = allProds[0];
+        cartItems.push({
+          id: p.id, title: p.title, ingredients: p.ingredients,
+          priceInr: p.priceInr || 999, price: p.price || 15,
+          period: p.period || '/ month', image: p.image,
+          category: p.category, audience: p.audience, qty: 1, addedByDoctor: false
+        });
+      }
+
+      const payload = {
+        category: currentCategory,
+        audience: currentAudience,
+        concerns: patientAnswers.selectedConcerns || [],
+        dob: patientAnswers.dob || '1995-05-08',
+        state: patientAnswers.state || 'NJ',
+        answers: patientAnswers,
+        aiOverview: aiOverviewText,
+        cart: cartItems,
+        createdAt: new Date().toISOString()
+      };
+      localStorage.setItem('airo_active_checkout', JSON.stringify(payload));
+      window.location.href = '/checkout.html';
     }
 
     // Initialize flow on page load

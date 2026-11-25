@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart, Checkout &amp; Doctor Review — AIRO eMed</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body class="bg-[#FAF8F5] text-[#191817] font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- GLOBAL HEADER -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#E5E0D8]">
+    <div class="max-w-[2000px] mx-auto w-full px-4 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
+      <a href="/" class="brand-logo flex items-baseline space-x-1.5 select-none">
+        <span class="font-extrabold text-2xl sm:text-3xl tracking-tight text-[#191817]">AIRO</span>
+        <span class="text-xl sm:text-2xl font-normal text-[#191817]/85 tracking-tight">eMed</span>
+      </a>
+
+      <nav class="hidden md:flex items-center bg-[#EBE5DC] border border-[#DDD5C9]/70 px-2 py-1.5 rounded-full space-x-1 text-xs font-semibold">
+        <a href="/concerns.html" class="px-4 py-1.5 rounded-full text-[#191817]/85 hover:bg-[#FAF7F2]/60 transition-colors">Concerns</a>
+        <a href="/treatments.html" class="px-4 py-1.5 rounded-full text-[#191817]/85 hover:bg-[#FAF7F2]/60 transition-colors">Treatments</a>
+        <a href="/shop.html" class="px-4 py-1.5 rounded-full text-[#191817]/85 hover:bg-[#FAF7F2]/60 transition-colors">Shop</a>
+      </nav>
+
+      <div class="flex items-center space-x-3">
+        <a href="/doctor-dashboard.html"
+          class="px-4 py-2 rounded-full bg-[#F5F2EB] hover:bg-[#EAE5DC] text-[#0F1B38] text-xs font-bold transition-colors">
+          Doctor Dashboard →
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-8 py-10 sm:py-14">
+
+    <!-- Stepper -->
+    <div id="checkout-stepper" class="mb-10">
+      <div class="grid grid-cols-4 gap-2 sm:gap-4 text-center">
+        <div id="step-pill-1" class="step-pill py-2.5 px-2 rounded-2xl text-xs font-bold bg-[#0F1B38] text-white">1. Cart</div>
+        <div id="step-pill-2" class="step-pill py-2.5 px-2 rounded-2xl text-xs font-bold bg-[#EFECE6] text-[#6E6860]">2. Sign In</div>
+        <div id="step-pill-3" class="step-pill py-2.5 px-2 rounded-2xl text-xs font-bold bg-[#EFECE6] text-[#6E6860]">3. Shipping</div>
+        <div id="step-pill-4" class="step-pill py-2.5 px-2 rounded-2xl text-xs font-bold bg-[#EFECE6] text-[#6E6860]">4. Doctor Review</div>
+      </div>
+    </div>
+
+    <!-- STEP 1: CART -->
+    <section id="view-cart" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-7 bg-white rounded-[24px] border border-[#EAE5DC] p-6 sm:p-8 space-y-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-[11px] font-bold uppercase tracking-widest text-[#C8623D]">AI-Matched Plan</span>
+            <h1 class="text-2xl sm:text-3xl font-serif font-bold text-[#191817] mt-1">Your Treatment Cart</h1>
+          </div>
+          <a href="/shop.html" class="text-xs font-semibold text-[#0F1B38] underline">+ Add more</a>
+        </div>
+
+        <div id="cart-items-list" class="space-y-3"></div>
+      </div>
+
+      <div class="lg:col-span-5 bg-white rounded-[24px] border border-[#EAE5DC] p-6 sm:p-8 space-y-5">
+        <h2 class="text-lg font-bold text-[#191817]">Order Summary</h2>
+        <div class="space-y-2.5 text-sm">
+          <div class="flex justify-between text-[#6E6860]">
+            <span>Treatments Subtotal</span>
+            <span id="summary-subtotal" class="font-semibold text-[#191817] tabular-nums">₹0</span>
+          </div>
+          <div class="flex justify-between text-[#6E6860]">
+            <span>Online Physician Evaluation</span>
+            <span class="font-semibold text-emerald-700">Included (₹0)</span>
+          </div>
+          <div class="flex justify-between text-[#6E6860]">
+            <span>Discreet Shipping</span>
+            <span class="font-semibold text-emerald-700">Free</span>
+          </div>
+          <div class="pt-3 border-t border-[#EAE5DC] flex justify-between text-base font-bold text-[#191817]">
+            <span>Total</span>
+            <span id="summary-total" class="tabular-nums">₹0</span>
+          </div>
+        </div>
+        <button onclick="goToStep(2)"
+          class="w-full py-3.5 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-sm font-bold transition-colors cursor-pointer">
+          Continue to Sign In →
+        </button>
+      </div>
+    </section>
+
+    <!-- STEP 2: SIGN IN -->
+    <section id="view-signin" class="hidden max-w-xl mx-auto bg-white rounded-[24px] border border-[#EAE5DC] p-6 sm:p-10 space-y-6">
+      <div>
+        <span class="text-[11px] font-bold uppercase tracking-widest text-[#C8623D]">Patient Account</span>
+        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-[#191817] mt-1">Sign in to continue</h2>
+        <p class="text-xs sm:text-sm text-[#6E6860] mt-1">Your evaluating physician will send prescription updates and call links to this account.</p>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-[#191817] mb-1.5">Full Name</label>
+          <input id="signin-name" type="text" placeholder="Alex Morgan" value="Alex Morgan"
+            class="w-full px-4 py-3 rounded-xl bg-[#FAF8F5] border border-[#DDD5C9] text-sm focus:outline-none focus:ring-2 focus:ring-[#0F1B38]" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-[#191817] mb-1.5">Email Address</label>
+          <input id="signin-email" type="email" placeholder="alex@example.com" value="alex.morgan@example.com"
+            class="w-full px-4 py-3 rounded-xl bg-[#FAF8F5] border border-[#DDD5C9] text-sm focus:outline-none focus:ring-2 focus:ring-[#0F1B38]" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-[#191817] mb-1.5">Mobile Number</label>
+          <input id="signin-phone" type="tel" placeholder="+1 (555) 234-5678" value="+1 (555) 234-5678"
+            class="w-full px-4 py-3 rounded-xl bg-[#FAF8F5] border border-[#DDD5C9] text-sm focus:outline-none focus:ring-2 focus:ring-[#0F1B38]" />
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-2 gap-4">
+        <button onclick="goToStep(1)" class="px-5 py-3 rounded-full bg-[#EFECE6] text-xs font-bold text-[#191817] cursor-pointer">← Back</button>
+        <button onclick="completeSignIn()"
+          class="flex-1 py-3.5 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-sm font-bold transition-colors cursor-pointer">
+          Verify &amp; Continue to Shipping →
+        </button>
+      </div>
+    </section>
+
+    <!-- STEP 3: SHIPPING ADDRESS -->
+    <section id="view-shipping" class="hidden max-w-xl mx-auto bg-white rounded-[24px] border border-[#EAE5DC] p-6 sm:p-10 space-y-6">
+      <div>
+        <span class="text-[11px] font-bold uppercase tracking-widest text-[#C8623D]">Discreet Delivery</span>
+        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-[#191817] mt-1">Shipping Address</h2>
+        <p class="text-xs sm:text-sm text-[#6E6860] mt-1">Delivered in plain, unmarked packaging after physician approval.</p>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-[#191817] mb-1.5">Street Address</label>
+          <input id="ship-street" type="text" placeholder="240 Mercer Street, Apt 4B" value="240 Mercer Street, Apt 4B"
+            class="w-full px-4 py-3 rounded-xl bg-[#FAF8F5] border border-[#DDD5C9] text-sm focus:outline-none focus:ring-2 focus:ring-[#0F1B38]" />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-[#191817] mb-1.5">City</label>
+            <input id="ship-city" type="text" value="Jersey City"
+              class="w-full px-4 py-3 rounded-xl bg-[#FAF8F5] border border-[#DDD5C9] text-sm focus:outline-none focus:ring-2 focus:ring-[#0F1B38]" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-[#191817] mb-1.5">State / Region</label>
+            <input id="ship-state" type="text" value="NJ"
+              class="w-full px-4 py-3 rounded-xl bg-[#FAF8F5] border border-[#DDD5C9] text-sm focus:outline-none focus:ring-2 focus:ring-[#0F1B38]" />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-[#191817] mb-1.5">ZIP / PIN Code</label>
+            <input id="ship-zip" type="text" value="07302"
+              class="w-full px-4 py-3 rounded-xl bg-[#FAF8F5] border border-[#DDD5C9] text-sm focus:outline-none focus:ring-2 focus:ring-[#0F1B38]" />
+          </div>
+          <div class="flex items-end pb-2">
+            <label class="flex items-center space-x-2 text-xs text-[#6E6860] cursor-pointer">
+              <input type="checkbox" checked class="w-4 h-4 rounded text-[#0F1B38]" />
+              <span>Discreet unmarked box</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-2 gap-4">
+        <button onclick="goToStep(2)" class="px-5 py-3 rounded-full bg-[#EFECE6] text-xs font-bold text-[#191817] cursor-pointer">← Back</button>
+        <button onclick="placeOrder()"
+          class="flex-1 py-3.5 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-sm font-bold transition-colors cursor-pointer">
+          Place Order &amp; Send for Doctor Review →
+        </button>
+      </div>
+    </section>
+
+    <!-- STEP 4: ORDER PLACED & LIVE DOCTOR REVIEW -->
+    <section id="view-review" class="hidden space-y-6">
+      <!-- Status Banner -->
+      <div class="bg-[#0F1B38] text-white rounded-[24px] p-6 sm:p-10 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div>
+            <span id="review-status-badge" class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 text-[#E89D5E] text-xs font-bold uppercase tracking-wider">
+              <span class="w-2 h-2 rounded-full bg-[#E89D5E] animate-pulse"></span>
+              <span>Order Placed · In Doctor Review</span>
+            </span>
+            <h2 id="review-heading" class="text-2xl sm:text-4xl font-serif font-bold mt-3">
+              Your consultation is with Dr. Sarah Jenkins, MD
+            </h2>
+            <p id="review-subtext" class="text-sm text-white/80 mt-2 max-w-2xl">
+              Your order and AI clinical assessment have been routed to your assigned physician. The doctor can approve your medicines directly, start a virtual video/audio consult, or add supplemental treatments from the Doctor Dashboard.
+            </p>
+          </div>
+
+          <div class="shrink-0 flex flex-col gap-2">
+            <a id="open-doctor-dash-link" href="/doctor-dashboard.html" target="_blank"
+              class="px-6 py-3.5 rounded-full bg-[#E89D5E] hover:bg-[#df8e49] text-[#191714] text-xs font-bold text-center transition-colors">
+              Open Doctor Dashboard ↗
+            </a>
+            <span id="review-order-id" class="text-[11px] text-white/60 text-center font-mono">Order #AIRO-0001</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Virtual Video / Audio Call Alert (Shown when Doctor triggers a call) -->
+      <div id="patient-call-card" class="hidden bg-white rounded-[24px] border-2 border-[#1E40AF] p-6 sm:p-8 shadow-lg">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-center space-x-4">
+            <img src="/images/doctor-avatar.jpg" alt="Doctor" class="w-14 h-14 rounded-full object-cover border-2 border-[#0F1B38]" />
+            <div>
+              <span id="call-type-label" class="text-xs font-bold uppercase tracking-wider text-[#1E40AF]">Incoming Virtual Video Consult</span>
+              <h3 class="text-lg font-bold text-[#191817]">Dr. Sarah Jenkins, MD is ready to speak with you</h3>
+              <p class="text-xs text-[#6E6860]">Join to discuss your dosage, medical history, or additional prescriptions.</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-3">
+            <button onclick="joinPatientCall()" class="px-6 py-3 rounded-full bg-[#0F1B38] hover:bg-[#1E40AF] text-white text-xs font-bold cursor-pointer">
+              Join Call Now
+            </button>
+          </div>
+        </div>
+
+        <!-- Active Call Simulation Area -->
+        <div id="patient-active-call-ui" class="hidden mt-6 pt-6 border-t border-[#EAE5DC]">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-[#191714] text-white rounded-2xl p-6 flex flex-col items-center justify-center min-h-[200px] relative">
+              <img src="/images/doctor-avatar.jpg" alt="Dr Sarah Jenkins" class="w-20 h-20 rounded-full object-cover border-2 border-emerald-400 mb-3" />
+              <span class="text-sm font-bold">Dr. Sarah Jenkins, MD</span>
+              <span id="call-timer-label" class="text-xs text-emerald-400 mt-1">Connected · Live Consultation</span>
+              <div class="flex items-center space-x-3 mt-4">
+                <button onclick="this.textContent = this.textContent.includes('Muted') ? '🎙️ Mic On' : '🔇 Muted'"
+                  class="px-3.5 py-1.5 rounded-full bg-white/15 text-xs font-semibold cursor-pointer">🎙️ Mic On</button>
+                <button onclick="endPatientCall()"
+                  class="px-3.5 py-1.5 rounded-full bg-red-600 text-xs font-semibold cursor-pointer">End Call</button>
+              </div>
+            </div>
+
+            <div class="bg-[#FAF8F5] rounded-2xl p-4 flex flex-col justify-between min-h-[200px] border border-[#EAE5DC]">
+              <div id="patient-chat-log" class="space-y-2 max-h-36 overflow-y-auto text-xs mb-3"></div>
+              <div class="flex space-x-2">
+                <input id="patient-chat-input" type="text" placeholder="Reply to your doctor..."
+                  class="flex-1 px-3 py-2 rounded-xl border border-[#DDD5C9] text-xs bg-white focus:outline-none" />
+                <button onclick="sendPatientChat()" class="px-4 py-2 rounded-xl bg-[#0F1B38] text-white text-xs font-bold cursor-pointer">Send</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ordered & Doctor-Added Medicines -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-7 bg-white rounded-[24px] border border-[#EAE5DC] p-6 sm:p-8 space-y-4">
+          <h3 class="text-lg font-bold text-[#191817]">Prescribed &amp; Ordered Treatments</h3>
+          <div id="review-medicines-list" class="space-y-3"></div>
+          <div id="doctor-note-box" class="hidden bg-[#FDF2E6] rounded-2xl p-4 text-xs text-[#191817]">
+            <strong class="block mb-1">Physician Clinical Note:</strong>
+            <span id="doctor-note-text"></span>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 bg-white rounded-[24px] border border-[#EAE5DC] p-6 sm:p-8 space-y-4">
+          <h3 class="text-lg font-bold text-[#191817]">Delivery &amp; Patient Info</h3>
+          <div id="review-shipping-info" class="text-xs text-[#6E6860] space-y-2 leading-relaxed"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- NAVY BLUE HOMEPAGE FOOTER -->
+  <footer class="bg-[#0F1B38] text-white pt-16 sm:pt-20 pb-8 relative overflow-hidden mt-12">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-300 pb-6 border-b border-white/10 gap-4">
+        <div>
+          <span class="font-serif font-bold text-2xl text-white">AIRO eMed</span>
+          <span class="ml-3 text-slate-400">Powered by Praana</span>
+        </div>
+        <div class="flex space-x-6">
+          <a href="/concerns.html" class="hover:text-white">Concerns</a>
+          <a href="/shop.html" class="hover:text-white">Shop</a>
+          <a href="/doctor-dashboard.html" class="hover:text-white">Doctor Dashboard</a>
+        </div>
+      </div>
+      <p class="text-[11px] text-slate-400 mt-6">© 2026 AIRO eMed Pvt Ltd. Prescription medicines require evaluation by a licensed physician.</p>
+    </div>
+  </footer>
+
+  <script src="/app.js"></script>
+  <script>
+    let checkoutData = null;
+    let activeOrderId = null;
+    let currentStep = 1;
+
+    function loadCheckoutState() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const orderParam = urlParams.get('orderId');
+      if (orderParam) {
+        activeOrderId = orderParam;
+        goToStep(4);
+        renderLiveOrder();
+        return;
+      }
+
+      try {
+        checkoutData = JSON.parse(localStorage.getItem('airo_active_checkout') || 'null');
+      } catch (e) { checkoutData = null; }
+
+      if (!checkoutData || !checkoutData.cart || !checkoutData.cart.length) {
+        const fallbackProd = (typeof PRODUCTS !== 'undefined' && PRODUCTS[0]) ? PRODUCTS[0] : {
+          id: 'airo-airo-root-advance', title: 'AIRO Root Advance™',
+          ingredients: 'Minoxidil 8% + Dutasteride 0.25% + Tretinoin 0.1%',
+          priceInr: 1499, period: '/ month', image: '/images/airo_opt/med-51-airo-her-products-image-04-1790631088568-61708b29.jpg',
+          category: 'HAIR_LOSS', audience: 'HIM'
+        };
+        checkoutData = {
+          category: 'HAIR', audience: 'HIM', concerns: ['Receding Hairline'],
+          dob: '1995-05-08', state: 'NJ',
+          aiOverview: 'AI Clinical Analysis matched you with targeted prescription therapy.',
+          cart: [{ ...fallbackProd, qty: 1, addedByDoctor: false }]
+        };
+      }
+
+      if (checkoutData.state) {
+        const stEl = document.getElementById('ship-state');
+        if (stEl) stEl.value = checkoutData.state;
+      }
+
+      renderCart();
+    }
+
+    function renderCart() {
+      const list = document.getElementById('cart-items-list');
+      let total = 0;
+      list.innerHTML = checkoutData.cart.map((item, idx) => {
+        total += (item.priceInr || 999) * (item.qty || 1);
+        return `
+          <div class="flex items-center justify-between gap-4 p-4 rounded-2xl bg-[#FAF8F5] border border-[#EAE5DC]">
+            <div class="flex items-center space-x-4">
+              <img src="${item.image}" alt="${item.title}" class="w-16 h-16 rounded-xl object-cover bg-[#EFECE6]" />
+              <div>
+                <h3 class="text-sm font-bold text-[#191817]">${item.title}</h3>
+                <p class="text-xs font-mono text-[#6E6860] mt-0.5">${item.ingredients}</p>
+                <span class="text-xs font-bold text-[#0F1B38] mt-1 block">₹${(item.priceInr || 999).toLocaleString('en-IN')} ${item.period || '/ month'}</span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-2">
+              <button onclick="updateQty(${idx}, -1)" class="w-7 h-7 rounded-full bg-white border border-[#DDD5C9] text-xs font-bold cursor-pointer">-</button>
+              <span class="text-xs font-bold w-5 text-center">${item.qty || 1}</span>
+              <button onclick="updateQty(${idx}, 1)" class="w-7 h-7 rounded-full bg-white border border-[#DDD5C9] text-xs font-bold cursor-pointer">+</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('summary-subtotal').textContent = `₹${total.toLocaleString('en-IN')}`;
+      document.getElementById('summary-total').textContent = `₹${total.toLocaleString('en-IN')}`;
+    }
+
+    function updateQty(idx, delta) {
+      const item = checkoutData.cart[idx];
+      if (!item) return;
+      item.qty = Math.max(1, (item.qty || 1) + delta);
+      localStorage.setItem('airo_active_checkout', JSON.stringify(checkoutData));
+      renderCart();
+    }
+
+    function goToStep(step) {
+      currentStep = step;
+      ['view-cart', 'view-signin', 'view-shipping', 'view-review'].forEach((id, idx) => {
+        document.getElementById(id).classList.toggle('hidden', idx + 1 !== step);
+      });
+      [1, 2, 3, 4].forEach(n => {
+        const pill = document.getElementById(`step-pill-${n}`);
+        if (n === step) {
+          pill.className = 'step-pill py-2.5 px-2 rounded-2xl text-xs font-bold bg-[#0F1B38] text-white';
+        } else if (n < step) {
+          pill.className = 'step-pill py-2.5 px-2 rounded-2xl text-xs font-bold bg-emerald-100 text-emerald-800';
+        } else {
+          pill.className = 'step-pill py-2.5 px-2 rounded-2xl text-xs font-bold bg-[#EFECE6] text-[#6E6860]';
+        }
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function completeSignIn() {
+      const name = document.getElementById('signin-name').value.trim() || 'Alex Morgan';
+      const email = document.getElementById('signin-email').value.trim() || 'alex@example.com';
+      const phone = document.getElementById('signin-phone').value.trim() || '+1 (555) 234-5678';
+      checkoutData.patient = { name, email, phone };
+      localStorage.setItem('airo_patient_user', JSON.stringify(checkoutData.patient));
+      goToStep(3);
+    }
+
+    function placeOrder() {
+      const street = document.getElementById('ship-street').value.trim() || '240 Mercer Street';
+      const city = document.getElementById('ship-city').value.trim() || 'Jersey City';
+      const state = document.getElementById('ship-state').value.trim() || 'NJ';
+      const zip = document.getElementById('ship-zip').value.trim() || '07302';
+
+      const orderId = 'AIRO-' + Math.floor(1000 + Math.random() * 9000);
+      const order = {
+        orderId,
+        status: 'PENDING_DOCTOR_REVIEW',
+        createdAt: new Date().toISOString(),
+        patient: checkoutData.patient || { name: 'Alex Morgan', email: 'alex@example.com', phone: '+1 555-234-5678' },
+        shipping: { street, city, state, zip },
+        category: checkoutData.category,
+        audience: checkoutData.audience,
+        concerns: checkoutData.concerns || [],
+        dob: checkoutData.dob,
+        aiOverview: checkoutData.aiOverview || '',
+        medicines: checkoutData.cart,
+        callRequest: null,
+        doctorNote: '',
+        chatMessages: []
+      };
+
+      const orders = JSON.parse(localStorage.getItem('airo_orders_v1') || '[]');
+      orders.unshift(order);
+      localStorage.setItem('airo_orders_v1', JSON.stringify(orders));
+
+      activeOrderId = orderId;
+      window.history.replaceState({}, '', `/checkout.html?orderId=${encodeURIComponent(orderId)}`);
+      goToStep(4);
+      renderLiveOrder();
+    }
+
+    function renderLiveOrder() {
+      if (!activeOrderId) return;
+      const orders = JSON.parse(localStorage.getItem('airo_orders_v1') || '[]');
+      const order = orders.find(o => o.orderId === activeOrderId);
+      if (!order) return;
+
+      document.getElementById('review-order-id').textContent = `Order #${order.orderId}`;
+      document.getElementById('open-doctor-dash-link').href = `/doctor-dashboard.html?orderId=${encodeURIComponent(order.orderId)}`;
+
+      const badge = document.getElementById('review-status-badge');
+      const heading = document.getElementById('review-heading');
+      const subtext = document.getElementById('review-subtext');
+
+      if (order.status === 'APPROVED') {
+        badge.className = 'inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold uppercase tracking-wider';
+        badge.innerHTML = '<span>✓ Prescription Approved &amp; Sent to Pharmacy</span>';
+        heading.textContent = 'Approved by Dr. Sarah Jenkins, MD';
+        subtext.textContent = 'Your prescription has been approved and transmitted to our 503A pharmacy for discreet delivery.';
+      } else if (order.callRequest) {
+        badge.className = 'inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-200 text-xs font-bold uppercase tracking-wider';
+        badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span><span>Doctor Requested ${order.callRequest} Consult</span>`;
+        heading.textContent = `Dr. Sarah Jenkins, MD wants to connect (${order.callRequest})`;
+        subtext.textContent = 'Please join the live virtual consultation below so your doctor can finalize your prescription.';
+      }
+
+      // Call card visibility
+      const callCard = document.getElementById('patient-call-card');
+      if (order.callRequest) {
+        callCard.classList.remove('hidden');
+        document.getElementById('call-type-label').textContent =
+          order.callRequest === 'VIDEO' ? 'Incoming Virtual Video Consult 📹' : 'Incoming Audio Consultation 🎙️';
+      } else {
+        callCard.classList.add('hidden');
+      }
+
+      // Chat log
+      const chatLog = document.getElementById('patient-chat-log');
+      if (chatLog && order.chatMessages) {
+        chatLog.innerHTML = order.chatMessages.map(m => `
+          <div class="p-2 rounded-xl ${m.sender === 'DOCTOR' ? 'bg-white border border-[#DDD5C9]' : 'bg-[#0F1B38] text-white ml-6'}">
+            <strong class="block text-[10px] opacity-70">${m.sender === 'DOCTOR' ? 'Dr. Sarah Jenkins, MD' : 'You'}</strong>
+            <span>${m.text}</span>
+          </div>
+        `).join('');
+      }
+
+      // Medicines list
+      document.getElementById('review-medicines-list').innerHTML = order.medicines.map(m => `
+        <div class="flex items-center justify-between gap-4 p-4 rounded-2xl bg-[#FAF8F5] border border-[#EAE5DC]">
+          <div class="flex items-center space-x-3.5">
+            <img src="${m.image}" alt="${m.title}" class="w-14 h-14 rounded-xl object-cover bg-[#EFECE6]" />
+            <div>
+              <div class="flex items-center space-x-2">
+                <h4 class="text-sm font-bold text-[#191817]">${m.title}</h4>
+                ${m.addedByDoctor ? '<span class="px-2 py-0.5 rounded-full bg-[#E89D5E] text-[#191714] text-[10px] font-bold">Added by Doctor</span>' : ''}
+              </div>
+              <p class="text-xs font-mono text-[#6E6860] mt-0.5">${m.ingredients}</p>
+            </div>
+          </div>
+          <span class="text-sm font-bold text-[#191817] tabular-nums">₹${(m.priceInr || 999).toLocaleString('en-IN')}</span>
+        </div>
+      `).join('');
+
+      if (order.doctorNote) {
+        document.getElementById('doctor-note-box').classList.remove('hidden');
+        document.getElementById('doctor-note-text').textContent = order.doctorNote;
+      }
+
+      document.getElementById('review-shipping-info').innerHTML = `
+        <p><strong class="text-[#191817]">Patient:</strong> ${order.patient.name}</p>
+        <p><strong class="text-[#191817]">Contact:</strong> ${order.patient.email} · ${order.patient.phone}</p>
+        <p><strong class="text-[#191817]">Shipping:</strong> ${order.shipping.street}, ${order.shipping.city}, ${order.shipping.state} ${order.shipping.zip}</p>
+        <p><strong class="text-[#191817]">Concerns:</strong> ${(order.concerns || []).join(', ') || order.category}</p>
+      `;
+    }
+
+    function joinPatientCall() {
+      document.getElementById('patient-active-call-ui').classList.remove('hidden');
+    }
+
+    function endPatientCall() {
+      document.getElementById('patient-active-call-ui').classList.add('hidden');
+    }
+
+    function sendPatientChat() {
+      const inp = document.getElementById('patient-chat-input');
+      const txt = inp.value.trim();
+      if (!txt || !activeOrderId) return;
+      const orders = JSON.parse(localStorage.getItem('airo_orders_v1') || '[]');
+      const order = orders.find(o => o.orderId === activeOrderId);
+      if (order) {
+        order.chatMessages = order.chatMessages || [];
+        order.chatMessages.push({ sender: 'PATIENT', text: txt, at: new Date().toISOString() });
+        localStorage.setItem('airo_orders_v1', JSON.stringify(orders));
+        inp.value = '';
+        renderLiveOrder();
+      }
+    }
+
+    window.addEventListener('storage', () => renderLiveOrder());
+    setInterval(() => { if (currentStep === 4) renderLiveOrder(); }, 1500);
+    document.addEventListener('DOMContentLoaded', loadCheckoutState);
+  </script>
+</body>
+
+</html>
