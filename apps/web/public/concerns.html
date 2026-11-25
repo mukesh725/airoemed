@@ -536,6 +536,18 @@
         himsBtn.setAttribute('aria-pressed', 'false');
         heroImg.src = "/images/hero-concern-her.jpg";
       }
+
+      // Hide Sexual Health category pill when Hers is selected
+      document.querySelectorAll('.concern-category-pill[data-cat="SEXUAL_HEALTH"]').forEach(pill => {
+        pill.style.display = aud === 'HER' ? 'none' : '';
+      });
+      if (aud === 'HER' && currentFilter === 'SEXUAL_HEALTH') {
+        currentFilter = 'ALL';
+        document.querySelectorAll('.concern-category-pill').forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-cat') === 'ALL');
+        });
+      }
+
       renderConcerns();
     }
 

@@ -966,6 +966,19 @@ function setCatalogAudience(aud) {
       }
     }
   });
+
+  // Hide Sexual Health category pill when Hers is selected (no Hers sexual wellness category)
+  document.querySelectorAll('.catalog-filter-pill[data-category="SEXUAL_HEALTH_ED"]').forEach(pill => {
+    pill.style.display = aud === 'HER' ? 'none' : '';
+  });
+
+  if (aud === 'HER' && currentCategoryFilter === 'SEXUAL_HEALTH_ED') {
+    currentCategoryFilter = 'ALL';
+    document.querySelectorAll('.catalog-filter-pill[data-category]').forEach(p => {
+      p.classList.toggle('active', p.getAttribute('data-category') === 'ALL');
+    });
+  }
+
   renderProducts();
 }
 
