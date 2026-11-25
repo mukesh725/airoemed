@@ -992,6 +992,21 @@ function filterCatalogCategory(category) {
       p.classList.remove('active');
     }
   });
+
+  // Update page heading on /shop.html & /treatments.html to reflect active category
+  const grid = document.getElementById('product-grid');
+  const heading = document.getElementById('catalog-heading');
+  if (heading && grid && !grid.classList.contains('product-scroll-track')) {
+    const titles = {
+      ALL: 'Shop All Treatments',
+      HAIR_LOSS: 'Hair Care',
+      SEXUAL_HEALTH_ED: 'Sexual Health',
+      DERMATOLOGY: 'Skin Care',
+      WEIGHT_MANAGEMENT: 'Weight Management'
+    };
+    heading.textContent = titles[category] || 'Shop All Treatments';
+  }
+
   renderProducts();
 }
 
