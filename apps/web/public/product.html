@@ -840,13 +840,24 @@
       btn.classList.add('ring-2', 'ring-[#191714]');
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       if (typeof PRODUCTS === 'undefined' || !PRODUCTS.length) return;
 
       const params = new URLSearchParams(window.location.search);
       const idParam = params.get('id');
       const product = PRODUCTS.find(p => p.id === idParam) || PRODUCTS[0];
       currentPdpProduct = product;
+
+      let airoMed = null;
+      try {
+        const res = await fetch('/airo-medicines.json');
+        if (res.ok) {
+          const allMeds = await res.json();
+          airoMed = allMeds[product.id] || null;
+        }
+      } catch (e) {
+        console.warn('Could not load airo-medicines.json:', e);
+      }
 
       const meta = CATEGORY_SYSTEM[product.category] || CATEGORY_SYSTEM.HAIR_LOSS;
       const audLabel = product.audience === 'HIM' ? 'Hims' : product.audience === 'HER' ? 'Hers' : 'Hims & Hers';
@@ -856,10 +867,11 @@
       document.getElementById('pdp-hero-img').src = product.image;
       document.getElementById('pdp-hero-img').alt = product.title;
 
+      const extraImgs = (airoMed && airoMed.images && airoMed.images.length > 1) ? airoMed.images.slice(1, 3) : [];
       const thumbImgs = [
         { src: product.image, label: 'Product' },
-        { src: meta.howImg, label: 'Lifestyle' },
-        { src: '/images/doctor-avatar.jpg', label: 'Clinician' },
+        { src: extraImgs[0] || meta.howImg, label: 'Lifestyle' },
+        { src: extraImgs[1] || '/images/doctor-avatar.jpg', label: 'Clinician' },
         { src: product.image, label: 'Formula' }
       ];
       document.getElementById('pdp-thumbs').innerHTML = thumbImgs.map((th, idx) => `
@@ -869,16 +881,23 @@
         </button>
       `).join('');
 
-      // M02: Badges + Copy + Price + Accordions
+      // M02: Badges + Copy + Price + Accordions (enriched from airoemed.com)
+      const levelBadge = (airoMed && airoMed.treatmentLevelLabel) ? airoMed.treatmentLevelLabel : product.badge;
       document.getElementById('pdp-badges').innerHTML = `
-        ${product.badge ? `<span class="px-3 py-1 rounded-full bg-[#FDF2E6] text-[#191714] font-mono text-[10px] uppercase tracking-[0.12em] font-medium">${product.badge}</span>` : ''}
+        ${levelBadge ? `<span class="px-3 py-1 rounded-full bg-[#FDF2E6] text-[#191714] font-mono text-[10px] uppercase tracking-[0.12em] font-medium">${levelBadge}</span>` : ''}
         <span class="px-3 py-1 rounded-full bg-[#F5F2EB] text-[#6E6860] font-mono text-[10px] uppercase tracking-[0.12em]">${audLabel}</span>
+        ${(airoMed && airoMed.packSize) ? `<span class="px-3 py-1 rounded-full bg-[#F5F2EB] text-[#6E6860] font-mono text-[10px] uppercase tracking-[0.12em]">${airoMed.packSize}</span>` : ''}
       `;
       document.getElementById('pdp-eyebrow').textContent = `${product.categoryLabel || meta.label} · PRESCRIPTION TREATMENT`;
       document.getElementById('pdp-title').textContent = product.title;
-      document.getElementById('pdp-subtitle').textContent = `${product.ingredients} — compounded at verified 503A pharmacies and prescribed online by US-licensed clinicians.`;
+      document.getElementById('pdp-subtitle').textContent = (airoMed && airoMed.shortDescription)
+        ? `${airoMed.shortDescription} — ${(airoMed.genericName || product.ingredients)}.`
+        : `${product.ingredients} — compounded at verified 503A pharmacies and prescribed online by licensed clinicians.`;
 
-      document.getElementById('pdp-bullets').innerHTML = meta.bullets.map(b => `
+      const heroBullets = (airoMed && airoMed.howAndWhyPoints && airoMed.howAndWhyPoints.length)
+        ? airoMed.howAndWhyPoints.slice(0, 3)
+        : meta.bullets;
+      document.getElementById('pdp-bullets').innerHTML = heroBullets.map(b => `
         <li class="flex items-start space-x-2.5">
           <span class="w-1.5 h-1.5 rounded-full bg-[#E89D5E] shrink-0 mt-2"></span>
           <span>${b}</span>
@@ -893,11 +912,21 @@
       }
       document.getElementById('pdp-price-usd').textContent = `($${product.price} ${product.period || '/ month'})`;
 
+      const whoBody = (airoMed && airoMed.description)
+        ? airoMed.description
+        : `${product.title} is formulated for ${audLabel === 'Hims' ? 'men' : audLabel === 'Hers' ? 'women' : 'adults'} seeking targeted ${meta.label.toLowerCase()} results, prescribed after an online doctor evaluation.`;
+
+      const ingBody = `<strong>${(airoMed && airoMed.genericName) || product.ingredients}</strong>${(airoMed && airoMed.packSize) ? ` · Pack size: ${airoMed.packSize}` : ''}${(airoMed && airoMed.manufacturer) ? ` · Dispensed by ${airoMed.manufacturer}` : ''}.`;
+
+      const howUseBody = (airoMed && airoMed.howToUsePoints && airoMed.howToUsePoints.length)
+        ? `<ul class="list-disc pl-4 space-y-1.5">${airoMed.howToUsePoints.map(pt => `<li>${pt}</li>`).join('')}</ul>`
+        : `Follow the personalized instructions prescribed by your clinician. Complete usage guidance arrives in your discreet box.`;
+
       const heroAcc = [
-        { title: 'Who is it for?', body: `${product.title} is formulated for ${audLabel === 'Hims' ? 'men' : audLabel === 'Hers' ? 'women' : 'adults'} seeking targeted ${meta.label.toLowerCase()} results, prescribed after an online doctor evaluation.` },
-        { title: 'Active ingredients', body: `<strong>${product.ingredients}</strong> — quality-tested for purity, potency, and consistent absorption.` },
-        { title: 'How to use', body: `Follow the personalized instructions prescribed by your clinician. Complete usage guidance arrives in your discreet box.` },
-        { title: 'Safety & prescribing info', body: `Requires evaluation by a US-licensed physician. Always disclose current medications and health conditions during intake.` }
+        { title: 'Overview & who it is for', body: whoBody },
+        { title: 'Active ingredients & pack size', body: ingBody },
+        { title: 'How to use', body: howUseBody },
+        { title: 'Safety & prescribing info', body: `Requires evaluation by a licensed physician. Always disclose current medications and health conditions during your online consultation.` }
       ];
       document.getElementById('pdp-hero-accordions').innerHTML = heroAcc.map((a, i) => renderAccordionRow(a.title, a.body, i === 0)).join('');
 
@@ -1018,8 +1047,11 @@
         dosingEl.classList.add('hidden');
       }
 
-      // M11: FAQ
-      document.getElementById('pdp-faq-list').innerHTML = meta.faqs.map((f, idx) => renderAccordionRow(f.q, f.a, idx === 0)).join('');
+      // M11: FAQ (real airoemed.com FAQs first when available)
+      const faqsList = (airoMed && airoMed.faqs && airoMed.faqs.length)
+        ? airoMed.faqs.concat(meta.faqs.slice(0, 2))
+        : meta.faqs;
+      document.getElementById('pdp-faq-list').innerHTML = faqsList.map((f, idx) => renderAccordionRow(f.q, f.a, idx === 0)).join('');
     });
   </script>
 </body>
