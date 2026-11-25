@@ -384,8 +384,16 @@
 
     // Read initial URL params
     const urlParams = new URLSearchParams(window.location.search);
-    let currentCategory = (urlParams.get('category') || 'HAIR').toUpperCase();
+    const rawCatParam = (urlParams.get('category') || 'HAIR').toUpperCase();
+    const CAT_ALIASES = {
+      HAIR_LOSS: 'HAIR',
+      DERMATOLOGY: 'SKIN',
+      SEXUAL_HEALTH_ED: 'SEXUAL_HEALTH',
+      WEIGHT_MANAGEMENT: 'WEIGHT'
+    };
+    let currentCategory = CAT_ALIASES[rawCatParam] || rawCatParam;
     let currentAudience = (urlParams.get('audience') || 'HIM').toUpperCase();
+    if (currentAudience !== 'HIM' && currentAudience !== 'HER') currentAudience = 'HIM';
     let initialConcern = urlParams.get('concern') || '';
 
     // Flow State

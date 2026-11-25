@@ -895,8 +895,17 @@
     let currentPdpProduct = null;
 
     function startCurrentProductIntake() {
-      const cat = currentPdpProduct ? (currentPdpProduct.concernKey || currentPdpProduct.category) : 'HAIR_LOSS';
-      startIntakeFor(cat);
+      const catMap = {
+        HAIR_LOSS: 'HAIR',
+        DERMATOLOGY: 'SKIN',
+        SEXUAL_HEALTH_ED: 'SEXUAL_HEALTH',
+        WEIGHT_MANAGEMENT: 'WEIGHT'
+      };
+      const rawCat = currentPdpProduct ? (currentPdpProduct.concernKey || currentPdpProduct.category) : 'HAIR_LOSS';
+      const qCat = catMap[rawCat] || rawCat || 'HAIR';
+      const qAud = (currentPdpProduct && currentPdpProduct.audience === 'HER') ? 'HER' : 'HIM';
+      const prodParam = currentPdpProduct ? `&product=${encodeURIComponent(currentPdpProduct.id)}` : '';
+      window.location.href = `/questionnaire.html?category=${encodeURIComponent(qCat)}&audience=${encodeURIComponent(qAud)}${prodParam}`;
     }
 
     function toggleAccordion(btn) {

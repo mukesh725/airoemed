@@ -1224,7 +1224,15 @@ function startIntakeFor(category) {
     startIntakeFlow();
     selectIntakeCategory(category);
   } else {
-    window.location.href = `/questionnaire.html?category=${encodeURIComponent(category || 'HAIR_LOSS')}`;
+    const catMap = {
+      HAIR_LOSS: 'HAIR',
+      DERMATOLOGY: 'SKIN',
+      SEXUAL_HEALTH_ED: 'SEXUAL_HEALTH',
+      WEIGHT_MANAGEMENT: 'WEIGHT'
+    };
+    const qCat = catMap[category] || category || 'HAIR';
+    const qAud = (typeof currentCatalogAudience !== 'undefined' && currentCatalogAudience === 'HER') ? 'HER' : 'HIM';
+    window.location.href = `/questionnaire.html?category=${encodeURIComponent(qCat)}&audience=${encodeURIComponent(qAud)}`;
   }
 }
 
