@@ -393,8 +393,8 @@
       WEIGHT_MANAGEMENT: 'WEIGHT'
     };
     let currentCategory = CAT_ALIASES[rawCatParam] || rawCatParam;
-    let currentAudience = (urlParams.get('audience') || 'HIM').toUpperCase();
-    if (currentAudience !== 'HIM' && currentAudience !== 'HER') currentAudience = 'HIM';
+    let qAudience = (urlParams.get('audience') || 'HIM').toUpperCase();
+    if (qAudience !== 'HIM' && qAudience !== 'HER') qAudience = 'HIM';
     let initialConcern = urlParams.get('concern') || '';
 
     // Flow State
@@ -413,7 +413,7 @@
       const isSkin = currentCategory === 'SKIN';
       const isSex = currentCategory === 'SEXUAL_HEALTH';
       const isWeight = currentCategory === 'WEIGHT';
-      const isHim = currentAudience === 'HIM';
+      const isHim = qAudience === 'HIM';
 
       const steps = [];
 
@@ -1201,7 +1201,7 @@
         };
         const prodCat = catToProd[currentCategory] || 'HAIR_LOSS';
         const allProds = (typeof PRODUCTS !== 'undefined' && PRODUCTS.length) ? PRODUCTS : [];
-        let recs = allProds.filter(p => p.category === prodCat && (p.audience === 'BOTH' || p.audience === currentAudience));
+        let recs = allProds.filter(p => p.category === prodCat && (p.audience === 'BOTH' || p.audience === qAudience));
         if (!recs.length) recs = allProds.filter(p => p.category === prodCat);
         recs = recs.slice(0, 3);
 
@@ -1520,7 +1520,7 @@
 
       const payload = {
         category: currentCategory,
-        audience: currentAudience,
+        audience: qAudience,
         concerns: patientAnswers.selectedConcerns || [],
         dob: patientAnswers.dob || '1995-05-08',
         state: patientAnswers.state || 'NJ',
