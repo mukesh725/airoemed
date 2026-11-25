@@ -1126,7 +1126,7 @@ function renderProducts() {
     const concernKey = p.concernKey || p.category;
 
     return `
-      <div class="product-treatment-card group select-none flex flex-col justify-between cursor-pointer" onclick="startIntakeFor('${concernKey}')" data-audience="${p.audience}" data-category="${p.category}">
+      <div class="product-treatment-card group select-none flex flex-col justify-between cursor-pointer" onclick="window.location.href='/product.html?id=${encodeURIComponent(p.id)}'" data-audience="${p.audience}" data-category="${p.category}">
         
         <!-- Square Image Box (Minim Style) -->
         <div class="treatment-image-box aspect-square bg-[#F5F4F0] rounded-2xl flex items-center justify-center relative overflow-hidden border border-[#EBE8E2] transition-all duration-300">

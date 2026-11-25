@@ -7,6 +7,7 @@
     { "source": "/concerns", "destination": "/concerns.html" },
     { "source": "/treatments", "destination": "/treatments.html" },
     { "source": "/shop", "destination": "/shop.html" },
+    { "source": "/product", "destination": "/product.html" },
     { "source": "/questionnaire", "destination": "/questionnaire.html" }
   ]
 }
